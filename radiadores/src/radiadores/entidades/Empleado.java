@@ -17,7 +17,7 @@ public class Empleado {
 	private String nombre;
 	private String telefono;
 	public Cargo cargo;
-	public HorasLaborales horasTrabajadas;
+	public HorasLaborales[] horasTrabajadas;
 
 	public Empleado(){
 

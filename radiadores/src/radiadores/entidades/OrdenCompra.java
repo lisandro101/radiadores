@@ -12,7 +12,7 @@ public class OrdenCompra {
 	private Date fecha;
 	private Date fechaEstimadaEntrega;
 	private String id;
-	public DetalleOrdenCompra detalleOrdenCompra;
+	public DetalleOrdenCompra[] detallesOrdenCompra;
 
 	public OrdenCompra(){
 

@@ -7,7 +7,7 @@ package radiadores.entidades;
  */
 public class RutaFabricacion {
 
-	private String idRutaFabricacion;
+	private String id;
 	private String nombreRutaFabricacion;
 	public ProductoTerminado productoTerminado;
 	public NodoRuta nodoRuta;

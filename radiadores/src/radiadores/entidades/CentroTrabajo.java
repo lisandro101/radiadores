@@ -8,9 +8,8 @@ package radiadores.entidades;
 public class CentroTrabajo {
 
 	private String id;
-	private Maquina[] maquinaria;
+	private Maquina[] maquinas;
 	private String nombreCentroTrabajo;
-	public NodoRuta nodoRuta;
 
 	public CentroTrabajo(){
 

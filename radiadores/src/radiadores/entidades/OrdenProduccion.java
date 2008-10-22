@@ -13,7 +13,7 @@ public class OrdenProduccion {
 	private Date fechaEstimadaEntrega;
 	private String id;
 	private String nombreCliente;
-	public ProductoTerminado productoTerminado;
+	public ProductoTerminado[] productoTerminado;
 
 	public OrdenProduccion(){
 
