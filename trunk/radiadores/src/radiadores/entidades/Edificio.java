@@ -12,7 +12,7 @@ public class Edificio {
 	private String id;
 	private String nombreEdificio;
 	private double superficie;
-	public Maquina maquina;
+	public Maquina[] maquinas;
 
 	public Edificio(){
 

@@ -16,7 +16,8 @@ public class Proveedor {
 	private String nombreContacto;
 	private String nombreProveedor;
 	private String telefono;
-	public OrdenCompra ordenCompra;
+	private OrdenCompra[] ordenesCompra;
+        private iComponente[] componentes; 
 
 	public Proveedor(){
 

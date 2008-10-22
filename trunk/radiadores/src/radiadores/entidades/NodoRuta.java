@@ -10,7 +10,7 @@ import java.util.SortedMap;
 public class NodoRuta {
 
 	private SortedMap<iComponente, Integer> materiales;
-	public iComponente componente;
+        private CentroTrabajo centroTrabajo;
 
 	public NodoRuta(){
 
