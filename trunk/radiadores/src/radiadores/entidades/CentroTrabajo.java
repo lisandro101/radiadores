@@ -7,10 +7,10 @@ package radiadores.entidades;
  */
 public class CentroTrabajo {
 
-	private String idCentroTrabajo;
-	private Maquinaria[] maquinaria;
+	private String id;
+	private Maquina[] maquinaria;
 	private String nombreCentroTrabajo;
-	public NodoRuta m_NodoRuta;
+	public NodoRuta nodoRuta;
 
 	public CentroTrabajo(){
 

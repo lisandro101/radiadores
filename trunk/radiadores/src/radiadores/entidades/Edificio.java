@@ -9,10 +9,10 @@ public class Edificio {
 
 	private String codigo;
 	private String direccion;
-	private String idEdificio;
+	private String id;
 	private String nombreEdificio;
 	private double superficie;
-	public Maquinaria m_Maquinaria;
+	public Maquina maquina;
 
 	public Edificio(){
 

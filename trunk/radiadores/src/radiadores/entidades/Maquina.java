@@ -7,16 +7,16 @@ import java.util.Date;
  * @version 1.0
  * @created 21-oct-2008 12:47:11 a.m.
  */
-public class Maquinaria {
+public class Maquina {
 
 	private String codigo;
 	private Date fechaAntiguedad;
-	private String idMaquinaria;
-	private String nombreMaquinaria;
-	public CentroTrabajo m_CentroTrabajo;
-	public Sector m_Sector;
+	private String id;
+	private String nombreMaquina;
+	public CentroTrabajo centroTrabajo;
+	public Sector sector;
 
-	public Maquinaria(){
+	public Maquina(){
 
 	}
 }

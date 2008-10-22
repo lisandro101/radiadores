@@ -13,7 +13,7 @@ public class Producto {
 	private double costoEmision;
 	private double costoUnitarioOmision;
 	private String descripcion;
-	private String idProducto;
+	private String id;
 	private String nombre;
 	private String numeroPlano;
 	private double pesoUnidad;

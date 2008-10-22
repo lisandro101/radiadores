@@ -8,9 +8,9 @@ package radiadores.entidades;
 public class Cargo {
 
 	private int horasXmes;
-	private String idCargo;
+	private String id;
 	private String nombreCargo;
-	private double precioHora;
+	private double valorHora;
 
 	public Cargo(){
 

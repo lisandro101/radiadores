@@ -9,8 +9,8 @@ public class RutaFabricacion {
 
 	private String idRutaFabricacion;
 	private String nombreRutaFabricacion;
-	public ProductoTerminado m_ProductoTerminado;
-	public NodoRuta m_NodoRuta;
+	public ProductoTerminado productoTerminado;
+	public NodoRuta nodoRuta;
 
 	public RutaFabricacion(){
 

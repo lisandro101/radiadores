@@ -11,8 +11,8 @@ public class OrdenCompra {
 
 	private Date fecha;
 	private Date fechaEstimadaEntrega;
-	private String idOrdenCompra;
-	public DetalleOrdenCompra m_DetalleOrdenCompra;
+	private String id;
+	public DetalleOrdenCompra detalleOrdenCompra;
 
 	public OrdenCompra(){
 

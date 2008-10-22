@@ -9,8 +9,7 @@ public class DetalleOrdenCompra {
 
 	private double cantidad;
 	private iComponente componente;
-	public iComponente m_iComponente;
-
+        
 	public DetalleOrdenCompra(){
 
 	}
