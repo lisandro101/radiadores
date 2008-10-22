@@ -2,4 +2,4 @@
 
 = Introduction =
 
-En la sección Source se encuentra el repositorio en el que ya comitié en carpetas separadas el [proyecto] (radiadores) y el [modelo] hecho en NetBeans del proyecto (radiadores-Model) pueden hacer [checkouts] separados desde NB para cada uno de ellos. En la sección Downloads subí el modelo hecho en Enterprise Arquitect.
+En la sección Source se encuentra el repositorio en el que ya comitié en carpetas separadas el [proyecto] (radiadores) y el [modelo] hecho en [http://www.netbeans.org NetBeans] del proyecto (radiadores-Model) pueden hacer [checkouts] separados desde NB para cada uno de ellos. En la sección Downloads subí el modelo hecho en [http://www.sparxsystems.com.ar Enterprise Architect].
