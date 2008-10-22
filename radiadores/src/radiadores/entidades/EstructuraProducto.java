@@ -10,8 +10,8 @@ import java.util.HashMap;
 public class EstructuraProducto {
 
 	private HashMap<iComponente, Integer> partes;
-	public ProductoTerminado m_ProductoTerminado;
-	public iComponente m_iComponente;
+	public ProductoTerminado productoTerminado;
+	public iComponente componente;
 
 	public EstructuraProducto(){
 

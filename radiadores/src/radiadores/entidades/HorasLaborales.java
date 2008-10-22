@@ -8,7 +8,7 @@ package radiadores.entidades;
 public class HorasLaborales {
 
 	private int cantidad;
-	public CentroTrabajo m_CentroTrabajo;
+	public CentroTrabajo centroTrabajo;
 
 	public HorasLaborales(){
 

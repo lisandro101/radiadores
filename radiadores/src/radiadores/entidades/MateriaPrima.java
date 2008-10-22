@@ -11,7 +11,7 @@ public class MateriaPrima {
 	private double costoAlmacenamiento;
 	private double costoUnitarioXOmision;
 	private String descripcion;
-	private String idMateriaPrima;
+	private String id;
 	private String nombreMateriaPrima;
 	private double pesoXUnidad;
 	private double precioBase;

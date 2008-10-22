@@ -12,12 +12,12 @@ public class Empleado {
 	private String direccion;
 	private Date fechaIngreso;
 	private Date fechaNacimiento;
-	private String idEmpleado;
+	private String id;
 	private String mail;
 	private String nombre;
 	private String telefono;
-	public Cargo m_Cargo;
-	public HorasLaborales m_HorasLaborales;
+	public Cargo cargo;
+	public HorasLaborales horasTrabajadas;
 
 	public Empleado(){
 

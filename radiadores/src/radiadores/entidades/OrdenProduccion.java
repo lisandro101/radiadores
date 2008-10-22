@@ -11,9 +11,9 @@ public class OrdenProduccion {
 
 	private Date fecha;
 	private Date fechaEstimadaEntrega;
-	private String idOrdenProduccion;
+	private String id;
 	private String nombreCliente;
-	public ProductoTerminado m_ProductoTerminado;
+	public ProductoTerminado productoTerminado;
 
 	public OrdenProduccion(){
 

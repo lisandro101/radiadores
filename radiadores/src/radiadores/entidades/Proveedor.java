@@ -11,12 +11,12 @@ public class Proveedor {
 
 	private String direccion;
 	private Date fechaInicioActividad;
-	private String idProveedor;
+	private String id;
 	private String mail;
 	private String nombreContacto;
 	private String nombreProveedor;
 	private String telefono;
-	public OrdenCompra m_OrdenCompra;
+	public OrdenCompra ordenCompra;
 
 	public Proveedor(){
 
