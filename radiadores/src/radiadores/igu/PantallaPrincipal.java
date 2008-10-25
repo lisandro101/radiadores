@@ -4,7 +4,7 @@
  * Created on 25 de octubre de 2008, 18:13
  */
 
-package igu;
+package radiadores.igu;
 
 /**
  *
