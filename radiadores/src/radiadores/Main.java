@@ -5,6 +5,8 @@
 
 package radiadores;
 
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 import radiadores.igu.PantallaPrincipal;
 
 /**
@@ -16,7 +18,12 @@ public class Main {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ClassNotFoundException,
+            InstantiationException, IllegalAccessException,
+            UnsupportedLookAndFeelException {
+        UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+        System.setProperty("apple.laf.useScreenMenuBar", "true");
+            
         System.out.print("Hello World");
         new PantallaPrincipal();
     }
