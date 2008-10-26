@@ -93,13 +93,12 @@ public class MateriaPrima extends javax.swing.JPanel {
                 .addGroup(pTablaProveedoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pTablaProveedoresLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addGroup(pTablaProveedoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 366, Short.MAX_VALUE)
-                            .addComponent(lbProveedor)))
+                        .addComponent(lbProveedor))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 366, Short.MAX_VALUE)
                     .addGroup(pTablaProveedoresLayout.createSequentialGroup()
-                        .addGap(55, 55, 55)
+                        .addGap(50, 50, 50)
                         .addComponent(btAsignarProveedor)
-                        .addGap(38, 38, 38)
+                        .addGap(40, 40, 40)
                         .addComponent(btEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
@@ -109,12 +108,12 @@ public class MateriaPrima extends javax.swing.JPanel {
                 .addGap(19, 19, 19)
                 .addComponent(lbProveedor)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28)
                 .addGroup(pTablaProveedoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btAsignarProveedor)
                     .addComponent(btEliminar))
-                .addContainerGap(65, Short.MAX_VALUE))
+                .addContainerGap(108, Short.MAX_VALUE))
         );
 
         lbCodigo.setText("Código:");
@@ -196,7 +195,7 @@ public class MateriaPrima extends javax.swing.JPanel {
                 .addGroup(pMateriaPrimaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(41, Short.MAX_VALUE))
+                .addContainerGap(31, Short.MAX_VALUE))
             .addGroup(pMateriaPrimaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(pMateriaPrimaLayout.createSequentialGroup()
                     .addGap(17, 17, 17)
@@ -229,12 +228,14 @@ public class MateriaPrima extends javax.swing.JPanel {
                         .addComponent(tfTamanioLoteEstandar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGap(12, 12, 12)
                     .addComponent(lbUnidadMedida)
-                    .addContainerGap(103, Short.MAX_VALUE)))
+                    .addContainerGap(93, Short.MAX_VALUE)))
         );
 
         btBuscar.setText("Buscar");
+        pBotones.add(btBuscar);
 
         btAgregar.setText("Agregar");
+        pBotones.add(btAgregar);
 
         btModifiar.setText("Modificar");
         btModifiar.addActionListener(new java.awt.event.ActionListener() {
@@ -242,30 +243,7 @@ public class MateriaPrima extends javax.swing.JPanel {
                 btModifiarActionPerformed(evt);
             }
         });
-
-        javax.swing.GroupLayout pBotonesLayout = new javax.swing.GroupLayout(pBotones);
-        pBotones.setLayout(pBotonesLayout);
-        pBotonesLayout.setHorizontalGroup(
-            pBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pBotonesLayout.createSequentialGroup()
-                .addContainerGap(279, Short.MAX_VALUE)
-                .addComponent(btBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27)
-                .addComponent(btAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
-                .addComponent(btModifiar, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(234, 234, 234))
-        );
-        pBotonesLayout.setVerticalGroup(
-            pBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pBotonesLayout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addGroup(pBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btModifiar)
-                    .addComponent(btBuscar)
-                    .addComponent(btAgregar))
-                .addContainerGap(22, Short.MAX_VALUE))
-        );
+        pBotones.add(btModifiar);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -278,7 +256,7 @@ public class MateriaPrima extends javax.swing.JPanel {
                         .addComponent(pMateriaPrima, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(pTablaProveedores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(pBotones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(pBotones, javax.swing.GroupLayout.DEFAULT_SIZE, 810, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -287,10 +265,10 @@ public class MateriaPrima extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(pMateriaPrima, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(pTablaProveedores, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(pTablaProveedores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addComponent(pBotones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap(22, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

@@ -15,6 +15,7 @@ public class BuscarProveedor extends javax.swing.JFrame {
     /** Creates new form BuscarProveedor */
     public BuscarProveedor() {
         initComponents();
+        this.setVisible(true);
     }
 
     /** This method is called from within the constructor to
@@ -35,6 +36,7 @@ public class BuscarProveedor extends javax.swing.JFrame {
         pBuscar = new javax.swing.JPanel();
         lbNombre = new javax.swing.JLabel();
         tfNombre = new javax.swing.JTextField();
+        btBuscar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -90,15 +92,19 @@ public class BuscarProveedor extends javax.swing.JFrame {
 
         lbNombre.setText("Nombre:");
 
+        btBuscar.setText("Buscar");
+
         javax.swing.GroupLayout pBuscarLayout = new javax.swing.GroupLayout(pBuscar);
         pBuscar.setLayout(pBuscarLayout);
         pBuscarLayout.setHorizontalGroup(
             pBuscarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pBuscarLayout.createSequentialGroup()
-                .addGap(14, 14, 14)
+                .addGap(22, 22, 22)
                 .addComponent(lbNombre)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(tfNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 365, Short.MAX_VALUE)
+                .addComponent(tfNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 274, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(btBuscar)
                 .addContainerGap())
         );
         pBuscarLayout.setVerticalGroup(
@@ -106,8 +112,9 @@ public class BuscarProveedor extends javax.swing.JFrame {
             .addGroup(pBuscarLayout.createSequentialGroup()
                 .addContainerGap(14, Short.MAX_VALUE)
                 .addGroup(pBuscarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tfNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lbNombre))
+                    .addComponent(lbNombre)
+                    .addComponent(btBuscar)
+                    .addComponent(tfNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(25, 25, 25))
         );
 
@@ -134,22 +141,14 @@ public class BuscarProveedor extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
 private void btCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCancelarActionPerformed
-// TODO add your handling code here:
+    dispose();
 }//GEN-LAST:event_btCancelarActionPerformed
 
-    /**
-    * @param args the command line arguments
-    */
-    public static void main(String args[]) {
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new BuscarProveedor().setVisible(true);
-            }
-        });
-    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btAceptar;
+    private javax.swing.JButton btBuscar;
     private javax.swing.JButton btCancelar;
     private javax.swing.JScrollPane jScrollPane1;
     private org.jdesktop.swingx.JXTable jXTable1;
