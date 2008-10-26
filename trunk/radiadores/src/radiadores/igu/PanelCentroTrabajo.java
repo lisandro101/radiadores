@@ -1,5 +1,5 @@
 /*
- * CentroTrabajo.java
+ * PanelCentroTrabajo.java
  *
  * Created on 26 de octubre de 2008, 18:13
  */
@@ -10,10 +10,10 @@ package radiadores.igu;
  *
  * @author  Lisandro
  */
-public class CentroTrabajo extends javax.swing.JPanel {
+public class PanelCentroTrabajo extends javax.swing.JPanel {
 
-    /** Creates new form CentroTrabajo */
-    public CentroTrabajo() {
+    /** Creates new form PanelCentroTrabajo */
+    public PanelCentroTrabajo() {
         initComponents();
     }
 

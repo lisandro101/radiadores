@@ -17,13 +17,13 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     /** Creates new form PantallaPrincipal */
     public PantallaPrincipal() {
         initComponents();
-        jTabbedPane1.add("  Materia Prima ", new MateriaPrima());
-        jTabbedPane1.add("    Producto    ", new Producto());
-        jTabbedPane1.add("    Personal    ", new Personal());
-        jTabbedPane1.add("  Orden Compra  ", new OrdenCompra());
-        jTabbedPane1.add("Orden Producción", new OrdenProduccion());
-        jTabbedPane1.add("   Maquinaria   ", new Maquinaria());
-        jTabbedPane1.add("    Proveedor   ", new Proveedor());
+        jTabbedPane1.add("  Materia Prima ", new PanelMateriaPrima());
+        jTabbedPane1.add("    Producto    ", new PanelProducto());
+        jTabbedPane1.add("    Personal    ", new PanelPersonal());
+        jTabbedPane1.add("  Orden Compra  ", new PanelOrdenCompra());
+        jTabbedPane1.add("Orden Producción", new PanelOrdenProduccion());
+        jTabbedPane1.add("   Maquinaria   ", new PanelMaquinaria());
+        jTabbedPane1.add("    Proveedor   ", new PanelProveedor());
                 
         
         
@@ -43,6 +43,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         jTabbedPane1 = new javax.swing.JTabbedPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Fabrica Radiadores");
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 formWindowClosing(evt);
