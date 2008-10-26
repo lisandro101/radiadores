@@ -10,10 +10,10 @@ package radiadores.igu;
  *
  * @author  Lisandro
  */
-public class OrdenCompra extends javax.swing.JPanel {
+public class OrdenProduccion extends javax.swing.JPanel {
 
     /** Creates new form OrdenCompra */
-    public OrdenCompra() {
+    public OrdenProduccion() {
         initComponents();
     }
 
@@ -33,28 +33,27 @@ public class OrdenCompra extends javax.swing.JPanel {
         jdFechaEntrega = new org.jdesktop.swingx.JXDatePicker();
         lbNumero = new javax.swing.JLabel();
         tfNumero = new javax.swing.JTextField();
-        lbProveedor = new javax.swing.JLabel();
-        tfNumero1 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        lbCliente = new javax.swing.JLabel();
+        cbCliente = new javax.swing.JComboBox();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jtArticulo = new org.jdesktop.swingx.JXTable();
+        jtProducto = new org.jdesktop.swingx.JXTable();
         jPanel5 = new javax.swing.JPanel();
-        lbArticulo = new javax.swing.JLabel();
-        tfArticulo = new javax.swing.JTextField();
-        lbCantidad = new javax.swing.JLabel();
+        lbProducto = new javax.swing.JLabel();
+        tfProducto = new javax.swing.JTextField();
+        tfCantidad = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
-        btBuscarArticulo = new javax.swing.JButton();
-        btAgregarArticulo = new javax.swing.JButton();
-        btModificarArticulo = new javax.swing.JButton();
-        btEliminarArticulo = new javax.swing.JButton();
-        tfCantidad = new javax.swing.JSpinner();
+        btBuscarProducto = new javax.swing.JButton();
+        btAgregarProducto = new javax.swing.JButton();
+        btModificarProducto = new javax.swing.JButton();
+        btEliminarProducto = new javax.swing.JButton();
+        spCantidad = new javax.swing.JSpinner();
         jPanel4 = new javax.swing.JPanel();
-        btBuscarOrdenCompra = new javax.swing.JButton();
-        btProcesarOrdenCompra = new javax.swing.JButton();
-        btModificarOrdenCompra = new javax.swing.JButton();
-        btAnularOrdenCompra = new javax.swing.JButton();
-        btImprimirOrdenCompra = new javax.swing.JButton();
+        btBuscarOrdenProduccion = new javax.swing.JButton();
+        btProcesarOrdenProduccion = new javax.swing.JButton();
+        btModificarOrdenProduccion = new javax.swing.JButton();
+        btAnularOrdenProduccion = new javax.swing.JButton();
+        btImprimirOrdenProduccion = new javax.swing.JButton();
 
         lbFecha.setText("Fecha");
 
@@ -68,20 +67,7 @@ public class OrdenCompra extends javax.swing.JPanel {
             }
         });
 
-        lbProveedor.setText("Proveedor");
-
-        tfNumero1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tfNumero1ActionPerformed(evt);
-            }
-        });
-
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/radiadores/images/lupa.jpg"))); // NOI18N
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
+        lbCliente.setText("Cliente");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -95,104 +81,101 @@ public class OrdenCompra extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addComponent(lbNumero)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tfNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(tfNumero, javax.swing.GroupLayout.DEFAULT_SIZE, 84, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addComponent(lbFechaEntrega)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jdFechaEntrega, javax.swing.GroupLayout.DEFAULT_SIZE, 116, Short.MAX_VALUE)
+                .addComponent(jdFechaEntrega, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
-                .addComponent(lbProveedor)
+                .addComponent(lbCliente)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tfNumero1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(51, 51, 51))
+                .addComponent(cbCliente, 0, 169, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(lbFecha)
                         .addComponent(jdFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(lbNumero)
                         .addComponent(tfNumero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(lbFechaEntrega)
                         .addComponent(jdFechaEntrega, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(lbProveedor)
-                        .addComponent(tfNumero1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                        .addComponent(lbNumero)
+                        .addComponent(lbCliente)
+                        .addComponent(cbCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
-        jtArticulo.setModel(new javax.swing.table.DefaultTableModel(
+        jtProducto.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Codigo", "Articulo", "Cantidad"
+                "Codigo", "Producto", "Cantidad", "Precio"
             }
         ));
-        jScrollPane1.setViewportView(jtArticulo);
+        jScrollPane1.setViewportView(jtProducto);
 
         jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
-        lbArticulo.setText("Articulo");
+        lbProducto.setText("Producto");
 
-        tfArticulo.addActionListener(new java.awt.event.ActionListener() {
+        tfProducto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tfArticuloActionPerformed(evt);
+                tfProductoActionPerformed(evt);
             }
         });
 
-        lbCantidad.setText("Cantidad");
+        tfCantidad.setText("Cantidad");
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
-        btBuscarArticulo.setText("Buscar");
-        btBuscarArticulo.addActionListener(new java.awt.event.ActionListener() {
+        btBuscarProducto.setText("Buscar");
+        btBuscarProducto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btBuscarArticuloActionPerformed(evt);
+                btBuscarProductoActionPerformed(evt);
             }
         });
-        jPanel3.add(btBuscarArticulo);
+        jPanel3.add(btBuscarProducto);
 
-        btAgregarArticulo.setText("Agregar");
-        jPanel3.add(btAgregarArticulo);
+        btAgregarProducto.setText("Agregar");
+        jPanel3.add(btAgregarProducto);
 
-        btModificarArticulo.setText("Modificar");
-        btModificarArticulo.addActionListener(new java.awt.event.ActionListener() {
+        btModificarProducto.setText("Modificar");
+        btModificarProducto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btModificarArticuloActionPerformed(evt);
+                btModificarProductoActionPerformed(evt);
             }
         });
-        jPanel3.add(btModificarArticulo);
+        jPanel3.add(btModificarProducto);
 
-        btEliminarArticulo.setText("Eliminar");
-        btEliminarArticulo.addActionListener(new java.awt.event.ActionListener() {
+        btEliminarProducto.setText("Eliminar");
+        btEliminarProducto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btEliminarArticuloActionPerformed(evt);
+                btEliminarProductoActionPerformed(evt);
             }
         });
-        jPanel3.add(btEliminarArticulo);
+        jPanel3.add(btEliminarProducto);
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -203,14 +186,14 @@ public class OrdenCompra extends javax.swing.JPanel {
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lbCantidad)
+                            .addComponent(tfCantidad)
                             .addGroup(jPanel5Layout.createSequentialGroup()
                                 .addGap(3, 3, 3)
-                                .addComponent(lbArticulo)))
+                                .addComponent(lbProducto)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(tfCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(tfArticulo, javax.swing.GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE)))
+                            .addComponent(spCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(tfProducto, javax.swing.GroupLayout.DEFAULT_SIZE, 174, Short.MAX_VALUE)))
                     .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
@@ -221,12 +204,12 @@ public class OrdenCompra extends javax.swing.JPanel {
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGap(3, 3, 3)
-                        .addComponent(lbArticulo))
-                    .addComponent(tfArticulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(lbProducto))
+                    .addComponent(tfProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lbCantidad)
-                    .addComponent(tfCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tfCantidad)
+                    .addComponent(spCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -238,7 +221,7 @@ public class OrdenCompra extends javax.swing.JPanel {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 480, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 477, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -247,42 +230,42 @@ public class OrdenCompra extends javax.swing.JPanel {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 279, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 279, Short.MAX_VALUE)
+                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
-        btBuscarOrdenCompra.setText("Buscar");
-        jPanel4.add(btBuscarOrdenCompra);
+        btBuscarOrdenProduccion.setText("Buscar");
+        jPanel4.add(btBuscarOrdenProduccion);
 
-        btProcesarOrdenCompra.setText("Procesar");
-        jPanel4.add(btProcesarOrdenCompra);
+        btProcesarOrdenProduccion.setText("Procesar");
+        jPanel4.add(btProcesarOrdenProduccion);
 
-        btModificarOrdenCompra.setText("Modificar");
-        btModificarOrdenCompra.addActionListener(new java.awt.event.ActionListener() {
+        btModificarOrdenProduccion.setText("Modificar");
+        btModificarOrdenProduccion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btModificarOrdenCompraActionPerformed(evt);
+                btModificarOrdenProduccionActionPerformed(evt);
             }
         });
-        jPanel4.add(btModificarOrdenCompra);
+        jPanel4.add(btModificarOrdenProduccion);
 
-        btAnularOrdenCompra.setText("Anular");
-        btAnularOrdenCompra.addActionListener(new java.awt.event.ActionListener() {
+        btAnularOrdenProduccion.setText("Anular");
+        btAnularOrdenProduccion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btAnularOrdenCompraActionPerformed(evt);
+                btAnularOrdenProduccionActionPerformed(evt);
             }
         });
-        jPanel4.add(btAnularOrdenCompra);
+        jPanel4.add(btAnularOrdenProduccion);
 
-        btImprimirOrdenCompra.setText("Imprimir");
-        btImprimirOrdenCompra.addActionListener(new java.awt.event.ActionListener() {
+        btImprimirOrdenProduccion.setText("Imprimir");
+        btImprimirOrdenProduccion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btImprimirOrdenCompraActionPerformed(evt);
+                btImprimirOrdenProduccionActionPerformed(evt);
             }
         });
-        jPanel4.add(btImprimirOrdenCompra);
+        jPanel4.add(btImprimirOrdenProduccion);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -291,9 +274,9 @@ public class OrdenCompra extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 786, Short.MAX_VALUE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 783, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -305,7 +288,7 @@ public class OrdenCompra extends javax.swing.JPanel {
                 .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(75, 75, 75))
+                .addGap(76, 76, 76))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -313,54 +296,46 @@ private void tfNumeroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
 // TODO add your handling code here:
 }//GEN-LAST:event_tfNumeroActionPerformed
 
-private void btModificarArticuloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btModificarArticuloActionPerformed
+private void btModificarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btModificarProductoActionPerformed
 // TODO add your handling code here:
-}//GEN-LAST:event_btModificarArticuloActionPerformed
+}//GEN-LAST:event_btModificarProductoActionPerformed
 
-private void btEliminarArticuloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEliminarArticuloActionPerformed
+private void btEliminarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEliminarProductoActionPerformed
 // TODO add your handling code here:
-}//GEN-LAST:event_btEliminarArticuloActionPerformed
+}//GEN-LAST:event_btEliminarProductoActionPerformed
 
-private void btModificarOrdenCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btModificarOrdenCompraActionPerformed
+private void btModificarOrdenProduccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btModificarOrdenProduccionActionPerformed
 // TODO add your handling code here:
-}//GEN-LAST:event_btModificarOrdenCompraActionPerformed
+}//GEN-LAST:event_btModificarOrdenProduccionActionPerformed
 
-private void btAnularOrdenCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAnularOrdenCompraActionPerformed
+private void btAnularOrdenProduccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAnularOrdenProduccionActionPerformed
 // TODO add your handling code here:
-}//GEN-LAST:event_btAnularOrdenCompraActionPerformed
+}//GEN-LAST:event_btAnularOrdenProduccionActionPerformed
 
-private void btImprimirOrdenCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btImprimirOrdenCompraActionPerformed
+private void btImprimirOrdenProduccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btImprimirOrdenProduccionActionPerformed
 // TODO add your handling code here:
-}//GEN-LAST:event_btImprimirOrdenCompraActionPerformed
+}//GEN-LAST:event_btImprimirOrdenProduccionActionPerformed
 
-private void tfArticuloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfArticuloActionPerformed
+private void tfProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfProductoActionPerformed
 // TODO add your handling code here:
-}//GEN-LAST:event_tfArticuloActionPerformed
+}//GEN-LAST:event_tfProductoActionPerformed
 
-private void btBuscarArticuloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBuscarArticuloActionPerformed
+private void btBuscarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBuscarProductoActionPerformed
 // TODO add your handling code here:
-}//GEN-LAST:event_btBuscarArticuloActionPerformed
-
-private void tfNumero1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfNumero1ActionPerformed
-// TODO add your handling code here:
-}//GEN-LAST:event_tfNumero1ActionPerformed
-
-private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-// TODO add your handling code here:
-}//GEN-LAST:event_jButton1ActionPerformed
+}//GEN-LAST:event_btBuscarProductoActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btAgregarArticulo;
-    private javax.swing.JButton btAnularOrdenCompra;
-    private javax.swing.JButton btBuscarArticulo;
-    private javax.swing.JButton btBuscarOrdenCompra;
-    private javax.swing.JButton btEliminarArticulo;
-    private javax.swing.JButton btImprimirOrdenCompra;
-    private javax.swing.JButton btModificarArticulo;
-    private javax.swing.JButton btModificarOrdenCompra;
-    private javax.swing.JButton btProcesarOrdenCompra;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btAgregarProducto;
+    private javax.swing.JButton btAnularOrdenProduccion;
+    private javax.swing.JButton btBuscarOrdenProduccion;
+    private javax.swing.JButton btBuscarProducto;
+    private javax.swing.JButton btEliminarProducto;
+    private javax.swing.JButton btImprimirOrdenProduccion;
+    private javax.swing.JButton btModificarOrdenProduccion;
+    private javax.swing.JButton btModificarProducto;
+    private javax.swing.JButton btProcesarOrdenProduccion;
+    private javax.swing.JComboBox cbCliente;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -369,17 +344,16 @@ private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     private javax.swing.JScrollPane jScrollPane1;
     private org.jdesktop.swingx.JXDatePicker jdFecha;
     private org.jdesktop.swingx.JXDatePicker jdFechaEntrega;
-    private org.jdesktop.swingx.JXTable jtArticulo;
-    private javax.swing.JLabel lbArticulo;
-    private javax.swing.JLabel lbCantidad;
+    private org.jdesktop.swingx.JXTable jtProducto;
+    private javax.swing.JLabel lbCliente;
     private javax.swing.JLabel lbFecha;
     private javax.swing.JLabel lbFechaEntrega;
     private javax.swing.JLabel lbNumero;
-    private javax.swing.JLabel lbProveedor;
-    private javax.swing.JTextField tfArticulo;
-    private javax.swing.JSpinner tfCantidad;
+    private javax.swing.JLabel lbProducto;
+    private javax.swing.JSpinner spCantidad;
+    private javax.swing.JLabel tfCantidad;
     private javax.swing.JTextField tfNumero;
-    private javax.swing.JTextField tfNumero1;
+    private javax.swing.JTextField tfProducto;
     // End of variables declaration//GEN-END:variables
 
 }

@@ -15,12 +15,12 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
+          <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jPanel4" alignment="0" pref="786" max="32767" attributes="1"/>
-                  <Component id="jPanel2" alignment="0" max="32767" attributes="1"/>
-                  <Component id="jPanel1" alignment="0" max="32767" attributes="1"/>
+                  <Component id="jPanel4" alignment="0" pref="783" max="32767" attributes="0"/>
+                  <Component id="jPanel1" alignment="0" max="32767" attributes="0"/>
+                  <Component id="jPanel2" alignment="0" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -29,13 +29,13 @@
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace min="-2" max="-2" attributes="0"/>
               <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jPanel2" max="32767" attributes="0"/>
               <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
               <Component id="jPanel4" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="75" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="76" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -53,42 +53,39 @@
                   <Component id="jdFecha" pref="116" max="32767" attributes="0"/>
                   <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
                   <Component id="lbNumero" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="tfNumero" min="-2" pref="72" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" max="-2" attributes="0"/>
+                  <Component id="tfNumero" pref="84" max="32767" attributes="0"/>
+                  <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
                   <Component id="lbFechaEntrega" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" max="-2" attributes="0"/>
-                  <Component id="jdFechaEntrega" pref="116" max="32767" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="lbProveedor" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="tfNumero1" min="-2" pref="120" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jButton1" min="-2" pref="24" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
+                  <Component id="jdFechaEntrega" pref="140" max="32767" attributes="0"/>
+                  <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
+                  <Component id="lbCliente" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" max="-2" attributes="0"/>
+                  <Component id="cbCliente" pref="169" max="32767" attributes="0"/>
+                  <EmptySpace min="-2" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
+              <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jButton1" alignment="0" pref="23" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="lbFecha" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jdFecha" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                          <Component id="lbNumero" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="tfNumero" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="lbFechaEntrega" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jdFechaEntrega" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="lbProveedor" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="tfNumero1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lbNumero" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lbCliente" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="cbCliente" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -118,25 +115,17 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tfNumeroActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JLabel" name="lbProveedor">
+        <Component class="javax.swing.JLabel" name="lbCliente">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Proveedor"/>
+            <Property name="text" type="java.lang.String" value="Cliente"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="tfNumero1">
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tfNumero1ActionPerformed"/>
-          </Events>
-        </Component>
-        <Component class="javax.swing.JButton" name="jButton1">
+        <Component class="javax.swing.JComboBox" name="cbCliente">
           <Properties>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/radiadores/images/lupa.jpg"/>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+              <StringArray count="0"/>
             </Property>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
-          </Events>
         </Component>
       </SubComponents>
     </Container>
@@ -154,10 +143,10 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jScrollPane1" pref="480" max="32767" attributes="0"/>
+                  <Component id="jScrollPane1" pref="477" max="32767" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="jPanel5" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -165,8 +154,8 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
                   <Group type="103" groupAlignment="1" attributes="0">
-                      <Component id="jPanel5" alignment="1" max="32767" attributes="0"/>
                       <Component id="jScrollPane1" alignment="1" pref="279" max="32767" attributes="0"/>
+                      <Component id="jPanel5" alignment="1" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -181,13 +170,14 @@
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
           <SubComponents>
-            <Component class="org.jdesktop.swingx.JXTable" name="jtArticulo">
+            <Component class="org.jdesktop.swingx.JXTable" name="jtProducto">
               <Properties>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                  <Table columnCount="3" rowCount="15">
+                  <Table columnCount="4" rowCount="15">
                     <Column editable="true" title="Codigo" type="java.lang.Object"/>
-                    <Column editable="true" title="Articulo" type="java.lang.Object"/>
+                    <Column editable="true" title="Producto" type="java.lang.Object"/>
                     <Column editable="true" title="Cantidad" type="java.lang.Object"/>
+                    <Column editable="true" title="Precio" type="java.lang.Object"/>
                   </Table>
                 </Property>
               </Properties>
@@ -211,16 +201,16 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="lbCantidad" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="tfCantidad" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace min="3" pref="3" max="3" attributes="0"/>
-                                      <Component id="lbArticulo" min="-2" max="-2" attributes="0"/>
+                                      <Component id="lbProducto" min="-2" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="tfCantidad" min="-2" pref="70" max="-2" attributes="0"/>
-                                  <Component id="tfArticulo" alignment="0" pref="177" max="32767" attributes="0"/>
+                                  <Component id="spCantidad" min="-2" pref="70" max="-2" attributes="0"/>
+                                  <Component id="tfProducto" alignment="0" pref="174" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                           <Component id="jPanel3" alignment="1" min="-2" pref="129" max="-2" attributes="0"/>
@@ -236,14 +226,14 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
-                              <Component id="lbArticulo" min="-2" max="-2" attributes="0"/>
+                              <Component id="lbProducto" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="tfArticulo" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="tfProducto" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="lbCantidad" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="tfCantidad" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="spCantidad" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace pref="69" max="32767" attributes="0"/>
                       <Component id="jPanel3" min="-2" pref="129" max="-2" attributes="0"/>
@@ -253,17 +243,17 @@
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JLabel" name="lbArticulo">
+            <Component class="javax.swing.JLabel" name="lbProducto">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Articulo"/>
+                <Property name="text" type="java.lang.String" value="Producto"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="tfArticulo">
+            <Component class="javax.swing.JTextField" name="tfProducto">
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tfArticuloActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tfProductoActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JLabel" name="lbCantidad">
+            <Component class="javax.swing.JLabel" name="tfCantidad">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Cantidad"/>
               </Properties>
@@ -279,38 +269,38 @@
 
               <Layout class="org.netbeans.modules.form.compat2.layouts.DesignFlowLayout"/>
               <SubComponents>
-                <Component class="javax.swing.JButton" name="btBuscarArticulo">
+                <Component class="javax.swing.JButton" name="btBuscarProducto">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Buscar"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btBuscarArticuloActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btBuscarProductoActionPerformed"/>
                   </Events>
                 </Component>
-                <Component class="javax.swing.JButton" name="btAgregarArticulo">
+                <Component class="javax.swing.JButton" name="btAgregarProducto">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Agregar"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JButton" name="btModificarArticulo">
+                <Component class="javax.swing.JButton" name="btModificarProducto">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Modificar"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btModificarArticuloActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btModificarProductoActionPerformed"/>
                   </Events>
                 </Component>
-                <Component class="javax.swing.JButton" name="btEliminarArticulo">
+                <Component class="javax.swing.JButton" name="btEliminarProducto">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Eliminar"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btEliminarArticuloActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btEliminarProductoActionPerformed"/>
                   </Events>
                 </Component>
               </SubComponents>
             </Container>
-            <Component class="javax.swing.JSpinner" name="tfCantidad">
+            <Component class="javax.swing.JSpinner" name="spCantidad">
             </Component>
           </SubComponents>
         </Container>
@@ -327,38 +317,38 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.DesignFlowLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JButton" name="btBuscarOrdenCompra">
+        <Component class="javax.swing.JButton" name="btBuscarOrdenProduccion">
           <Properties>
             <Property name="text" type="java.lang.String" value="Buscar"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="btProcesarOrdenCompra">
+        <Component class="javax.swing.JButton" name="btProcesarOrdenProduccion">
           <Properties>
             <Property name="text" type="java.lang.String" value="Procesar"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="btModificarOrdenCompra">
+        <Component class="javax.swing.JButton" name="btModificarOrdenProduccion">
           <Properties>
             <Property name="text" type="java.lang.String" value="Modificar"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btModificarOrdenCompraActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btModificarOrdenProduccionActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="btAnularOrdenCompra">
+        <Component class="javax.swing.JButton" name="btAnularOrdenProduccion">
           <Properties>
             <Property name="text" type="java.lang.String" value="Anular"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btAnularOrdenCompraActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btAnularOrdenProduccionActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="btImprimirOrdenCompra">
+        <Component class="javax.swing.JButton" name="btImprimirOrdenProduccion">
           <Properties>
             <Property name="text" type="java.lang.String" value="Imprimir"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btImprimirOrdenCompraActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btImprimirOrdenProduccionActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>
