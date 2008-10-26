@@ -19,9 +19,9 @@
               <EmptySpace pref="189" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="1" max="-2" attributes="0">
                   <Component id="jPanel2" alignment="0" max="32767" attributes="1"/>
-                  <Component id="jPanel1" alignment="0" min="-2" max="-2" attributes="1"/>
+                  <Component id="jPanel1" alignment="0" max="32767" attributes="1"/>
               </Group>
-              <EmptySpace min="-2" pref="177" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="181" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -58,12 +58,12 @@
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jTextField1" pref="196" max="32767" attributes="0"/>
-                      <Component id="jTextField2" alignment="0" pref="196" max="32767" attributes="0"/>
-                      <Component id="jTextField4" alignment="0" pref="196" max="32767" attributes="0"/>
-                      <Component id="jXDatePicker1" alignment="0" pref="196" max="32767" attributes="0"/>
-                      <Component id="jTextField5" alignment="0" pref="196" max="32767" attributes="0"/>
-                      <Component id="jTextField3" alignment="0" pref="196" max="32767" attributes="0"/>
+                      <Component id="tfNombre" pref="196" max="32767" attributes="0"/>
+                      <Component id="tfContacto" alignment="0" pref="196" max="32767" attributes="0"/>
+                      <Component id="tfMail" alignment="0" pref="196" max="32767" attributes="0"/>
+                      <Component id="jdInicioActividades" alignment="0" pref="196" max="32767" attributes="0"/>
+                      <Component id="tfDireccion" alignment="0" pref="196" max="32767" attributes="0"/>
+                      <Component id="tfTelefono" alignment="0" pref="196" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace min="27" pref="27" max="-2" attributes="0"/>
               </Group>
@@ -75,32 +75,32 @@
                   <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jTextField1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="tfNombre" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jTextField2" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="tfContacto" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jTextField3" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="tfTelefono" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
-                      <Component id="jTextField4" min="-2" max="-2" attributes="0"/>
+                      <Component id="tfMail" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jTextField5" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="tfDireccion" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jXDatePicker1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jdInicioActividades" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="45" max="32767" attributes="0"/>
               </Group>
@@ -113,9 +113,9 @@
             <Property name="text" type="java.lang.String" value="Nombre"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextField1">
+        <Component class="javax.swing.JTextField" name="tfNombre">
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField1ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tfNombreActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel2">
@@ -123,30 +123,30 @@
             <Property name="text" type="java.lang.String" value="Contacto"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextField2">
+        <Component class="javax.swing.JTextField" name="tfContacto">
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel3">
           <Properties>
             <Property name="text" type="java.lang.String" value="Telefono"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextField3">
+        <Component class="javax.swing.JTextField" name="tfTelefono">
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel4">
           <Properties>
             <Property name="text" type="java.lang.String" value="e-mail"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextField4">
+        <Component class="javax.swing.JTextField" name="tfMail">
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel5">
           <Properties>
             <Property name="text" type="java.lang.String" value="Direccion"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextField5">
+        <Component class="javax.swing.JTextField" name="tfDireccion">
         </Component>
-        <Component class="org.jdesktop.swingx.JXDatePicker" name="jXDatePicker1">
+        <Component class="org.jdesktop.swingx.JXDatePicker" name="jdInicioActividades">
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel6">
           <Properties>
@@ -162,14 +162,14 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+                  <Component id="btBuscar" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jButton2" min="-2" max="-2" attributes="0"/>
+                  <Component id="btAgregar" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jButton3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btModificar" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jToggleButton1" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="19" max="32767" attributes="0"/>
+                  <Component id="btEliminar" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace pref="15" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -178,10 +178,10 @@
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jButton2" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jButton3" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jToggleButton1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="btBuscar" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="btAgregar" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="btModificar" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="btEliminar" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -189,25 +189,25 @@
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JButton" name="jButton1">
+        <Component class="javax.swing.JButton" name="btBuscar">
           <Properties>
             <Property name="text" type="java.lang.String" value="Buscar"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btBuscarActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton2">
+        <Component class="javax.swing.JButton" name="btAgregar">
           <Properties>
             <Property name="text" type="java.lang.String" value="Agregar"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton3">
+        <Component class="javax.swing.JButton" name="btModificar">
           <Properties>
             <Property name="text" type="java.lang.String" value="Modificar"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JToggleButton" name="jToggleButton1">
+        <Component class="javax.swing.JToggleButton" name="btEliminar">
           <Properties>
             <Property name="text" type="java.lang.String" value="Eliminar"/>
           </Properties>
