@@ -6,6 +6,8 @@
 
 package radiadores.igu;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author  stafoxter
@@ -18,6 +20,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         jTabbedPane1.add("Materia Prima", new MateriaPrima());
         jTabbedPane1.add("  Producto   ", new Producto());
         
+        setSize(850, 650);
         this.setVisible(true);
     }
 
@@ -33,6 +36,11 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         jTabbedPane1 = new javax.swing.JTabbedPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -47,6 +55,10 @@ public class PantallaPrincipal extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+    salir();
+}//GEN-LAST:event_formWindowClosing
 
 //    /**
 //    * @param args the command line arguments
@@ -63,4 +75,14 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     private javax.swing.JTabbedPane jTabbedPane1;
     // End of variables declaration//GEN-END:variables
 
+    
+    private void salir() {
+        int opcion = JOptionPane.showConfirmDialog(this,
+                "¿Está seguro que desea salir?", "Salir",
+                JOptionPane.YES_NO_OPTION);
+        
+        if(opcion == JOptionPane.YES_OPTION) {
+            System.exit(0);
+        }
+    }
 }
