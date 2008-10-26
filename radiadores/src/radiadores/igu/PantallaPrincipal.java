@@ -17,8 +17,15 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     /** Creates new form PantallaPrincipal */
     public PantallaPrincipal() {
         initComponents();
-        jTabbedPane1.add("Materia Prima", new MateriaPrima());
-        jTabbedPane1.add("  Producto   ", new Producto());
+        jTabbedPane1.add("  Materia Prima ", new MateriaPrima());
+        jTabbedPane1.add("    Producto    ", new Producto());
+        jTabbedPane1.add("    Personal    ", new Personal());
+        jTabbedPane1.add("  Orden Compra  ", new OrdenCompra());
+        jTabbedPane1.add("Orden Producción", new OrdenProduccion());
+        jTabbedPane1.add("   Maquinaria   ", new Maquinaria());
+        jTabbedPane1.add("    Proveedor   ", new Proveedor());
+                
+        
         
         setSize(850, 650);
         this.setVisible(true);
