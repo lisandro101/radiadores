@@ -18,9 +18,11 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jPanel4" alignment="0" pref="786" max="32767" attributes="1"/>
-                  <Component id="jPanel2" alignment="0" max="32767" attributes="1"/>
-                  <Component id="jPanel1" alignment="0" max="32767" attributes="1"/>
+                  <Component id="jPanel4" alignment="0" pref="753" max="32767" attributes="1"/>
+                  <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                      <Component id="jPanel1" alignment="0" max="32767" attributes="1"/>
+                      <Component id="jPanel2" alignment="0" max="32767" attributes="1"/>
+                  </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -64,8 +66,8 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="tfNumero1" min="-2" pref="120" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jButton1" min="-2" pref="24" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
+                  <Component id="jButton1" min="-2" pref="31" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -73,20 +75,16 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jButton1" alignment="0" pref="23" max="32767" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="lbFecha" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jdFecha" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                          <Component id="lbNumero" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="tfNumero" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="lbFechaEntrega" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jdFechaEntrega" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="lbProveedor" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="tfNumero1" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
+                  <Group type="103" groupAlignment="2" attributes="0">
+                      <Component id="lbFecha" alignment="2" min="-2" max="-2" attributes="0"/>
+                      <Component id="jdFecha" alignment="2" min="-2" max="-2" attributes="0"/>
+                      <Component id="lbNumero" alignment="2" min="-2" max="-2" attributes="0"/>
+                      <Component id="tfNumero" alignment="2" min="-2" max="-2" attributes="0"/>
+                      <Component id="lbFechaEntrega" alignment="2" min="-2" max="-2" attributes="0"/>
+                      <Component id="jdFechaEntrega" alignment="2" min="-2" max="-2" attributes="0"/>
+                      <Component id="lbProveedor" alignment="2" min="-2" max="-2" attributes="0"/>
+                      <Component id="tfNumero1" alignment="2" min="-2" max="-2" attributes="0"/>
+                      <Component id="jButton1" alignment="2" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -131,7 +129,7 @@
         <Component class="javax.swing.JButton" name="jButton1">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/radiadores/images/lupa.jpg"/>
+              <Image iconType="3" name="/radiadores/images/lupa (3).jpg"/>
             </Property>
           </Properties>
           <Events>
@@ -154,7 +152,7 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jScrollPane1" pref="492" max="32767" attributes="0"/>
+                  <Component id="jScrollPane1" pref="459" max="32767" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="jPanel5" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" max="-2" attributes="0"/>
