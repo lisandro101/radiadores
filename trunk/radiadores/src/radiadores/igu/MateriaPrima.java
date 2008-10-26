@@ -30,6 +30,7 @@ public class MateriaPrima extends javax.swing.JPanel {
         lbProveedor = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jXTable1 = new org.jdesktop.swingx.JXTable();
+        jPanel1 = new javax.swing.JPanel();
         btAsignarProveedor = new javax.swing.JButton();
         btEliminar = new javax.swing.JButton();
         pMateriaPrima = new javax.swing.JPanel();
@@ -82,38 +83,38 @@ public class MateriaPrima extends javax.swing.JPanel {
         jScrollPane1.setViewportView(jXTable1);
 
         btAsignarProveedor.setText("Asignar Proveedor");
+        btAsignarProveedor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btAsignarProveedorActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btAsignarProveedor);
 
         btEliminar.setText("Eliminar");
+        jPanel1.add(btEliminar);
 
         javax.swing.GroupLayout pTablaProveedoresLayout = new javax.swing.GroupLayout(pTablaProveedores);
         pTablaProveedores.setLayout(pTablaProveedoresLayout);
         pTablaProveedoresLayout.setHorizontalGroup(
             pTablaProveedoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pTablaProveedoresLayout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(pTablaProveedoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pTablaProveedoresLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(lbProveedor))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 366, Short.MAX_VALUE)
-                    .addGroup(pTablaProveedoresLayout.createSequentialGroup()
-                        .addGap(50, 50, 50)
-                        .addComponent(btAsignarProveedor)
-                        .addGap(40, 40, 40)
-                        .addComponent(btEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 354, Short.MAX_VALUE)
+                    .addComponent(lbProveedor)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 354, Short.MAX_VALUE))
                 .addContainerGap())
         );
         pTablaProveedoresLayout.setVerticalGroup(
             pTablaProveedoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pTablaProveedoresLayout.createSequentialGroup()
-                .addGap(19, 19, 19)
+                .addGap(31, 31, 31)
                 .addComponent(lbProveedor)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
-                .addGroup(pTablaProveedoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btAsignarProveedor)
-                    .addComponent(btEliminar))
-                .addContainerGap(108, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(35, 35, 35)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(96, Short.MAX_VALUE))
         );
 
         lbCodigo.setText("Código:");
@@ -142,7 +143,7 @@ public class MateriaPrima extends javax.swing.JPanel {
 
         jLabel1.setText("Estado:");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Vigente", "Eliminado" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Vigente", "No vigente" }));
 
         javax.swing.GroupLayout pMateriaPrimaLayout = new javax.swing.GroupLayout(pMateriaPrima);
         pMateriaPrima.setLayout(pMateriaPrimaLayout);
@@ -153,34 +154,46 @@ public class MateriaPrima extends javax.swing.JPanel {
                 .addGroup(pMateriaPrimaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lbDescripcion)
                     .addComponent(jLabel1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 81, Short.MAX_VALUE)
-                .addGroup(pMateriaPrimaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(tfDescripcion)
+                .addGap(81, 81, 81)
+                .addGroup(pMateriaPrimaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jComboBox1, 0, 199, Short.MAX_VALUE)
+                    .addComponent(tfDescripcion, javax.swing.GroupLayout.DEFAULT_SIZE, 199, Short.MAX_VALUE)
                     .addComponent(tfUnidadMedida, javax.swing.GroupLayout.DEFAULT_SIZE, 199, Short.MAX_VALUE))
                 .addGap(52, 52, 52))
             .addGroup(pMateriaPrimaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(pMateriaPrimaLayout.createSequentialGroup()
-                    .addGap(26, 26, 26)
                     .addGroup(pMateriaPrimaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(lbCodigo)
-                        .addComponent(lbNombre)
-                        .addComponent(lbCostoAlmacenamiento)
-                        .addComponent(lbCostoUnitPorOmision)
-                        .addComponent(lbPesoPorUnid)
-                        .addComponent(lbPrecioBase)
-                        .addComponent(lbTamanioLoteEstandar)
-                        .addComponent(lbUnidadMedida))
-                    .addGap(9, 9, 9)
-                    .addGroup(pMateriaPrimaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(tfTamanioLoteEstandar)
-                        .addComponent(tfPrecioBase)
-                        .addComponent(tfCostoAlmacenamiento)
-                        .addComponent(tfCostoUnitPorOmision)
-                        .addComponent(tfPrecioPorUnidad, javax.swing.GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE)
-                        .addComponent(tfNombre)
-                        .addComponent(tfCodigo, javax.swing.GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE))
-                    .addContainerGap(51, Short.MAX_VALUE)))
+                        .addGroup(pMateriaPrimaLayout.createSequentialGroup()
+                            .addGap(26, 26, 26)
+                            .addGroup(pMateriaPrimaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(lbCodigo)
+                                .addComponent(lbNombre)
+                                .addComponent(lbCostoAlmacenamiento)
+                                .addComponent(lbCostoUnitPorOmision)
+                                .addComponent(lbPesoPorUnid)
+                                .addComponent(lbPrecioBase)
+                                .addComponent(lbTamanioLoteEstandar)
+                                .addComponent(lbUnidadMedida))
+                            .addGap(9, 9, 9)
+                            .addGroup(pMateriaPrimaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(tfCodigo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE)
+                                .addComponent(tfNombre, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE)))
+                        .addGroup(pMateriaPrimaLayout.createSequentialGroup()
+                            .addGap(166, 166, 166)
+                            .addComponent(tfPrecioPorUnidad, javax.swing.GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE))
+                        .addGroup(pMateriaPrimaLayout.createSequentialGroup()
+                            .addGap(166, 166, 166)
+                            .addComponent(tfCostoUnitPorOmision, javax.swing.GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE))
+                        .addGroup(pMateriaPrimaLayout.createSequentialGroup()
+                            .addGap(166, 166, 166)
+                            .addComponent(tfCostoAlmacenamiento, javax.swing.GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE))
+                        .addGroup(pMateriaPrimaLayout.createSequentialGroup()
+                            .addGap(166, 166, 166)
+                            .addComponent(tfPrecioBase, javax.swing.GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE))
+                        .addGroup(pMateriaPrimaLayout.createSequentialGroup()
+                            .addGap(166, 166, 166)
+                            .addComponent(tfTamanioLoteEstandar, javax.swing.GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE)))
+                    .addGap(51, 51, 51)))
         );
         pMateriaPrimaLayout.setVerticalGroup(
             pMateriaPrimaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -195,7 +208,7 @@ public class MateriaPrima extends javax.swing.JPanel {
                 .addGroup(pMateriaPrimaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(31, Short.MAX_VALUE))
+                .addContainerGap(42, Short.MAX_VALUE))
             .addGroup(pMateriaPrimaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(pMateriaPrimaLayout.createSequentialGroup()
                     .addGap(17, 17, 17)
@@ -228,7 +241,7 @@ public class MateriaPrima extends javax.swing.JPanel {
                         .addComponent(tfTamanioLoteEstandar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGap(12, 12, 12)
                     .addComponent(lbUnidadMedida)
-                    .addContainerGap(93, Short.MAX_VALUE)))
+                    .addContainerGap(104, Short.MAX_VALUE)))
         );
 
         btBuscar.setText("Buscar");
@@ -254,8 +267,8 @@ public class MateriaPrima extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(pMateriaPrima, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(pTablaProveedores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addComponent(pTablaProveedores, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(pBotones, javax.swing.GroupLayout.DEFAULT_SIZE, 810, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -264,11 +277,11 @@ public class MateriaPrima extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(pMateriaPrima, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(pTablaProveedores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addComponent(pTablaProveedores, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(pMateriaPrima, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(29, 29, 29)
                 .addComponent(pBotones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -280,6 +293,10 @@ private void btModifiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
 // TODO add your handling code here:
 }//GEN-LAST:event_btModifiarActionPerformed
 
+private void btAsignarProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAsignarProveedorActionPerformed
+    new BuscarProveedor();
+}//GEN-LAST:event_btAsignarProveedorActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btAgregar;
@@ -289,6 +306,7 @@ private void btModifiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
     private javax.swing.JButton btModifiar;
     private javax.swing.JComboBox jComboBox1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private org.jdesktop.swingx.JXTable jXTable1;
     private javax.swing.JLabel lbCodigo;

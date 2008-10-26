@@ -16,24 +16,28 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="10" pref="10" max="10" attributes="0"/>
+                      <Component id="pEmpleado" max="32767" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="pBotones" pref="498" max="32767" attributes="0"/>
+                  </Group>
+              </Group>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="pBotones" max="32767" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
-          </Group>
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
-              <Component id="pEmpleado" max="32767" attributes="0"/>
-              <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
-              <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
-              <Component id="pEmpleado" max="32767" attributes="1"/>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="pEmpleado" pref="300" max="32767" attributes="1"/>
+              <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
               <Component id="pBotones" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -41,37 +45,7 @@
   <SubComponents>
     <Container class="javax.swing.JPanel" name="pBotones">
 
-      <Layout>
-        <DimensionLayout dim="0">
-          <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace pref="84" max="32767" attributes="0"/>
-                  <Component id="btBuscar" min="-2" pref="89" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
-                  <Component id="btAgregar" min="-2" pref="88" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-                  <Component id="btModifiar" min="-2" pref="84" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-                  <Component id="btEliminar" min="-2" pref="94" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="61" max="-2" attributes="0"/>
-              </Group>
-          </Group>
-        </DimensionLayout>
-        <DimensionLayout dim="1">
-          <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="btModifiar" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="btBuscar" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="btAgregar" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="btEliminar" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace pref="27" max="32767" attributes="0"/>
-              </Group>
-          </Group>
-        </DimensionLayout>
-      </Layout>
+      <Layout class="org.netbeans.modules.form.compat2.layouts.DesignFlowLayout"/>
       <SubComponents>
         <Component class="javax.swing.JButton" name="btBuscar">
           <Properties>
@@ -104,7 +78,7 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
-                  <EmptySpace max="-2" attributes="0"/>
+                  <EmptySpace min="-2" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
@@ -113,8 +87,8 @@
                           </Group>
                           <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="dpFechaIngreso" pref="202" max="32767" attributes="1"/>
-                              <Component id="dpFechaNacimiento" alignment="0" pref="202" max="32767" attributes="1"/>
+                              <Component id="dpFechaIngreso" pref="202" max="32767" attributes="2"/>
+                              <Component id="dpFechaNacimiento" alignment="0" pref="202" max="32767" attributes="2"/>
                           </Group>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
@@ -128,73 +102,73 @@
                               <Component id="lbCargo" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="tfCargo" alignment="0" max="32767" attributes="1"/>
-                              <Component id="tfTelefono" alignment="0" max="32767" attributes="1"/>
-                              <Component id="tfMail" alignment="0" max="32767" attributes="1"/>
-                              <Component id="tfDireccion" alignment="0" pref="198" max="32767" attributes="1"/>
-                              <Component id="tfNombre" alignment="0" max="32767" attributes="1"/>
-                              <Component id="tfCodigo" alignment="0" pref="201" max="32767" attributes="1"/>
-                              <Component id="jComboBox1" alignment="0" max="32767" attributes="1"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="tfCodigo" pref="201" max="32767" attributes="2"/>
+                              <Component id="tfCargo" alignment="0" pref="201" max="32767" attributes="2"/>
+                              <Component id="tfTelefono" alignment="0" pref="201" max="32767" attributes="2"/>
+                              <Component id="tfMail" alignment="0" pref="201" max="32767" attributes="2"/>
+                              <Component id="tfDireccion" alignment="0" pref="201" max="32767" attributes="2"/>
+                              <Component id="tfNombre" alignment="0" pref="201" max="32767" attributes="2"/>
+                              <Component id="jComboBox1" alignment="0" pref="201" max="32767" attributes="2"/>
                           </Group>
                       </Group>
                   </Group>
                   <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
                   <Component id="btCargo" min="-2" pref="111" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="89" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
+              <Group type="102" alignment="0" max="-2" attributes="0">
                   <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
+                  <Group type="103" groupAlignment="3" max="-2" attributes="0">
                       <Component id="lbCodigo" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="tfCodigo" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace max="-2" attributes="0"/>
+                  <EmptySpace min="-2" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="lbNombre" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="tfNombre" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace max="-2" attributes="0"/>
+                  <EmptySpace min="-2" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="lbTelefono" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="tfTelefono" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace max="-2" attributes="0"/>
+                  <EmptySpace min="-2" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="lbMail" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="tfMail" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace max="-2" attributes="0"/>
+                  <EmptySpace min="-2" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="lbDireccion" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="tfDireccion" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jComboBox1" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="lbCargo" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="btCargo" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="tfCargo" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="lbFechaNacimiento" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="dpFechaNacimiento" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace max="-2" attributes="0"/>
+                  <EmptySpace min="-2" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="lbFechaIngreso" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="dpFechaIngreso" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="16" max="32767" attributes="0"/>
+                  <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
