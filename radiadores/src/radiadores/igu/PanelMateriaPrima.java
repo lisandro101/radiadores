@@ -1,5 +1,5 @@
 /*
- * MateriaPrima.java
+ * PanelMateriaPrima.java
  *
  * Created on 25 de octubre de 2008, 18:18
  */
@@ -10,10 +10,10 @@ package radiadores.igu;
  *
  * @author  stafoxter
  */
-public class MateriaPrima extends javax.swing.JPanel {
+public class PanelMateriaPrima extends javax.swing.JPanel {
 
-    /** Creates new form MateriaPrima */
-    public MateriaPrima() {
+    /** Creates new form PanelMateriaPrima */
+    public PanelMateriaPrima() {
         initComponents();
     }
 
@@ -294,7 +294,7 @@ private void btModifiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
 }//GEN-LAST:event_btModifiarActionPerformed
 
 private void btAsignarProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAsignarProveedorActionPerformed
-    new BuscarProveedor();
+    new PanelBuscarProveedor();
 }//GEN-LAST:event_btAsignarProveedorActionPerformed
 
 
@@ -333,4 +333,28 @@ private void btAsignarProveedorActionPerformed(java.awt.event.ActionEvent evt) {
     private javax.swing.JTextField tfUnidadMedida;
     // End of variables declaration//GEN-END:variables
 
+    private PanelMateriaPrima crearMateriaPrima(){
+        PanelMateriaPrima mat = new PanelMateriaPrima();
+        
+//        mat.setCodigo(tfCodigo.getText());
+//        mat.setCostoAlmacenamiento(tfCostoAlmacenamiento.getText());        
+//        mat.setCostoUnitarioXOmision(tfCostoUnitPorOmision.getText());
+//        mat.setDescripcion(tfDescripcion.getText());
+//        mat.setNombreMateriaPrima(tfNombre.getText());
+//        mat.set
+        
+        
+//      private String codigo;
+//	private double costoAlmacenamiento;
+//	private double costoUnitarioXOmision;
+//	private String descripcion;
+//	private String id;
+//	private String nombreMateriaPrima;
+//	private double pesoXUnidad;
+//	private double precioBase;
+//	private Proveedor[] proveedor;
+//	private double tamanioLoteEstandar;
+//	private String unidadMedida;       
+        return mat;
+    }
 }

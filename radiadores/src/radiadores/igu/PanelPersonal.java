@@ -1,5 +1,5 @@
 /*
- * Personal.java
+ * PanelPersonal.java
  *
  * Created on 25 de octubre de 2008, 20:02
  */
@@ -10,10 +10,10 @@ package radiadores.igu;
  *
  * @author  stafoxter
  */
-public class Personal extends javax.swing.JPanel {
+public class PanelPersonal extends javax.swing.JPanel {
 
-    /** Creates new form Personal */
-    public Personal() {
+    /** Creates new form PanelPersonal */
+    public PanelPersonal() {
         initComponents();
     }
 
@@ -144,7 +144,7 @@ public class Personal extends javax.swing.JPanel {
                             .addComponent(jComboBox1, 0, 201, Short.MAX_VALUE))))
                 .addGap(23, 23, 23)
                 .addComponent(btCargo, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(56, 56, 56))
+                .addGap(48, 48, 48))
         );
         pEmpleadoLayout.setVerticalGroup(
             pEmpleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -194,21 +194,20 @@ public class Personal extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(pEmpleado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(pBotones, javax.swing.GroupLayout.DEFAULT_SIZE, 498, Short.MAX_VALUE)))
+                .addContainerGap()
+                .addComponent(pBotones, javax.swing.GroupLayout.DEFAULT_SIZE, 688, Short.MAX_VALUE)
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(115, 115, 115)
+                .addComponent(pEmpleado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(103, 103, 103))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(31, 31, 31)
                 .addComponent(pEmpleado, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
-                .addGap(53, 53, 53)
+                .addGap(33, 33, 33)
                 .addComponent(pBotones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -223,11 +222,15 @@ private void btModifiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
 }//GEN-LAST:event_btModifiarActionPerformed
 
 private void tfCargoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfCargoActionPerformed
-    FrameCargo fcargo = new FrameCargo();
+    
 }//GEN-LAST:event_tfCargoActionPerformed
 
 private void btCargoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCargoActionPerformed
-// TODO add your handling code here:
+    PanelCargoEmpleado fcargo = new PanelCargoEmpleado();
+    fcargo.setModal(true);
+    fcargo.setVisible(true);
+    
+           
 }//GEN-LAST:event_btCargoActionPerformed
 
 

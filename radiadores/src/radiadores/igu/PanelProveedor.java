@@ -1,5 +1,5 @@
 /*
- * Proveedor.java
+ * PanelProveedor.java
  *
  * Created on 25 de octubre de 2008, 18:44
  */
@@ -10,10 +10,10 @@ package radiadores.igu;
  *
  * @author  Lisandro
  */
-public class Proveedor extends javax.swing.JPanel {
+public class PanelProveedor extends javax.swing.JPanel {
 
-    /** Creates new form Proveedor */
-    public Proveedor() {
+    /** Creates new form PanelProveedor */
+    public PanelProveedor() {
         initComponents();
     }
 
@@ -152,8 +152,8 @@ public class Proveedor extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 839, Short.MAX_VALUE))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 839, Short.MAX_VALUE))
                 .addGap(18, 18, 18))
         );
         layout.setVerticalGroup(
@@ -161,9 +161,9 @@ public class Proveedor extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(72, 72, 72)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 111, Short.MAX_VALUE)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(111, Short.MAX_VALUE))
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 

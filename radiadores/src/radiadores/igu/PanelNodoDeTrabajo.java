@@ -10,10 +10,10 @@ package radiadores.igu;
  *
  * @author  Administrador
  */
-public class NodoDeTrabajo extends javax.swing.JPanel {
+public class PanelNodoDeTrabajo extends javax.swing.JPanel {
 
     /** Creates new form CentroDeTrabajo */
-    public NodoDeTrabajo() {
+    public PanelNodoDeTrabajo() {
         initComponents();
         
     }
@@ -22,7 +22,7 @@ public class NodoDeTrabajo extends javax.swing.JPanel {
      public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new NodoDeTrabajo().setVisible(true);
+                new PanelNodoDeTrabajo().setVisible(true);
             }
         });
     }

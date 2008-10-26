@@ -1,5 +1,5 @@
 /*
- * Producto.java
+ * PanelProducto.java
  *
  * Created on 26 de octubre de 2008, 12:03
  */
@@ -10,10 +10,10 @@ package radiadores.igu;
  *
  * @author  stafoxter
  */
-public class Producto extends javax.swing.JPanel {
+public class PanelProducto extends javax.swing.JPanel {
 
-    /** Creates new form Producto */
-    public Producto() {
+    /** Creates new form PanelProducto */
+    public PanelProducto() {
         initComponents();
         pProductoComponente.setVisible(false);
     }
@@ -92,7 +92,7 @@ public class Producto extends javax.swing.JPanel {
         btEliminar.setText("Eliminar");
         pBotones.add(btEliminar);
 
-        cbTipoProducto.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        cbTipoProducto.setFont(new java.awt.Font("Times New Roman", 1, 18));
         cbTipoProducto.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Producto Terminado", "Producto Componente" }));
         cbTipoProducto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -428,7 +428,7 @@ private void cbTipoProductoActionPerformed(java.awt.event.ActionEvent evt) {//GE
 }//GEN-LAST:event_cbTipoProductoActionPerformed
 
 private void btAsignarProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAsignarProveedorActionPerformed
-    new BuscarProveedor();
+    new PanelBuscarProveedor();
 }//GEN-LAST:event_btAsignarProveedorActionPerformed
 
 

@@ -1,5 +1,5 @@
 /*
- * RutaFabricacion.java
+ * PanelRutaFabricacion.java
  *
  * Created on 26 de octubre de 2008, 19:05
  */
@@ -10,10 +10,10 @@ package radiadores.igu;
  *
  * @author  Lisandro
  */
-public class RutaFabricacion extends javax.swing.JPanel {
+public class PanelRutaFabricacion extends javax.swing.JPanel {
 
-    /** Creates new form RutaFabricacion */
-    public RutaFabricacion() {
+    /** Creates new form PanelRutaFabricacion */
+    public PanelRutaFabricacion() {
         initComponents();
     }
 
