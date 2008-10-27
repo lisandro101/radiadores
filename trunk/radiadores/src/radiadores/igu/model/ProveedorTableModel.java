@@ -145,4 +145,25 @@ public class ProveedorTableModel extends AbstractTableModel {
     public List<Proveedor> getFilas() {
         return proveedores;
     }
+    
+    public Proveedor getFila(int indice){
+        return proveedores.get(indice);
+        
+    }
+    
+    public void eliminarFila(int indice){        
+        proveedores.remove(indice);
+        fireTableRowsDeleted(indice, indice);       
+    }
+    
+    public void imprimirModel(){
+        
+        for (int i = 0; i < proveedores.size(); i++) {
+            System.out.println(proveedores.get(i).getNombreProveedor()+"    "+
+                    proveedores.get(i).getTelefono()+"    "+ 
+                    proveedores.get(i).getNombreContacto());     
+        }
+        System.out.println("\n");
+    }
+    
 }

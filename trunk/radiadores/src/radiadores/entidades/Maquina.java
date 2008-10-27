@@ -27,6 +27,7 @@ public class Maquina implements Serializable {
     private String id;
     private String codigo;
     private Date fechaAntiguedad;
+    private Date proximoMantenimiento;
     private String nombre;
     private CentroDeTrabajo centroDeTrabajo;
     private Sector sector;
@@ -78,6 +79,17 @@ public class Maquina implements Serializable {
         this.fechaAntiguedad = fechaAntiguedad;
     }
 
+    @Column(name="proximo_mantenimiento")
+    @Temporal(TemporalType.DATE)
+    public Date getProximoMantenimiento() {
+        return proximoMantenimiento;
+    }
+
+    public void setProximoMantenimiento(Date proximoMantenimiento) {
+        this.proximoMantenimiento = proximoMantenimiento;
+    }
+    
+    
     @Column(name="nombre")
     public String getNombre() {
         return nombre;

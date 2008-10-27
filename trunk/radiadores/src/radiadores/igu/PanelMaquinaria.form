@@ -16,26 +16,26 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
                       <Component id="jPanel2" pref="815" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="154" max="-2" attributes="0"/>
+                  <Group type="102" alignment="1" attributes="0">
                       <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="129" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
-              <EmptySpace min="-2" pref="79" max="-2" attributes="0"/>
+              <EmptySpace pref="86" max="32767" attributes="0"/>
               <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="139" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
               <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -48,67 +48,82 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="94" max="-2" attributes="0"/>
+              <Group type="102" alignment="1" attributes="0">
+                  <EmptySpace min="-2" pref="89" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace min="-2" pref="78" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="tfNombre" pref="167" max="32767" attributes="2"/>
-                              <Component id="tfCodigoMaquinaria" alignment="0" pref="167" max="32767" attributes="2"/>
-                              <Component id="jTextField1" alignment="0" pref="167" max="32767" attributes="0"/>
-                          </Group>
+                          <Component id="lbSector" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace pref="273" max="-2" attributes="0"/>
                       </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="jdFechaDeFabricacion" pref="168" max="32767" attributes="2"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="dpProximoMantenimiento" min="-2" pref="166" max="-2" attributes="2"/>
+                      <Group type="102" alignment="1" attributes="0">
+                          <Group type="103" groupAlignment="1" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="lbFechaMantenimiento" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="lbFechaFabricacion" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Component id="dpFechaDeFabricacion" max="32767" attributes="3"/>
+                                      <Component id="dpProximoMantenimiento" alignment="0" pref="186" max="32767" attributes="3"/>
+                                  </Group>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="lbCodigo" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="lbNombre" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="lbEdificio" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace min="-2" pref="78" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                      <Component id="cbSector" alignment="0" max="32767" attributes="1"/>
+                                      <Component id="tfCodigo" alignment="0" max="32767" attributes="3"/>
+                                      <Component id="tfNombre" alignment="0" max="32767" attributes="3"/>
+                                      <Component id="cbEdificio" alignment="0" pref="185" max="32767" attributes="1"/>
+                                  </Group>
+                              </Group>
+                          </Group>
+                          <EmptySpace max="32767" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace min="-2" pref="110" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="137" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace max="-2" attributes="0"/>
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="tfCodigoMaquinaria" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="lbCodigo" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="tfCodigo" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="lbNombre" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="tfNombre" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jTextField1" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace pref="8" max="32767" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jdFechaDeFabricacion" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="lbEdificio" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="cbEdificio" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="lbSector" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="cbSector" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="lbFechaFabricacion" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="dpFechaDeFabricacion" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="lbFechaMantenimiento" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="dpProximoMantenimiento" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace max="-2" attributes="0"/>
+                  <EmptySpace pref="44" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -116,37 +131,62 @@
       <SubComponents>
         <Component class="javax.swing.JTextField" name="tfNombre">
         </Component>
-        <Component class="javax.swing.JTextField" name="tfCodigoMaquinaria">
+        <Component class="javax.swing.JTextField" name="tfCodigo">
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel2">
+        <Component class="javax.swing.JLabel" name="lbCodigo">
           <Properties>
             <Property name="text" type="java.lang.String" value="Codigo :"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel1">
+        <Component class="javax.swing.JLabel" name="lbNombre">
           <Properties>
             <Property name="text" type="java.lang.String" value="Nombre :"/>
           </Properties>
         </Component>
-        <Component class="org.jdesktop.swingx.JXDatePicker" name="jdFechaDeFabricacion">
+        <Component class="org.jdesktop.swingx.JXDatePicker" name="dpFechaDeFabricacion">
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel3">
+        <Component class="javax.swing.JLabel" name="lbFechaFabricacion">
           <Properties>
             <Property name="text" type="java.lang.String" value="Fecha de Fabricacion :"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel4">
+        <Component class="javax.swing.JLabel" name="lbFechaMantenimiento">
           <Properties>
             <Property name="text" type="java.lang.String" value="Proximo Mantenimiento :"/>
           </Properties>
         </Component>
         <Component class="org.jdesktop.swingx.JXDatePicker" name="dpProximoMantenimiento">
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextField1">
-        </Component>
-        <Component class="javax.swing.JLabel" name="jLabel5">
+        <Component class="javax.swing.JLabel" name="lbEdificio">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Ubicaci&#xf3;n:"/>
+            <Property name="text" type="java.lang.String" value="Edificio:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JComboBox" name="cbEdificio">
+          <Properties>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+              <StringArray count="2">
+                <StringItem index="0" value="Casa Central"/>
+                <StringItem index="1" value="Deposito"/>
+              </StringArray>
+            </Property>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lbSector">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Sector:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JComboBox" name="cbSector">
+          <Properties>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+              <StringArray count="4">
+                <StringItem index="0" value="1A"/>
+                <StringItem index="1" value="2A"/>
+                <StringItem index="2" value="3G"/>
+                <StringItem index="3" value="7G"/>
+              </StringArray>
+            </Property>
           </Properties>
         </Component>
       </SubComponents>
