@@ -47,7 +47,7 @@ public class MateriaPrima extends Componente implements Serializable {
     private List<Proveedor> proveedores;
     private double tamanioLoteEstandar;
     private String unidadMedida;
-    private String estado;
+    private Estado estado;
 
     @Column(name="costo_almacenamiento")
     public double getCostoAlmacenamiento() {
@@ -130,12 +130,12 @@ public class MateriaPrima extends Componente implements Serializable {
         this.unidadMedida = unidadMedida;
     }
     
-    @Column(name="estado", length=20)
-    public String getEstado() {
+    @Column(name="estado")
+    public Estado getEstado() {
         return estado;
     }
 
-    public void setEstado(String estado) {
+    public void setEstado(Estado estado) {
         this.estado = estado;
     }
 }
