@@ -87,6 +87,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="tfCentroTrabajo">
+          <Properties>
+            <Property name="editable" type="boolean" value="false"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="btBuscarCentroTrabajo">
           <Properties>

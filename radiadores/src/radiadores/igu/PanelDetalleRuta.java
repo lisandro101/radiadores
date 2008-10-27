@@ -72,6 +72,8 @@ public class PanelDetalleRuta extends javax.swing.JDialog {
 
         lbCentroTrabajo.setText("Centro de Trabajo");
 
+        tfCentroTrabajo.setEditable(false);
+
         btBuscarCentroTrabajo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/radiadores/images/lupa (3).jpg"))); // NOI18N
         btBuscarCentroTrabajo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

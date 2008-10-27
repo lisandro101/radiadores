@@ -18,8 +18,16 @@ public class RutaListModel extends AbstractListModel{
     
     private static final long serialVersionUID = 1L;
     private List<NodoRuta> nodos;
+
+   /**
+     * Constructor por defecto
+     * 
+     */
+    public RutaListModel() {
+        this.nodos = new ArrayList<NodoRuta>(0);
+    }
     
-    /**
+   /**
      * Constructor
      * 
      * @param elementos Cantidad de elementos iniciales
@@ -45,7 +53,7 @@ public class RutaListModel extends AbstractListModel{
      */
     public Object getElementAt(int index) {
         Object resultado = null;
-        resultado = nodos.get(index).getCentroTrabajo();
+        resultado = nodos.get(index).getCentroTrabajo().getNombre();
         
         return resultado;
     }
@@ -89,7 +97,7 @@ public class RutaListModel extends AbstractListModel{
      * 
      * @param indice Indice del elemento a eliminar
      */    
-    public void eliminarFila(int indice){        
+    public void eliminarElemento(int indice){        
         nodos.remove(indice);
         fireIntervalRemoved(this, indice, indice);       
     }

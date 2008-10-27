@@ -8,8 +8,12 @@ package radiadores.igu;
 
 import java.awt.Component;
 import java.awt.Container;
+import java.util.List;
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
+import radiadores.entidades.CentroDeTrabajo;
+import radiadores.entidades.NodoRuta;
+import radiadores.igu.model.RutaListModel;
 
 /**
  *
@@ -17,10 +21,30 @@ import javax.swing.JTextField;
  */
 public class PanelRutaFabricacion extends javax.swing.JPanel {
 
+    private RutaListModel listModel; 
+    private List<NodoRuta> nodos;
+    
     /** Creates new form PanelRutaFabricacion */
     public PanelRutaFabricacion() {
         initComponents();
-        //jlDetalleRuta.setModel();
+        inicializar();
+    }
+    
+    private void inicializar() {
+        listModel = new RutaListModel();
+        jlDetalleRuta.setModel(listModel);
+        
+        
+        /*
+         <<<<<<< Solo por propósitos de testeo >>>>>>>
+         */
+        for (int i = 0; i < 4; i++) {
+            CentroDeTrabajo ct = new CentroDeTrabajo();
+            ct.setNombre("Mierda"+Math.random());
+            NodoRuta nr = new NodoRuta();
+            nr.setCentroTrabajo(ct);
+            listModel.agregarElemento(nr);
+        }
     }
 
     /** This method is called from within the constructor to
@@ -36,16 +60,20 @@ public class PanelRutaFabricacion extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         jlDetalleRuta = new org.jdesktop.swingx.JXList();
         jPanel2 = new javax.swing.JPanel();
-        btAgregar = new javax.swing.JButton();
-        btEliminar = new javax.swing.JButton();
+        btAgregarNodo = new javax.swing.JButton();
+        btEliminarNodo = new javax.swing.JButton();
         jpRuta = new javax.swing.JPanel();
         tfNombre = new javax.swing.JTextField();
         lbNombre = new javax.swing.JLabel();
         lbDescripcion = new javax.swing.JLabel();
         tfDescripcion = new javax.swing.JTextField();
+        lbCodigo = new javax.swing.JLabel();
+        tfCodigo = new javax.swing.JTextField();
         jPanel4 = new javax.swing.JPanel();
-        btAceptar = new javax.swing.JButton();
-        btCancelar = new javax.swing.JButton();
+        btBuscarRuta = new javax.swing.JButton();
+        btAgregarRuta = new javax.swing.JButton();
+        btModificarRuta = new javax.swing.JButton();
+        btEliminarRuta = new javax.swing.JButton();
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
@@ -57,21 +85,21 @@ public class PanelRutaFabricacion extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(jlDetalleRuta);
 
-        btAgregar.setText("Agregar");
-        btAgregar.addActionListener(new java.awt.event.ActionListener() {
+        btAgregarNodo.setText("Agregar");
+        btAgregarNodo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btAgregarActionPerformed(evt);
+                btAgregarNodoActionPerformed(evt);
             }
         });
-        jPanel2.add(btAgregar);
+        jPanel2.add(btAgregarNodo);
 
-        btEliminar.setText("Eliminar");
-        btEliminar.addActionListener(new java.awt.event.ActionListener() {
+        btEliminarNodo.setText("Eliminar");
+        btEliminarNodo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btEliminarActionPerformed(evt);
+                btEliminarNodoActionPerformed(evt);
             }
         });
-        jPanel2.add(btEliminar);
+        jPanel2.add(btEliminarNodo);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -98,19 +126,26 @@ public class PanelRutaFabricacion extends javax.swing.JPanel {
 
         lbDescripcion.setText("Descripcion");
 
+        lbCodigo.setText("Codigo");
+
         javax.swing.GroupLayout jpRutaLayout = new javax.swing.GroupLayout(jpRuta);
         jpRuta.setLayout(jpRutaLayout);
         jpRutaLayout.setHorizontalGroup(
             jpRutaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpRutaLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lbNombre)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tfNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(lbDescripcion)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tfDescripcion, javax.swing.GroupLayout.DEFAULT_SIZE, 227, Short.MAX_VALUE)
+                .addGroup(jpRutaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lbDescripcion)
+                    .addComponent(lbNombre))
+                .addGap(10, 10, 10)
+                .addGroup(jpRutaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jpRutaLayout.createSequentialGroup()
+                        .addComponent(tfNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 254, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
+                        .addComponent(lbCodigo)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(tfCodigo, javax.swing.GroupLayout.DEFAULT_SIZE, 119, Short.MAX_VALUE))
+                    .addComponent(tfDescripcion, javax.swing.GroupLayout.DEFAULT_SIZE, 434, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jpRutaLayout.setVerticalGroup(
@@ -119,33 +154,47 @@ public class PanelRutaFabricacion extends javax.swing.JPanel {
                 .addGap(19, 19, 19)
                 .addGroup(jpRutaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbNombre)
-                    .addComponent(tfNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbCodigo)
+                    .addComponent(tfCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tfNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jpRutaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbDescripcion)
                     .addComponent(tfDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        btAceptar.setText("Aceptar");
-        jPanel4.add(btAceptar);
+        btBuscarRuta.setText("Buscar");
+        jPanel4.add(btBuscarRuta);
 
-        btCancelar.setText("Cancelar");
-        btCancelar.addActionListener(new java.awt.event.ActionListener() {
+        btAgregarRuta.setText("Agregar");
+        jPanel4.add(btAgregarRuta);
+
+        btModificarRuta.setText("Modificar");
+        btModificarRuta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btCancelarActionPerformed(evt);
+                btModificarRutaActionPerformed(evt);
             }
         });
-        jPanel4.add(btCancelar);
+        jPanel4.add(btModificarRuta);
+
+        btEliminarRuta.setText("Eliminar");
+        jPanel4.add(btEliminarRuta);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(jpRuta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 518, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jpRuta, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 518, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -161,16 +210,17 @@ public class PanelRutaFabricacion extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-private void btEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEliminarActionPerformed
-// TODO add your handling code here:
-}//GEN-LAST:event_btEliminarActionPerformed
+private void btEliminarNodoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEliminarNodoActionPerformed
+    if (jlDetalleRuta.getSelectedIndex() != -1){
+        listModel.eliminarElemento(jlDetalleRuta.getSelectedIndex());
+    }    
+}//GEN-LAST:event_btEliminarNodoActionPerformed
 
-private void btCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCancelarActionPerformed
+private void btModificarRutaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btModificarRutaActionPerformed
     
-    jlDetalleRuta.removeAll();    
-    limpiarCampos(jpRuta);
     
-}//GEN-LAST:event_btCancelarActionPerformed
+    
+}//GEN-LAST:event_btModificarRutaActionPerformed
 
 private void jlDetalleRutaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlDetalleRutaMouseClicked
     if (evt.getClickCount() == 2) { 
@@ -194,27 +244,31 @@ public void limpiarCampos(Container contenedor) {
         }
 }
 
-private void btAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAgregarActionPerformed
+private void btAgregarNodoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAgregarNodoActionPerformed
 
         PanelDetalleRuta detalleRuta = new PanelDetalleRuta();
         detalleRuta.setModal(true);
         detalleRuta.setVisible(true);
-}//GEN-LAST:event_btAgregarActionPerformed
+}//GEN-LAST:event_btAgregarNodoActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btAceptar;
-    private javax.swing.JButton btAgregar;
-    private javax.swing.JButton btCancelar;
-    private javax.swing.JButton btEliminar;
+    private javax.swing.JButton btAgregarNodo;
+    private javax.swing.JButton btAgregarRuta;
+    private javax.swing.JButton btBuscarRuta;
+    private javax.swing.JButton btEliminarNodo;
+    private javax.swing.JButton btEliminarRuta;
+    private javax.swing.JButton btModificarRuta;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private org.jdesktop.swingx.JXList jlDetalleRuta;
     private javax.swing.JPanel jpRuta;
+    private javax.swing.JLabel lbCodigo;
     private javax.swing.JLabel lbDescripcion;
     private javax.swing.JLabel lbNombre;
+    private javax.swing.JTextField tfCodigo;
     private javax.swing.JTextField tfDescripcion;
     private javax.swing.JTextField tfNombre;
     // End of variables declaration//GEN-END:variables
