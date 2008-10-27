@@ -185,7 +185,7 @@ private void btAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
     
     //**********
     Proveedor p = new Proveedor();
-    p.setNombreProveedor("carlos Sa");
+    p.setNombreProveedor("Vea "+ Math.random());
     p.setNombreContacto("pepe hongo");
     tmEmpleado.agregarFila(p);
     //***

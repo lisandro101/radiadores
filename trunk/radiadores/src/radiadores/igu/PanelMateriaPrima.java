@@ -6,6 +6,8 @@
 
 package radiadores.igu;
 
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
 import radiadores.entidades.MateriaPrima;
 import radiadores.igu.model.ProveedorTableModel;
 
@@ -24,9 +26,12 @@ public class PanelMateriaPrima extends javax.swing.JPanel {
     }
 
     private void inicializar() {
+        //DefaultComboBoxModel dcm = new DefaultComboBoxModel(MateriaPrima.);
+           
+        
         tm = new ProveedorTableModel(0);
         tProveedor.setModel(tm);
-
+        
     }
     
 
@@ -35,12 +40,11 @@ public class PanelMateriaPrima extends javax.swing.JPanel {
     private void initComponents() {
 
         pTablaProveedores = new javax.swing.JPanel();
-        lbProveedor = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tProveedor = new org.jdesktop.swingx.JXTable();
         jPanel1 = new javax.swing.JPanel();
         btAsignarProveedor = new javax.swing.JButton();
-        btEliminar = new javax.swing.JButton();
+        btEliminarProveedor = new javax.swing.JButton();
         pMateriaPrima = new javax.swing.JPanel();
         lbCodigo = new javax.swing.JLabel();
         lbNombre = new javax.swing.JLabel();
@@ -54,7 +58,7 @@ public class PanelMateriaPrima extends javax.swing.JPanel {
         tfPrecioBase = new javax.swing.JTextField();
         tfCostoAlmacenamiento = new javax.swing.JTextField();
         tfCostoUnitPorOmision = new javax.swing.JTextField();
-        tfPrecioPorUnidad = new javax.swing.JTextField();
+        tfPesoPorUnidad = new javax.swing.JTextField();
         tfNombre = new javax.swing.JTextField();
         tfCodigo = new javax.swing.JTextField();
         tfUnidadMedida = new javax.swing.JTextField();
@@ -66,8 +70,9 @@ public class PanelMateriaPrima extends javax.swing.JPanel {
         btBuscar = new javax.swing.JButton();
         btAgregar = new javax.swing.JButton();
         btModifiar = new javax.swing.JButton();
+        btEliminarMP = new javax.swing.JButton();
 
-        lbProveedor.setText("Proveedores:");
+        pTablaProveedores.setBorder(javax.swing.BorderFactory.createTitledBorder("Proveedores"));
 
         tProveedor.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -98,13 +103,13 @@ public class PanelMateriaPrima extends javax.swing.JPanel {
         });
         jPanel1.add(btAsignarProveedor);
 
-        btEliminar.setText("Eliminar");
-        btEliminar.addActionListener(new java.awt.event.ActionListener() {
+        btEliminarProveedor.setText("Eliminar");
+        btEliminarProveedor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btEliminarActionPerformed(evt);
+                btEliminarProveedorActionPerformed(evt);
             }
         });
-        jPanel1.add(btEliminar);
+        jPanel1.add(btEliminarProveedor);
 
         javax.swing.GroupLayout pTablaProveedoresLayout = new javax.swing.GroupLayout(pTablaProveedores);
         pTablaProveedores.setLayout(pTablaProveedoresLayout);
@@ -113,21 +118,18 @@ public class PanelMateriaPrima extends javax.swing.JPanel {
             .addGroup(pTablaProveedoresLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pTablaProveedoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 354, Short.MAX_VALUE)
-                    .addComponent(lbProveedor)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 354, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 338, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 338, Short.MAX_VALUE))
                 .addContainerGap())
         );
         pTablaProveedoresLayout.setVerticalGroup(
             pTablaProveedoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pTablaProveedoresLayout.createSequentialGroup()
-                .addGap(31, 31, 31)
-                .addComponent(lbProveedor)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(56, 56, 56)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(35, 35, 35)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(96, Short.MAX_VALUE))
+                .addContainerGap(66, Short.MAX_VALUE))
         );
 
         lbCodigo.setText("Código:");
@@ -193,7 +195,7 @@ public class PanelMateriaPrima extends javax.swing.JPanel {
                                 .addComponent(tfNombre, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE)))
                         .addGroup(pMateriaPrimaLayout.createSequentialGroup()
                             .addGap(166, 166, 166)
-                            .addComponent(tfPrecioPorUnidad, javax.swing.GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE))
+                            .addComponent(tfPesoPorUnidad, javax.swing.GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE))
                         .addGroup(pMateriaPrimaLayout.createSequentialGroup()
                             .addGap(166, 166, 166)
                             .addComponent(tfCostoUnitPorOmision, javax.swing.GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE))
@@ -243,7 +245,7 @@ public class PanelMateriaPrima extends javax.swing.JPanel {
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                     .addGroup(pMateriaPrimaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(lbPesoPorUnid)
-                        .addComponent(tfPrecioPorUnidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(tfPesoPorUnidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                     .addGroup(pMateriaPrimaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(lbPrecioBase)
@@ -270,6 +272,9 @@ public class PanelMateriaPrima extends javax.swing.JPanel {
             }
         });
         pBotones.add(btModifiar);
+
+        btEliminarMP.setText("Eliminar");
+        pBotones.add(btEliminarMP);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -313,18 +318,23 @@ private void btAsignarProveedorActionPerformed(java.awt.event.ActionEvent evt) {
             
 }//GEN-LAST:event_btAsignarProveedorActionPerformed
 
-private void btEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEliminarActionPerformed
-    //int indice = tProveedor.getSelectedRow();
-    tm.eliminarFila(tProveedor.getSelectedRow());
-    tm.imprimirModel();
-}//GEN-LAST:event_btEliminarActionPerformed
+private void btEliminarProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEliminarProveedorActionPerformed
+    int filaSeleccionada = tProveedor.getSelectedRow();
+    if(filaSeleccionada == -1){
+        JOptionPane.showMessageDialog(this, "No se ha seleccionado Proveedor");
+    }else{
+        tm.eliminarFila(filaSeleccionada);
+        tm.imprimirModel();
+    }
+}//GEN-LAST:event_btEliminarProveedorActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btAgregar;
     private javax.swing.JButton btAsignarProveedor;
     private javax.swing.JButton btBuscar;
-    private javax.swing.JButton btEliminar;
+    private javax.swing.JButton btEliminarMP;
+    private javax.swing.JButton btEliminarProveedor;
     private javax.swing.JButton btModifiar;
     private javax.swing.JComboBox cbEstado;
     private javax.swing.JPanel jPanel1;
@@ -337,7 +347,6 @@ private void btEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
     private javax.swing.JLabel lbNombre;
     private javax.swing.JLabel lbPesoPorUnid;
     private javax.swing.JLabel lbPrecioBase;
-    private javax.swing.JLabel lbProveedor;
     private javax.swing.JLabel lbTamanioLoteEstandar;
     private javax.swing.JLabel lbUnidadMedida;
     private javax.swing.JPanel pBotones;
@@ -349,8 +358,8 @@ private void btEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
     private javax.swing.JTextField tfCostoUnitPorOmision;
     private javax.swing.JTextField tfDescripcion;
     private javax.swing.JTextField tfNombre;
+    private javax.swing.JTextField tfPesoPorUnidad;
     private javax.swing.JTextField tfPrecioBase;
-    private javax.swing.JTextField tfPrecioPorUnidad;
     private javax.swing.JTextField tfTamanioLoteEstandar;
     private javax.swing.JTextField tfUnidadMedida;
     // End of variables declaration//GEN-END:variables
@@ -363,7 +372,7 @@ private void btEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
         mat.setCostoUnitarioPorOmision(Double.parseDouble(tfCostoUnitPorOmision.getText()));
         mat.setDescripcion(tfDescripcion.getText());
         mat.setNombreMateriaPrima(tfNombre.getText());
-        mat.setPesoPorUnidad(Double.parseDouble(tfPrecioPorUnidad.getText()));
+        mat.setPesoPorUnidad(Double.parseDouble(tfPesoPorUnidad.getText()));
         mat.setPrecioBase(Double.parseDouble(tfPrecioBase.getText()));
         mat.setTamanioLoteEstandar(Double.parseDouble(tfTamanioLoteEstandar.getText()));
         mat.setUnidadMedida(tfUnidadMedida.getText());
@@ -371,5 +380,24 @@ private void btEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
         mat.setEstado(cbEstado.getSelectedItem().toString());
         
         return mat;
+    }
+    
+    private void cargarPantallaMateriaPrima(MateriaPrima mat){
+        tfCodigo.setText(mat.getCodigo());
+        tfCostoAlmacenamiento.setText(String.valueOf(mat.getCostoAlmacenamiento()));
+        tfCostoUnitPorOmision.setText(String.valueOf(mat.getCostoUnitarioPorOmision()));
+        tfDescripcion.setText(mat.getDescripcion());
+        tfNombre.setText(mat.getNombreMateriaPrima());
+        tfPesoPorUnidad.setText(String.valueOf(mat.getPesoPorUnidad()));
+        tfPrecioBase.setText(String.valueOf(mat.getPrecioBase()));
+        tfTamanioLoteEstandar.setText(String.valueOf(mat.getTamanioLoteEstandar()));
+        tfUnidadMedida.setText(mat.getUnidadMedida());
+        
+        for (int i = 0; i < mat.getProveedores().size(); i++) {
+            tm.agregarFila(mat.getProveedores().get(i));      
+        }
+        
+        
+        
     }
 }

@@ -46,6 +46,13 @@
   </Layout>
   <SubComponents>
     <Container class="javax.swing.JPanel" name="pTablaProveedores">
+      <Properties>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+          <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+            <TitledBorder title="Proveedores"/>
+          </Border>
+        </Property>
+      </Properties>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -53,9 +60,8 @@
               <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jScrollPane1" alignment="1" pref="354" max="32767" attributes="0"/>
-                      <Component id="lbProveedor" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="jPanel1" alignment="0" pref="354" max="32767" attributes="0"/>
+                      <Component id="jScrollPane1" alignment="1" pref="338" max="32767" attributes="0"/>
+                      <Component id="jPanel1" alignment="0" pref="338" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -64,23 +70,16 @@
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
-                  <Component id="lbProveedor" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
                   <Component id="jScrollPane1" min="-2" pref="103" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
                   <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="96" max="32767" attributes="0"/>
+                  <EmptySpace pref="66" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JLabel" name="lbProveedor">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Proveedores:"/>
-          </Properties>
-        </Component>
         <Container class="javax.swing.JScrollPane" name="jScrollPane1">
           <AuxValues>
             <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
@@ -113,12 +112,12 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btAsignarProveedorActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="btEliminar">
+            <Component class="javax.swing.JButton" name="btEliminarProveedor">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Eliminar"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btEliminarActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btEliminarProveedorActionPerformed"/>
               </Events>
             </Component>
           </SubComponents>
@@ -167,7 +166,7 @@
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="166" pref="166" max="166" attributes="0"/>
-                              <Component id="tfPrecioPorUnidad" pref="201" max="32767" attributes="2"/>
+                              <Component id="tfPesoPorUnidad" pref="201" max="32767" attributes="2"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="166" pref="166" max="166" attributes="0"/>
@@ -233,7 +232,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="lbPesoPorUnid" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="tfPrecioPorUnidad" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="tfPesoPorUnidad" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
@@ -305,7 +304,7 @@
         </Component>
         <Component class="javax.swing.JTextField" name="tfCostoUnitPorOmision">
         </Component>
-        <Component class="javax.swing.JTextField" name="tfPrecioPorUnidad">
+        <Component class="javax.swing.JTextField" name="tfPesoPorUnidad">
         </Component>
         <Component class="javax.swing.JTextField" name="tfNombre">
         </Component>
@@ -358,6 +357,11 @@
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btModifiarActionPerformed"/>
           </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="btEliminarMP">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Eliminar"/>
+          </Properties>
         </Component>
       </SubComponents>
     </Container>
