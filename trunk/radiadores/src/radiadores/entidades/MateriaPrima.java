@@ -32,6 +32,7 @@ public class MateriaPrima implements Serializable {
     private List<Proveedor> proveedores;
     private double tamanioLoteEstandar;
     private String unidadMedida;
+    private String estado;
 
     public MateriaPrima(){
         setId(UUID.randomUUID().toString());
@@ -145,5 +146,14 @@ public class MateriaPrima implements Serializable {
 
     public void setUnidadMedida(String unidadMedida) {
         this.unidadMedida = unidadMedida;
+    }
+    
+    @Column(name="estado", length=20)
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
     }
 }

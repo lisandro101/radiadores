@@ -1,19 +1,24 @@
 /*
- * PanelPersonal.java
+ * PanelEmpleado.java
  *
  * Created on 25 de octubre de 2008, 20:02
  */
 
 package radiadores.igu;
 
+import javax.swing.JOptionPane;
+import radiadores.entidades.Cargo;
+import radiadores.entidades.Empleado;
+
 /**
  *
  * @author  stafoxter
  */
-public class PanelPersonal extends javax.swing.JPanel {
+public class PanelEmpleado extends javax.swing.JPanel {
 
-    /** Creates new form PanelPersonal */
-    public PanelPersonal() {
+    private Cargo cargo;
+    /** Creates new form PanelEmpleado */
+    public PanelEmpleado() {
         initComponents();
     }
 
@@ -204,7 +209,7 @@ public class PanelPersonal extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(31, 31, 31)
-                .addComponent(pEmpleado, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
+                .addComponent(pEmpleado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(33, 33, 33)
                 .addComponent(pBotones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -224,10 +229,10 @@ private void tfCargoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
 }//GEN-LAST:event_tfCargoActionPerformed
 
 private void btCargoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCargoActionPerformed
-    PanelCargoEmpleado fcargo = new PanelCargoEmpleado();
+    PanelCargoEmpleado fcargo = new PanelCargoEmpleado(this);
     fcargo.setModal(true);
     fcargo.setVisible(true);
-    
+
            
 }//GEN-LAST:event_btCargoActionPerformed
 
@@ -260,4 +265,30 @@ private void btCargoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
     private javax.swing.JTextField tfTelefono;
     // End of variables declaration//GEN-END:variables
 
+    public void setCargoEmpleado(Cargo cargo){
+        this.cargo= cargo; 
+        tfCargo.setText(cargo.getNombreCargo());
+    }
+    
+    
+    private Empleado crearEmpleado(){
+        Empleado empleado = new Empleado();
+        
+        if(cargo==null){
+            JOptionPane.showMessageDialog(this, "No se ha asiganado un cargo");
+        }
+        empleado.setCodigo(tfCodigo.getText());
+        empleado.setNombre(tfNombre.getText());
+        empleado.setTelefono(tfTelefono.getText());
+        empleado.setMail(tfMail.getText());
+        empleado.setDireccion(tfDireccion.getText());
+        empleado.setEstado(cbEstado.getSelectedItem().toString());
+        empleado.setCargo(cargo);
+        empleado.setFechaNacimiento(dpFechaNacimiento.getDate());
+        empleado.setFechaIngreso(dpFechaIngreso.getDate());
+              
+        
+        
+        return empleado;
+    }
 }

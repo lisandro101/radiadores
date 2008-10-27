@@ -6,17 +6,29 @@
 
 package radiadores.igu;
 
+import radiadores.entidades.MateriaPrima;
+import radiadores.igu.model.ProveedorTableModel;
+
 /**
  *
  * @author  stafoxter
  */
 public class PanelMateriaPrima extends javax.swing.JPanel {
 
+    private ProveedorTableModel tm;
     /** Creates new form PanelMateriaPrima */
     public PanelMateriaPrima() {
         initComponents();
+        inicializar();
+        
     }
 
+     private void inicializar() {
+        tm = new ProveedorTableModel(0);
+        tProveedor.setModel(tm);
+
+    }
+    
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -29,7 +41,7 @@ public class PanelMateriaPrima extends javax.swing.JPanel {
         pTablaProveedores = new javax.swing.JPanel();
         lbProveedor = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jXTable1 = new org.jdesktop.swingx.JXTable();
+        tProveedor = new org.jdesktop.swingx.JXTable();
         jPanel1 = new javax.swing.JPanel();
         btAsignarProveedor = new javax.swing.JButton();
         btEliminar = new javax.swing.JButton();
@@ -52,8 +64,8 @@ public class PanelMateriaPrima extends javax.swing.JPanel {
         tfUnidadMedida = new javax.swing.JTextField();
         lbDescripcion = new javax.swing.JLabel();
         tfDescripcion = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox();
+        lbEstado = new javax.swing.JLabel();
+        cbEstado = new javax.swing.JComboBox();
         pBotones = new javax.swing.JPanel();
         btBuscar = new javax.swing.JButton();
         btAgregar = new javax.swing.JButton();
@@ -61,7 +73,7 @@ public class PanelMateriaPrima extends javax.swing.JPanel {
 
         lbProveedor.setText("Proveedores:");
 
-        jXTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tProveedor.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
                 {null, null, null},
@@ -80,7 +92,7 @@ public class PanelMateriaPrima extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jXTable1);
+        jScrollPane1.setViewportView(tProveedor);
 
         btAsignarProveedor.setText("Asignar Proveedor");
         btAsignarProveedor.addActionListener(new java.awt.event.ActionListener() {
@@ -141,9 +153,9 @@ public class PanelMateriaPrima extends javax.swing.JPanel {
 
         lbDescripcion.setText("Descripción:");
 
-        jLabel1.setText("Estado:");
+        lbEstado.setText("Estado:");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Vigente", "No vigente" }));
+        cbEstado.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Vigente", "No vigente" }));
 
         javax.swing.GroupLayout pMateriaPrimaLayout = new javax.swing.GroupLayout(pMateriaPrima);
         pMateriaPrima.setLayout(pMateriaPrimaLayout);
@@ -153,10 +165,10 @@ public class PanelMateriaPrima extends javax.swing.JPanel {
                 .addGap(28, 28, 28)
                 .addGroup(pMateriaPrimaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lbDescripcion)
-                    .addComponent(jLabel1))
+                    .addComponent(lbEstado))
                 .addGap(81, 81, 81)
                 .addGroup(pMateriaPrimaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jComboBox1, 0, 199, Short.MAX_VALUE)
+                    .addComponent(cbEstado, 0, 199, Short.MAX_VALUE)
                     .addComponent(tfDescripcion, javax.swing.GroupLayout.DEFAULT_SIZE, 199, Short.MAX_VALUE)
                     .addComponent(tfUnidadMedida, javax.swing.GroupLayout.DEFAULT_SIZE, 199, Short.MAX_VALUE))
                 .addGap(52, 52, 52))
@@ -206,8 +218,8 @@ public class PanelMateriaPrima extends javax.swing.JPanel {
                     .addComponent(lbDescripcion))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(pMateriaPrimaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lbEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(42, Short.MAX_VALUE))
             .addGroup(pMateriaPrimaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(pMateriaPrimaLayout.createSequentialGroup()
@@ -304,15 +316,14 @@ private void btAsignarProveedorActionPerformed(java.awt.event.ActionEvent evt) {
     private javax.swing.JButton btBuscar;
     private javax.swing.JButton btEliminar;
     private javax.swing.JButton btModifiar;
-    private javax.swing.JComboBox jComboBox1;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JComboBox cbEstado;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private org.jdesktop.swingx.JXTable jXTable1;
     private javax.swing.JLabel lbCodigo;
     private javax.swing.JLabel lbCostoAlmacenamiento;
     private javax.swing.JLabel lbCostoUnitPorOmision;
     private javax.swing.JLabel lbDescripcion;
+    private javax.swing.JLabel lbEstado;
     private javax.swing.JLabel lbNombre;
     private javax.swing.JLabel lbPesoPorUnid;
     private javax.swing.JLabel lbPrecioBase;
@@ -322,6 +333,7 @@ private void btAsignarProveedorActionPerformed(java.awt.event.ActionEvent evt) {
     private javax.swing.JPanel pBotones;
     private javax.swing.JPanel pMateriaPrima;
     private javax.swing.JPanel pTablaProveedores;
+    private org.jdesktop.swingx.JXTable tProveedor;
     private javax.swing.JTextField tfCodigo;
     private javax.swing.JTextField tfCostoAlmacenamiento;
     private javax.swing.JTextField tfCostoUnitPorOmision;
@@ -333,28 +345,21 @@ private void btAsignarProveedorActionPerformed(java.awt.event.ActionEvent evt) {
     private javax.swing.JTextField tfUnidadMedida;
     // End of variables declaration//GEN-END:variables
 
-    private PanelMateriaPrima crearMateriaPrima(){
-        PanelMateriaPrima mat = new PanelMateriaPrima();
+    private MateriaPrima crearMateriaPrima(){
+        MateriaPrima mat = new MateriaPrima();
+
+        mat.setCodigo(tfCodigo.getText());
+        mat.setCostoAlmacenamiento(Double.parseDouble(tfCostoAlmacenamiento.getText()));        
+        mat.setCostoUnitarioPorOmision(Double.parseDouble(tfCostoUnitPorOmision.getText()));
+        mat.setDescripcion(tfDescripcion.getText());
+        mat.setNombreMateriaPrima(tfNombre.getText());
+        mat.setPesoPorUnidad(Double.parseDouble(tfPrecioPorUnidad.getText()));
+        mat.setPrecioBase(Double.parseDouble(tfPrecioBase.getText()));
+        mat.setTamanioLoteEstandar(Double.parseDouble(tfTamanioLoteEstandar.getText()));
+        mat.setUnidadMedida(tfUnidadMedida.getText());
+        mat.setProveedores(tm.getFilas());  
+        mat.setEstado(cbEstado.getSelectedItem().toString());
         
-//        mat.setCodigo(tfCodigo.getText());
-//        mat.setCostoAlmacenamiento(tfCostoAlmacenamiento.getText());        
-//        mat.setCostoUnitarioXOmision(tfCostoUnitPorOmision.getText());
-//        mat.setDescripcion(tfDescripcion.getText());
-//        mat.setNombreMateriaPrima(tfNombre.getText());
-//        mat.set
-        
-        
-//      private String codigo;
-//	private double costoAlmacenamiento;
-//	private double costoUnitarioXOmision;
-//	private String descripcion;
-//	private String id;
-//	private String nombreMateriaPrima;
-//	private double pesoXUnidad;
-//	private double precioBase;
-//	private Proveedor[] proveedor;
-//	private double tamanioLoteEstandar;
-//	private String unidadMedida;       
         return mat;
     }
 }

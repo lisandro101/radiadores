@@ -26,6 +26,7 @@ public class Empleado implements Serializable {
     private static final long serialVersionUID = 1L;
     
     private String id;
+    private String codigo;
     private String direccion;
     private Date fechaIngreso;
     private Date fechaNacimiento;
@@ -35,6 +36,7 @@ public class Empleado implements Serializable {
     private Cargo cargo;
     private List<HoraLaboral> horasTrabajadas;
     private boolean borrado;
+    private String estado;
 
     /**
      * Constructor
@@ -63,6 +65,16 @@ public class Empleado implements Serializable {
         this.id = id;
     }
 
+    @Column(name="codigo", length=20)
+    public String getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
+    }
+    
+    
     @Column(name="direccion", length=255)
     public String getDireccion() {
         return direccion;
@@ -146,4 +158,14 @@ public class Empleado implements Serializable {
     public void setBorrado(boolean borrado) {
         this.borrado = borrado;
     }
+    
+    @Column(name="estado", length=20)
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+    
 }

@@ -6,16 +6,21 @@
 
 package radiadores.igu;
 
+import radiadores.entidades.Cargo;
+
 /**
  *
  * @author  stafoxter
  */
 public class PanelCargoEmpleado extends javax.swing.JDialog {
 
+    private PanelEmpleado empleado;
+    private Cargo cargo;
+    
     /** Creates new form PanelCargoEmpleado */
-    public PanelCargoEmpleado() {
+    public PanelCargoEmpleado(PanelEmpleado emp) {
         initComponents();
-        
+        empleado= emp;
     }
 
     /** This method is called from within the constructor to
@@ -75,6 +80,11 @@ public class PanelCargoEmpleado extends javax.swing.JDialog {
         lbCargos.setText("Cargos:");
 
         btAsignar.setText("Asignar");
+        btAsignar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btAsignarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout pTablaLayout = new javax.swing.GroupLayout(pTabla);
         pTabla.setLayout(pTablaLayout);
@@ -201,7 +211,6 @@ public class PanelCargoEmpleado extends javax.swing.JDialog {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 499, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addGap(55, 55, 55)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -236,6 +245,15 @@ private void btModifiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
 private void btCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCerrarActionPerformed
     dispose();
 }//GEN-LAST:event_btCerrarActionPerformed
+
+private void btAsignarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAsignarActionPerformed
+    
+    //Se debe inicializar la variable cargo con los datos de la pantalla o
+    //resultados de la busqueda
+    
+    empleado.setCargoEmpleado(cargo);
+    
+}//GEN-LAST:event_btAsignarActionPerformed
 
     
 
