@@ -8,6 +8,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -35,8 +36,8 @@ public class Empleado implements Serializable {
     private String telefono;
     private Cargo cargo;
     private List<HoraLaboral> horasTrabajadas;
-    private boolean borrado;
     private String estado;
+    private boolean borrado;
 
     /**
      * Constructor
@@ -131,6 +132,7 @@ public class Empleado implements Serializable {
         this.telefono = telefono;
     }
 
+    @JoinColumn(name="cargo_id")
     @ManyToOne(targetEntity=Cargo.class, cascade=CascadeType.ALL)
     public Cargo getCargo() {
         return cargo;
@@ -150,15 +152,6 @@ public class Empleado implements Serializable {
         this.horasTrabajadas = horasTrabajadas;
     }
     
-    @Column(name="borrado")
-    public boolean isBorrado() {
-        return borrado;
-    }
-
-    public void setBorrado(boolean borrado) {
-        this.borrado = borrado;
-    }
-    
     @Column(name="estado", length=20)
     public String getEstado() {
         return estado;
@@ -168,4 +161,12 @@ public class Empleado implements Serializable {
         this.estado = estado;
     }
     
+    @Column(name="borrado")
+    public boolean isBorrado() {
+        return borrado;
+    }
+
+    public void setBorrado(boolean borrado) {
+        this.borrado = borrado;
+    }
 }

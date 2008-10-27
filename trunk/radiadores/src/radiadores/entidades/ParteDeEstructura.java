@@ -23,7 +23,7 @@ public class ParteDeEstructura implements Serializable {
     
     private String id;
     private EstructuraDeProducto estructura;
-    private iComponente componente;
+    private Componente componente;
     private int cantidad;
     private boolean borrado;
     
@@ -64,12 +64,13 @@ public class ParteDeEstructura implements Serializable {
         this.estructura = estructura;
     }
 
-    @ManyToOne(targetEntity=iComponente.class, cascade=CascadeType.ALL)
-    public iComponente getComponente() {
+    @JoinColumn(name="componente_id")
+    @ManyToOne(targetEntity=Componente.class, cascade=CascadeType.ALL)
+    public Componente getComponente() {
         return componente;
     }
 
-    public void setComponente(iComponente componente) {
+    public void setComponente(Componente componente) {
         this.componente = componente;
     }
 

@@ -1,15 +1,9 @@
 package radiadores.entidades;
 
 import java.io.Serializable;
-import java.util.UUID;
 import javax.persistence.Column;
-import javax.persistence.DiscriminatorColumn;
-import javax.persistence.DiscriminatorType;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
 import javax.persistence.Table;
 
 /**
@@ -20,15 +14,11 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name="productos")
-@Inheritance(strategy=InheritanceType.JOINED)
-@DiscriminatorColumn(name="tipo", discriminatorType=DiscriminatorType.CHAR)
 @DiscriminatorValue("P")
-public abstract class Producto implements Serializable {
+public abstract class Producto extends Componente implements Serializable {
     private static final long serialVersionUID = 1L;
     
-    private String id;
     private String categoria;
-    private String codigo;
     private String condicionesEmbalaje;
     private double costoAlmacenamiento;
     private double costoEmision;
@@ -43,33 +33,7 @@ public abstract class Producto implements Serializable {
     private String unidadMedida;
     private String estado;
     private double stock;
-
-    /**
-     * Constructor
-     */
-    public Producto(){
-        setId(UUID.randomUUID().toString());
-    }
-    
-    /**
-     * Devuelve el identificador único de la clase
-     * 
-     * @return El identificador único de la clase
-     */
-    @Id
-    @Column(name="id", length=36)
-    public String getId() {
-        return id;
-    }
-
-    /**
-     * Establece el identificador único de la clase
-     * 
-     * @param id Nuevo valor del identificador único de la clase
-     */
-    public void setId(String id) {
-        this.id = id;
-    }
+    private boolean borrado;
 
     @Column(name="categoria", length=100)
     public String getCategoria() {
@@ -78,15 +42,6 @@ public abstract class Producto implements Serializable {
 
     public void setCategoria(String categoria) {
         this.categoria = categoria;
-    }
-
-    @Column(name="codigo", length=20)
-    public String getCodigo() {
-        return codigo;
-    }
-
-    public void setCodigo(String codigo) {
-        this.codigo = codigo;
     }
 
     @Column(name="condiciones_embalaje", length=255)
@@ -213,5 +168,14 @@ public abstract class Producto implements Serializable {
 
     public void setStock(double stock) {
         this.stock = stock;
+    }
+    
+    @Column(name="borrado")
+    public boolean isBorrado() {
+        return borrado;
+    }
+
+    public void setBorrado(boolean borrado) {
+        this.borrado = borrado;
     }
 }

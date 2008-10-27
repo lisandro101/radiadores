@@ -22,6 +22,7 @@
     <class>radiadores.entidades.Proveedor</class>
     <class>radiadores.entidades.RutaFabricacion</class>
     <class>radiadores.entidades.Sector</class>
+    <class>radiadores.entidades.Componente</class>
     <properties>
       <property name="toplink.jdbc.user" value="radiadores"/>
       <property name="toplink.jdbc.password" value="radiadores"/>

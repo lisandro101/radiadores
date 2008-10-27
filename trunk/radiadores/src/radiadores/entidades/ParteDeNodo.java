@@ -11,6 +11,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -27,10 +28,10 @@ public class ParteDeNodo implements Serializable {
     private static final long serialVersionUID = 1L;
     
     private String id;
-    private iComponente componente;
+    private Componente componente;
     private int cantidad;
-    private boolean borrado;
     private NodoRuta nodoRuta;
+    private boolean borrado;
     
     /**
      * Constructor
@@ -59,12 +60,13 @@ public class ParteDeNodo implements Serializable {
         this.id = id;
     }
     
-    @ManyToOne(targetEntity=iComponente.class, cascade=CascadeType.ALL)
-    public iComponente getComponente() {
+    @JoinColumn(name="componente_id")
+    @ManyToOne(targetEntity=Componente.class, cascade=CascadeType.ALL)
+    public Componente getComponente() {
         return componente;
     }
 
-    public void setComponente(iComponente componente) {
+    public void setComponente(Componente componente) {
         this.componente = componente;
     }
 
@@ -77,15 +79,7 @@ public class ParteDeNodo implements Serializable {
         this.cantidad = cantidad;
     }
 
-    @Column(name="borrado")
-    public boolean isBorrado() {
-        return borrado;
-    }
-
-    public void setBorrado(boolean borrado) {
-        this.borrado = borrado;
-    }
-
+    @JoinColumn(name="nodo_ruta_id")
     @ManyToOne(targetEntity=NodoRuta.class, cascade=CascadeType.ALL)
     public NodoRuta getNodoRuta() {
         return nodoRuta;
@@ -93,5 +87,14 @@ public class ParteDeNodo implements Serializable {
 
     public void setNodoRuta(NodoRuta nodoRuta) {
         this.nodoRuta = nodoRuta;
+    }
+    
+    @Column(name="borrado")
+    public boolean isBorrado() {
+        return borrado;
+    }
+
+    public void setBorrado(boolean borrado) {
+        this.borrado = borrado;
     }
 }

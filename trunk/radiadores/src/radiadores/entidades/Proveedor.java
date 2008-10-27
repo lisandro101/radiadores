@@ -4,9 +4,12 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -30,7 +33,8 @@ public class Proveedor implements Serializable {
     private String nombreProveedor;
     private String telefono;
     private List<OrdenCompra> ordenesCompra;
-    private List<iComponente> componentes; 
+    private List<Componente> componentes;
+    private boolean borrado;
 
     /**
      * Constructor
@@ -112,5 +116,33 @@ public class Proveedor implements Serializable {
 
     public void setTelefono(String telefono) {
         this.telefono = telefono;
+    }
+
+    @ManyToMany(targetEntity=Componente.class, cascade=CascadeType.ALL)
+    public List<Componente> getComponentes() {
+        return componentes;
+    }
+
+    public void setComponentes(List<Componente> componentes) {
+        this.componentes = componentes;
+    }
+
+    @OneToMany(targetEntity=OrdenCompra.class, cascade=CascadeType.ALL,
+    mappedBy="proveedor")
+    public List<OrdenCompra> getOrdenesCompra() {
+        return ordenesCompra;
+    }
+
+    public void setOrdenesCompra(List<OrdenCompra> ordenesCompra) {
+        this.ordenesCompra = ordenesCompra;
+    }
+    
+    @Column(name="borrado")
+    public boolean isBorrado() {
+        return borrado;
+    }
+
+    public void setBorrado(boolean borrado) {
+        this.borrado = borrado;
     }
 }

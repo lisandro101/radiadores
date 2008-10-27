@@ -32,6 +32,7 @@ public class Maquina implements Serializable {
     private CentroDeTrabajo centroDeTrabajo;
     private Sector sector;
     private Edificio edificio;
+    private boolean borrado;
 
     /**
      * Constructor
@@ -127,5 +128,14 @@ public class Maquina implements Serializable {
 
     public void setEdificio(Edificio edificio) {
         this.edificio = edificio;
+    }
+    
+    @Column(name="borrado")
+    public boolean isBorrado() {
+        return borrado;
+    }
+
+    public void setBorrado(boolean borrado) {
+        this.borrado = borrado;
     }
 }

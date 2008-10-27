@@ -6,6 +6,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -24,6 +25,7 @@ public class HoraLaboral implements Serializable {
     private int cantidad;
     private Empleado empleado;
     private CentroDeTrabajo centroDeTrabajo;
+    private boolean borrado;
 
     /**
      * Constructor
@@ -61,6 +63,7 @@ public class HoraLaboral implements Serializable {
         this.cantidad = cantidad;
     }
 
+   @JoinColumn(name="empleado_id") 
     @ManyToOne(targetEntity=Empleado.class, cascade=CascadeType.ALL)
     public Empleado getEmpleado() {
         return empleado;
@@ -70,6 +73,7 @@ public class HoraLaboral implements Serializable {
         this.empleado = empleado;
     }
 
+    @JoinColumn(name="centro_de_trabajo_id")
     @ManyToOne(targetEntity=CentroDeTrabajo.class, cascade=CascadeType.ALL)
     public CentroDeTrabajo getCentroDeTrabajo() {
         return centroDeTrabajo;
@@ -77,5 +81,14 @@ public class HoraLaboral implements Serializable {
 
     public void setCentroDeTrabajo(CentroDeTrabajo centroDeTrabajo) {
         this.centroDeTrabajo = centroDeTrabajo;
+    }
+    
+    @Column(name="borrado")
+    public boolean isBorrado() {
+        return borrado;
+    }
+
+    public void setBorrado(boolean borrado) {
+        this.borrado = borrado;
     }
 }

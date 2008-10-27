@@ -20,7 +20,7 @@ import javax.persistence.TemporalType;
  * @version 1.0
  */
 @Entity
-@Table(name="ordenes_produccion")
+@Table(name="ordenes_de_produccion")
 public class OrdenProduccion implements Serializable {
     private static final long serialVersionUID = 1L;
     
@@ -87,7 +87,8 @@ public class OrdenProduccion implements Serializable {
         this.nombreCliente = nombreCliente;
     }
 
-    @OneToMany(targetEntity=ProductoTerminado.class, cascade=CascadeType.ALL)
+    @OneToMany(targetEntity=ProductoTerminado.class, cascade=CascadeType.ALL,
+    mappedBy="ordenProduccion")
     public List<ProductoTerminado> getProductosTerminado() {
         return productosTerminado;
     }

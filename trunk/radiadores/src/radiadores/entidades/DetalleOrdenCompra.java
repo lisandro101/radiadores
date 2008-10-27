@@ -6,6 +6,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -22,9 +23,9 @@ public class DetalleOrdenCompra implements Serializable {
     
     private String id;
     private int cantidad;
-    private iComponente componente;
-    private boolean borrado;
+    private Componente componente;
     private OrdenCompra ordenCompra;
+    private boolean borrado;
 
     /**
      * Constructor
@@ -62,13 +63,24 @@ public class DetalleOrdenCompra implements Serializable {
         this.cantidad = cantidad;
     }
 
-    @ManyToOne(targetEntity=iComponente.class, cascade=CascadeType.ALL)
-    public iComponente getComponente() {
+    @JoinColumn(name="componente_id")
+    @ManyToOne(targetEntity=Componente.class, cascade=CascadeType.ALL)
+    public Componente getComponente() {
         return componente;
     }
 
-    public void setComponente(iComponente componente) {
+    public void setComponente(Componente componente) {
         this.componente = componente;
+    }
+    
+    @JoinColumn(name="orden_de_compra_id")
+    @ManyToOne(targetEntity=OrdenCompra.class, cascade=CascadeType.ALL)
+    public OrdenCompra getOrdenCompra() {
+        return ordenCompra;
+    }
+
+    public void setOrdenCompra(OrdenCompra ordenCompra) {
+        this.ordenCompra = ordenCompra;
     }
     
     @Column(name="borrado")
@@ -78,14 +90,5 @@ public class DetalleOrdenCompra implements Serializable {
 
     public void setBorrado(boolean borrado) {
         this.borrado = borrado;
-    }
-
-    @ManyToOne(targetEntity=OrdenCompra.class, cascade=CascadeType.ALL)
-    public OrdenCompra getOrdenCompra() {
-        return ordenCompra;
-    }
-
-    public void setOrdenCompra(OrdenCompra ordenCompra) {
-        this.ordenCompra = ordenCompra;
     }
 }

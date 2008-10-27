@@ -5,34 +5,41 @@ import java.util.List;
 import java.util.UUID;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.DiscriminatorColumn;
+import javax.persistence.DiscriminatorType;
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
- * Contiene los datos de una ruta de fabricación
- * 
+ * Contiene los datos de un componente genérico (puede ser una materia prima
+ * o un producto)
+ *
  * @author Franco Catena, Mario Mariani, Lisandro Nieto, Sebastián Torres
  * @version 1.0
  */
 @Entity
-@Table(name="rutas_de_fabricacion")
-public class RutaFabricacion implements Serializable {
+@Table(name="componentes")
+@Inheritance(strategy=InheritanceType.JOINED)
+@DiscriminatorColumn(name="tipo", discriminatorType=DiscriminatorType.CHAR)
+@DiscriminatorValue("X")
+public class Componente implements Serializable {
     private static final long serialVersionUID = 1L;
     
     private String id;
-    private String nombre;
-    private ProductoTerminado productoTerminado;
-    private List<NodoRuta> nodosRuta;
+    private String codigo;
+    private List<Proveedor> proveedores;
     private boolean borrado;
-
+    
     /**
      * Constructor
      */
-    public RutaFabricacion(){
+    public Componente() {
         setId(UUID.randomUUID().toString());
     }
     
@@ -56,33 +63,23 @@ public class RutaFabricacion implements Serializable {
         this.id = id;
     }
 
-    @Column(name="nombre", length=100)
-    public String getNombre() {
-        return nombre;
+    @Column(name="codigo", length=20)
+    public String getCodigo() {
+        return codigo;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
     }
 
-    @JoinColumn(name="producto_terminado_id")
-    @OneToOne(targetEntity=ProductoTerminado.class, cascade=CascadeType.ALL)
-    public ProductoTerminado getProductoTerminado() {
-        return productoTerminado;
+    @OneToMany(targetEntity=Proveedor.class, cascade=CascadeType.ALL)
+    @ManyToMany(mappedBy = "componentes")
+    public List<Proveedor> getProveedores() {
+        return proveedores;
     }
 
-    public void setProductoTerminado(ProductoTerminado productoTerminado) {
-        this.productoTerminado = productoTerminado;
-    }
-
-    @OneToMany(targetEntity=NodoRuta.class, cascade=CascadeType.ALL,
-    mappedBy="rutaFabricacion")
-    public List<NodoRuta> getNodosRuta() {
-        return nodosRuta;
-    }
-
-    public void setNodosRuta(List<NodoRuta> nodosRuta) {
-        this.nodosRuta = nodosRuta;
+    public void setProveedores(List<Proveedor> proveedores) {
+        this.proveedores = proveedores;
     }
     
     @Column(name="borrado")
