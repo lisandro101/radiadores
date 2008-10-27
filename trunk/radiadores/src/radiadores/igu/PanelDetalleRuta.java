@@ -66,6 +66,11 @@ public class PanelDetalleRuta extends javax.swing.JDialog {
         lbCentroTrabajo.setText("Centro de Trabajo");
 
         btBuscarCentroTrabajo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/radiadores/images/lupa (3).jpg"))); // NOI18N
+        btBuscarCentroTrabajo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btBuscarCentroTrabajoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -98,6 +103,11 @@ public class PanelDetalleRuta extends javax.swing.JDialog {
         tfEmpleado.setEditable(false);
 
         btBuscarEmpleado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/radiadores/images/lupa (3).jpg"))); // NOI18N
+        btBuscarEmpleado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btBuscarEmpleadoActionPerformed(evt);
+            }
+        });
 
         jtEmpleado.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -182,6 +192,11 @@ public class PanelDetalleRuta extends javax.swing.JDialog {
         tfComponente.setEditable(false);
 
         btBuscarComponente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/radiadores/images/lupa (3).jpg"))); // NOI18N
+        btBuscarComponente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btBuscarComponenteActionPerformed(evt);
+            }
+        });
 
         jtComponente.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -202,7 +217,7 @@ public class PanelDetalleRuta extends javax.swing.JDialog {
                 {null, null}
             },
             new String [] {
-                "Componente", "Horas"
+                "Componente", "Cantidad"
             }
         ));
         jScrollPane2.setViewportView(jtComponente);
@@ -303,6 +318,24 @@ private void btBuscarEliminarActionPerformed(java.awt.event.ActionEvent evt) {//
 private void btCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCancelarActionPerformed
     this.dispose();
 }//GEN-LAST:event_btCancelarActionPerformed
+
+private void btBuscarCentroTrabajoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBuscarCentroTrabajoActionPerformed
+        PanelBuscarCentroTrabajo buscarCentroTrabajo = new PanelBuscarCentroTrabajo();
+        buscarCentroTrabajo.setModal(true);
+        buscarCentroTrabajo.setVisible(true);
+}//GEN-LAST:event_btBuscarCentroTrabajoActionPerformed
+
+private void btBuscarEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBuscarEmpleadoActionPerformed
+        PanelBuscarEmpleado buscarEmpleado = new PanelBuscarEmpleado();
+        buscarEmpleado.setModal(true); 
+        buscarEmpleado.setVisible(true);
+}//GEN-LAST:event_btBuscarEmpleadoActionPerformed
+
+private void btBuscarComponenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBuscarComponenteActionPerformed
+        PanelBuscarComponente buscarComponente = new PanelBuscarComponente();
+        buscarComponente.setModal(true); 
+        buscarComponente.setVisible(true);
+}//GEN-LAST:event_btBuscarComponenteActionPerformed
 
     /**
     * @param args the command line arguments
