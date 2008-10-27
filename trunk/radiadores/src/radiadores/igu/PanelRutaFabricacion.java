@@ -6,6 +6,12 @@
 
 package radiadores.igu;
 
+import java.awt.Component;
+import java.awt.Container;
+import java.awt.TextField;
+import javax.swing.JComboBox;
+import javax.swing.JTextField;
+
 /**
  *
  * @author  Lisandro
@@ -32,7 +38,7 @@ public class PanelRutaFabricacion extends javax.swing.JPanel {
         jPanel2 = new javax.swing.JPanel();
         btAgregar = new javax.swing.JButton();
         btEliminar = new javax.swing.JButton();
-        jPanel3 = new javax.swing.JPanel();
+        jpRuta = new javax.swing.JPanel();
         tfNombre = new javax.swing.JTextField();
         lbNombre = new javax.swing.JLabel();
         lbDescripcion = new javax.swing.JLabel();
@@ -51,6 +57,11 @@ public class PanelRutaFabricacion extends javax.swing.JPanel {
         jScrollPane1.setViewportView(jlDetalleRuta);
 
         btAgregar.setText("Agregar");
+        btAgregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btAgregarActionPerformed(evt);
+            }
+        });
         jPanel2.add(btAgregar);
 
         btEliminar.setText("Eliminar");
@@ -86,11 +97,11 @@ public class PanelRutaFabricacion extends javax.swing.JPanel {
 
         lbDescripcion.setText("Descripcion");
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
+        javax.swing.GroupLayout jpRutaLayout = new javax.swing.GroupLayout(jpRuta);
+        jpRuta.setLayout(jpRutaLayout);
+        jpRutaLayout.setHorizontalGroup(
+            jpRutaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpRutaLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(lbNombre)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -101,11 +112,11 @@ public class PanelRutaFabricacion extends javax.swing.JPanel {
                 .addComponent(tfDescripcion, javax.swing.GroupLayout.DEFAULT_SIZE, 227, Short.MAX_VALUE)
                 .addContainerGap())
         );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
+        jpRutaLayout.setVerticalGroup(
+            jpRutaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpRutaLayout.createSequentialGroup()
                 .addGap(19, 19, 19)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jpRutaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbNombre)
                     .addComponent(tfNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lbDescripcion)
@@ -133,14 +144,14 @@ public class PanelRutaFabricacion extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 518, Short.MAX_VALUE)
                     .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jpRuta, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jpRuta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -154,16 +165,40 @@ private void btEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
 }//GEN-LAST:event_btEliminarActionPerformed
 
 private void btCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCancelarActionPerformed
-// TODO add your handling code here:
+    
+    jlDetalleRuta.removeAll();    
+    limpiarCampos(jpRuta);
+    
 }//GEN-LAST:event_btCancelarActionPerformed
 
 private void jlDetalleRutaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlDetalleRutaMouseClicked
     if (evt.getClickCount() == 2) {
-        DialogDetalleRuta detalleRuta = new DialogDetalleRuta();
+        PanelDetalleRuta detalleRuta = new PanelDetalleRuta();
         detalleRuta.setModal(true);
         detalleRuta.setVisible(true);
     }
 }//GEN-LAST:event_jlDetalleRutaMouseClicked
+
+public void limpiarCampos(Container contenedor) {
+        
+    Component[] componentes = contenedor.getComponents();
+        
+        for (int i = 0; i < componentes.length; i++) {
+            if (componentes[i] instanceof JTextField) {
+                ((JTextField) componentes[i]).setText("");
+            }
+            else if (componentes[i] instanceof JComboBox) {
+                ((JComboBox) componentes[i]).setSelectedIndex(0);
+            }
+        }
+}
+
+private void btAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAgregarActionPerformed
+
+        PanelDetalleRuta detalleRuta = new PanelDetalleRuta();
+        detalleRuta.setModal(true);
+        detalleRuta.setVisible(true);
+}//GEN-LAST:event_btAgregarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -173,10 +208,10 @@ private void jlDetalleRutaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIR
     private javax.swing.JButton btEliminar;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private org.jdesktop.swingx.JXList jlDetalleRuta;
+    private javax.swing.JPanel jpRuta;
     private javax.swing.JLabel lbDescripcion;
     private javax.swing.JLabel lbNombre;
     private javax.swing.JTextField tfDescripcion;
