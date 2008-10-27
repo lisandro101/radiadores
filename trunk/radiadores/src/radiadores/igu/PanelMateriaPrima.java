@@ -9,6 +9,7 @@ package radiadores.igu;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import radiadores.entidades.MateriaPrima;
+import radiadores.entidades.MateriaPrima.Estado;
 import radiadores.igu.model.ProveedorTableModel;
 
 /**
@@ -26,8 +27,8 @@ public class PanelMateriaPrima extends javax.swing.JPanel {
     }
 
     private void inicializar() {
-        //DefaultComboBoxModel dcm = new DefaultComboBoxModel(MateriaPrima.);
-           
+        DefaultComboBoxModel dcm = new DefaultComboBoxModel(Estado.values());
+        cbEstado.setModel(dcm);   
         
         tm = new ProveedorTableModel(0);
         tProveedor.setModel(tm);
@@ -157,8 +158,6 @@ public class PanelMateriaPrima extends javax.swing.JPanel {
         lbDescripcion.setText("Descripción:");
 
         lbEstado.setText("Estado:");
-
-        cbEstado.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Vigente", "No vigente" }));
 
         javax.swing.GroupLayout pMateriaPrimaLayout = new javax.swing.GroupLayout(pMateriaPrima);
         pMateriaPrima.setLayout(pMateriaPrimaLayout);
@@ -377,7 +376,7 @@ private void btEliminarProveedorActionPerformed(java.awt.event.ActionEvent evt) 
         mat.setTamanioLoteEstandar(Double.parseDouble(tfTamanioLoteEstandar.getText()));
         mat.setUnidadMedida(tfUnidadMedida.getText());
         mat.setProveedores(tm.getFilas());  
-        mat.setEstado(cbEstado.getSelectedItem().toString());
+        mat.setEstado((Estado)cbEstado.getSelectedItem());
         
         return mat;
     }
@@ -396,8 +395,7 @@ private void btEliminarProveedorActionPerformed(java.awt.event.ActionEvent evt) 
         for (int i = 0; i < mat.getProveedores().size(); i++) {
             tm.agregarFila(mat.getProveedores().get(i));      
         }
-        
-        
+        cbEstado.setSelectedItem(mat.getEstado());
         
     }
 }
