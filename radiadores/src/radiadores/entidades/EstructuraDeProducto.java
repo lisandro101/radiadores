@@ -8,6 +8,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -26,7 +27,7 @@ public class EstructuraDeProducto implements Serializable {
     private String id;
     private List<ParteDeEstructura> partes;
     private ProductoTerminado productoTerminado;
-    private iComponente componente;
+    private Componente componente;
     private boolean borrado;
 
     /**
@@ -66,6 +67,7 @@ public class EstructuraDeProducto implements Serializable {
         this.partes = partes;
     }
 
+    @JoinColumn(name="producto_terminado_id")
     @ManyToOne(targetEntity=ProductoTerminado.class, cascade=CascadeType.ALL)
     public ProductoTerminado getProductoTerminado() {
         return productoTerminado;
@@ -75,12 +77,13 @@ public class EstructuraDeProducto implements Serializable {
         this.productoTerminado = productoTerminado;
     }
 
-    @ManyToOne(targetEntity=iComponente.class, cascade=CascadeType.ALL)
-    public iComponente getComponente() {
+    @JoinColumn(name="componente_id")
+    @ManyToOne(targetEntity=Componente.class, cascade=CascadeType.ALL)
+    public Componente getComponente() {
         return componente;
     }
 
-    public void setComponente(iComponente componente) {
+    public void setComponente(Componente componente) {
         this.componente = componente;
     }
     

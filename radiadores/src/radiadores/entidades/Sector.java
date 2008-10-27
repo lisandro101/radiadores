@@ -20,6 +20,7 @@ public class Sector implements Serializable {
 
     private String id;
     private String codigo;
+    private boolean borrado;
 
     /**
      * Constructor
@@ -55,5 +56,14 @@ public class Sector implements Serializable {
 
     public void setCodigo(String codigo) {
         this.codigo = codigo;
+    }
+    
+    @Column(name="borrado")
+    public boolean isBorrado() {
+        return borrado;
+    }
+
+    public void setBorrado(boolean borrado) {
+        this.borrado = borrado;
     }
 }

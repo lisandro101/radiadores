@@ -1,8 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package radiadores;
 
 import javax.swing.UIManager;
@@ -30,9 +25,6 @@ public class Main {
         
         p.setLocationRelativeTo(null);
         p.setVisible(true);
-        
-        
-
     }
 
 }

@@ -7,6 +7,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -25,8 +26,8 @@ public class NodoRuta implements Serializable {
     private String id;
     private List<ParteDeNodo> materiales;
     private CentroDeTrabajo centroTrabajo;
-    private boolean borrado;
     private RutaFabricacion rutaFabricacion;
+    private boolean borrado;
 
     /**
      * Constructor
@@ -66,6 +67,7 @@ public class NodoRuta implements Serializable {
         this.materiales = materiales;
     }
     
+    @JoinColumn(name="centro_de_trabajo")
     @ManyToOne(targetEntity=CentroDeTrabajo.class, cascade=CascadeType.ALL)
     public CentroDeTrabajo getCentroTrabajo() {
         return centroTrabajo;
@@ -75,15 +77,7 @@ public class NodoRuta implements Serializable {
         this.centroTrabajo = centroTrabajo;
     }
 
-    @Column(name="borrado")
-    public boolean isBorrado() {
-        return borrado;
-    }
-
-    public void setBorrado(boolean borrado) {
-        this.borrado = borrado;
-    }
-
+    @JoinColumn(name="ruta_fabricacion_id")
     @ManyToOne(targetEntity=RutaFabricacion.class, cascade=CascadeType.ALL)
     public RutaFabricacion getRutaFabricacion() {
         return rutaFabricacion;
@@ -91,5 +85,14 @@ public class NodoRuta implements Serializable {
 
     public void setRutaFabricacion(RutaFabricacion rutaFabricacion) {
         this.rutaFabricacion = rutaFabricacion;
+    }
+    
+    @Column(name="borrado")
+    public boolean isBorrado() {
+        return borrado;
+    }
+
+    public void setBorrado(boolean borrado) {
+        this.borrado = borrado;
     }
 }

@@ -8,6 +8,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -30,6 +31,7 @@ public class OrdenCompra implements Serializable {
     private Date fecha;
     private Date fechaEstimadaEntrega;
     private List<DetalleOrdenCompra> detallesOrdenCompra;
+    private boolean borrado;
 
     /**
      * Constructor
@@ -58,6 +60,7 @@ public class OrdenCompra implements Serializable {
         this.id = id;
     }
     
+    @JoinColumn(name="proveedor_id")
     @ManyToOne(targetEntity=Proveedor.class, cascade=CascadeType.ALL)
     public Proveedor getProveedor() {
         return proveedor;
@@ -95,5 +98,14 @@ public class OrdenCompra implements Serializable {
 
     public void setDetallesOrdenCompra(List<DetalleOrdenCompra> detallesOrdenCompra) {
         this.detallesOrdenCompra = detallesOrdenCompra;
+    }
+    
+    @Column(name="borrado")
+    public boolean isBorrado() {
+        return borrado;
+    }
+
+    public void setBorrado(boolean borrado) {
+        this.borrado = borrado;
     }
 }

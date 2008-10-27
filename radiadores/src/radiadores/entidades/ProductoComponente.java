@@ -1,6 +1,6 @@
 package radiadores.entidades;
 
-import java.util.List;
+import java.io.Serializable;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.Table;
@@ -13,19 +13,6 @@ import javax.persistence.Table;
 @Entity
 @Table(name="productos_componente")
 @DiscriminatorValue("C")
-public class ProductoComponente extends Producto {
+public class ProductoComponente extends Producto implements Serializable {
     private static final long serialVersionUID = 1L;
-    
-    private List<Proveedor> proveedores;
-
-    public ProductoComponente(){
-    }
-
-    public List<Proveedor> getProveedores() {
-        return proveedores;
-    }
-
-    public void setProveedores(List<Proveedor> proveedores) {
-        this.proveedores = proveedores;
-    }
 }
