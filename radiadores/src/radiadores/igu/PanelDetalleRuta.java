@@ -1,19 +1,24 @@
 /*
- * DialogDetalleRuta.java
+ * PanelDetalleRuta.java
  *
  * Created on 26 de octubre de 2008, 22:01
  */
 
 package radiadores.igu;
 
+import java.awt.Component;
+import java.awt.Container;
+import javax.swing.JComboBox;
+import javax.swing.JTextField;
+
 /**
  *
  * @author  Lisandro
  */
-public class DialogDetalleRuta extends javax.swing.JDialog {
+public class PanelDetalleRuta extends javax.swing.JDialog {
 
-    /** Creates new form DialogDetalleRuta */
-    public DialogDetalleRuta() {
+    /** Creates new form PanelDetalleRuta */
+    public PanelDetalleRuta() {
         initComponents();
     }
 
@@ -122,6 +127,11 @@ public class DialogDetalleRuta extends javax.swing.JDialog {
         jPanel3.add(btAgregarEmpleado);
 
         btBuscarEliminar.setText("Eliminar");
+        btBuscarEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btBuscarEliminarActionPerformed(evt);
+            }
+        });
         jPanel3.add(btBuscarEliminar);
 
         lbHoras.setText("Horas");
@@ -249,13 +259,17 @@ public class DialogDetalleRuta extends javax.swing.JDialog {
         jPanel6.add(btAceptar);
 
         btCancelar.setText("Cancelar");
+        btCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btCancelarActionPerformed(evt);
+            }
+        });
         jPanel6.add(btCancelar);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -267,7 +281,6 @@ public class DialogDetalleRuta extends javax.swing.JDialog {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 657, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -283,16 +296,38 @@ public class DialogDetalleRuta extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+private void btBuscarEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBuscarEliminarActionPerformed
+// TODO add your handling code here:
+}//GEN-LAST:event_btBuscarEliminarActionPerformed
+
+private void btCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCancelarActionPerformed
+    this.dispose();
+}//GEN-LAST:event_btCancelarActionPerformed
+
     /**
     * @param args the command line arguments
     */
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new DialogDetalleRuta().setVisible(true);
+                new PanelDetalleRuta().setVisible(true);
             }
         });
     }
+    
+    public void limpiarCampos(Container contenedor) {
+        
+    Component[] componentes = contenedor.getComponents();
+        
+        for (int i = 0; i < componentes.length; i++) {
+            if (componentes[i] instanceof JTextField) {
+                ((JTextField) componentes[i]).setText("");
+            }
+            else if (componentes[i] instanceof JComboBox) {
+                ((JComboBox) componentes[i]).setSelectedIndex(0);
+            }
+        }
+}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btAceptar;
