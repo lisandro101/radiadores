@@ -34,8 +34,8 @@ public class PanelOrdenCompra extends javax.swing.JPanel {
         lbNumero = new javax.swing.JLabel();
         tfNumero = new javax.swing.JTextField();
         lbProveedor = new javax.swing.JLabel();
-        tfNumero1 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        tfProveedor = new javax.swing.JTextField();
+        btBuscar = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jtArticulo = new org.jdesktop.swingx.JXTable();
@@ -70,16 +70,16 @@ public class PanelOrdenCompra extends javax.swing.JPanel {
 
         lbProveedor.setText("Proveedor");
 
-        tfNumero1.addActionListener(new java.awt.event.ActionListener() {
+        tfProveedor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tfNumero1ActionPerformed(evt);
+                tfProveedorActionPerformed(evt);
             }
         });
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/radiadores/images/lupa (3).jpg"))); // NOI18N
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/radiadores/images/lupa (3).jpg"))); // NOI18N
+        btBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btBuscarActionPerformed(evt);
             }
         });
 
@@ -103,9 +103,9 @@ public class PanelOrdenCompra extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addComponent(lbProveedor)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tfNumero1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(tfProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(11, 11, 11))
         );
         jPanel1Layout.setVerticalGroup(
@@ -120,8 +120,8 @@ public class PanelOrdenCompra extends javax.swing.JPanel {
                     .addComponent(lbFechaEntrega)
                     .addComponent(jdFechaEntrega, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lbProveedor)
-                    .addComponent(tfNumero1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(tfProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -335,18 +335,19 @@ private void btBuscarArticuloActionPerformed(java.awt.event.ActionEvent evt) {//
 // TODO add your handling code here:
 }//GEN-LAST:event_btBuscarArticuloActionPerformed
 
-private void tfNumero1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfNumero1ActionPerformed
+private void tfProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfProveedorActionPerformed
 // TODO add your handling code here:
-}//GEN-LAST:event_tfNumero1ActionPerformed
+}//GEN-LAST:event_tfProveedorActionPerformed
 
-private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+private void btBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBuscarActionPerformed
 // TODO add your handling code here:
-}//GEN-LAST:event_jButton1ActionPerformed
+}//GEN-LAST:event_btBuscarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btAgregarArticulo;
     private javax.swing.JButton btAnularOrdenCompra;
+    private javax.swing.JButton btBuscar;
     private javax.swing.JButton btBuscarArticulo;
     private javax.swing.JButton btBuscarOrdenCompra;
     private javax.swing.JButton btEliminarArticulo;
@@ -354,7 +355,6 @@ private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     private javax.swing.JButton btModificarArticulo;
     private javax.swing.JButton btModificarOrdenCompra;
     private javax.swing.JButton btProcesarOrdenCompra;
-    private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -373,7 +373,7 @@ private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     private javax.swing.JTextField tfArticulo;
     private javax.swing.JSpinner tfCantidad;
     private javax.swing.JTextField tfNumero;
-    private javax.swing.JTextField tfNumero1;
+    private javax.swing.JTextField tfProveedor;
     // End of variables declaration//GEN-END:variables
 
 }
