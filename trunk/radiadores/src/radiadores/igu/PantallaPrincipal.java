@@ -24,9 +24,10 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         jTabbedPane1.add("Orden Producción", new PanelOrdenProduccion());
         jTabbedPane1.add("   Maquinaria   ", new PanelMaquinaria());
         jTabbedPane1.add("    Proveedor   ", new PanelProveedor());
-                
-        
-        
+        jTabbedPane1.add("      Ruta      ", new PanelRutaFabricacion());
+        jTabbedPane1.add(" Centro Trabajo ", new PanelCentroTrabajo());
+        jTabbedPane1.add("  Orden Compra  ", new PanelOrdenCompra());
+                  
         setSize(850, 650);
         this.setVisible(true);
     }
