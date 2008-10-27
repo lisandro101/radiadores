@@ -95,7 +95,7 @@
                               <Component id="lbTelefono" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="lbMail" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="lbDireccion" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="lbEstado" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="lbCargo" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
@@ -106,7 +106,7 @@
                               <Component id="tfMail" alignment="0" pref="201" max="32767" attributes="2"/>
                               <Component id="tfDireccion" alignment="0" pref="201" max="32767" attributes="2"/>
                               <Component id="tfNombre" alignment="0" pref="201" max="32767" attributes="2"/>
-                              <Component id="jComboBox1" alignment="0" pref="201" max="32767" attributes="2"/>
+                              <Component id="cbEstado" alignment="0" pref="201" max="32767" attributes="2"/>
                           </Group>
                       </Group>
                   </Group>
@@ -146,8 +146,8 @@
                   </Group>
                   <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jComboBox1" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="cbEstado" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="lbEstado" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -244,19 +244,14 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btCargoActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JComboBox" name="jComboBox1">
+        <Component class="javax.swing.JComboBox" name="cbEstado">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="4">
-                <StringItem index="0" value="Item 1"/>
-                <StringItem index="1" value="Item 2"/>
-                <StringItem index="2" value="Item 3"/>
-                <StringItem index="3" value="Item 4"/>
-              </StringArray>
+              <StringArray count="0"/>
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel1">
+        <Component class="javax.swing.JLabel" name="lbEstado">
           <Properties>
             <Property name="text" type="java.lang.String" value="Estado:"/>
           </Properties>

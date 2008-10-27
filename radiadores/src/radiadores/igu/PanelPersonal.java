@@ -49,8 +49,8 @@ public class PanelPersonal extends javax.swing.JPanel {
         lbCargo = new javax.swing.JLabel();
         tfCargo = new javax.swing.JTextField();
         btCargo = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox();
-        jLabel1 = new javax.swing.JLabel();
+        cbEstado = new javax.swing.JComboBox();
+        lbEstado = new javax.swing.JLabel();
 
         btBuscar.setText("Buscar");
         pBotones.add(btBuscar);
@@ -105,9 +105,7 @@ public class PanelPersonal extends javax.swing.JPanel {
             }
         });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        jLabel1.setText("Estado:");
+        lbEstado.setText("Estado:");
 
         javax.swing.GroupLayout pEmpleadoLayout = new javax.swing.GroupLayout(pEmpleado);
         pEmpleado.setLayout(pEmpleadoLayout);
@@ -131,7 +129,7 @@ public class PanelPersonal extends javax.swing.JPanel {
                             .addComponent(lbTelefono)
                             .addComponent(lbMail)
                             .addComponent(lbDireccion)
-                            .addComponent(jLabel1)
+                            .addComponent(lbEstado)
                             .addComponent(lbCargo))
                         .addGap(50, 50, 50)
                         .addGroup(pEmpleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -141,7 +139,7 @@ public class PanelPersonal extends javax.swing.JPanel {
                             .addComponent(tfMail, javax.swing.GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE)
                             .addComponent(tfDireccion, javax.swing.GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE)
                             .addComponent(tfNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE)
-                            .addComponent(jComboBox1, 0, 201, Short.MAX_VALUE))))
+                            .addComponent(cbEstado, 0, 201, Short.MAX_VALUE))))
                 .addGap(23, 23, 23)
                 .addComponent(btCargo, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(48, 48, 48))
@@ -171,8 +169,8 @@ public class PanelPersonal extends javax.swing.JPanel {
                     .addComponent(tfDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(pEmpleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
+                    .addComponent(cbEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbEstado))
                 .addGap(18, 18, 18)
                 .addGroup(pEmpleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbCargo)
@@ -240,13 +238,13 @@ private void btCargoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
     private javax.swing.JButton btCargo;
     private javax.swing.JButton btEliminar;
     private javax.swing.JButton btModifiar;
+    private javax.swing.JComboBox cbEstado;
     private org.jdesktop.swingx.JXDatePicker dpFechaIngreso;
     private org.jdesktop.swingx.JXDatePicker dpFechaNacimiento;
-    private javax.swing.JComboBox jComboBox1;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel lbCargo;
     private javax.swing.JLabel lbCodigo;
     private javax.swing.JLabel lbDireccion;
+    private javax.swing.JLabel lbEstado;
     private javax.swing.JLabel lbFechaIngreso;
     private javax.swing.JLabel lbFechaNacimiento;
     private javax.swing.JLabel lbMail;
