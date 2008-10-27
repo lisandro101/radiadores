@@ -1,25 +1,149 @@
 package radiadores.entidades;
 
+import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
+import java.util.UUID;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
- * @author Lisandro
+ * Contiene los datos de un empleado
+ * 
+ * @author Franco Catena, Mario Mariani, Lisandro Nieto, Sebastián Torres
  * @version 1.0
- * @created 21-oct-2008 12:47:10 a.m.
  */
-public class Empleado {
+@Entity
+@Table(name="empleados")
+public class Empleado implements Serializable {
+    private static final long serialVersionUID = 1L;
+    
+    private String id;
+    private String direccion;
+    private Date fechaIngreso;
+    private Date fechaNacimiento;
+    private String mail;
+    private String nombre;
+    private String telefono;
+    private Cargo cargo;
+    private List<HoraLaboral> horasTrabajadas;
+    private boolean borrado;
 
-	private String direccion;
-	private Date fechaIngreso;
-	private Date fechaNacimiento;
-	private String id;
-	private String mail;
-	private String nombre;
-	private String telefono;
-	public Cargo cargo;
-	public HorasLaborales[] horasTrabajadas;
+    /**
+     * Constructor
+     */
+    public Empleado(){
+        setId(UUID.randomUUID().toString());
+    }
 
-	public Empleado(){
+    /**
+     * Devuelve el identificador único de la clase
+     * 
+     * @return El identificador único de la clase
+     */
+    @Id
+    @Column(name="id", length=36)
+    public String getId() {
+        return id;
+    }
 
-	}
+    /**
+     * Establece el identificador único de la clase
+     * 
+     * @param id Nuevo valor del identificador único de la clase
+     */
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    @Column(name="direccion", length=255)
+    public String getDireccion() {
+        return direccion;
+    }
+
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
+
+    @Column(name="fecha_ingreso")
+    @Temporal(javax.persistence.TemporalType.DATE)
+    public Date getFechaIngreso() {
+        return fechaIngreso;
+    }
+
+    public void setFechaIngreso(Date fechaIngreso) {
+        this.fechaIngreso = fechaIngreso;
+    }
+
+    @Column(name="fecha_nacimiento")
+    @Temporal(TemporalType.DATE)
+    public Date getFechaNacimiento() {
+        return fechaNacimiento;
+    }
+
+    public void setFechaNacimiento(Date fechaNacimiento) {
+        this.fechaNacimiento = fechaNacimiento;
+    }
+
+    @Column(name="mail", length=100)
+    public String getMail() {
+        return mail;
+    }
+
+    public void setMail(String mail) {
+        this.mail = mail;
+    }
+
+    @Column(name="nombre", length=100)
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    @Column(name="telefono", length=15)
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
+
+    @ManyToOne(targetEntity=Cargo.class, cascade=CascadeType.ALL)
+    public Cargo getCargo() {
+        return cargo;
+    }
+
+    public void setCargo(Cargo cargo) {
+        this.cargo = cargo;
+    }
+    
+    @OneToMany(targetEntity=HoraLaboral.class, cascade=CascadeType.ALL,
+    mappedBy="empleado")
+    public List<HoraLaboral> getHorasTrabajadas() {
+        return horasTrabajadas;
+    }
+
+    public void setHorasTrabajadas(List<HoraLaboral> horasTrabajadas) {
+        this.horasTrabajadas = horasTrabajadas;
+    }
+    
+    @Column(name="borrado")
+    public boolean isBorrado() {
+        return borrado;
+    }
+
+    public void setBorrado(boolean borrado) {
+        this.borrado = borrado;
+    }
 }

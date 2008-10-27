@@ -1,15 +1,31 @@
 package radiadores.entidades;
 
+import java.io.Serializable;
+import javax.persistence.Column;
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
 /**
- * @author Lisandro
+ * Contiene la información específica de los productos terminados
+ * 
+ * @author Franco Catena, Mario Mariani, Lisandro Nieto, Sebastián Torres
  * @version 1.0
- * @created 21-oct-2008 12:47:02 a.m.
  */
-public class ProductoTerminado extends Producto {
+@Entity
+@Table(name="productos_terminados")
+@DiscriminatorValue("T")
+public class ProductoTerminado extends Producto implements Serializable {
+    private static final long serialVersionUID = 1L;
+    
+    private double precioVenta;
 
-	private double precioVenta;
+    @Column(name="precio_venta")
+    public double getPrecioVenta() {
+        return precioVenta;
+    }
 
-	public ProductoTerminado(){
-
-	}
+    public void setPrecioVenta(double precioVenta) {
+        this.precioVenta = precioVenta;
+    }
 }

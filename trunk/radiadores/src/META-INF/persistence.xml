@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="1.0" xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd">
+  <persistence-unit name="radiadoresPU" transaction-type="RESOURCE_LOCAL">
+    <provider>oracle.toplink.essentials.PersistenceProvider</provider>
+    <class>radiadores.entidades.Cargo</class>
+    <class>radiadores.entidades.CentroDeTrabajo</class>
+    <class>radiadores.entidades.DetalleOrdenCompra</class>
+    <class>radiadores.entidades.Edificio</class>
+    <class>radiadores.entidades.Empleado</class>
+    <class>radiadores.entidades.HoraLaboral</class>
+    <class>radiadores.entidades.ParteDeEstructura</class>
+    <class>radiadores.entidades.ParteDeNodo</class>
+    <class>radiadores.entidades.EstructuraDeProducto</class>
+    <class>radiadores.entidades.Maquina</class>
+    <class>radiadores.entidades.MateriaPrima</class>
+    <class>radiadores.entidades.NodoRuta</class>
+    <class>radiadores.entidades.OrdenCompra</class>
+    <class>radiadores.entidades.OrdenProduccion</class>
+    <class>radiadores.entidades.Producto</class>
+    <class>radiadores.entidades.ProductoComponente</class>
+    <class>radiadores.entidades.ProductoTerminado</class>
+    <class>radiadores.entidades.Proveedor</class>
+    <class>radiadores.entidades.RutaFabricacion</class>
+    <class>radiadores.entidades.Sector</class>
+    <properties>
+      <property name="toplink.jdbc.user" value="radiadores"/>
+      <property name="toplink.jdbc.password" value="radiadores"/>
+      <property name="toplink.jdbc.url" value="jdbc:mysql://localhost:3306/radiadores"/>
+      <property name="toplink.jdbc.driver" value="com.mysql.jdbc.Driver"/>
+      <property name="toplink.ddl-generation" value="create-tables"/>
+    </properties>
+  </persistence-unit>
+</persistence>

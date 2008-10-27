@@ -1,20 +1,24 @@
 package radiadores.entidades;
 
+import java.io.Serializable;
+import java.util.List;
+
 /**
- * @author Lisandro
+ * Interfaz genérica de componentes (materia prima, productos, etc.)
+ * 
+ * @author Franco Catena, Mario Mariani, Lisandro Nieto, Sebastián Torres
  * @version 1.0
- * @created 21-oct-2008 12:47:13 a.m.
  */
-public interface iComponente {
+public interface iComponente extends Serializable {
 
 //	public Proveedor mProveedor;
 
-	/**
-	 * 
-	 * @param componente
-	 */
-	public iComponente getComponente(String componente);
+    /**
+     * 
+     * @param componente
+     */
+    public iComponente getComponente(String componente);
 
-	public Proveedor[] getProveedores();
+    public List<Proveedor> getProveedores();
 
 }
