@@ -70,7 +70,7 @@ class Manejador {
         return em.createQuery(query);
     }
     
-    private void comenzarTransaccion() {
+    void comenzarTransaccion() {
         if(em.getTransaction().isActive()) {
             em.getTransaction().rollback();
         }
@@ -78,7 +78,7 @@ class Manejador {
         em.getTransaction().begin();
     }
     
-    private void finalizarTransaccion() {
+    void finalizarTransaccion() {
         em.getTransaction().commit();
     }
 }

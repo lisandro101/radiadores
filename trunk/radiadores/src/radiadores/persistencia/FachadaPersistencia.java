@@ -56,4 +56,12 @@ public class FachadaPersistencia {
         return FabricaManejadores.getInstancia().getManejador().crearConsulta(
                 query);
     }
+    
+    public void comenzarTransaccion() {
+        FabricaManejadores.getInstancia().getManejador().comenzarTransaccion();
+    }
+    
+    public void finalizarTransaccion() {
+        FabricaManejadores.getInstancia().getManejador().finalizarTransaccion();
+    }
 }
