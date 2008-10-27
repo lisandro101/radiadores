@@ -7,9 +7,11 @@
 package radiadores.igu;
 
 import java.util.List;
+import javax.persistence.Query;
 import javax.swing.JOptionPane;
 import radiadores.entidades.Proveedor;
 import radiadores.igu.model.ProveedorTableModel;
+import radiadores.persistencia.FachadaPersistencia;
 
 /**
  *
@@ -18,9 +20,9 @@ import radiadores.igu.model.ProveedorTableModel;
 public class PanelBuscarProveedor extends javax.swing.JDialog {
     private ProveedorTableModel tmBuscar;
     private ProveedorTableModel tmEmpleado;
-    
     private List<Proveedor> proveedores;
-    
+    private PanelProveedor panelProv;
+    private int tipoBusqueda;
     /** Creates new form PanelBuscarProveedor */
     public PanelBuscarProveedor(ProveedorTableModel tm1) {
         initComponents();
@@ -29,10 +31,18 @@ public class PanelBuscarProveedor extends javax.swing.JDialog {
         
     }
     
+    public PanelBuscarProveedor(PanelProveedor prov) {
+        initComponents();
+        
+        tipoBusqueda=1;
+        panelProv= prov;
+        inicializar();
+    }
+    
     private void inicializar() {
         tmBuscar = new ProveedorTableModel(0);
         tProveedores.setModel(tmBuscar);
-
+        tipoBusqueda=2;
     }
 
     
@@ -171,6 +181,11 @@ private void btCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
 
 private void btBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBuscarActionPerformed
     
+    Query consulta = FachadaPersistencia.getInstancia().crearConsulta("Select a from Proveedor a where a.nombreProveedor = :valor and a.borrado=false" );
+    consulta.setParameter("valor", tfNombre.getText());
+     
+    proveedores= FachadaPersistencia.getInstancia().buscar(Proveedor.class, consulta);
+    //FachadaPersistencia.getInstancia().buscar(Proveedor.class, );
     //proveedores = persistencia.buscarProveedor(tfNombre.getText());
     
     for (int i = 0; i < proveedores.size(); i++) {
@@ -183,18 +198,16 @@ private void btBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
 private void btAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAceptarActionPerformed
     int filaSeleccionada = tProveedores.getSelectedRow();
     
-    //**********
-    Proveedor p = new Proveedor();
-    p.setNombreProveedor("Vea "+ Math.random());
-    p.setNombreContacto("pepe hongo");
-    tmEmpleado.agregarFila(p);
-    //***
-    
     if(filaSeleccionada == -1){
         JOptionPane.showMessageDialog(this, "No se ha seleccionado Proveedor");
     }else{
-        //tmEmpleado.agregarFila(tmBuscar.getFila(filaSeleccionada));       
-        dispose();
+        if(tipoBusqueda==1){
+            tmEmpleado.agregarFila(tmBuscar.getFila(filaSeleccionada));       
+            dispose();
+        }else{
+            panelProv.setProveedor(tmBuscar.getFila(filaSeleccionada));
+            dispose();
+        }
     }
 }//GEN-LAST:event_btAceptarActionPerformed
 
