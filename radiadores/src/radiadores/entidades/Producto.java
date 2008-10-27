@@ -39,8 +39,10 @@ public abstract class Producto implements Serializable {
     private double pesoUnidad;
     private String politicaCompra;
     private double precioBase;
-    private int tamanioLoteEstandar;
+    private double tamanioLoteEstandar;
     private String unidadMedida;
+    private String estado;
+    private double stock;
 
     /**
      * Constructor
@@ -178,11 +180,11 @@ public abstract class Producto implements Serializable {
     }
 
     @Column(name="tamanio_lote_estandar")
-    public int getTamanioLoteEstandar() {
+    public double getTamanioLoteEstandar() {
         return tamanioLoteEstandar;
     }
 
-    public void setTamanioLoteEstandar(int tamanioLoteEstandar) {
+    public void setTamanioLoteEstandar(double tamanioLoteEstandar) {
         this.tamanioLoteEstandar = tamanioLoteEstandar;
     }
 
@@ -193,5 +195,23 @@ public abstract class Producto implements Serializable {
 
     public void setUnidadMedida(String unidadMedida) {
         this.unidadMedida = unidadMedida;
+    }
+    
+    @Column(name="estado", length=20)
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+    
+    @Column(name="stock")
+    public double getStock() {
+        return stock;
+    }
+
+    public void setStock(double stock) {
+        this.stock = stock;
     }
 }

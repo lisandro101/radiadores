@@ -62,6 +62,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Agregar"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btAgregarActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btModifiar">
           <Properties>
@@ -525,7 +528,7 @@
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
           <SubComponents>
-            <Component class="org.jdesktop.swingx.JXTable" name="jXTable1">
+            <Component class="org.jdesktop.swingx.JXTable" name="tProveedor">
               <Properties>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                   <Table columnCount="3" rowCount="2">

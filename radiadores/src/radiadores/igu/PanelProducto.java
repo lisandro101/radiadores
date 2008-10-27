@@ -6,18 +6,30 @@
 
 package radiadores.igu;
 
+import radiadores.entidades.ProductoComponente;
+import radiadores.entidades.ProductoTerminado;
+import radiadores.igu.model.ProveedorTableModel;
+
 /**
  *
  * @author  stafoxter
  */
 public class PanelProducto extends javax.swing.JPanel {
 
+    private ProveedorTableModel tm;
     /** Creates new form PanelProducto */
     public PanelProducto() {
         initComponents();
         pProductoComponente.setVisible(false);
     }
 
+    private void inicializar() {
+        tm = new ProveedorTableModel(0);
+        tProveedor.setModel(tm);
+
+    }
+    
+    
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -72,13 +84,18 @@ public class PanelProducto extends javax.swing.JPanel {
         pProductoComponente = new javax.swing.JPanel();
         lbProveedor = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jXTable1 = new org.jdesktop.swingx.JXTable();
+        tProveedor = new org.jdesktop.swingx.JXTable();
         btAsignarProveedor = new javax.swing.JButton();
 
         btBuscar.setText("Buscar");
         pBotones.add(btBuscar);
 
         btAgregar.setText("Agregar");
+        btAgregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btAgregarActionPerformed(evt);
+            }
+        });
         pBotones.add(btAgregar);
 
         btModifiar.setText("Modificar");
@@ -325,7 +342,7 @@ public class PanelProducto extends javax.swing.JPanel {
 
         lbProveedor.setText("Proveedores:");
 
-        jXTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tProveedor.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
                 {null, null, null}
@@ -342,8 +359,8 @@ public class PanelProducto extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        jXTable1.setEditable(false);
-        jScrollPane1.setViewportView(jXTable1);
+        tProveedor.setEditable(false);
+        jScrollPane1.setViewportView(tProveedor);
 
         btAsignarProveedor.setText("Asignar Proveedor");
         btAsignarProveedor.addActionListener(new java.awt.event.ActionListener() {
@@ -428,8 +445,17 @@ private void cbTipoProductoActionPerformed(java.awt.event.ActionEvent evt) {//GE
 }//GEN-LAST:event_cbTipoProductoActionPerformed
 
 private void btAsignarProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAsignarProveedorActionPerformed
-    new PanelBuscarProveedor();
+    new PanelBuscarProveedor(tm);
 }//GEN-LAST:event_btAsignarProveedorActionPerformed
+
+private void btAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAgregarActionPerformed
+    if(cbTipoProducto.getSelectedIndex()==0){
+        ProductoTerminado productoTerminado = crearProductoTerminado();
+        
+    }else{
+        ProductoComponente productoComponente = crearProductoComponente();
+    }
+}//GEN-LAST:event_btAgregarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -443,7 +469,6 @@ private void btAsignarProveedorActionPerformed(java.awt.event.ActionEvent evt) {
     private javax.swing.JComboBox cbTipoProducto;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private org.jdesktop.swingx.JXTable jXTable1;
     private javax.swing.JLabel lbCategoria;
     private javax.swing.JLabel lbCodigo;
     private javax.swing.JLabel lbCondEmbalaje;
@@ -466,6 +491,7 @@ private void btAsignarProveedorActionPerformed(java.awt.event.ActionEvent evt) {
     private javax.swing.JPanel pProductoTerminado;
     private javax.swing.JPanel pProductoTerminado1;
     private javax.swing.JPanel pProductoTerminado2;
+    private org.jdesktop.swingx.JXTable tProveedor;
     private javax.swing.JTextField tfCodigo;
     private javax.swing.JTextField tfCondEmbalaje;
     private javax.swing.JTextField tfCostoAlmacenamiento;
@@ -482,4 +508,53 @@ private void btAsignarProveedorActionPerformed(java.awt.event.ActionEvent evt) {
     private javax.swing.JTextField tfUnidadMedida;
     // End of variables declaration//GEN-END:variables
 
+    
+    private ProductoTerminado crearProductoTerminado(){
+        ProductoTerminado prod = new ProductoTerminado();
+        
+        prod.setCodigo(tfCodigo.getText());
+        prod.setNombre(tfNombre.getText());
+        prod.setCategoria(cbCategoria.getSelectedItem().toString());
+        prod.setEstado(cbEstado.getSelectedItem().toString());
+        prod.setNumeroPlano(tfNroPlano.getText());
+        prod.setPrecioBase(Double.parseDouble(tfPrecioBase.getText()));
+        prod.setPesoUnidad(Double.parseDouble(tfPesoUnidad.getText()));
+        prod.setUnidadMedida(tfUnidadMedida.getText());
+        prod.setCostoAlmacenamiento(Double.parseDouble(tfCostoAlmacenamiento.getText()));
+        prod.setCostoEmision(Double.parseDouble(tfCostoEmision.getText()));
+        prod.setCostoUnitarioOmision(Double.parseDouble(tfCostoUnitOmision.getText()));
+        prod.setTamanioLoteEstandar(Double.parseDouble(tfTamanioLoteEstandar.getText()));
+        prod.setCondicionesEmbalaje(tfCondEmbalaje.getText());
+        prod.setStock(Double.parseDouble(tfStock.getText()));
+        prod.setDescripcion(tfDescripcion.getText());
+        
+        prod.setPrecioVenta(Double.parseDouble(tfPrecioVenta.getText()));
+        
+        return prod;
+    }
+    
+    
+    private ProductoComponente crearProductoComponente(){
+        ProductoComponente prod = new ProductoComponente();
+        
+        prod.setCodigo(tfCodigo.getText());
+        prod.setNombre(tfNombre.getText());
+        prod.setCategoria(cbCategoria.getSelectedItem().toString());
+        prod.setEstado(cbEstado.getSelectedItem().toString());
+        prod.setNumeroPlano(tfNroPlano.getText());
+        prod.setPrecioBase(Double.parseDouble(tfPrecioBase.getText()));
+        prod.setPesoUnidad(Double.parseDouble(tfPesoUnidad.getText()));
+        prod.setUnidadMedida(tfUnidadMedida.getText());
+        prod.setCostoAlmacenamiento(Double.parseDouble(tfCostoAlmacenamiento.getText()));
+        prod.setCostoEmision(Double.parseDouble(tfCostoEmision.getText()));
+        prod.setCostoUnitarioOmision(Double.parseDouble(tfCostoUnitOmision.getText()));
+        prod.setTamanioLoteEstandar(Double.parseDouble(tfTamanioLoteEstandar.getText()));
+        prod.setCondicionesEmbalaje(tfCondEmbalaje.getText());
+        prod.setStock(Double.parseDouble(tfStock.getText()));
+        prod.setDescripcion(tfDescripcion.getText());
+        
+        prod.setProveedores(tm.getFilas());
+        
+        return prod;
+    }
 }

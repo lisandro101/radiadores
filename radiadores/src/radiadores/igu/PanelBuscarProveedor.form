@@ -72,7 +72,7 @@
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
           <SubComponents>
-            <Component class="org.jdesktop.swingx.JXTable" name="jXTable1">
+            <Component class="org.jdesktop.swingx.JXTable" name="tProveedores">
               <Properties>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                   <Table columnCount="3" rowCount="4">
@@ -96,6 +96,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Aceptar"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btAceptarActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btCancelar">
           <Properties>
@@ -149,6 +152,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Buscar"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btBuscarActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
