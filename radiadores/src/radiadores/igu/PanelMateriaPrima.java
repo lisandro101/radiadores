@@ -11,6 +11,7 @@ import javax.swing.JOptionPane;
 import radiadores.entidades.MateriaPrima;
 import radiadores.entidades.MateriaPrima.Estado;
 import radiadores.igu.model.ProveedorTableModel;
+import radiadores.persistencia.FachadaPersistencia;
 
 /**
  *
@@ -262,6 +263,11 @@ public class PanelMateriaPrima extends javax.swing.JPanel {
         pBotones.add(btBuscar);
 
         btAgregar.setText("Agregar");
+        btAgregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btAgregarActionPerformed(evt);
+            }
+        });
         pBotones.add(btAgregar);
 
         btModifiar.setText("Modificar");
@@ -326,6 +332,10 @@ private void btEliminarProveedorActionPerformed(java.awt.event.ActionEvent evt) 
         tm.imprimirModel();
     }
 }//GEN-LAST:event_btEliminarProveedorActionPerformed
+
+private void btAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAgregarActionPerformed
+    FachadaPersistencia.getInstancia().grabar(crearMateriaPrima(), true);
+}//GEN-LAST:event_btAgregarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
