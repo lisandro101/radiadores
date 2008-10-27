@@ -8,7 +8,6 @@ package radiadores.igu;
 
 import java.awt.Component;
 import java.awt.Container;
-import java.awt.TextField;
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
 
@@ -21,6 +20,7 @@ public class PanelRutaFabricacion extends javax.swing.JPanel {
     /** Creates new form PanelRutaFabricacion */
     public PanelRutaFabricacion() {
         initComponents();
+        //jlDetalleRuta.setModel();
     }
 
     /** This method is called from within the constructor to
@@ -49,6 +49,7 @@ public class PanelRutaFabricacion extends javax.swing.JPanel {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
+        jlDetalleRuta.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jlDetalleRuta.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jlDetalleRutaMouseClicked(evt);
@@ -172,8 +173,8 @@ private void btCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
 }//GEN-LAST:event_btCancelarActionPerformed
 
 private void jlDetalleRutaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlDetalleRutaMouseClicked
-    if (evt.getClickCount() == 2) {
-        PanelDetalleRuta detalleRuta = new PanelDetalleRuta();
+    if (evt.getClickCount() == 2) { 
+        PanelDetalleRuta detalleRuta = new PanelDetalleRuta((String)jlDetalleRuta.getSelectedValue());
         detalleRuta.setModal(true);
         detalleRuta.setVisible(true);
     }

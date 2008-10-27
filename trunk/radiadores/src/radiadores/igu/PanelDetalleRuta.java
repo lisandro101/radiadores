@@ -21,6 +21,13 @@ public class PanelDetalleRuta extends javax.swing.JDialog {
     public PanelDetalleRuta() {
         initComponents();
     }
+    
+    public PanelDetalleRuta(String centroTrabajo) {
+        initComponents();
+        tfCentroTrabajo.setText(centroTrabajo);
+        tfCentroTrabajo.setEnabled(false);
+        btBuscarCentroTrabajo.setVisible(false);
+    }
 
     /** This method is called from within the constructor to
      * initialize the form.
