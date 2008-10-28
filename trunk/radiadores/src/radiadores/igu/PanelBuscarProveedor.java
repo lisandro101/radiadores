@@ -24,8 +24,10 @@ public class PanelBuscarProveedor extends javax.swing.JDialog {
     private PanelProveedor panelProv;
     private int tipoBusqueda;
     /** Creates new form PanelBuscarProveedor */
+    
     public PanelBuscarProveedor(ProveedorTableModel tm1) {
         initComponents();
+        tipoBusqueda=1;
         tmEmpleado = tm1;
         inicializar();
         
@@ -33,8 +35,7 @@ public class PanelBuscarProveedor extends javax.swing.JDialog {
     
     public PanelBuscarProveedor(PanelProveedor prov) {
         initComponents();
-        
-        tipoBusqueda=1;
+        tipoBusqueda=2;
         panelProv= prov;
         inicializar();
     }
@@ -42,7 +43,8 @@ public class PanelBuscarProveedor extends javax.swing.JDialog {
     private void inicializar() {
         tmBuscar = new ProveedorTableModel(0);
         tProveedores.setModel(tmBuscar);
-        tipoBusqueda=2;
+        
+        
     }
 
     
@@ -180,32 +182,31 @@ private void btCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
 }//GEN-LAST:event_btCancelarActionPerformed
 
 private void btBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBuscarActionPerformed
+    tmBuscar.limpiarTableModel();
     
-    Query consulta = FachadaPersistencia.getInstancia().crearConsulta("Select a from Proveedor a where a.nombreProveedor = :valor and a.borrado=false" );
-    consulta.setParameter("valor", tfNombre.getText());
+    Query consulta = FachadaPersistencia.getInstancia().crearConsulta("Select a from Proveedor a where (a.nombreProveedor) LIKE :valor and a.borrado=false" );
+    consulta.setParameter("valor", "%"+tfNombre.getText()+"%");
      
     proveedores= FachadaPersistencia.getInstancia().buscar(Proveedor.class, consulta);
-    //FachadaPersistencia.getInstancia().buscar(Proveedor.class, );
-    //proveedores = persistencia.buscarProveedor(tfNombre.getText());
+
     
     for (int i = 0; i < proveedores.size(); i++) {
         tmBuscar.agregarFila(proveedores.get(i));
     }
-    
-        
+  
 }//GEN-LAST:event_btBuscarActionPerformed
 
 private void btAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAceptarActionPerformed
-    int filaSeleccionada = tProveedores.getSelectedRow();
+    int indice = tProveedores.getSelectedRow();
     
-    if(filaSeleccionada == -1){
+    if(indice == -1){
         JOptionPane.showMessageDialog(this, "No se ha seleccionado Proveedor");
     }else{
         if(tipoBusqueda==1){
-            tmEmpleado.agregarFila(tmBuscar.getFila(filaSeleccionada));       
+            tmEmpleado.agregarFila(tmBuscar.getFila(indice));       
             dispose();
         }else{
-            panelProv.setProveedor(tmBuscar.getFila(filaSeleccionada));
+            panelProv.setProveedor(tmBuscar.getFila(indice));
             dispose();
         }
     }
