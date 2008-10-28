@@ -31,8 +31,8 @@ DROP TABLE horas_laborales
 DROP TABLE proveedores_componentes
 DROP TABLE materias_primas
 DROP TABLE edificios
-DROP TABLE sectores
 DROP TABLE estructuras_de_productos
+DROP TABLE sectores
 DROP TABLE maquinas
 DROP TABLE proveedores
 DROP TABLE productos_terminados

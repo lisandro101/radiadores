@@ -6,11 +6,6 @@
 
 package radiadores.igu;
 
-import java.awt.Component;
-import java.awt.Container;
-import javax.swing.JComboBox;
-import javax.swing.JTextField;
-
 /**
  *
  * @author  Lisandro
@@ -356,20 +351,6 @@ private void btBuscarComponenteActionPerformed(java.awt.event.ActionEvent evt) {
             }
         });
     }
-    
-    public void limpiarCampos(Container contenedor) {
-        
-    Component[] componentes = contenedor.getComponents();
-        
-        for (int i = 0; i < componentes.length; i++) {
-            if (componentes[i] instanceof JTextField) {
-                ((JTextField) componentes[i]).setText("");
-            }
-            else if (componentes[i] instanceof JComboBox) {
-                ((JComboBox) componentes[i]).setSelectedIndex(0);
-            }
-        }
-}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btAceptar;

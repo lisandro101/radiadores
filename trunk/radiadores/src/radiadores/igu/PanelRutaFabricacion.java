@@ -6,11 +6,7 @@
 
 package radiadores.igu;
 
-import java.awt.Component;
-import java.awt.Container;
 import java.util.List;
-import javax.swing.JComboBox;
-import javax.swing.JTextField;
 import radiadores.entidades.CentroDeTrabajo;
 import radiadores.entidades.NodoRuta;
 import radiadores.igu.model.RutaListModel;
@@ -229,20 +225,6 @@ private void jlDetalleRutaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIR
         detalleRuta.setVisible(true);
     }
 }//GEN-LAST:event_jlDetalleRutaMouseClicked
-
-public void limpiarCampos(Container contenedor) {
-        
-    Component[] componentes = contenedor.getComponents();
-        
-        for (int i = 0; i < componentes.length; i++) {
-            if (componentes[i] instanceof JTextField) {
-                ((JTextField) componentes[i]).setText("");
-            }
-            else if (componentes[i] instanceof JComboBox) {
-                ((JComboBox) componentes[i]).setSelectedIndex(0);
-            }
-        }
-}
 
 private void btAgregarNodoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAgregarNodoActionPerformed
 
