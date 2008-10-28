@@ -156,6 +156,11 @@ public class ProveedorTableModel extends AbstractTableModel {
         fireTableRowsDeleted(indice, indice);       
     }
     
+    public void limpiarTableModel(){        
+        fireTableRowsDeleted(0, proveedores.size());
+        proveedores.clear();
+    }
+    
     public void imprimirModel(){
         
         for (int i = 0; i < proveedores.size(); i++) {
