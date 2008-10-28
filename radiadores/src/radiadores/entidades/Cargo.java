@@ -24,6 +24,8 @@ public class Cargo implements Serializable {
     private double valorHora;
     private boolean borrado;
 
+    //TODO: agregar atributos: codigo y estado
+    
     /**
      * Constructor
      */
