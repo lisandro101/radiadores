@@ -7,6 +7,7 @@
 package radiadores.igu;
 
 import javax.swing.JOptionPane;
+import radiadores.Util;
 import radiadores.entidades.Cargo;
 import radiadores.entidades.Empleado;
 import radiadores.persistencia.FachadaPersistencia;
@@ -16,7 +17,8 @@ import radiadores.persistencia.FachadaPersistencia;
  * @author  stafoxter
  */
 public class PanelEmpleado extends javax.swing.JPanel {
-
+    
+    private Empleado empleado;
     private Cargo cargo;
     /** Creates new form PanelEmpleado */
     public PanelEmpleado() {
@@ -59,6 +61,11 @@ public class PanelEmpleado extends javax.swing.JPanel {
         lbEstado = new javax.swing.JLabel();
 
         btBuscar.setText("Buscar");
+        btBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btBuscarActionPerformed(evt);
+            }
+        });
         pBotones.add(btBuscar);
 
         btAgregar.setText("Agregar");
@@ -78,6 +85,11 @@ public class PanelEmpleado extends javax.swing.JPanel {
         pBotones.add(btModifiar);
 
         btEliminar.setText("Eliminar");
+        btEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btEliminarActionPerformed(evt);
+            }
+        });
         pBotones.add(btEliminar);
 
         lbCodigo.setText("Código:");
@@ -242,7 +254,18 @@ private void btCargoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
 
 private void btAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAgregarActionPerformed
     FachadaPersistencia.getInstancia().grabar(crearEmpleado(), true);
+    Util.getInstancia().limpiarCampos(pEmpleado);
 }//GEN-LAST:event_btAgregarActionPerformed
+
+private void btEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEliminarActionPerformed
+    empleado.setBorrado(true);
+    FachadaPersistencia.getInstancia().actualizar(empleado, true);
+    Util.getInstancia().limpiarCampos(pEmpleado);
+}//GEN-LAST:event_btEliminarActionPerformed
+
+private void btBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBuscarActionPerformed
+// TODO add your handling code here:
+}//GEN-LAST:event_btBuscarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -280,21 +303,22 @@ private void btAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
     
     
     private Empleado crearEmpleado(){
-        Empleado empleado = new Empleado();
+        Empleado emp = new Empleado();
         
         if(cargo == null){
             JOptionPane.showMessageDialog(this, "No se ha asiganado un cargo");
         }
-        empleado.setCodigo(tfCodigo.getText());
-        empleado.setNombre(tfNombre.getText());
-        empleado.setTelefono(tfTelefono.getText());
-        empleado.setMail(tfMail.getText());
-        empleado.setDireccion(tfDireccion.getText());
-        empleado.setEstado(cbEstado.getSelectedItem().toString());
-        empleado.setCargo(cargo);
-        empleado.setFechaNacimiento(dpFechaNacimiento.getDate());
-        empleado.setFechaIngreso(dpFechaIngreso.getDate());
+        emp.setCodigo(tfCodigo.getText());
+        emp.setNombre(tfNombre.getText());
+        emp.setTelefono(tfTelefono.getText());
+        emp.setMail(tfMail.getText());
+        emp.setDireccion(tfDireccion.getText());
+        emp.setEstado(cbEstado.getSelectedItem().toString());
+        emp.setCargo(cargo);
+        emp.setFechaNacimiento(dpFechaNacimiento.getDate());
+        emp.setFechaIngreso(dpFechaIngreso.getDate());
               
-        return empleado;
+        empleado=emp;
+        return emp;
     }
 }
