@@ -1,5 +1,5 @@
 /*
- * PanelMaquinaria.java
+ * PanelMaquina.java
  *
  * Created on 25 de octubre de 2008, 20:17
  */
@@ -14,10 +14,10 @@ import radiadores.entidades.Sector;
  *
  * @author  Lisandro
  */
-public class PanelMaquinaria extends javax.swing.JPanel {
+public class PanelMaquina extends javax.swing.JPanel {
 
-    /** Creates new form PanelMaquinaria */
-    public PanelMaquinaria() {
+    /** Creates new form PanelMaquina */
+    public PanelMaquina() {
         initComponents();
     }
 
@@ -160,7 +160,7 @@ public class PanelMaquinaria extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
 private void jbBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarActionPerformed
-    new PanelBuscarMaquinaria();
+    new PanelBuscarMaquina();
 }//GEN-LAST:event_jbBuscarActionPerformed
 
 
