@@ -1,19 +1,27 @@
 /*
- * PanelBuscarMaquinaria.java
+ * PanelBuscarMaquina.java
  *
  * Created on 26 de octubre de 2008, 18:54
  */
 
 package radiadores.igu;
 
+import java.util.List;
+import radiadores.entidades.Maquina;
+import radiadores.igu.model.MaquinaTableModel;
+
 /**
  *
  * @author  stafoxter
  */
-public class PanelBuscarMaquinaria extends javax.swing.JDialog {
+public class PanelBuscarMaquina extends javax.swing.JDialog {
 
-    /** Creates new form PanelBuscarMaquinaria */
-    public PanelBuscarMaquinaria() {
+    private MaquinaTableModel tmMaquina;
+    private List<Maquina> maquinas;
+    private PanelMaquina panelMaquina;
+    
+    /** Creates new form PanelBuscarMaquina */
+    public PanelBuscarMaquina() {
         initComponents();
         this.setModal(true);
         this.setVisible(true);
@@ -47,6 +55,11 @@ public class PanelBuscarMaquinaria extends javax.swing.JDialog {
         lbNombre.setText("Nombre:");
 
         btBuscar.setText("Buscar");
+        btBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btBuscarActionPerformed(evt);
+            }
+        });
 
         lbCodigo.setText("Código:");
 
@@ -162,6 +175,10 @@ public class PanelBuscarMaquinaria extends javax.swing.JDialog {
 private void btCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCancelarActionPerformed
     dispose();
 }//GEN-LAST:event_btCancelarActionPerformed
+
+private void btBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBuscarActionPerformed
+// TODO add your handling code here:
+}//GEN-LAST:event_btBuscarActionPerformed
 
     
 
