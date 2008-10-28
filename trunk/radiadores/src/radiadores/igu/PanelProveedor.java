@@ -6,6 +6,7 @@
 
 package radiadores.igu;
 
+import radiadores.Util;
 import radiadores.entidades.Proveedor;
 import radiadores.persistencia.FachadaPersistencia;
 
@@ -26,7 +27,7 @@ public class PanelProveedor extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
+        pCampos = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         tfNombre = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
@@ -39,11 +40,11 @@ public class PanelProveedor extends javax.swing.JPanel {
         tfDireccion = new javax.swing.JTextField();
         dpInicioActividades = new org.jdesktop.swingx.JXDatePicker();
         jLabel6 = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
+        pBotones = new javax.swing.JPanel();
         btBuscar = new javax.swing.JButton();
         btAgregar = new javax.swing.JButton();
         btModificar = new javax.swing.JButton();
-        btModificar1 = new javax.swing.JButton();
+        btEliminar = new javax.swing.JButton();
 
         jLabel1.setText("Nombre");
 
@@ -63,45 +64,45 @@ public class PanelProveedor extends javax.swing.JPanel {
 
         jLabel6.setText("Inicio Actividades ");
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout pCamposLayout = new javax.swing.GroupLayout(pCampos);
+        pCampos.setLayout(pCamposLayout);
+        pCamposLayout.setHorizontalGroup(
+            pCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pCamposLayout.createSequentialGroup()
                 .addGap(259, 259, 259)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(pCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addGroup(pCamposLayout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addGap(53, 53, 53)
                         .addComponent(tfNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 233, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGroup(pCamposLayout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addGap(46, 46, 46)
                         .addComponent(tfContacto, javax.swing.GroupLayout.DEFAULT_SIZE, 233, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGroup(pCamposLayout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addGap(48, 48, 48)
                         .addComponent(tfTelefono, javax.swing.GroupLayout.DEFAULT_SIZE, 233, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGroup(pCamposLayout.createSequentialGroup()
                         .addComponent(jLabel4)
                         .addGap(62, 62, 62)
                         .addComponent(tfMail, javax.swing.GroupLayout.DEFAULT_SIZE, 233, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGroup(pCamposLayout.createSequentialGroup()
                         .addComponent(jLabel5)
                         .addGap(47, 47, 47)
                         .addComponent(tfDireccion, javax.swing.GroupLayout.DEFAULT_SIZE, 233, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGroup(pCamposLayout.createSequentialGroup()
                         .addComponent(jLabel6)
                         .addGap(4, 4, 4)
                         .addComponent(dpInicioActividades, javax.swing.GroupLayout.DEFAULT_SIZE, 233, Short.MAX_VALUE)))
                 .addGap(257, 257, 257))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+        pCamposLayout.setVerticalGroup(
+            pCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pCamposLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(pCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addGroup(pCamposLayout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addGap(12, 12, 12)
                         .addComponent(jLabel2)
@@ -113,7 +114,7 @@ public class PanelProveedor extends javax.swing.JPanel {
                         .addComponent(jLabel5)
                         .addGap(13, 13, 13)
                         .addComponent(jLabel6))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGroup(pCamposLayout.createSequentialGroup()
                         .addComponent(tfNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(6, 6, 6)
                         .addComponent(tfContacto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -134,7 +135,7 @@ public class PanelProveedor extends javax.swing.JPanel {
                 btBuscarActionPerformed(evt);
             }
         });
-        jPanel2.add(btBuscar);
+        pBotones.add(btBuscar);
 
         btAgregar.setText("Agregar");
         btAgregar.addActionListener(new java.awt.event.ActionListener() {
@@ -142,18 +143,18 @@ public class PanelProveedor extends javax.swing.JPanel {
                 btAgregarActionPerformed(evt);
             }
         });
-        jPanel2.add(btAgregar);
+        pBotones.add(btAgregar);
 
         btModificar.setText("Modificar");
-        jPanel2.add(btModificar);
+        pBotones.add(btModificar);
 
-        btModificar1.setText("Eliminar");
-        btModificar1.addActionListener(new java.awt.event.ActionListener() {
+        btEliminar.setText("Eliminar");
+        btEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btModificar1ActionPerformed(evt);
+                btEliminarActionPerformed(evt);
             }
         });
-        jPanel2.add(btModificar1);
+        pBotones.add(btEliminar);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -162,17 +163,17 @@ public class PanelProveedor extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 839, Short.MAX_VALUE))
+                    .addComponent(pCampos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(pBotones, javax.swing.GroupLayout.DEFAULT_SIZE, 839, Short.MAX_VALUE))
                 .addGap(18, 18, 18))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(72, 72, 72)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(pCampos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 111, Short.MAX_VALUE)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(pBotones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -190,19 +191,21 @@ private void btBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
 
 private void btAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAgregarActionPerformed
     FachadaPersistencia.getInstancia().grabar(crearProveedor(), true);
+    Util.getInstancia().limpiarCampos(pCampos);
 }//GEN-LAST:event_btAgregarActionPerformed
 
-private void btModificar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btModificar1ActionPerformed
+private void btEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEliminarActionPerformed
     proveedor.setBorrado(true);
     FachadaPersistencia.getInstancia().actualizar(proveedor, true);
-}//GEN-LAST:event_btModificar1ActionPerformed
+    Util.getInstancia().limpiarCampos(pCampos);
+}//GEN-LAST:event_btEliminarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btAgregar;
     private javax.swing.JButton btBuscar;
+    private javax.swing.JButton btEliminar;
     private javax.swing.JButton btModificar;
-    private javax.swing.JButton btModificar1;
     private org.jdesktop.swingx.JXDatePicker dpInicioActividades;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -210,8 +213,8 @@ private void btModificar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel pBotones;
+    private javax.swing.JPanel pCampos;
     private javax.swing.JTextField tfContacto;
     private javax.swing.JTextField tfDireccion;
     private javax.swing.JTextField tfMail;
