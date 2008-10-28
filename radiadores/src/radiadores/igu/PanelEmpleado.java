@@ -9,6 +9,7 @@ package radiadores.igu;
 import javax.swing.JOptionPane;
 import radiadores.entidades.Cargo;
 import radiadores.entidades.Empleado;
+import radiadores.persistencia.FachadaPersistencia;
 
 /**
  *
@@ -61,6 +62,11 @@ public class PanelEmpleado extends javax.swing.JPanel {
         pBotones.add(btBuscar);
 
         btAgregar.setText("Agregar");
+        btAgregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btAgregarActionPerformed(evt);
+            }
+        });
         pBotones.add(btAgregar);
 
         btModifiar.setText("Modificar");
@@ -234,6 +240,10 @@ private void btCargoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
            
 }//GEN-LAST:event_btCargoActionPerformed
 
+private void btAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAgregarActionPerformed
+    FachadaPersistencia.getInstancia().grabar(crearEmpleado(), true);
+}//GEN-LAST:event_btAgregarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btAgregar;
@@ -272,7 +282,7 @@ private void btCargoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
     private Empleado crearEmpleado(){
         Empleado empleado = new Empleado();
         
-        if(cargo==null){
+        if(cargo == null){
             JOptionPane.showMessageDialog(this, "No se ha asiganado un cargo");
         }
         empleado.setCodigo(tfCodigo.getText());
@@ -285,8 +295,6 @@ private void btCargoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
         empleado.setFechaNacimiento(dpFechaNacimiento.getDate());
         empleado.setFechaIngreso(dpFechaIngreso.getDate());
               
-        
-        
         return empleado;
     }
 }
