@@ -32,7 +32,15 @@ public class MaquinaTableModel extends AbstractTableModel {
     public MaquinaTableModel(int filas) {
         this.maquina = new ArrayList<Maquina>(filas > 0 ? filas : 0);
     }
-
+    
+    /**
+     * Constructor
+     * 
+     */
+    public MaquinaTableModel() {
+        this.maquina = new ArrayList<Maquina>(0);
+    }
+    
     /**
      * Devuelve el nombre de la columna
      * 

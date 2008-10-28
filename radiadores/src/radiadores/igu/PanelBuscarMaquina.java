@@ -7,8 +7,12 @@
 package radiadores.igu;
 
 import java.util.List;
+import javax.persistence.Query;
+import javax.swing.JOptionPane;
 import radiadores.entidades.Maquina;
 import radiadores.igu.model.MaquinaTableModel;
+import radiadores.persistencia.FachadaPersistencia;
+import javax.swing.*;
 
 /**
  *
@@ -25,6 +29,18 @@ public class PanelBuscarMaquina extends javax.swing.JDialog {
         initComponents();
         this.setModal(true);
         this.setVisible(true);
+    }
+    
+    /** Creates new form PanelBuscarMaquina */
+    public PanelBuscarMaquina(PanelMaquina pMaquina) {
+        initComponents();
+        panelMaquina= pMaquina;
+        inicializar();
+    }
+    
+    private void inicializar() {
+        tmMaquina = new MaquinaTableModel();
+        jtMaquina.setModel(tmMaquina);
     }
 
     /** This method is called from within the constructor to
@@ -44,7 +60,7 @@ public class PanelBuscarMaquina extends javax.swing.JDialog {
         jTextField1 = new javax.swing.JTextField();
         pTablaProveedores = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jXTable1 = new org.jdesktop.swingx.JXTable();
+        jtMaquina = new org.jdesktop.swingx.JXTable();
         pBoton = new javax.swing.JPanel();
         btAceptar = new javax.swing.JButton();
         btCancelar = new javax.swing.JButton();
@@ -95,7 +111,7 @@ public class PanelBuscarMaquina extends javax.swing.JDialog {
                 .addContainerGap())
         );
 
-        jXTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jtMaquina.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
                 {null, null, null},
@@ -114,8 +130,8 @@ public class PanelBuscarMaquina extends javax.swing.JDialog {
                 return canEdit [columnIndex];
             }
         });
-        jXTable1.setEditable(false);
-        jScrollPane1.setViewportView(jXTable1);
+        jtMaquina.setEditable(false);
+        jScrollPane1.setViewportView(jtMaquina);
 
         javax.swing.GroupLayout pTablaProveedoresLayout = new javax.swing.GroupLayout(pTablaProveedores);
         pTablaProveedores.setLayout(pTablaProveedoresLayout);
@@ -135,6 +151,11 @@ public class PanelBuscarMaquina extends javax.swing.JDialog {
         );
 
         btAceptar.setText("Aceptar");
+        btAceptar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btAceptarActionPerformed(evt);
+            }
+        });
         pBoton.add(btAceptar);
 
         btCancelar.setText("Cancelar");
@@ -177,8 +198,31 @@ private void btCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
 }//GEN-LAST:event_btCancelarActionPerformed
 
 private void btBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBuscarActionPerformed
-// TODO add your handling code here:
+    tmMaquina.limpiarTableModel();
+    
+    Query consulta = FachadaPersistencia.getInstancia().crearConsulta("Select a from Maquina a where (a.nombre) LIKE :valor and a.borrado=false" );
+    consulta.setParameter("valor", "%"+tfNombre.getText()+"%");
+     
+    maquinas = FachadaPersistencia.getInstancia().buscar(Maquina.class, consulta);
+
+    
+    for (int i = 0; i < maquinas.size(); i++) {
+        tmMaquina.agregarFila(maquinas.get(i));
+    }
+    
 }//GEN-LAST:event_btBuscarActionPerformed
+
+private void btAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAceptarActionPerformed
+    
+    int indice = jtMaquina.getSelectedRow();
+
+        if(indice == -1){
+            JOptionPane.showMessageDialog(this, "No se ha seleccionado Maquina");
+        }else{
+                panelMaquina.setMaquina(tmMaquina.getFila(indice));
+                dispose();
+            }
+}//GEN-LAST:event_btAceptarActionPerformed
 
     
 
@@ -188,7 +232,7 @@ private void btBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     private javax.swing.JButton btCancelar;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField1;
-    private org.jdesktop.swingx.JXTable jXTable1;
+    private org.jdesktop.swingx.JXTable jtMaquina;
     private javax.swing.JLabel lbCodigo;
     private javax.swing.JLabel lbNombre;
     private javax.swing.JPanel pBoton;
