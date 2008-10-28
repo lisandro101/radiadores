@@ -9,6 +9,7 @@ package radiadores.igu;
 import radiadores.entidades.Edificio;
 import radiadores.entidades.Maquina;
 import radiadores.entidades.Sector;
+import radiadores.persistencia.FachadaPersistencia;
 
 /**
  *
@@ -16,6 +17,8 @@ import radiadores.entidades.Sector;
  */
 public class PanelMaquina extends javax.swing.JPanel {
 
+    Maquina maquina;
+    
     /** Creates new form PanelMaquina */
     public PanelMaquina() {
         initComponents();
@@ -127,6 +130,11 @@ public class PanelMaquina extends javax.swing.JPanel {
         jPanel2.add(jbBuscar);
 
         jbAgregar.setText("Agregar");
+        jbAgregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbAgregarActionPerformed(evt);
+            }
+        });
         jPanel2.add(jbAgregar);
 
         jbModificar.setText("Modificar");
@@ -160,8 +168,14 @@ public class PanelMaquina extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
 private void jbBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarActionPerformed
-    new PanelBuscarMaquina();
+     PanelBuscarMaquina buscarMaquina = new PanelBuscarMaquina(this);   
+     buscarMaquina.setModal(true);
+     buscarMaquina.setVisible(true);
 }//GEN-LAST:event_jbBuscarActionPerformed
+
+private void jbAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAgregarActionPerformed
+    FachadaPersistencia.getInstancia().grabar(crearMaquinaria(), true);
+}//GEN-LAST:event_jbAgregarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -207,5 +221,18 @@ private void jbBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         maqui.setProximoMantenimiento(dpProximoMantenimiento.getDate());
         
         return maqui;
+    }
+    
+    private void cargarPantallaMaquina(Maquina _maquina){
+        tfNombre.setText(_maquina.getNombre());
+        tfCodigo.setText(_maquina.getCodigo());
+        dpFechaDeFabricacion.setDate(_maquina.getFechaAntiguedad());
+        dpProximoMantenimiento.setDate(_maquina.getProximoMantenimiento());
+        
+    }
+    
+    public void setMaquina(Maquina _maquina){
+        maquina = _maquina;
+        cargarPantallaMaquina(_maquina);
     }
 }
