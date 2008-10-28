@@ -20,6 +20,7 @@ import radiadores.persistencia.FachadaPersistencia;
 public class PanelMateriaPrima extends javax.swing.JPanel {
 
     private ProveedorTableModel tm;
+    private MateriaPrima materiaPrima;
     /** Creates new form PanelMateriaPrima */
     public PanelMateriaPrima() {
         initComponents();
@@ -368,6 +369,7 @@ private void btAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
         mat.setProveedores(tm.getFilas());  
         mat.setEstado((Estado)cbEstado.getSelectedItem());
         
+        materiaPrima=mat;
         return mat;
     }
     
@@ -387,5 +389,6 @@ private void btAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
         }
         cbEstado.setSelectedItem(mat.getEstado());
         
+        materiaPrima=mat;
     }
 }

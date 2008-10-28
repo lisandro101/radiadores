@@ -6,7 +6,12 @@
 
 package radiadores.igu;
 
+import java.util.List;
+import javax.persistence.Query;
+import javax.swing.JOptionPane;
 import radiadores.entidades.Cargo;
+import radiadores.igu.model.CargoEmpleadoTableModel;
+import radiadores.persistencia.FachadaPersistencia;
 
 /**
  *
@@ -14,15 +19,23 @@ import radiadores.entidades.Cargo;
  */
 public class PanelCargoEmpleado extends javax.swing.JDialog {
 
-    private PanelEmpleado empleado;
+    private CargoEmpleadoTableModel tmBuscar;
+    private PanelEmpleado panelEmpleado;
     private Cargo cargo;
-    
+    private List<Cargo> cargosResul;
     /** Creates new form PanelCargoEmpleado */
     public PanelCargoEmpleado(PanelEmpleado emp) {
         initComponents();
-        empleado= emp;
+        panelEmpleado= emp;
+        inicializar();
     }
 
+    private void inicializar() {
+        tmBuscar = new CargoEmpleadoTableModel(0);
+        tCargos.setModel(tmBuscar);
+  
+    }
+    
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -93,6 +106,11 @@ public class PanelCargoEmpleado extends javax.swing.JDialog {
         });
 
         btBuscar.setText("Buscar");
+        btBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btBuscarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout pTablaLayout = new javax.swing.GroupLayout(pTabla);
         pTabla.setLayout(pTablaLayout);
@@ -140,6 +158,8 @@ public class PanelCargoEmpleado extends javax.swing.JDialog {
 
         lbNombre.setText("Nombre:");
 
+        tfCodigo.setEditable(false);
+
         lbEstado.setText("Estado:");
 
         cbEstado.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Activo", "Inactivo", "Eliminado" }));
@@ -150,6 +170,11 @@ public class PanelCargoEmpleado extends javax.swing.JDialog {
         });
 
         btAgregar.setText("Agregar");
+        btAgregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btAgregarActionPerformed(evt);
+            }
+        });
         jPanel1.add(btAgregar);
 
         btModifiar.setText("Modificar");
@@ -161,6 +186,11 @@ public class PanelCargoEmpleado extends javax.swing.JDialog {
         jPanel1.add(btModifiar);
 
         jButton1.setText("Eliminar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton1);
 
         javax.swing.GroupLayout pABMCargoLayout = new javax.swing.GroupLayout(pABMCargo);
@@ -278,16 +308,48 @@ private void btCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
 
 private void btAceptarBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAceptarBuscarActionPerformed
     
-    //Se debe inicializar la variable cargo con los datos de la pantalla o
-    //resultados de la busqueda
+    int indice = tCargos.getSelectedRow();
     
-    empleado.setCargoEmpleado(cargo);
-    
+    if(indice == -1){
+        JOptionPane.showMessageDialog(this, "No se ha seleccionado Proveedor");
+    }else{
+        cargo = tmBuscar.getFila(indice);
+        panelEmpleado.setCargoEmpleado(cargo);
+        cargarPantallaCargo(cargo);
+        
+        //dispose();
+        
+    }
+   
 }//GEN-LAST:event_btAceptarBuscarActionPerformed
 
 private void btAceptarGralActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAceptarGralActionPerformed
 // TODO add your handling code here:
 }//GEN-LAST:event_btAceptarGralActionPerformed
+
+private void btBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBuscarActionPerformed
+     
+    tmBuscar.limpiarTableModel();
+    
+    Query consulta = FachadaPersistencia.getInstancia().crearConsulta("Select a from Cargo a where (a.nombreCargo) LIKE :valor and a.borrado=false" );
+    consulta.setParameter("valor", "%"+tfNombreCargo.getText()+"%");
+     
+    cargosResul= FachadaPersistencia.getInstancia().buscar(Cargo.class, consulta);
+
+    
+    for (int i = 0; i < cargosResul.size(); i++) {
+        tmBuscar.agregarFila(cargosResul.get(i));
+    }
+}//GEN-LAST:event_btBuscarActionPerformed
+
+private void btAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAgregarActionPerformed
+    FachadaPersistencia.getInstancia().grabar(crearCargo(), true);
+}//GEN-LAST:event_btAgregarActionPerformed
+
+private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    cargo.setBorrado(true);
+    FachadaPersistencia.getInstancia().actualizar(cargo, true);
+}//GEN-LAST:event_jButton1ActionPerformed
 
     
 
@@ -319,4 +381,22 @@ private void btAceptarGralActionPerformed(java.awt.event.ActionEvent evt) {//GEN
     private javax.swing.JTextField tfPrecioHora;
     // End of variables declaration//GEN-END:variables
 
+    private Cargo crearCargo(){
+        Cargo cargo = new Cargo();
+        
+        cargo.setNombreCargo(tfNombre.getText());
+        cargo.setValorHora(Double.parseDouble(tfPrecioHora.getText()));
+        cargo.setHorasPorMes(Integer.parseInt(tfHorasLaborales.getText()));
+        
+        
+        return cargo;
+    }
+    
+    private void cargarPantallaCargo(Cargo cargo){
+        
+        tfNombre.setText(cargo.getNombreCargo());
+        tfPrecioHora.setText(String.valueOf(cargo.getValorHora()));
+        tfHorasLaborales.setText(String.valueOf(cargo.getHorasPorMes()));
+                
+    }
 }

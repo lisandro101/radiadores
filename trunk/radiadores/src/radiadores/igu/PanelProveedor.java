@@ -148,6 +148,11 @@ public class PanelProveedor extends javax.swing.JPanel {
         jPanel2.add(btModificar);
 
         btModificar1.setText("Eliminar");
+        btModificar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btModificar1ActionPerformed(evt);
+            }
+        });
         jPanel2.add(btModificar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -187,6 +192,11 @@ private void btAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
     FachadaPersistencia.getInstancia().grabar(crearProveedor(), true);
 }//GEN-LAST:event_btAgregarActionPerformed
 
+private void btModificar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btModificar1ActionPerformed
+    proveedor.setBorrado(true);
+    FachadaPersistencia.getInstancia().actualizar(proveedor, true);
+}//GEN-LAST:event_btModificar1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btAgregar;
@@ -219,6 +229,7 @@ private void btAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
         prov.setDireccion(tfDireccion.getText());
         prov.setFechaInicioActividad(dpInicioActividades.getDate());
         
+        proveedor=prov;
         return prov;
     }
     
@@ -233,6 +244,7 @@ private void btAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
     }
     
     public void setProveedor(Proveedor prov){
+        proveedor=prov;
         cargarPantallaProveedor(prov);
     }
     
