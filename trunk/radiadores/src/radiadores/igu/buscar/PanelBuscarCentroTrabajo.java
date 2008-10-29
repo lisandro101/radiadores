@@ -1,46 +1,20 @@
 /*
- * PanelBuscarMaquina.java
+ * PanelBuscarCentroTrabajo.java
  *
- * Created on 26 de octubre de 2008, 18:54
+ * Created on 27 de octubre de 2008, 16:40
  */
 
-package radiadores.igu;
-
-import java.util.List;
-import javax.persistence.Query;
-import javax.swing.JOptionPane;
-import radiadores.entidades.Maquina;
-import radiadores.igu.model.MaquinaTableModel;
-import radiadores.persistencia.FachadaPersistencia;
-import javax.swing.*;
+package radiadores.igu.buscar;
 
 /**
  *
- * @author  stafoxter
+ * @author  Lisandro
  */
-public class PanelBuscarMaquina extends javax.swing.JDialog {
+public class PanelBuscarCentroTrabajo extends javax.swing.JDialog {
 
-    private MaquinaTableModel tmMaquina;
-    private List<Maquina> maquinas;
-    private PanelMaquina panelMaquina;
-    
-    /** Creates new form PanelBuscarMaquina */
-    public PanelBuscarMaquina() {
+    /** Creates new form PanelBuscarCentroTrabajo */
+    public PanelBuscarCentroTrabajo() {
         initComponents();
-        this.setModal(true);
-        this.setVisible(true);
-    }
-    
-    /** Creates new form PanelBuscarMaquina */
-    public PanelBuscarMaquina(PanelMaquina pMaquina) {
-        initComponents();
-        panelMaquina= pMaquina;
-        inicializar();
-    }
-    
-    private void inicializar() {
-        tmMaquina = new MaquinaTableModel();
-        jtMaquina.setModel(tmMaquina);
     }
 
     /** This method is called from within the constructor to
@@ -57,27 +31,21 @@ public class PanelBuscarMaquina extends javax.swing.JDialog {
         tfNombre = new javax.swing.JTextField();
         btBuscar = new javax.swing.JButton();
         lbCodigo = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        tfCodigo = new javax.swing.JTextField();
         pTablaProveedores = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jtMaquina = new org.jdesktop.swingx.JXTable();
+        jtCentroTrabajo = new org.jdesktop.swingx.JXTable();
         pBoton = new javax.swing.JPanel();
         btAceptar = new javax.swing.JButton();
         btCancelar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Buscar Maquinaria");
 
         lbNombre.setText("Nombre:");
 
         btBuscar.setText("Buscar");
-        btBuscar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btBuscarActionPerformed(evt);
-            }
-        });
 
-        lbCodigo.setText("Código:");
+        lbCodigo.setText("Codigo:");
 
         javax.swing.GroupLayout pBuscarLayout = new javax.swing.GroupLayout(pBuscar);
         pBuscar.setLayout(pBuscarLayout);
@@ -90,48 +58,56 @@ public class PanelBuscarMaquina extends javax.swing.JDialog {
                     .addComponent(lbCodigo))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pBuscarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 202, Short.MAX_VALUE)
-                    .addComponent(tfNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 202, Short.MAX_VALUE))
+                    .addComponent(tfCodigo, javax.swing.GroupLayout.DEFAULT_SIZE, 176, Short.MAX_VALUE)
+                    .addComponent(tfNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 176, Short.MAX_VALUE))
                 .addGap(43, 43, 43)
                 .addComponent(btBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(19, 19, 19))
         );
         pBuscarLayout.setVerticalGroup(
             pBuscarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pBuscarLayout.createSequentialGroup()
+            .addGroup(pBuscarLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(pBuscarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lbNombre)
-                    .addComponent(tfNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btBuscar))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(pBuscarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lbCodigo)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(pBuscarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addGroup(pBuscarLayout.createSequentialGroup()
+                        .addComponent(tfNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(8, 8, 8)
+                        .addComponent(tfCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btBuscar)
+                    .addGroup(pBuscarLayout.createSequentialGroup()
+                        .addComponent(lbNombre)
+                        .addGap(14, 14, 14)
+                        .addComponent(lbCodigo)))
                 .addContainerGap())
         );
 
-        jtMaquina.setModel(new javax.swing.table.DefaultTableModel(
+        jtCentroTrabajo.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
             },
             new String [] {
-                "Nombre", "Codigo", "Ubicacion"
+                "Codigo", "Nombre"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        jtMaquina.setEditable(false);
-        jScrollPane1.setViewportView(jtMaquina);
+        jtCentroTrabajo.setEditable(false);
+        jScrollPane1.setViewportView(jtCentroTrabajo);
 
         javax.swing.GroupLayout pTablaProveedoresLayout = new javax.swing.GroupLayout(pTablaProveedores);
         pTablaProveedores.setLayout(pTablaProveedoresLayout);
@@ -139,7 +115,7 @@ public class PanelBuscarMaquina extends javax.swing.JDialog {
             pTablaProveedoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pTablaProveedoresLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 386, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 360, Short.MAX_VALUE)
                 .addContainerGap())
         );
         pTablaProveedoresLayout.setVerticalGroup(
@@ -151,11 +127,6 @@ public class PanelBuscarMaquina extends javax.swing.JDialog {
         );
 
         btAceptar.setText("Aceptar");
-        btAceptar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btAceptarActionPerformed(evt);
-            }
-        });
         pBoton.add(btAceptar);
 
         btCancelar.setText("Cancelar");
@@ -174,7 +145,7 @@ public class PanelBuscarMaquina extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(pTablaProveedores, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(pBoton, javax.swing.GroupLayout.DEFAULT_SIZE, 406, Short.MAX_VALUE)
+                    .addComponent(pBoton, javax.swing.GroupLayout.DEFAULT_SIZE, 380, Short.MAX_VALUE)
                     .addComponent(pBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -186,7 +157,7 @@ public class PanelBuscarMaquina extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(pTablaProveedores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(pBoton, javax.swing.GroupLayout.DEFAULT_SIZE, 41, Short.MAX_VALUE)
+                .addComponent(pBoton, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -194,50 +165,32 @@ public class PanelBuscarMaquina extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
 private void btCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCancelarActionPerformed
-    dispose();
+dispose();
 }//GEN-LAST:event_btCancelarActionPerformed
 
-private void btBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBuscarActionPerformed
-    tmMaquina.limpiarTableModel();
-    
-    Query consulta = FachadaPersistencia.getInstancia().crearConsulta("Select a from Maquina a where (a.nombre) LIKE :valor and a.borrado=false" );
-    consulta.setParameter("valor", "%"+tfNombre.getText()+"%");
-     
-    maquinas = FachadaPersistencia.getInstancia().buscar(Maquina.class, consulta);
-
-    
-    for (int i = 0; i < maquinas.size(); i++) {
-        tmMaquina.agregarFila(maquinas.get(i));
-    }
-    
-}//GEN-LAST:event_btBuscarActionPerformed
-
-private void btAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAceptarActionPerformed
-    
-    int indice = jtMaquina.getSelectedRow();
-
-        if(indice == -1){
-            JOptionPane.showMessageDialog(this, "No se ha seleccionado Maquina");
-        }else{
-                panelMaquina.setMaquina(tmMaquina.getFila(indice));
-                dispose();
+    /**
+    * @param args the command line arguments
+    */
+    public static void main(String args[]) {
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new PanelBuscarCentroTrabajo().setVisible(true);
             }
-}//GEN-LAST:event_btAceptarActionPerformed
-
-    
+        });
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btAceptar;
     private javax.swing.JButton btBuscar;
     private javax.swing.JButton btCancelar;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
-    private org.jdesktop.swingx.JXTable jtMaquina;
+    private org.jdesktop.swingx.JXTable jtCentroTrabajo;
     private javax.swing.JLabel lbCodigo;
     private javax.swing.JLabel lbNombre;
     private javax.swing.JPanel pBoton;
     private javax.swing.JPanel pBuscar;
     private javax.swing.JPanel pTablaProveedores;
+    private javax.swing.JTextField tfCodigo;
     private javax.swing.JTextField tfNombre;
     // End of variables declaration//GEN-END:variables
 

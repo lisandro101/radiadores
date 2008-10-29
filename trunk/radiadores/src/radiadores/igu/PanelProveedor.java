@@ -6,6 +6,7 @@
 
 package radiadores.igu;
 
+import radiadores.igu.buscar.PanelBuscarProveedor;
 import radiadores.Util;
 import radiadores.entidades.Proveedor;
 import radiadores.persistencia.FachadaPersistencia;

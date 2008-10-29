@@ -4,8 +4,9 @@
  * Created on 26 de octubre de 2008, 17:15
  */
 
-package radiadores.igu;
+package radiadores.igu.buscar;
 
+import radiadores.igu.*;
 import java.util.List;
 import javax.persistence.Query;
 import javax.swing.JOptionPane;

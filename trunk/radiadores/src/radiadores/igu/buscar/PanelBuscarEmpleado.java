@@ -4,16 +4,16 @@
  * Created on 27 de octubre de 2008, 16:40
  */
 
-package radiadores.igu;
+package radiadores.igu.buscar;
 
 /**
  *
  * @author  Lisandro
  */
-public class PanelBuscarRuta extends javax.swing.JDialog {
+public class PanelBuscarEmpleado extends javax.swing.JDialog {
 
     /** Creates new form PanelBuscarCentroTrabajo */
-    public PanelBuscarRuta() {
+    public PanelBuscarEmpleado() {
         initComponents();
     }
 
@@ -174,7 +174,7 @@ dispose();
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new PanelBuscarRuta().setVisible(true);
+                new PanelBuscarEmpleado().setVisible(true);
             }
         });
     }
