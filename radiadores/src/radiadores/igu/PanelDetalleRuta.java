@@ -6,6 +6,10 @@
 
 package radiadores.igu;
 
+import radiadores.igu.buscar.PanelBuscarComponente;
+import radiadores.igu.buscar.PanelBuscarEmpleado;
+import radiadores.igu.buscar.PanelBuscarCentroTrabajo;
+
 /**
  *
  * @author  Lisandro

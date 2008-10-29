@@ -6,6 +6,7 @@
 
 package radiadores.igu;
 
+import radiadores.igu.buscar.PanelBuscarMaquina;
 import java.util.Date;
 import javax.swing.JOptionPane;
 import radiadores.Util;
