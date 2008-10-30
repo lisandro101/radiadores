@@ -16,6 +16,7 @@ import org.jdesktop.swingx.JXDatePicker;
 import org.jdesktop.swingx.JXTable;
 import radiadores.entidades.Maquina;
 import radiadores.entidades.Proveedor;
+import radiadores.igu.model.MaquinaTableModel;
 import radiadores.igu.model.ProveedorTableModel;
 import radiadores.persistencia.FachadaPersistencia;
 
@@ -45,6 +46,19 @@ public class ValidacionBuscar {
                 
             }
         }
+        return resultado;
+    }
+    
+    public boolean maquinaEstaCargadaEnTabla(MaquinaTableModel tm, Maquina maquina){
+        boolean resultado = false;
+        List<Maquina> maquinas= tm.getFilas();
+        
+        for (int i = 0; i < maquinas.size(); i++) {
+            if(maquinas.get(i).getNombre().equals(maquina.getNombre())){
+                resultado = true;
+            }
+        }
+        
         return resultado;
     }
     
