@@ -10,6 +10,7 @@ import radiadores.igu.*;
 import java.util.List;
 import javax.persistence.Query;
 import javax.swing.JOptionPane;
+import javax.swing.ListSelectionModel;
 import radiadores.entidades.Proveedor;
 import radiadores.igu.model.ProveedorTableModel;
 import radiadores.persistencia.FachadaPersistencia;
@@ -20,7 +21,7 @@ import radiadores.persistencia.FachadaPersistencia;
  */
 public class PanelBuscarProveedor extends javax.swing.JDialog {
     private ProveedorTableModel tmBuscar;
-    private ProveedorTableModel tmEmpleado;
+    private ProveedorTableModel tmOrigen;
     private List<Proveedor> proveedores;
     private PanelProveedor panelProv;
     private int tipoBusqueda;
@@ -29,7 +30,7 @@ public class PanelBuscarProveedor extends javax.swing.JDialog {
     public PanelBuscarProveedor(ProveedorTableModel tm1) {
         initComponents();
         tipoBusqueda=1;
-        tmEmpleado = tm1;
+        tmOrigen = tm1;
         inicializar();
         
     }
@@ -44,8 +45,7 @@ public class PanelBuscarProveedor extends javax.swing.JDialog {
     private void inicializar() {
         tmBuscar = new ProveedorTableModel(0);
         tProveedores.setModel(tmBuscar);
-        
-        
+        tProveedores.setSelectionMode(ListSelectionModel.SINGLE_SELECTION );
     }
 
     
@@ -199,15 +199,26 @@ private void btBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
 
 private void btAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAceptarActionPerformed
     int indice = tProveedores.getSelectedRow();
+    Proveedor resultado;
     
-    if(indice == -1){
+    if(indice ==-1 ){
         JOptionPane.showMessageDialog(this, "No se ha seleccionado Proveedor");
     }else{
+        resultado=tmBuscar.getFila(indice);
         if(tipoBusqueda==1){
-            tmEmpleado.agregarFila(tmBuscar.getFila(indice));       
-            dispose();
+            if(tmOrigen.getRowCount()<1){
+                tmOrigen.agregarFila(resultado);       
+                dispose();
+            }else{
+                if(ValidacionBuscar.getInstancia().proveedorEstaCargado(tmOrigen, resultado)){
+                    JOptionPane.showMessageDialog(this, "El proveedor ya se encuentra asignado");
+                }else{
+                    tmOrigen.agregarFila(resultado);       
+                    dispose();
+                }
+            }
         }else{
-            panelProv.setProveedor(tmBuscar.getFila(indice));
+            panelProv.setProveedor(resultado);
             dispose();
         }
     }
