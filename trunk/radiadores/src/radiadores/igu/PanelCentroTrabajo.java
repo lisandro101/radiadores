@@ -6,15 +6,29 @@
 
 package radiadores.igu;
 
+import radiadores.entidades.CentroDeTrabajo;
+import radiadores.igu.buscar.PanelBuscarMaquina;
+import radiadores.igu.model.MaquinaTableModel;
+
 /**
  *
  * @author  Lisandro
  */
 public class PanelCentroTrabajo extends javax.swing.JPanel {
+    
+    private MaquinaTableModel tmMaquina;
+    private CentroDeTrabajo centroDeTrabajo;
 
     /** Creates new form PanelCentroTrabajo */
     public PanelCentroTrabajo() {
         initComponents();
+        inicializar();
+    }
+    
+    private void inicializar() {      
+        tmMaquina = new MaquinaTableModel();
+        jtMaquina.setModel(tmMaquina);
+        
     }
 
     /** This method is called from within the constructor to
@@ -26,70 +40,70 @@ public class PanelCentroTrabajo extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        pCentroTrabajo = new javax.swing.JPanel();
+        lbNombre = new javax.swing.JLabel();
+        lbDescripcion = new javax.swing.JLabel();
+        tfNombre = new javax.swing.JTextField();
+        tfDescripcion = new javax.swing.JTextField();
+        lbCodigo = new javax.swing.JLabel();
+        tfCodigo = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jXTable1 = new org.jdesktop.swingx.JXTable();
+        jtMaquina = new org.jdesktop.swingx.JXTable();
         jPanel4 = new javax.swing.JPanel();
-        btBuscarOrdenProduccion = new javax.swing.JButton();
-        btModificarOrdenProduccion = new javax.swing.JButton();
-        btAnularOrdenProduccion = new javax.swing.JButton();
+        btBuscarMaquina = new javax.swing.JButton();
+        btModificarMaquina = new javax.swing.JButton();
+        btEliminarMaquina = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
-        btBuscarOrdenProduccion1 = new javax.swing.JButton();
-        btModificarOrdenProduccion2 = new javax.swing.JButton();
-        btModificarOrdenProduccion1 = new javax.swing.JButton();
-        btAnularOrdenProduccion1 = new javax.swing.JButton();
+        btBuscar = new javax.swing.JButton();
+        btAgregar = new javax.swing.JButton();
+        btModificar = new javax.swing.JButton();
+        btEliminar = new javax.swing.JButton();
 
-        jLabel1.setText("Nombre");
+        lbNombre.setText("Nombre");
 
-        jLabel2.setText("Descripcion");
+        lbDescripcion.setText("Descripcion");
 
-        jLabel3.setText("Codigo");
+        lbCodigo.setText("Codigo");
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout pCentroTrabajoLayout = new javax.swing.GroupLayout(pCentroTrabajo);
+        pCentroTrabajo.setLayout(pCentroTrabajoLayout);
+        pCentroTrabajoLayout.setHorizontalGroup(
+            pCentroTrabajoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pCentroTrabajoLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel3))
+                .addGroup(pCentroTrabajoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lbDescripcion)
+                    .addComponent(lbNombre)
+                    .addComponent(lbCodigo))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.DEFAULT_SIZE, 527, Short.MAX_VALUE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 527, Short.MAX_VALUE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 527, Short.MAX_VALUE))
+                .addGroup(pCentroTrabajoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(tfCodigo, javax.swing.GroupLayout.DEFAULT_SIZE, 527, Short.MAX_VALUE)
+                    .addComponent(tfNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 527, Short.MAX_VALUE)
+                    .addComponent(tfDescripcion, javax.swing.GroupLayout.DEFAULT_SIZE, 527, Short.MAX_VALUE))
                 .addContainerGap())
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+        pCentroTrabajoLayout.setVerticalGroup(
+            pCentroTrabajoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pCentroTrabajoLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(pCentroTrabajoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbCodigo)
+                    .addComponent(tfCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(pCentroTrabajoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbNombre)
+                    .addComponent(tfNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(pCentroTrabajoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbDescripcion)
+                    .addComponent(tfDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(16, 16, 16))
         );
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Maquinaria"));
 
-        jXTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jtMaquina.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},
                 {null, null},
@@ -111,26 +125,31 @@ public class PanelCentroTrabajo extends javax.swing.JPanel {
                 "Codigo", "Nombre"
             }
         ));
-        jScrollPane1.setViewportView(jXTable1);
+        jScrollPane1.setViewportView(jtMaquina);
 
-        btBuscarOrdenProduccion.setText("Buscar");
-        jPanel4.add(btBuscarOrdenProduccion);
-
-        btModificarOrdenProduccion.setText("Modificar");
-        btModificarOrdenProduccion.addActionListener(new java.awt.event.ActionListener() {
+        btBuscarMaquina.setText("Buscar");
+        btBuscarMaquina.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btModificarOrdenProduccionActionPerformed(evt);
+                btBuscarMaquinaActionPerformed(evt);
             }
         });
-        jPanel4.add(btModificarOrdenProduccion);
+        jPanel4.add(btBuscarMaquina);
 
-        btAnularOrdenProduccion.setText("Eliminar");
-        btAnularOrdenProduccion.addActionListener(new java.awt.event.ActionListener() {
+        btModificarMaquina.setText("Modificar");
+        btModificarMaquina.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btAnularOrdenProduccionActionPerformed(evt);
+                btModificarMaquinaActionPerformed(evt);
             }
         });
-        jPanel4.add(btAnularOrdenProduccion);
+        jPanel4.add(btModificarMaquina);
+
+        btEliminarMaquina.setText("Eliminar");
+        btEliminarMaquina.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btEliminarMaquinaActionPerformed(evt);
+            }
+        });
+        jPanel4.add(btEliminarMaquina);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -153,32 +172,32 @@ public class PanelCentroTrabajo extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        btBuscarOrdenProduccion1.setText("Buscar");
-        jPanel5.add(btBuscarOrdenProduccion1);
+        btBuscar.setText("Buscar");
+        jPanel5.add(btBuscar);
 
-        btModificarOrdenProduccion2.setText("Agregar");
-        btModificarOrdenProduccion2.addActionListener(new java.awt.event.ActionListener() {
+        btAgregar.setText("Agregar");
+        btAgregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btModificarOrdenProduccion2ActionPerformed(evt);
+                btAgregarActionPerformed(evt);
             }
         });
-        jPanel5.add(btModificarOrdenProduccion2);
+        jPanel5.add(btAgregar);
 
-        btModificarOrdenProduccion1.setText("Modificar");
-        btModificarOrdenProduccion1.addActionListener(new java.awt.event.ActionListener() {
+        btModificar.setText("Modificar");
+        btModificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btModificarOrdenProduccion1ActionPerformed(evt);
+                btModificarActionPerformed(evt);
             }
         });
-        jPanel5.add(btModificarOrdenProduccion1);
+        jPanel5.add(btModificar);
 
-        btAnularOrdenProduccion1.setText("Eliminar");
-        btAnularOrdenProduccion1.addActionListener(new java.awt.event.ActionListener() {
+        btEliminar.setText("Eliminar");
+        btEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btAnularOrdenProduccion1ActionPerformed(evt);
+                btEliminarActionPerformed(evt);
             }
         });
-        jPanel5.add(btAnularOrdenProduccion1);
+        jPanel5.add(btEliminar);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -190,14 +209,14 @@ public class PanelCentroTrabajo extends javax.swing.JPanel {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                         .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, 605, Short.MAX_VALUE))
-                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.CENTER, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(pCentroTrabajo, javax.swing.GroupLayout.Alignment.CENTER, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(84, 84, 84))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(pCentroTrabajo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -206,47 +225,53 @@ public class PanelCentroTrabajo extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-private void btModificarOrdenProduccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btModificarOrdenProduccionActionPerformed
+private void btModificarMaquinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btModificarMaquinaActionPerformed
 // TODO add your handling code here:
-}//GEN-LAST:event_btModificarOrdenProduccionActionPerformed
+}//GEN-LAST:event_btModificarMaquinaActionPerformed
 
-private void btAnularOrdenProduccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAnularOrdenProduccionActionPerformed
+private void btEliminarMaquinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEliminarMaquinaActionPerformed
 // TODO add your handling code here:
-}//GEN-LAST:event_btAnularOrdenProduccionActionPerformed
+}//GEN-LAST:event_btEliminarMaquinaActionPerformed
 
-private void btModificarOrdenProduccion1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btModificarOrdenProduccion1ActionPerformed
+private void btModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btModificarActionPerformed
 // TODO add your handling code here:
-}//GEN-LAST:event_btModificarOrdenProduccion1ActionPerformed
+}//GEN-LAST:event_btModificarActionPerformed
 
-private void btAnularOrdenProduccion1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAnularOrdenProduccion1ActionPerformed
+private void btEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEliminarActionPerformed
 // TODO add your handling code here:
-}//GEN-LAST:event_btAnularOrdenProduccion1ActionPerformed
+}//GEN-LAST:event_btEliminarActionPerformed
 
-private void btModificarOrdenProduccion2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btModificarOrdenProduccion2ActionPerformed
+private void btAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAgregarActionPerformed
 // TODO add your handling code here:
-}//GEN-LAST:event_btModificarOrdenProduccion2ActionPerformed
+}//GEN-LAST:event_btAgregarActionPerformed
+
+private void btBuscarMaquinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBuscarMaquinaActionPerformed
+    PanelBuscarMaquina buscarMaquina = new PanelBuscarMaquina(tmMaquina);   
+    buscarMaquina.setModal(true);
+    buscarMaquina.setVisible(true);
+}//GEN-LAST:event_btBuscarMaquinaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btAnularOrdenProduccion;
-    private javax.swing.JButton btAnularOrdenProduccion1;
-    private javax.swing.JButton btBuscarOrdenProduccion;
-    private javax.swing.JButton btBuscarOrdenProduccion1;
-    private javax.swing.JButton btModificarOrdenProduccion;
-    private javax.swing.JButton btModificarOrdenProduccion1;
-    private javax.swing.JButton btModificarOrdenProduccion2;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JButton btAgregar;
+    private javax.swing.JButton btBuscar;
+    private javax.swing.JButton btBuscarMaquina;
+    private javax.swing.JButton btEliminar;
+    private javax.swing.JButton btEliminarMaquina;
+    private javax.swing.JButton btModificar;
+    private javax.swing.JButton btModificarMaquina;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private org.jdesktop.swingx.JXTable jXTable1;
+    private org.jdesktop.swingx.JXTable jtMaquina;
+    private javax.swing.JLabel lbCodigo;
+    private javax.swing.JLabel lbDescripcion;
+    private javax.swing.JLabel lbNombre;
+    private javax.swing.JPanel pCentroTrabajo;
+    private javax.swing.JTextField tfCodigo;
+    private javax.swing.JTextField tfDescripcion;
+    private javax.swing.JTextField tfNombre;
     // End of variables declaration//GEN-END:variables
 
 }

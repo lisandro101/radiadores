@@ -23,6 +23,8 @@ public class PanelBuscarMaquina extends javax.swing.JDialog {
     private MaquinaTableModel tmMaquina;
     private List<Maquina> maquinas;
     private PanelMaquina panelMaquina;
+    private int tipoBusqueda;
+    private MaquinaTableModel tmOrigen;
     
     /** Creates new form PanelBuscarMaquina */
     public PanelBuscarMaquina() {
@@ -31,15 +33,27 @@ public class PanelBuscarMaquina extends javax.swing.JDialog {
     }
     
     /** Creates new form PanelBuscarMaquina */
+    public PanelBuscarMaquina(MaquinaTableModel tm) { 
+        initComponents();
+        tipoBusqueda = 1;
+        tmOrigen = tm;
+        //TODO Este tipo de busqueda deberia permitir selección multiple
+        inicializar();
+        
+    }
+    
+    /** Creates new form PanelBuscarMaquina */
     public PanelBuscarMaquina(PanelMaquina pMaquina) {
         initComponents();
-        panelMaquina= pMaquina;
+        tipoBusqueda = 2;
+        panelMaquina = pMaquina;
         inicializar();
     }
     
     private void inicializar() {
         tmMaquina = new MaquinaTableModel();
         jtMaquina.setModel(tmMaquina);
+        jtMaquina.setSelectionMode(ListSelectionModel.SINGLE_SELECTION );
     }
 
     /** This method is called from within the constructor to
@@ -214,12 +228,31 @@ private void btBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
 private void btAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAceptarActionPerformed
     int indice = jtMaquina.getSelectedRow();
     Maquina resultado;
-
-    if(indice == -1 ){
+ 
+    if(indice ==-1 ){
         JOptionPane.showMessageDialog(this, "No se ha seleccionado maquina");
-    }else{
-        panelMaquina.setMaquina(tmMaquina.getFila(indice));
-        dispose();
+    }
+    else{
+        resultado = tmMaquina.getFila(indice);
+        if(tipoBusqueda == 1){
+            if(tmOrigen.getRowCount()<1){
+                tmOrigen.agregarFila(resultado);       
+                dispose();
+            }
+            else{
+                if(ValidacionBuscar.getInstancia().maquinaEstaCargadaEnTabla(tmOrigen, resultado)){
+                    JOptionPane.showMessageDialog(this, "La maquina ya se encuentra cargada");
+                }
+                else{
+                    tmOrigen.agregarFila(resultado);       
+                    dispose();
+                }
+            }
+        }
+        else{
+            panelMaquina.setMaquina(resultado);
+            dispose();
+        }
     }
 }//GEN-LAST:event_btAceptarActionPerformed
 
