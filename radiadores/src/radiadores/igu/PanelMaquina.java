@@ -7,12 +7,12 @@
 package radiadores.igu;
 
 import radiadores.igu.buscar.PanelBuscarMaquina;
-import java.util.Date;
 import javax.swing.JOptionPane;
 import radiadores.Util;
 import radiadores.entidades.Edificio;
 import radiadores.entidades.Maquina;
 import radiadores.entidades.Sector;
+import radiadores.igu.buscar.ValidacionBuscar;
 import radiadores.persistencia.FachadaPersistencia;
 
 /**
@@ -26,6 +26,7 @@ public class PanelMaquina extends javax.swing.JPanel {
     /** Creates new form PanelMaquina */
     public PanelMaquina() {
         initComponents();
+        inicializarBotones();
     }
 
     /** This method is called from within the constructor to
@@ -51,10 +52,32 @@ public class PanelMaquina extends javax.swing.JPanel {
         lbSector = new javax.swing.JLabel();
         cbSector = new javax.swing.JComboBox();
         jPanel2 = new javax.swing.JPanel();
-        jbBuscar = new javax.swing.JButton();
-        jbAgregar = new javax.swing.JButton();
-        jbModificar = new javax.swing.JButton();
-        jbEliminar = new javax.swing.JButton();
+        btBuscar = new javax.swing.JButton();
+        btAgregar = new javax.swing.JButton();
+        btModificar = new javax.swing.JButton();
+        btEliminar = new javax.swing.JButton();
+
+        tfNombre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tfNombreActionPerformed(evt);
+            }
+        });
+        tfNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                tfNombreKeyTyped(evt);
+            }
+        });
+
+        tfCodigo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tfCodigoActionPerformed(evt);
+            }
+        });
+        tfCodigo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                tfCodigoKeyTyped(evt);
+            }
+        });
 
         lbCodigo.setText("Codigo :");
 
@@ -125,32 +148,37 @@ public class PanelMaquina extends javax.swing.JPanel {
                 .addContainerGap(36, Short.MAX_VALUE))
         );
 
-        jbBuscar.setText("Buscar");
-        jbBuscar.addActionListener(new java.awt.event.ActionListener() {
+        btBuscar.setText("Buscar");
+        btBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbBuscarActionPerformed(evt);
+                btBuscarActionPerformed(evt);
             }
         });
-        jPanel2.add(jbBuscar);
+        jPanel2.add(btBuscar);
 
-        jbAgregar.setText("Agregar");
-        jbAgregar.addActionListener(new java.awt.event.ActionListener() {
+        btAgregar.setText("Agregar");
+        btAgregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbAgregarActionPerformed(evt);
+                btAgregarActionPerformed(evt);
             }
         });
-        jPanel2.add(jbAgregar);
+        jPanel2.add(btAgregar);
 
-        jbModificar.setText("Modificar");
-        jPanel2.add(jbModificar);
-
-        jbEliminar.setText("Eliminar");
-        jbEliminar.addActionListener(new java.awt.event.ActionListener() {
+        btModificar.setText("Modificar");
+        btModificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbEliminarActionPerformed(evt);
+                btModificarActionPerformed(evt);
             }
         });
-        jPanel2.add(jbEliminar);
+        jPanel2.add(btModificar);
+
+        btEliminar.setText("Eliminar");
+        btEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btEliminarActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btEliminar);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -176,34 +204,84 @@ public class PanelMaquina extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-private void jbBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarActionPerformed
+private void btBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBuscarActionPerformed
      PanelBuscarMaquina buscarMaquina = new PanelBuscarMaquina(this);   
      buscarMaquina.setModal(true);
      buscarMaquina.setVisible(true);
-}//GEN-LAST:event_jbBuscarActionPerformed
+}//GEN-LAST:event_btBuscarActionPerformed
 
-private void jbAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAgregarActionPerformed
-    FachadaPersistencia.getInstancia().grabar(crearMaquinaria(), true);
-    Util.getInstancia().limpiarCampos(pCampos);
-}//GEN-LAST:event_jbAgregarActionPerformed
+private void btAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAgregarActionPerformed
+    if(tfCodigo.getText().equals("") || tfNombre.getText().equals("")){
+        JOptionPane.showMessageDialog(this, "Existen campos obligatorios sin completar.");
+    }else{
+        maquina = crearMaquinaria();
+        if(ValidacionBuscar.getInstancia().maquinaEstaCargadaEnBD(maquina)){
+            JOptionPane.showMessageDialog(this, "La maquina ya se encuentra registrada en el sistema.");
+        }else{
+            FachadaPersistencia.getInstancia().grabar(crearMaquinaria(), true);
+            Util.getInstancia().limpiarCampos(pCampos);
+            maquina = null;
+        }
+    }
+}//GEN-LAST:event_btAgregarActionPerformed
 
-private void jbEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEliminarActionPerformed
-    maquina.setBorrado(true);
-    FachadaPersistencia.getInstancia().actualizar(maquina, true);
-    Util.getInstancia().limpiarCampos(pCampos);
-}//GEN-LAST:event_jbEliminarActionPerformed
+private void btEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEliminarActionPerformed
+    int opcion = JOptionPane.showConfirmDialog(this, "¿Seguro desea eliminar la maquina?", "Aceptar", JOptionPane.YES_NO_OPTION);
+        
+    if(opcion == JOptionPane.YES_OPTION) {
+        maquina.setBorrado(true);
+        FachadaPersistencia.getInstancia().actualizar(maquina, true);
+        Util.getInstancia().limpiarCampos(pCampos);
+        maquina = null;
+        inicializarBotones();
+    }
+    
+    
+}//GEN-LAST:event_btEliminarActionPerformed
+
+private void btModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btModificarActionPerformed
+    int opcion = JOptionPane.showConfirmDialog(this, "¿Seguro desea guardar los cambios?", "Aceptar", JOptionPane.YES_NO_OPTION);
+        
+    if(opcion == JOptionPane.YES_OPTION) {
+        actualizarMaquina();
+        FachadaPersistencia.getInstancia().actualizar(maquina, true);
+        Util.getInstancia().limpiarCampos(pCampos);
+        maquina = null;            
+        inicializarBotones();
+    }
+}//GEN-LAST:event_btModificarActionPerformed
+
+private void tfCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfCodigoActionPerformed
+    
+}//GEN-LAST:event_tfCodigoActionPerformed
+
+private void tfNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfNombreActionPerformed
+
+}//GEN-LAST:event_tfNombreActionPerformed
+
+private void tfCodigoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfCodigoKeyTyped
+    if (!btModificar.isEnabled()){
+        btAgregar.setEnabled(true);
+    }
+}//GEN-LAST:event_tfCodigoKeyTyped
+
+private void tfNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfNombreKeyTyped
+   if (!btModificar.isEnabled()){
+        btAgregar.setEnabled(true);
+    }
+}//GEN-LAST:event_tfNombreKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btAgregar;
+    private javax.swing.JButton btBuscar;
+    private javax.swing.JButton btEliminar;
+    private javax.swing.JButton btModificar;
     private javax.swing.JComboBox cbEdificio;
     private javax.swing.JComboBox cbSector;
     private org.jdesktop.swingx.JXDatePicker dpFechaDeFabricacion;
     private org.jdesktop.swingx.JXDatePicker dpProximoMantenimiento;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JButton jbAgregar;
-    private javax.swing.JButton jbBuscar;
-    private javax.swing.JButton jbEliminar;
-    private javax.swing.JButton jbModificar;
     private javax.swing.JLabel lbCodigo;
     private javax.swing.JLabel lbEdificio;
     private javax.swing.JLabel lbFechaFabricacion;
@@ -245,10 +323,28 @@ private void jbEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
         dpFechaDeFabricacion.setDate(_maquina.getFechaAntiguedad());
         dpProximoMantenimiento.setDate(_maquina.getProximoMantenimiento());
         
+        btAgregar.setEnabled(false);
+        btModificar.setEnabled(true);
+        btEliminar.setEnabled(true);
     }
     
     public void setMaquina(Maquina _maquina){
         maquina = _maquina;
         cargarPantallaMaquina(_maquina);
+    }
+    
+    private void inicializarBotones(){
+        btAgregar.setEnabled(false);
+        btEliminar.setEnabled(false);
+        btModificar.setEnabled(false);
+    }
+    
+    private void actualizarMaquina(){   
+        maquina.setNombre(tfNombre.getText());
+        maquina.setCodigo(tfCodigo.getText());
+        maquina.setEdificio((Edificio) cbEdificio.getSelectedItem()); //TODO revizar actualizaciones de Edificio my Sector
+        maquina.setSector((Sector) cbSector.getSelectedItem());
+        maquina.setFechaAntiguedad(dpFechaDeFabricacion.getDate()); //TODO atributo ProxMantenimiento
+//        maquina.setFechaAntiguedad(dpProximoMantenimiento.getDate()); 
     }
 }

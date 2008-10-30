@@ -29,18 +29,6 @@ public class PanelRutaFabricacion extends javax.swing.JPanel {
     private void inicializar() {
         listModel = new RutaListModel();
         jlDetalleRuta.setModel(listModel);
-        
-        
-        /*
-         <<<<<<< Solo por propósitos de testeo >>>>>>>
-         */
-        for (int i = 0; i < 4; i++) {
-            CentroDeTrabajo ct = new CentroDeTrabajo();
-            ct.setNombre("Mierda"+Math.random());
-            NodoRuta nr = new NodoRuta();
-            nr.setCentroTrabajo(ct);
-            listModel.agregarElemento(nr);
-        }
     }
 
     /** This method is called from within the constructor to
