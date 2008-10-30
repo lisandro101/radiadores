@@ -201,6 +201,7 @@ private void btAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
     int indice = tProveedores.getSelectedRow();
     Proveedor resultado;
     
+    
     if(indice ==-1 ){
         JOptionPane.showMessageDialog(this, "No se ha seleccionado Proveedor");
     }else{
@@ -210,7 +211,7 @@ private void btAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
                 tmOrigen.agregarFila(resultado);       
                 dispose();
             }else{
-                if(ValidacionBuscar.getInstancia().proveedorEstaCargado(tmOrigen, resultado)){
+                if(ValidacionBuscar.getInstancia().proveedorEstaCargadoEnTabla(tmOrigen, resultado)){
                     JOptionPane.showMessageDialog(this, "El proveedor ya se encuentra asignado");
                 }else{
                     tmOrigen.agregarFila(resultado);       
