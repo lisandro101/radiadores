@@ -6,9 +6,11 @@
 
 package radiadores.igu;
 
+import javax.swing.JOptionPane;
 import radiadores.igu.buscar.PanelBuscarProveedor;
 import radiadores.Util;
 import radiadores.entidades.Proveedor;
+import radiadores.igu.buscar.ValidacionBuscar;
 import radiadores.persistencia.FachadaPersistencia;
 
 /**
@@ -22,8 +24,15 @@ public class PanelProveedor extends javax.swing.JPanel {
     /** Creates new form PanelProveedor */
     public PanelProveedor() {
         initComponents();
+        inicializarBotones();
     }
+    
 
+    private void inicializarBotones(){
+        btAgregar.setEnabled(true);
+        btEliminar.setEnabled(false);
+        btModificar.setEnabled(false);
+    }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -147,6 +156,11 @@ public class PanelProveedor extends javax.swing.JPanel {
         pBotones.add(btAgregar);
 
         btModificar.setText("Modificar");
+        btModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btModificarActionPerformed(evt);
+            }
+        });
         pBotones.add(btModificar);
 
         btEliminar.setText("Eliminar");
@@ -191,15 +205,53 @@ private void btBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
 }//GEN-LAST:event_btBuscarActionPerformed
 
 private void btAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAgregarActionPerformed
-    FachadaPersistencia.getInstancia().grabar(crearProveedor(), true);
-    Util.getInstancia().limpiarCampos(pCampos);
+    if(ValidacionBuscar.getInstancia().existenCamposVacios(pCampos)){
+        JOptionPane.showMessageDialog(this, "Existen campos sin completar");
+    }else{
+        proveedor= crearProveedor();
+        if(ValidacionBuscar.getInstancia().proveedorEstaCargadoEnBD(proveedor)){
+            JOptionPane.showMessageDialog(this, "El proveedor ya se encuentra registrado");
+        }else{
+            FachadaPersistencia.getInstancia().grabar(proveedor, true);
+            Util.getInstancia().limpiarCampos(pCampos);
+            dpInicioActividades.setToolTipText("");
+            proveedor=null;
+        }
+    }
 }//GEN-LAST:event_btAgregarActionPerformed
 
 private void btEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEliminarActionPerformed
-    proveedor.setBorrado(true);
-    FachadaPersistencia.getInstancia().actualizar(proveedor, true);
-    Util.getInstancia().limpiarCampos(pCampos);
+    
+    int opcion = JOptionPane.showConfirmDialog(this,
+                "¿Seguro desea eliminar al Proveedor?", "Aceptar",
+                JOptionPane.YES_NO_OPTION);
+        
+        if(opcion == JOptionPane.YES_OPTION) {
+            proveedor.setBorrado(true);
+            FachadaPersistencia.getInstancia().actualizar(proveedor, true);
+            Util.getInstancia().limpiarCampos(pCampos);
+            proveedor=null;
+            inicializarBotones();
+        }
+    
 }//GEN-LAST:event_btEliminarActionPerformed
+
+private void btModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btModificarActionPerformed
+    
+    int opcion = JOptionPane.showConfirmDialog(this,
+                "¿Seguro desea guardar los cambios?", "Aceptar",
+                JOptionPane.YES_NO_OPTION);
+        
+        if(opcion == JOptionPane.YES_OPTION) {
+            actualizarProveedor();
+            FachadaPersistencia.getInstancia().actualizar(proveedor, true);
+            Util.getInstancia().limpiarCampos(pCampos);
+            proveedor=null;            
+            inicializarBotones();
+        }
+    
+    
+}//GEN-LAST:event_btModificarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -233,7 +285,6 @@ private void btEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
         prov.setDireccion(tfDireccion.getText());
         prov.setFechaInicioActividad(dpInicioActividades.getDate());
         
-        proveedor=prov;
         return prov;
     }
     
@@ -245,11 +296,27 @@ private void btEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
         tfDireccion.setText(prov.getDireccion());
         dpInicioActividades.setDate(prov.getFechaInicioActividad());
         
+        btAgregar.setEnabled(false);
+        btModificar.setEnabled(true);
+        btEliminar.setEnabled(true);
     }
     
     public void setProveedor(Proveedor prov){
         proveedor=prov;
         cargarPantallaProveedor(prov);
+        
     }
+    
+    private void actualizarProveedor(){
+        
+        proveedor.setNombreProveedor(tfNombre.getText());
+        proveedor.setNombreContacto(tfContacto.getText());
+        proveedor.setTelefono(tfTelefono.getText());
+        proveedor.setMail(tfMail.getText());
+        proveedor.setDireccion(tfDireccion.getText());
+        proveedor.setFechaInicioActividad(dpInicioActividades.getDate());
+        
+    }
+    
     
 }

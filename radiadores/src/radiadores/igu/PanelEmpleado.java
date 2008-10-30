@@ -237,7 +237,7 @@ private void tfTelefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
 }//GEN-LAST:event_tfTelefonoActionPerformed
 
 private void btModifiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btModifiarActionPerformed
-// TODO add your handling code here:
+    
 }//GEN-LAST:event_btModifiarActionPerformed
 
 private void tfCargoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfCargoActionPerformed

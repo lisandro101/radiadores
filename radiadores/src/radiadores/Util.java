@@ -7,7 +7,9 @@ package radiadores;
 import java.awt.Component;
 import java.awt.Container;
 import javax.swing.JComboBox;
+import javax.swing.JComponent;
 import javax.swing.JTextField;
+import org.jdesktop.swingx.JXDatePicker;
 
 /**
  *
@@ -296,8 +298,12 @@ public class Util {
                 ((JTextField) componentes[i]).setText("");
             }
             else if (componentes[i] instanceof JComboBox) {
-                ((JComboBox) componentes[i]).setSelectedIndex(0);
+                ((JComboBox) componentes[i]).setToolTipText("");//setSelectedIndex(0);
             }
+            else if (componentes[i] instanceof JXDatePicker) {
+                ((JXDatePicker) componentes[i]).setDate(null);//setSelectedIndex(0);
+            }
+            
         }
-}
+    }
 }
