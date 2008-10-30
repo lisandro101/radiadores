@@ -14,6 +14,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import org.jdesktop.swingx.JXDatePicker;
 import org.jdesktop.swingx.JXTable;
+import radiadores.entidades.Maquina;
 import radiadores.entidades.Proveedor;
 import radiadores.igu.model.ProveedorTableModel;
 import radiadores.persistencia.FachadaPersistencia;
@@ -62,7 +63,20 @@ public class ValidacionBuscar {
         return  resultado;
     }
     
-
+    public boolean maquinaEstaCargadaEnBD(Maquina maquina){ //TODO Hacer este metodo generico para cualquier clase
+        boolean resultado = false;
+        List<Maquina> maquinas;
+        
+        maquinas = FachadaPersistencia.getInstancia().buscar(Maquina.class, "Select c from Maquina c");
+        
+        for (int i = 0; i < maquinas.size(); i++) {
+            if(maquina.getNombre().equals(maquinas.get(i).getNombre())){
+                resultado = true;
+            }   
+        }    
+        
+        return  resultado;
+    }
     
     public boolean existenCamposVacios(Container contenedor) {
         boolean resultado=false;

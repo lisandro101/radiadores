@@ -9,7 +9,6 @@ package radiadores.igu.buscar;
 import radiadores.igu.*;
 import java.util.List;
 import javax.persistence.Query;
-import javax.swing.JOptionPane;
 import radiadores.entidades.Maquina;
 import radiadores.igu.model.MaquinaTableModel;
 import radiadores.persistencia.FachadaPersistencia;
@@ -28,8 +27,7 @@ public class PanelBuscarMaquina extends javax.swing.JDialog {
     /** Creates new form PanelBuscarMaquina */
     public PanelBuscarMaquina() {
         initComponents();
-        this.setModal(true);
-        this.setVisible(true);
+        inicializar();
     }
     
     /** Creates new form PanelBuscarMaquina */
@@ -214,15 +212,15 @@ private void btBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
 }//GEN-LAST:event_btBuscarActionPerformed
 
 private void btAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAceptarActionPerformed
-    
     int indice = jtMaquina.getSelectedRow();
+    Maquina resultado;
 
-        if(indice == -1){
-            JOptionPane.showMessageDialog(this, "No se ha seleccionado Maquina");
-        }else{
-                panelMaquina.setMaquina(tmMaquina.getFila(indice));
-                dispose();
-            }
+    if(indice == -1 ){
+        JOptionPane.showMessageDialog(this, "No se ha seleccionado maquina");
+    }else{
+        panelMaquina.setMaquina(tmMaquina.getFila(indice));
+        dispose();
+    }
 }//GEN-LAST:event_btAceptarActionPerformed
 
     
