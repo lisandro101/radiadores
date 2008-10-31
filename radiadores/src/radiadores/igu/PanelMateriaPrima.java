@@ -9,8 +9,10 @@ package radiadores.igu;
 import radiadores.igu.buscar.PanelBuscarProveedor;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
+import radiadores.Util;
 import radiadores.entidades.MateriaPrima;
 import radiadores.entidades.MateriaPrima.Estado;
+import radiadores.igu.buscar.ValidacionBuscar;
 import radiadores.igu.model.ProveedorTableModel;
 import radiadores.persistencia.FachadaPersistencia;
 
@@ -26,6 +28,7 @@ public class PanelMateriaPrima extends javax.swing.JPanel {
     public PanelMateriaPrima() {
         initComponents();
         inicializar();
+        inicializarBotones();
         
     }
 
@@ -43,7 +46,7 @@ public class PanelMateriaPrima extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        pMateriaPrima = new javax.swing.JPanel();
+        pCampos = new javax.swing.JPanel();
         lbCodigo = new javax.swing.JLabel();
         lbNombre = new javax.swing.JLabel();
         lbCostoAlmacenamiento = new javax.swing.JLabel();
@@ -67,8 +70,8 @@ public class PanelMateriaPrima extends javax.swing.JPanel {
         pBotones = new javax.swing.JPanel();
         btBuscar = new javax.swing.JButton();
         btAgregar = new javax.swing.JButton();
-        btModifiar = new javax.swing.JButton();
-        btEliminarMP = new javax.swing.JButton();
+        btModificar = new javax.swing.JButton();
+        btEliminar = new javax.swing.JButton();
         pTablaProveedores = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tProveedor = new org.jdesktop.swingx.JXTable();
@@ -102,16 +105,16 @@ public class PanelMateriaPrima extends javax.swing.JPanel {
 
         lbEstado.setText("Estado:");
 
-        javax.swing.GroupLayout pMateriaPrimaLayout = new javax.swing.GroupLayout(pMateriaPrima);
-        pMateriaPrima.setLayout(pMateriaPrimaLayout);
-        pMateriaPrimaLayout.setHorizontalGroup(
-            pMateriaPrimaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pMateriaPrimaLayout.createSequentialGroup()
+        javax.swing.GroupLayout pCamposLayout = new javax.swing.GroupLayout(pCampos);
+        pCampos.setLayout(pCamposLayout);
+        pCamposLayout.setHorizontalGroup(
+            pCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pCamposLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(pMateriaPrimaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(pCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lbCostoAlmacenamiento)
-                    .addGroup(pMateriaPrimaLayout.createSequentialGroup()
-                        .addGroup(pMateriaPrimaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pCamposLayout.createSequentialGroup()
+                        .addGroup(pCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lbPesoPorUnid)
                             .addComponent(lbCostoUnitPorOmision)
                             .addComponent(lbEstado)
@@ -122,7 +125,7 @@ public class PanelMateriaPrima extends javax.swing.JPanel {
                             .addComponent(lbTamanioLoteEstandar)
                             .addComponent(lbPrecioBase))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(pMateriaPrimaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(pCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(cbEstado, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(tfDescripcion)
                             .addComponent(tfUnidadMedida)
@@ -135,47 +138,47 @@ public class PanelMateriaPrima extends javax.swing.JPanel {
                             .addComponent(tfCodigo, javax.swing.GroupLayout.DEFAULT_SIZE, 152, Short.MAX_VALUE))))
                 .addContainerGap(25, Short.MAX_VALUE))
         );
-        pMateriaPrimaLayout.setVerticalGroup(
-            pMateriaPrimaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pMateriaPrimaLayout.createSequentialGroup()
+        pCamposLayout.setVerticalGroup(
+            pCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pCamposLayout.createSequentialGroup()
                 .addGap(47, 47, 47)
-                .addGroup(pMateriaPrimaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(pCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbCodigo)
                     .addComponent(tfCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(pMateriaPrimaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(pCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbNombre)
                     .addComponent(tfNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(pMateriaPrimaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(pCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbCostoAlmacenamiento)
                     .addComponent(tfCostoAlmacenamiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(pMateriaPrimaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(pCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(lbCostoUnitPorOmision)
                     .addComponent(tfCostoUnitPorOmision, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(pMateriaPrimaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(pCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbPesoPorUnid)
                     .addComponent(tfPesoPorUnidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(pMateriaPrimaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(pCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbTamanioLoteEstandar)
                     .addComponent(tfTamanioLoteEstandar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(pMateriaPrimaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(pCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbPrecioBase)
                     .addComponent(tfPrecioBase, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(pMateriaPrimaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(pCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbUnidadMedida)
                     .addComponent(tfUnidadMedida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(11, 11, 11)
-                .addGroup(pMateriaPrimaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(pCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbDescripcion)
                     .addComponent(tfDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(pMateriaPrimaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(pCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cbEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
@@ -192,16 +195,21 @@ public class PanelMateriaPrima extends javax.swing.JPanel {
         });
         pBotones.add(btAgregar);
 
-        btModifiar.setText("Modificar");
-        btModifiar.addActionListener(new java.awt.event.ActionListener() {
+        btModificar.setText("Modificar");
+        btModificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btModifiarActionPerformed(evt);
+                btModificarActionPerformed(evt);
             }
         });
-        pBotones.add(btModifiar);
+        pBotones.add(btModificar);
 
-        btEliminarMP.setText("Eliminar");
-        pBotones.add(btEliminarMP);
+        btEliminar.setText("Eliminar");
+        btEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btEliminarActionPerformed(evt);
+            }
+        });
+        pBotones.add(btEliminar);
 
         pTablaProveedores.setBorder(javax.swing.BorderFactory.createTitledBorder("Proveedores"));
 
@@ -272,7 +280,7 @@ public class PanelMateriaPrima extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(pBotones, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 753, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(pMateriaPrima, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(pCampos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(pTablaProveedores, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
@@ -283,7 +291,7 @@ public class PanelMateriaPrima extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(pTablaProveedores, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(pMateriaPrima, javax.swing.GroupLayout.DEFAULT_SIZE, 369, Short.MAX_VALUE))
+                    .addComponent(pCampos, javax.swing.GroupLayout.DEFAULT_SIZE, 369, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(pBotones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -294,9 +302,20 @@ private void tfCostoAlmacenamientoActionPerformed(java.awt.event.ActionEvent evt
 // TODO add your handling code here:
 }//GEN-LAST:event_tfCostoAlmacenamientoActionPerformed
 
-private void btModifiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btModifiarActionPerformed
-// TODO add your handling code here:
-}//GEN-LAST:event_btModifiarActionPerformed
+private void btModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btModificarActionPerformed
+
+    int opcion = JOptionPane.showConfirmDialog(this,
+                "¿Seguro desea guardar los cambios?", "Aceptar",
+                JOptionPane.YES_NO_OPTION);
+        
+    if(opcion == JOptionPane.YES_OPTION) {
+        actualizarMateriaPrima();
+        FachadaPersistencia.getInstancia().actualizar(materiaPrima, true);
+        Util.getInstancia().limpiarCampos(pCampos);
+        materiaPrima=null;            
+        inicializarBotones();
+    }
+}//GEN-LAST:event_btModificarActionPerformed
 
 private void btAsignarProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAsignarProveedorActionPerformed
     PanelBuscarProveedor buscarProv = new PanelBuscarProveedor(tm);   
@@ -316,17 +335,44 @@ private void btEliminarProveedorActionPerformed(java.awt.event.ActionEvent evt) 
 }//GEN-LAST:event_btEliminarProveedorActionPerformed
 
 private void btAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAgregarActionPerformed
-    FachadaPersistencia.getInstancia().grabar(crearMateriaPrima(), true);
+    if(ValidacionBuscar.getInstancia().existenCamposVacios(pCampos)){
+        JOptionPane.showMessageDialog(this, "Existen campos sin completar");
+    }else{
+        materiaPrima= crearMateriaPrima();
+        if(ValidacionBuscar.getInstancia().materiaPrimaEstaCargadoEnBD(materiaPrima)){
+            JOptionPane.showMessageDialog(this, "La materia prima ya se encuentra registrado");
+        }else{
+            FachadaPersistencia.getInstancia().grabar(materiaPrima, true);
+            Util.getInstancia().limpiarCampos(pCampos);
+            
+            materiaPrima=null;
+        }
+    }
+    
 }//GEN-LAST:event_btAgregarActionPerformed
+
+private void btEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEliminarActionPerformed
+    int opcion = JOptionPane.showConfirmDialog(this,
+                "¿Seguro desea eliminar la Materia Prima?", "Aceptar",
+                JOptionPane.YES_NO_OPTION);
+        
+    if(opcion == JOptionPane.YES_OPTION) {
+        materiaPrima.setBorrado(true);
+        FachadaPersistencia.getInstancia().actualizar(materiaPrima, true);
+        Util.getInstancia().limpiarCampos(pCampos);
+        materiaPrima=null;
+        inicializarBotones();
+    }
+}//GEN-LAST:event_btEliminarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btAgregar;
     private javax.swing.JButton btAsignarProveedor;
     private javax.swing.JButton btBuscar;
-    private javax.swing.JButton btEliminarMP;
+    private javax.swing.JButton btEliminar;
     private javax.swing.JButton btEliminarProveedor;
-    private javax.swing.JButton btModifiar;
+    private javax.swing.JButton btModificar;
     private javax.swing.JComboBox cbEstado;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
@@ -341,7 +387,7 @@ private void btAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
     private javax.swing.JLabel lbTamanioLoteEstandar;
     private javax.swing.JLabel lbUnidadMedida;
     private javax.swing.JPanel pBotones;
-    private javax.swing.JPanel pMateriaPrima;
+    private javax.swing.JPanel pCampos;
     private javax.swing.JPanel pTablaProveedores;
     private org.jdesktop.swingx.JXTable tProveedor;
     private javax.swing.JTextField tfCodigo;
@@ -362,7 +408,7 @@ private void btAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
         mat.setCostoAlmacenamiento(Double.parseDouble(tfCostoAlmacenamiento.getText()));        
         mat.setCostoUnitarioPorOmision(Double.parseDouble(tfCostoUnitPorOmision.getText()));
         mat.setDescripcion(tfDescripcion.getText());
-        mat.setNombreMateriaPrima(tfNombre.getText());
+        mat.setNombre(tfNombre.getText());
         mat.setPesoPorUnidad(Double.parseDouble(tfPesoPorUnidad.getText()));
         mat.setPrecioBase(Double.parseDouble(tfPrecioBase.getText()));
         mat.setTamanioLoteEstandar(Double.parseDouble(tfTamanioLoteEstandar.getText()));
@@ -379,7 +425,7 @@ private void btAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
         tfCostoAlmacenamiento.setText(String.valueOf(mat.getCostoAlmacenamiento()));
         tfCostoUnitPorOmision.setText(String.valueOf(mat.getCostoUnitarioPorOmision()));
         tfDescripcion.setText(mat.getDescripcion());
-        tfNombre.setText(mat.getNombreMateriaPrima());
+        tfNombre.setText(mat.getNombre());
         tfPesoPorUnidad.setText(String.valueOf(mat.getPesoPorUnidad()));
         tfPrecioBase.setText(String.valueOf(mat.getPrecioBase()));
         tfTamanioLoteEstandar.setText(String.valueOf(mat.getTamanioLoteEstandar()));
@@ -392,4 +438,32 @@ private void btAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
         
         materiaPrima=mat;
     }
+    
+    public void setComponente(MateriaPrima mat){
+        materiaPrima=mat;
+        cargarPantallaMateriaPrima(mat);
+        
+    }
+     
+    private void actualizarMateriaPrima(){
+        
+        materiaPrima.setCodigo(tfCodigo.getText());
+        materiaPrima.setCostoAlmacenamiento(Double.parseDouble(tfCostoAlmacenamiento.getText()));        
+        materiaPrima.setCostoUnitarioPorOmision(Double.parseDouble(tfCostoUnitPorOmision.getText()));
+        materiaPrima.setDescripcion(tfDescripcion.getText());
+        materiaPrima.setNombre(tfNombre.getText());
+        materiaPrima.setPesoPorUnidad(Double.parseDouble(tfPesoPorUnidad.getText()));
+        materiaPrima.setPrecioBase(Double.parseDouble(tfPrecioBase.getText()));
+        materiaPrima.setTamanioLoteEstandar(Double.parseDouble(tfTamanioLoteEstandar.getText()));
+        materiaPrima.setUnidadMedida(tfUnidadMedida.getText());
+        materiaPrima.setProveedores(tm.getFilas());  
+        materiaPrima.setEstado((Estado)cbEstado.getSelectedItem());
+        
+    }
+    private void inicializarBotones(){
+        btAgregar.setEnabled(true);
+        btEliminar.setEnabled(false);
+        btModificar.setEnabled(false);
+    }
+    
 }

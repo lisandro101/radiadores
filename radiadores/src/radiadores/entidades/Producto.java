@@ -24,7 +24,7 @@ public abstract class Producto extends Componente implements Serializable {
     private double costoEmision;
     private double costoUnitarioOmision;
     private String descripcion;
-    private String nombre;
+//    private String nombre;
     private String numeroPlano;
     private double pesoUnidad;
     private String politicaCompra;
@@ -89,14 +89,14 @@ public abstract class Producto extends Componente implements Serializable {
         this.descripcion = descripcion;
     }
 
-    @Column(name="nombre", length=100)
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
+//    @Column(name="nombre", length=100)
+//    public String getNombre() {
+//        return nombre;
+//    }
+//
+//    public void setNombre(String nombre) {
+//        this.nombre = nombre;
+//    }
 
     @Column(name="numero_plano", length=20)
     public String getNumeroPlano() {

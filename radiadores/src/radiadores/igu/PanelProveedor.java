@@ -214,7 +214,6 @@ private void btAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
         }else{
             FachadaPersistencia.getInstancia().grabar(proveedor, true);
             Util.getInstancia().limpiarCampos(pCampos);
-            dpInicioActividades.setToolTipText("");
             proveedor=null;
         }
     }
@@ -226,13 +225,13 @@ private void btEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
                 "¿Seguro desea eliminar al Proveedor?", "Aceptar",
                 JOptionPane.YES_NO_OPTION);
         
-        if(opcion == JOptionPane.YES_OPTION) {
-            proveedor.setBorrado(true);
-            FachadaPersistencia.getInstancia().actualizar(proveedor, true);
-            Util.getInstancia().limpiarCampos(pCampos);
-            proveedor=null;
-            inicializarBotones();
-        }
+    if(opcion == JOptionPane.YES_OPTION) {
+        proveedor.setBorrado(true);
+        FachadaPersistencia.getInstancia().actualizar(proveedor, true);
+        Util.getInstancia().limpiarCampos(pCampos);
+        proveedor=null;
+        inicializarBotones();
+    }
     
 }//GEN-LAST:event_btEliminarActionPerformed
 
@@ -242,13 +241,13 @@ private void btModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
                 "¿Seguro desea guardar los cambios?", "Aceptar",
                 JOptionPane.YES_NO_OPTION);
         
-        if(opcion == JOptionPane.YES_OPTION) {
-            actualizarProveedor();
-            FachadaPersistencia.getInstancia().actualizar(proveedor, true);
-            Util.getInstancia().limpiarCampos(pCampos);
-            proveedor=null;            
-            inicializarBotones();
-        }
+    if(opcion == JOptionPane.YES_OPTION) {
+        actualizarProveedor();
+        FachadaPersistencia.getInstancia().actualizar(proveedor, true);
+        Util.getInstancia().limpiarCampos(pCampos);
+        proveedor=null;            
+        inicializarBotones();
+    }
     
     
 }//GEN-LAST:event_btModificarActionPerformed

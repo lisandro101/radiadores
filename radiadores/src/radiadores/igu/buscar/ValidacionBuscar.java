@@ -12,10 +12,16 @@ import javax.persistence.Query;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+import javax.swing.table.AbstractTableModel;
 import org.jdesktop.swingx.JXDatePicker;
 import org.jdesktop.swingx.JXTable;
+import radiadores.entidades.Componente;
+import radiadores.entidades.MateriaPrima;
+import radiadores.entidades.ProductoComponente;
+import radiadores.entidades.ProductoTerminado;
 import radiadores.entidades.Maquina;
 import radiadores.entidades.Proveedor;
+import radiadores.igu.model.ProductoGralTableModel;
 import radiadores.igu.model.MaquinaTableModel;
 import radiadores.igu.model.ProveedorTableModel;
 import radiadores.persistencia.FachadaPersistencia;
@@ -49,6 +55,20 @@ public class ValidacionBuscar {
         return resultado;
     }
     
+
+    public boolean componenteEstaCargadoEnTabla(ProductoGralTableModel tm, Componente valor){
+        boolean resultado= false;
+        List<Componente> componentes= tm.getFilas();
+        
+        for (int i = 0; i < componentes.size(); i++) {
+            if(componentes.get(i).getNombre().equals(valor.getNombre())){
+                resultado=true;
+                
+            }
+        }
+        return resultado;
+    }
+
     public boolean maquinaEstaCargadaEnTabla(MaquinaTableModel tm, Maquina maquina){
         boolean resultado = false;
         List<Maquina> maquinas= tm.getFilas();
@@ -61,8 +81,8 @@ public class ValidacionBuscar {
         
         return resultado;
     }
-    
-    
+
+  
     public boolean proveedorEstaCargadoEnBD(Proveedor proveedor){
         boolean resultado=false;
         List<Proveedor> proveedores;
@@ -77,6 +97,49 @@ public class ValidacionBuscar {
         return  resultado;
     }
     
+
+    public boolean productoComponenteEstaCargadoEnBD(ProductoComponente prod){
+        boolean resultado=false;
+        List<ProductoComponente> productos;
+        
+        productos= FachadaPersistencia.getInstancia().buscar(ProductoComponente.class, "Select c from ProductoComponente c");
+        
+        for (int i = 0; i < productos.size(); i++) {
+            if(prod.getNombre().equals(productos.get(i).getNombre())){
+                resultado=true;
+            }   
+        }    
+        return  resultado;
+    }
+    public boolean productoTerminadoEstaCargadoEnBD(ProductoTerminado prod){
+        boolean resultado=false;
+        List<ProductoTerminado> productos;
+        
+        productos= FachadaPersistencia.getInstancia().buscar(ProductoTerminado.class, "Select c from ProductoTerminado c");
+        
+        for (int i = 0; i < productos.size(); i++) {
+            if(prod.getNombre().equals(productos.get(i).getNombre())){
+                resultado=true;
+            }   
+        }    
+        return  resultado;
+    }
+    public boolean materiaPrimaEstaCargadoEnBD(MateriaPrima prod){
+        boolean resultado=false;
+        List<MateriaPrima> productos;
+        
+        productos= FachadaPersistencia.getInstancia().buscar(MateriaPrima.class, "Select c from MateriaPrima c");
+        
+        for (int i = 0; i < productos.size(); i++) {
+            if(prod.getNombre().equals(productos.get(i).getNombre())){
+                resultado=true;
+            }   
+        }    
+        return  resultado;
+    }
+            
+
+
     public boolean maquinaEstaCargadaEnBD(Maquina maquina){ //TODO Hacer este metodo generico para cualquier clase
         boolean resultado = false;
         List<Maquina> maquinas;
@@ -91,7 +154,7 @@ public class ValidacionBuscar {
         
         return  resultado;
     }
-    
+
     public boolean existenCamposVacios(Container contenedor) {
         boolean resultado=false;
         Component[] componentes = contenedor.getComponents();

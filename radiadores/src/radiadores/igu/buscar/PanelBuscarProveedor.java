@@ -23,7 +23,7 @@ public class PanelBuscarProveedor extends javax.swing.JDialog {
     private ProveedorTableModel tmBuscar;
     private ProveedorTableModel tmOrigen;
     private List<Proveedor> proveedores;
-    private PanelProveedor panelProv;
+    private PanelProveedor panelOrigen;
     private int tipoBusqueda;
     /** Creates new form PanelBuscarProveedor */
     
@@ -38,7 +38,7 @@ public class PanelBuscarProveedor extends javax.swing.JDialog {
     public PanelBuscarProveedor(PanelProveedor prov) {
         initComponents();
         tipoBusqueda=2;
-        panelProv= prov;
+        panelOrigen= prov;
         inicializar();
     }
     
@@ -219,7 +219,7 @@ private void btAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
                 }
             }
         }else{
-            panelProv.setProveedor(resultado);
+            panelOrigen.setProveedor(resultado);
             dispose();
         }
     }

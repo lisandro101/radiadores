@@ -33,6 +33,7 @@ public class Componente implements Serializable {
     
     private String id;
     private String codigo;
+    private String nombre;
     private List<Proveedor> proveedores;
     private boolean borrado;
     
@@ -74,6 +75,16 @@ public class Componente implements Serializable {
 
     @OneToMany(targetEntity=Proveedor.class, cascade=CascadeType.ALL)
     @ManyToMany(mappedBy = "componentes")
+    
+    @Column(name="nombre", length=100)
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+    
     public List<Proveedor> getProveedores() {
         return proveedores;
     }
