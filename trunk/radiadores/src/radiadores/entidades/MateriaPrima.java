@@ -41,7 +41,7 @@ public class MateriaPrima extends Componente implements Serializable {
     private double costoAlmacenamiento;
     private double costoUnitarioPorOmision;
     private String descripcion;
-    private String nombreMateriaPrima;
+    private String nombre;
     private double pesoPorUnidad;
     private double precioBase;
     private List<Proveedor> proveedores;
@@ -76,14 +76,14 @@ public class MateriaPrima extends Componente implements Serializable {
         this.descripcion = descripcion;
     }
 
-    @Column(name="nombre_materia_prima")
-    public String getNombreMateriaPrima() {
-        return nombreMateriaPrima;
-    }
-
-    public void setNombreMateriaPrima(String nombreMateriaPrima) {
-        this.nombreMateriaPrima = nombreMateriaPrima;
-    }
+//    @Column(name="nombre_materia_prima")
+//    public String getNombre() {
+//        return nombre;
+//    }
+//
+//    public void setNombre(String nombreMateriaPrima) {
+//        this.nombre = nombreMateriaPrima;
+//    }
 
     @Column(name="peso_por_unidad")
     public double getPesoPorUnidad() {

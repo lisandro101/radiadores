@@ -15,8 +15,8 @@ ALTER TABLE maquinas DROP FOREIGN KEY FK_maquinas_edificio_id
 ALTER TABLE maquinas DROP FOREIGN KEY FK_maquinas_sector_id
 ALTER TABLE productos_terminados DROP FOREIGN KEY FK_productos_terminados_orden_produccion_id
 ALTER TABLE productos_terminados DROP FOREIGN KEY FK_productos_terminados_id
-ALTER TABLE empleados DROP FOREIGN KEY FK_empleados_cargo_id
 ALTER TABLE rutas_de_fabricacion DROP FOREIGN KEY FK_rutas_de_fabricacion_producto_terminado_id
+ALTER TABLE empleados DROP FOREIGN KEY FK_empleados_cargo_id
 ALTER TABLE productos DROP FOREIGN KEY FK_productos_id
 ALTER TABLE partes_de_estructura DROP FOREIGN KEY FK_partes_de_estructura_componente_id
 ALTER TABLE partes_de_estructura DROP FOREIGN KEY FK_partes_de_estructura_estructura_de_producto_id
@@ -31,17 +31,17 @@ DROP TABLE partes_de_nodo
 DROP TABLE proveedores_componentes
 DROP TABLE materias_primas
 DROP TABLE edificios
-DROP TABLE estructuras_de_productos
 DROP TABLE sectores
+DROP TABLE estructuras_de_productos
 DROP TABLE maquinas
 DROP TABLE proveedores
 DROP TABLE productos_terminados
-DROP TABLE empleados
 DROP TABLE rutas_de_fabricacion
+DROP TABLE empleados
 DROP TABLE cargos
 DROP TABLE productos
 DROP TABLE partes_de_estructura
-DROP TABLE nodos_ruta
 DROP TABLE centros_de_trabajo
+DROP TABLE nodos_ruta
 DROP TABLE componentes
 DROP TABLE ordenes_de_compra

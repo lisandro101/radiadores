@@ -2,7 +2,6 @@ package radiadores.entidades;
 
 import java.io.Serializable;
 import java.util.List;
-import java.util.Map;
 import java.util.UUID;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -27,7 +26,7 @@ public class EstructuraDeProducto implements Serializable {
     private String id;
     private List<ParteDeEstructura> partes;
     private ProductoTerminado productoTerminado;
-    private Componente componente;
+    private Componente componente;           // me parece q no va =!
     private boolean borrado;
 
     /**

@@ -17,16 +17,18 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     /** Creates new form PantallaPrincipal */
     public PantallaPrincipal() {
         initComponents();
-        jTabbedPane1.add("  Materia Prima ", new PanelMateriaPrima());
-        jTabbedPane1.add("    Producto    ", new PanelProducto());
-        jTabbedPane1.add("    Personal    ", new PanelEmpleado());
-        jTabbedPane1.add("  Orden Compra  ", new PanelOrdenCompra());
-        jTabbedPane1.add("Orden Producción", new PanelOrdenProduccion());
-        jTabbedPane1.add("   Maquinaria   ", new PanelMaquina());
-        jTabbedPane1.add("    Proveedor   ", new PanelProveedor());
-        jTabbedPane1.add("      Ruta      ", new PanelRutaFabricacion());
-        jTabbedPane1.add(" Centro Trabajo ", new PanelCentroTrabajo());
-        jTabbedPane1.add("  Orden Compra  ", new PanelOrdenCompra());
+        jTabbedPane1.add("   Materia Prima   ", new PanelMateriaPrima());
+        jTabbedPane1.add("Producto Componente", new PanelProductoComponente());
+        jTabbedPane1.add("Producto Terminado ", new PanelProductoTerminado());
+        jTabbedPane1.add("     Personal      ", new PanelEmpleado());
+        jTabbedPane1.add("   Orden Compra    ", new PanelOrdenCompra());
+        jTabbedPane1.add(" Orden Producción  ", new PanelOrdenProduccion());
+        jTabbedPane1.add("    Maquinaria     ", new PanelMaquina());
+        jTabbedPane1.add("     Proveedor     ", new PanelProveedor());
+        jTabbedPane1.add("    Estructura     ", new PanelEstructuraDeProducto());
+        jTabbedPane1.add("       Ruta        ", new PanelRutaFabricacion());
+        jTabbedPane1.add("  Centro Trabajo   ", new PanelCentroTrabajo());
+        jTabbedPane1.add("   Orden Compra    ", new PanelOrdenCompra());
                   
         setSize(850, 650);
         this.setVisible(true);
