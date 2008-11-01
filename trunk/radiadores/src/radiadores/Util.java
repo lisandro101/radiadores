@@ -7,9 +7,11 @@ package radiadores;
 import java.awt.Component;
 import java.awt.Container;
 import javax.swing.JComboBox;
-import javax.swing.JComponent;
 import javax.swing.JTextField;
+import javax.swing.table.AbstractTableModel;
 import org.jdesktop.swingx.JXDatePicker;
+import org.jdesktop.swingx.JXTable;
+import radiadores.igu.model.IModeloReiniciable;
 
 /**
  *
@@ -19,8 +21,10 @@ public class Util {
     
     private static Util instancia;
 
+    private Util() {
+    }
     
-    public static Util getInstancia(){
+    public synchronized static Util getInstancia(){
         if (instancia == null){
             instancia = new Util();
         }
@@ -33,13 +37,7 @@ public class Util {
      * @return
      */
     public boolean esCadenaVacia(String cadena) {
-        boolean resultado = false;
-
-        if (!cadena.isEmpty()) {
-            resultado = true;
-        }
-
-        return resultado;
+        return cadena == null || cadena.isEmpty();
     }
 
     /**
@@ -48,12 +46,7 @@ public class Util {
      * @return
      */
     public boolean esNumeroNegativo(double numero) {
-        boolean resultado = false;
-
-        if (numero < 0) {
-            resultado = true;
-        }
-        return resultado;
+        return numero < 0;
     }
 
     /**
@@ -290,20 +283,18 @@ public class Util {
      * @param contenedor Panel que se desea limpiar
      */
     public void limpiarCampos(Container contenedor) {
-        
-    Component[] componentes = contenedor.getComponents();
-        
-        for (int i = 0; i < componentes.length; i++) {
-            if (componentes[i] instanceof JTextField) {
-                ((JTextField) componentes[i]).setText("");
+        for (Component componente : contenedor.getComponents()) {
+            if (componente instanceof JTextField) {
+                ((JTextField)componente).setText("");
+            } else if (componente instanceof JComboBox) {
+                ((JComboBox) componente).setToolTipText("");//setSelectedIndex(0);
+            } else if (componente instanceof JXDatePicker) {
+                ((JXDatePicker) componente).setDate(null);//setSelectedIndex(0);
+            } else if (componente instanceof JXTable) {
+                ((IModeloReiniciable)((JXTable)componente).getModel()).reiniciar();
+            } else if (componente instanceof Container) {
+                limpiarCampos((Container)componente);
             }
-            else if (componentes[i] instanceof JComboBox) {
-                ((JComboBox) componentes[i]).setToolTipText("");//setSelectedIndex(0);
-            }
-            else if (componentes[i] instanceof JXDatePicker) {
-                ((JXDatePicker) componentes[i]).setDate(null);//setSelectedIndex(0);
-            }
-            
         }
     }
 }

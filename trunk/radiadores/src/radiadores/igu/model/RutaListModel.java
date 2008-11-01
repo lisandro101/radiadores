@@ -1,8 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package radiadores.igu.model;
 
 import java.util.ArrayList;
@@ -12,9 +7,9 @@ import radiadores.entidades.NodoRuta;
 
 /**
  *
- * @author Lisandro
+ * @author Franco Catena, Mario Mariani, Lisandro Nieto, Sebastián Torres
  */
-public class RutaListModel extends AbstractListModel{
+public class RutaListModel extends AbstractListModel implements IModeloReiniciable {
     
     private static final long serialVersionUID = 1L;
     private List<NodoRuta> nodos;
@@ -100,6 +95,14 @@ public class RutaListModel extends AbstractListModel{
     public void eliminarElemento(int indice){        
         nodos.remove(indice);
         fireIntervalRemoved(this, indice, indice);       
+    }
+
+    @Override
+    public void reiniciar() {
+        int tamanio = nodos.size();
+        nodos.clear();
+        
+        fireIntervalRemoved(this, 0, tamanio);
     }
 
 }

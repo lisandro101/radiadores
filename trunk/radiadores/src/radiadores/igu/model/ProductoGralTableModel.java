@@ -12,9 +12,9 @@ import radiadores.entidades.Componente;
 
 /**
  *
- * @author stafoxter
+ * @author Franco Catena, Mario Mariani, Lisandro Nieto, Sebastián Torres
  */
-public class ProductoGralTableModel extends AbstractTableModel {
+public class ProductoGralTableModel extends AbstractTableModel implements IModeloReiniciable {
     private static final long serialVersionUID = 1L;
     private static final String[] NOMBRE_COLUMNAS = {"Nombre", "Codigo"};
     private static final boolean[] COLUMNAS_EDITABLES = {false, false};
@@ -153,9 +153,14 @@ public class ProductoGralTableModel extends AbstractTableModel {
     }
     
     public void limpiarTableModel(){        
-        fireTableRowsDeleted(0, componentes.size());
+        int tamanio = componentes.size();
         componentes.clear();
+        
+        fireTableRowsDeleted(0, tamanio);
     }
-    
-    
+
+    @Override
+    public void reiniciar() {
+        limpiarTableModel();
+    }
 }
