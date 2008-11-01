@@ -1,8 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package radiadores.igu.model;
 
 import java.util.ArrayList;
@@ -12,10 +7,10 @@ import radiadores.entidades.Maquina;
 
 /**
  *
- * @author stafoxter
+ * @author Franco Catena, Mario Mariani, Lisandro Nieto, Sebastián Torres
  */
 
-public class MaquinaTableModel extends AbstractTableModel {
+public class MaquinaTableModel extends AbstractTableModel implements IModeloReiniciable {
     private static final long serialVersionUID = 1L;
     private static final String[] NOMBRE_COLUMNAS = {"Nombre", "Codigo", "Ubicacion"};
     private static final boolean[] COLUMNAS_EDITABLES = {false, false, false};
@@ -164,9 +159,11 @@ public class MaquinaTableModel extends AbstractTableModel {
         fireTableRowsDeleted(indice, indice);       
     }
     
-    public void limpiarTableModel(){        
-        fireTableRowsDeleted(0, maquina.size());
+    public void limpiarTableModel() {
+        int tamanio = maquina.size();
         maquina.clear();
+        
+        fireTableRowsDeleted(0, tamanio);
     }
     
     public void imprimirModel(){
@@ -178,5 +175,9 @@ public class MaquinaTableModel extends AbstractTableModel {
         }
         System.out.println("\n");
     }
-    
+
+    @Override
+    public void reiniciar() {
+        limpiarTableModel();
+    }
 }

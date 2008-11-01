@@ -15,7 +15,7 @@ import radiadores.entidades.Proveedor;
  * @author stafoxter
  */
 
-public class ProveedorTableModel extends AbstractTableModel {
+public class ProveedorTableModel extends AbstractTableModel implements IModeloReiniciable {
     private static final long serialVersionUID = 1L;
     private static final String[] NOMBRE_COLUMNAS = {"Nombre", "Telefono", "Contacto"};
     private static final boolean[] COLUMNAS_EDITABLES = {false, false, false};
@@ -156,9 +156,11 @@ public class ProveedorTableModel extends AbstractTableModel {
         fireTableRowsDeleted(indice, indice);       
     }
     
-    public void limpiarTableModel(){        
-        fireTableRowsDeleted(0, proveedores.size());
+    public void limpiarTableModel(){
+        int tamanio = proveedores.size();
         proveedores.clear();
+        
+        fireTableRowsDeleted(0, tamanio);
     }
     
     public void imprimirModel(){
@@ -170,5 +172,9 @@ public class ProveedorTableModel extends AbstractTableModel {
         }
         System.out.println("\n");
     }
-    
+
+    @Override
+    public void reiniciar() {
+        limpiarTableModel();
+    }
 }

@@ -1,8 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package radiadores.igu.model;
 
 import java.util.ArrayList;
@@ -12,9 +7,9 @@ import radiadores.entidades.Cargo;
 
 /**
  *
- * @author stafoxter
+ * @author Franco Catena, Mario Mariani, Lisandro Nieto, Sebastián Torres
  */
-public class CargoEmpleadoTableModel extends AbstractTableModel {
+public class CargoEmpleadoTableModel extends AbstractTableModel implements IModeloReiniciable {
     private static final long serialVersionUID = 1L;
     private static final String[] NOMBRE_COLUMNAS = {"Nombre", "Precio Hora", "Horas Laborales"};
     private static final boolean[] COLUMNAS_EDITABLES = {false, false, false};
@@ -156,8 +151,15 @@ public class CargoEmpleadoTableModel extends AbstractTableModel {
     }
     
     public void limpiarTableModel(){        
-        fireTableRowsDeleted(0, cargos.size());
+        int tamanio = cargos.size();
         cargos.clear();
+        
+        fireTableRowsDeleted(0, tamanio);
+    }
+
+    @Override
+    public void reiniciar() {
+        limpiarTableModel();
     }
     
 //    public void imprimirModel(){

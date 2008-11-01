@@ -1,10 +1,10 @@
 ALTER TABLE detalles_ordenes_de_compra DROP FOREIGN KEY FK_detalles_ordenes_de_compra_componente_id
 ALTER TABLE detalles_ordenes_de_compra DROP FOREIGN KEY FK_detalles_ordenes_de_compra_orden_de_compra_id
 ALTER TABLE productos_componente DROP FOREIGN KEY FK_productos_componente_id
-ALTER TABLE horas_laborales DROP FOREIGN KEY FK_horas_laborales_centro_de_trabajo_id
-ALTER TABLE horas_laborales DROP FOREIGN KEY FK_horas_laborales_empleado_id
 ALTER TABLE partes_de_nodo DROP FOREIGN KEY FK_partes_de_nodo_componente_id
 ALTER TABLE partes_de_nodo DROP FOREIGN KEY FK_partes_de_nodo_nodo_ruta_id
+ALTER TABLE horas_laborales DROP FOREIGN KEY FK_horas_laborales_centro_de_trabajo_id
+ALTER TABLE horas_laborales DROP FOREIGN KEY FK_horas_laborales_empleado_id
 ALTER TABLE proveedores_componentes DROP FOREIGN KEY FK_proveedores_componentes_componentes_id
 ALTER TABLE proveedores_componentes DROP FOREIGN KEY FK_proveedores_componentes_proveedores_id
 ALTER TABLE materias_primas DROP FOREIGN KEY FK_materias_primas_id
@@ -18,21 +18,21 @@ ALTER TABLE productos_terminados DROP FOREIGN KEY FK_productos_terminados_id
 ALTER TABLE rutas_de_fabricacion DROP FOREIGN KEY FK_rutas_de_fabricacion_producto_terminado_id
 ALTER TABLE empleados DROP FOREIGN KEY FK_empleados_cargo_id
 ALTER TABLE productos DROP FOREIGN KEY FK_productos_id
-ALTER TABLE partes_de_estructura DROP FOREIGN KEY FK_partes_de_estructura_componente_id
-ALTER TABLE partes_de_estructura DROP FOREIGN KEY FK_partes_de_estructura_estructura_de_producto_id
 ALTER TABLE nodos_ruta DROP FOREIGN KEY FK_nodos_ruta_centro_de_trabajo
 ALTER TABLE nodos_ruta DROP FOREIGN KEY FK_nodos_ruta_ruta_fabricacion_id
+ALTER TABLE partes_de_estructura DROP FOREIGN KEY FK_partes_de_estructura_componente_id
+ALTER TABLE partes_de_estructura DROP FOREIGN KEY FK_partes_de_estructura_estructura_de_producto_id
 ALTER TABLE ordenes_de_compra DROP FOREIGN KEY FK_ordenes_de_compra_proveedor_id
 DROP TABLE detalles_ordenes_de_compra
 DROP TABLE ordenes_de_produccion
 DROP TABLE productos_componente
-DROP TABLE horas_laborales
 DROP TABLE partes_de_nodo
+DROP TABLE horas_laborales
 DROP TABLE proveedores_componentes
 DROP TABLE materias_primas
 DROP TABLE edificios
-DROP TABLE sectores
 DROP TABLE estructuras_de_productos
+DROP TABLE sectores
 DROP TABLE maquinas
 DROP TABLE proveedores
 DROP TABLE productos_terminados
@@ -40,8 +40,8 @@ DROP TABLE rutas_de_fabricacion
 DROP TABLE empleados
 DROP TABLE cargos
 DROP TABLE productos
-DROP TABLE partes_de_estructura
 DROP TABLE centros_de_trabajo
 DROP TABLE nodos_ruta
+DROP TABLE partes_de_estructura
 DROP TABLE componentes
 DROP TABLE ordenes_de_compra
