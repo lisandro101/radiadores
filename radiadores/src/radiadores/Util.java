@@ -10,6 +10,7 @@ import javax.swing.JComboBox;
 import javax.swing.JTextField;
 import javax.swing.table.AbstractTableModel;
 import org.jdesktop.swingx.JXDatePicker;
+import org.jdesktop.swingx.JXList;
 import org.jdesktop.swingx.JXTable;
 import radiadores.igu.model.IModeloReiniciable;
 
@@ -287,11 +288,13 @@ public class Util {
             if (componente instanceof JTextField) {
                 ((JTextField)componente).setText("");
             } else if (componente instanceof JComboBox) {
-                ((JComboBox) componente).setToolTipText("");//setSelectedIndex(0);
+                ((JComboBox) componente).setSelectedIndex(0);
             } else if (componente instanceof JXDatePicker) {
-                ((JXDatePicker) componente).setDate(null);//setSelectedIndex(0);
+                ((JXDatePicker) componente).setDate(null);
             } else if (componente instanceof JXTable) {
                 ((IModeloReiniciable)((JXTable)componente).getModel()).reiniciar();
+            } else if (componente instanceof JXList) {
+                ((IModeloReiniciable)((JXList)componente).getModel()).reiniciar();
             } else if (componente instanceof Container) {
                 limpiarCampos((Container)componente);
             }
