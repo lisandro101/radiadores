@@ -15,6 +15,7 @@ import javax.swing.JTextField;
 import javax.swing.table.AbstractTableModel;
 import org.jdesktop.swingx.JXDatePicker;
 import org.jdesktop.swingx.JXTable;
+import radiadores.entidades.CentroDeTrabajo;
 import radiadores.entidades.Componente;
 import radiadores.entidades.MateriaPrima;
 import radiadores.entidades.ProductoComponente;
@@ -34,26 +35,42 @@ public class ValidacionBuscar {
 
     private static ValidacionBuscar instancia;
     
+    private ValidacionBuscar(){
+        
+    }
+    
     public synchronized static ValidacionBuscar getInstancia(){
         if (instancia == null){
             instancia = new ValidacionBuscar();
         }
         return instancia;            
     }
-    private ValidacionBuscar(){
+
+    public boolean centroEstaCargadoEnBD(CentroDeTrabajo centroDeTrabajo) {
+        boolean resultado = false;
+        List<CentroDeTrabajo> centros;
         
+        centros = FachadaPersistencia.getInstancia().buscar(CentroDeTrabajo.class, "Select c from CentroDeTrabajo c");
+        
+        for (CentroDeTrabajo centro : centros) {
+            if(centro.getNombre().equals(centro.getNombre())){
+                resultado = true;
+            }
+        }
+            
+        return  resultado;
     }
     
     public boolean proveedorEstaCargadoEnTabla(ProveedorTableModel tm, Proveedor proveedor){
         boolean resultado= false;
         List<Proveedor> proveedores= tm.getFilas();
         
-        for (int i = 0; i < proveedores.size(); i++) {
-            if(proveedores.get(i).getNombreProveedor().equals(proveedor.getNombreProveedor())){
-                resultado=true;
-                
+        for (Proveedor prov : proveedores) {
+            if(prov.getNombreProveedor().equals(proveedor.getNombreProveedor())){
+                resultado = true;
             }
         }
+        
         return resultado;
     }
     

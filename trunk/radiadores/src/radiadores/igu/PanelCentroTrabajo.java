@@ -6,9 +6,14 @@
 
 package radiadores.igu;
 
+import javax.swing.JOptionPane;
+import radiadores.Util;
 import radiadores.entidades.CentroDeTrabajo;
+import radiadores.igu.buscar.PanelBuscarCentroTrabajo;
 import radiadores.igu.buscar.PanelBuscarMaquina;
+import radiadores.igu.buscar.ValidacionBuscar;
 import radiadores.igu.model.MaquinaTableModel;
+import radiadores.persistencia.FachadaPersistencia;
 
 /**
  *
@@ -51,8 +56,7 @@ public class PanelCentroTrabajo extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         jtMaquina = new org.jdesktop.swingx.JXTable();
         jPanel4 = new javax.swing.JPanel();
-        btBuscarMaquina = new javax.swing.JButton();
-        btModificarMaquina = new javax.swing.JButton();
+        btAgregarMaquina = new javax.swing.JButton();
         btEliminarMaquina = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         btBuscar = new javax.swing.JButton();
@@ -127,21 +131,13 @@ public class PanelCentroTrabajo extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(jtMaquina);
 
-        btBuscarMaquina.setText("Buscar");
-        btBuscarMaquina.addActionListener(new java.awt.event.ActionListener() {
+        btAgregarMaquina.setText("Agregar");
+        btAgregarMaquina.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btBuscarMaquinaActionPerformed(evt);
+                btAgregarMaquinaActionPerformed(evt);
             }
         });
-        jPanel4.add(btBuscarMaquina);
-
-        btModificarMaquina.setText("Modificar");
-        btModificarMaquina.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btModificarMaquinaActionPerformed(evt);
-            }
-        });
-        jPanel4.add(btModificarMaquina);
+        jPanel4.add(btAgregarMaquina);
 
         btEliminarMaquina.setText("Eliminar");
         btEliminarMaquina.addActionListener(new java.awt.event.ActionListener() {
@@ -173,6 +169,11 @@ public class PanelCentroTrabajo extends javax.swing.JPanel {
         );
 
         btBuscar.setText("Buscar");
+        btBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btBuscarActionPerformed(evt);
+            }
+        });
         jPanel5.add(btBuscar);
 
         btAgregar.setText("Agregar");
@@ -225,16 +226,25 @@ public class PanelCentroTrabajo extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-private void btModificarMaquinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btModificarMaquinaActionPerformed
-// TODO add your handling code here:
-}//GEN-LAST:event_btModificarMaquinaActionPerformed
-
 private void btEliminarMaquinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEliminarMaquinaActionPerformed
-// TODO add your handling code here:
+    int filaSeleccionada = jtMaquina.getSelectedRow();
+    if(filaSeleccionada == -1){
+        JOptionPane.showMessageDialog(this, "No se ha seleccionado ninguna Maquina");
+    }else{
+        tmMaquina.eliminarFila(filaSeleccionada);
+    }
 }//GEN-LAST:event_btEliminarMaquinaActionPerformed
 
 private void btModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btModificarActionPerformed
-// TODO add your handling code here:
+    int opcion = JOptionPane.showConfirmDialog(this, "¿Seguro desea guardar los cambios?", "Aceptar", JOptionPane.YES_NO_OPTION);
+        
+    if(opcion == JOptionPane.YES_OPTION) {
+        actualizarCentroTrabajo();
+        FachadaPersistencia.getInstancia().actualizar(centroDeTrabajo, true);
+        Util.getInstancia().limpiarCampos(pCentroTrabajo);
+        centroDeTrabajo = null;            
+        inicializarBotones();
+    }
 }//GEN-LAST:event_btModificarActionPerformed
 
 private void btEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEliminarActionPerformed
@@ -242,24 +252,64 @@ private void btEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
 }//GEN-LAST:event_btEliminarActionPerformed
 
 private void btAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAgregarActionPerformed
-// TODO add your handling code here:
+     if(tfCodigo.getText().equals("") || tfNombre.getText().equals("")){
+        JOptionPane.showMessageDialog(this, "Existen campos obligatorios sin completar.");
+    }else{
+        centroDeTrabajo = crearCentroTrabajo();
+        if(ValidacionBuscar.getInstancia().centroEstaCargadoEnBD(centroDeTrabajo)){
+            JOptionPane.showMessageDialog(this, "El Centro de Trabajo ya se encuentra cargado en el sistema.");
+        }else{
+            FachadaPersistencia.getInstancia().grabar(crearCentroTrabajo(), true);
+            Util.getInstancia().limpiarCampos(pCentroTrabajo);
+            centroDeTrabajo = null;
+        }
+    }
 }//GEN-LAST:event_btAgregarActionPerformed
 
-private void btBuscarMaquinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBuscarMaquinaActionPerformed
+private void btAgregarMaquinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAgregarMaquinaActionPerformed
     PanelBuscarMaquina buscarMaquina = new PanelBuscarMaquina(tmMaquina);   
     buscarMaquina.setModal(true);
     buscarMaquina.setVisible(true);
-}//GEN-LAST:event_btBuscarMaquinaActionPerformed
+}//GEN-LAST:event_btAgregarMaquinaActionPerformed
 
+private void btBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBuscarActionPerformed
+    PanelBuscarCentroTrabajo buscarCentroTrabajo = new PanelBuscarCentroTrabajo(this);   
+    buscarCentroTrabajo.setModal(true);
+    buscarCentroTrabajo.setVisible(true);
+}//GEN-LAST:event_btBuscarActionPerformed
 
+ private CentroDeTrabajo crearCentroTrabajo(){
+        CentroDeTrabajo centro = new CentroDeTrabajo();
+        
+        centro.setCodigo(tfCodigo.getText());
+        centro.setNombre(tfNombre.getText());
+        centro.setDescripcion(tfNombre.getText());
+        centro.setMaquinas(tmMaquina.getFilas());
+        
+        return centro;
+    }
+ 
+ private void actualizarCentroTrabajo(){   
+        centroDeTrabajo.setNombre(tfNombre.getText());
+        centroDeTrabajo.setCodigo(tfCodigo.getText());
+        centroDeTrabajo.setDescripcion(tfDescripcion.getText());
+        centroDeTrabajo.setMaquinas(((MaquinaTableModel)jtMaquina.getModel()).getFilas());
+        
+    }
+
+ private void inicializarBotones(){
+        btAgregar.setEnabled(false);
+        btEliminar.setEnabled(false);
+        btModificar.setEnabled(false);
+ }
+ 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btAgregar;
+    private javax.swing.JButton btAgregarMaquina;
     private javax.swing.JButton btBuscar;
-    private javax.swing.JButton btBuscarMaquina;
     private javax.swing.JButton btEliminar;
     private javax.swing.JButton btEliminarMaquina;
     private javax.swing.JButton btModificar;
-    private javax.swing.JButton btModificarMaquina;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
