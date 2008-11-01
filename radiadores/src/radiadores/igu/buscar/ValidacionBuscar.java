@@ -41,21 +41,6 @@ public class ValidacionBuscar {
         }
         return instancia;            
     }
-
-    public boolean centroEstaCargadoEnBD(CentroDeTrabajo centroDeTrabajo) {
-        boolean resultado = false;
-        List<CentroDeTrabajo> centros;
-        
-        centros = FachadaPersistencia.getInstancia().buscar(CentroDeTrabajo.class, "Select c from CentroDeTrabajo c");
-        
-        for (CentroDeTrabajo centro : centros) {
-            if(centro.getNombre().equals(centro.getNombre())){
-                resultado = true;
-            }
-        }
-            
-        return  resultado;
-    }
     
     public boolean proveedorEstaCargadoEnTabla(ProveedorTableModel tm, Proveedor proveedor){
         boolean resultado= false;
@@ -109,6 +94,21 @@ public class ValidacionBuscar {
                 resultado=true;
             }   
         }    
+        return  resultado;
+    }
+    
+    public boolean centroEstaCargadoEnBD(CentroDeTrabajo centroDeTrabajo) {
+        boolean resultado = false;
+        List<CentroDeTrabajo> centros;
+        
+        centros = FachadaPersistencia.getInstancia().buscar(CentroDeTrabajo.class, "Select c from CentroDeTrabajo c");
+        
+        for (CentroDeTrabajo centro : centros) {
+            if(centroDeTrabajo.getNombre().equals(centro.getNombre())){
+                resultado = true;
+            }
+        }
+            
         return  resultado;
     }
     
