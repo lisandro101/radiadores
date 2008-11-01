@@ -72,9 +72,6 @@ public class Componente implements Serializable {
     public void setCodigo(String codigo) {
         this.codigo = codigo;
     }
-
-    @OneToMany(targetEntity=Proveedor.class, cascade=CascadeType.ALL)
-    @ManyToMany(mappedBy = "componentes")
     
     @Column(name="nombre", length=100)
     public String getNombre() {
@@ -85,6 +82,8 @@ public class Componente implements Serializable {
         this.nombre = nombre;
     }
     
+    @OneToMany(targetEntity=Proveedor.class, cascade=CascadeType.ALL)
+    @ManyToMany(mappedBy = "componentes")
     public List<Proveedor> getProveedores() {
         return proveedores;
     }
