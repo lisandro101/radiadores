@@ -7,7 +7,7 @@
 package radiadores.igu;
 
 import javax.swing.JOptionPane;
-import radiadores.Util;
+import radiadores.utils.Util;
 import radiadores.entidades.Cargo;
 import radiadores.entidades.Empleado;
 import radiadores.persistencia.FachadaPersistencia;
@@ -298,7 +298,7 @@ private void btBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
 
     public void setCargoEmpleado(Cargo cargo){
         this.cargo= cargo; 
-        tfCargo.setText(cargo.getNombreCargo());
+        tfCargo.setText(cargo.getNombre());
     }
     
     

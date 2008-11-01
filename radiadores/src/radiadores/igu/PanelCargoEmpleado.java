@@ -9,7 +9,7 @@ package radiadores.igu;
 import java.util.List;
 import javax.persistence.Query;
 import javax.swing.JOptionPane;
-import radiadores.Util;
+import radiadores.utils.Util;
 import radiadores.entidades.Cargo;
 import radiadores.igu.buscar.ValidacionBuscar;
 import radiadores.igu.model.CargoEmpleadoTableModel;
@@ -389,7 +389,7 @@ private void btEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
     private Cargo crearCargo(){
         cargo = new Cargo();
         
-        cargo.setNombreCargo(tfNombre.getText());
+        cargo.setNombre(tfNombre.getText());
         cargo.setValorHora(Double.parseDouble(tfPrecioHora.getText()));
         cargo.setHorasPorMes(Integer.parseInt(tfHorasLaborales.getText()));
         
@@ -399,7 +399,7 @@ private void btEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
     
     private void cargarPantallaCargo(Cargo cargo){
         
-        tfNombre.setText(cargo.getNombreCargo());
+        tfNombre.setText(cargo.getNombre());
         tfPrecioHora.setText(String.valueOf(cargo.getValorHora()));
         tfHorasLaborales.setText(String.valueOf(cargo.getHorasPorMes()));
                 
@@ -413,7 +413,7 @@ private void btEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
     }
     
     private void actualizarCargoEmpleado(){
-        cargo.setNombreCargo(tfNombre.getText());
+        cargo.setNombre(tfNombre.getText());
         cargo.setValorHora(Double.parseDouble(tfPrecioHora.getText()));
         cargo.setHorasPorMes(Integer.parseInt(tfHorasLaborales.getText()));
         

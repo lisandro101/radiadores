@@ -1,6 +1,8 @@
 package radiadores.entidades;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -9,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+import radiadores.persistencia.IPersistente;
 
 /**
  * Contiene los datos de una pieza de la estructura de un producto
@@ -18,8 +22,9 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name="partes_de_estructura")
-public class ParteDeEstructura implements Serializable {
+public class ParteDeEstructura implements Serializable, IPersistente {
     private static final long serialVersionUID = 1L;
+    private static final List<String> CAMPOS_UNICOS = new ArrayList<String>(0);
     
     private String id;
     private EstructuraDeProducto estructura;
@@ -90,5 +95,11 @@ public class ParteDeEstructura implements Serializable {
 
     public void setBorrado(boolean borrado) {
         this.borrado = borrado;
+    }
+
+    @Override
+    @Transient
+    public List<String> getCamposUnicos() {
+        return CAMPOS_UNICOS;
     }
 }

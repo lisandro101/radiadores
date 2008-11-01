@@ -1,11 +1,15 @@
 package radiadores.entidades;
 
 import java.io.Serializable;
+import java.util.Arrays;
+import java.util.List;
 import java.util.UUID;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+import radiadores.persistencia.IPersistente;
 
 /**
  * Contiene los datos de un sector
@@ -15,11 +19,14 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name="sectores")
-public class Sector implements Serializable {
+public class Sector implements Serializable, IPersistente {
     private static final long serialVersionUID = 1L;
+    private static final List<String> CAMPOS_UNICOS = Arrays.asList(
+            "nombre", "codigo");
 
     private String id;
     private String codigo;
+    private String nombre;
     private boolean borrado;
 
     /**
@@ -57,6 +64,15 @@ public class Sector implements Serializable {
     public void setCodigo(String codigo) {
         this.codigo = codigo;
     }
+
+    @Column(name="nombre", length=100)
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
     
     @Column(name="borrado")
     public boolean isBorrado() {
@@ -65,5 +81,11 @@ public class Sector implements Serializable {
 
     public void setBorrado(boolean borrado) {
         this.borrado = borrado;
+    }
+
+    @Override
+    @Transient
+    public List<String> getCamposUnicos() {
+        return CAMPOS_UNICOS;
     }
 }

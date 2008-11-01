@@ -8,7 +8,7 @@ package radiadores.igu;
 
 import javax.swing.JOptionPane;
 import radiadores.igu.buscar.PanelBuscarProveedor;
-import radiadores.Util;
+import radiadores.utils.Util;
 import radiadores.entidades.Proveedor;
 import radiadores.igu.buscar.ValidacionBuscar;
 import radiadores.persistencia.FachadaPersistencia;
@@ -277,7 +277,7 @@ private void btModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
     private Proveedor crearProveedor(){
         proveedor = new Proveedor();
         
-        proveedor.setNombreProveedor(tfNombre.getText());
+        proveedor.setNombre(tfNombre.getText());
         proveedor.setNombreContacto(tfContacto.getText());
         proveedor.setTelefono(tfTelefono.getText());
         proveedor.setMail(tfMail.getText());
@@ -288,7 +288,7 @@ private void btModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
     }
     
     private void cargarPantallaProveedor(Proveedor prov){
-        tfNombre.setText(prov.getNombreProveedor());
+        tfNombre.setText(prov.getNombre());
         tfContacto.setText(prov.getNombreContacto());
         tfTelefono.setText(prov.getTelefono());
         tfMail.setText(prov.getMail());
@@ -308,7 +308,7 @@ private void btModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
     
     private void actualizarProveedor(){
         
-        proveedor.setNombreProveedor(tfNombre.getText());
+        proveedor.setNombre(tfNombre.getText());
         proveedor.setNombreContacto(tfContacto.getText());
         proveedor.setTelefono(tfTelefono.getText());
         proveedor.setMail(tfMail.getText());

@@ -8,7 +8,7 @@ package radiadores.igu;
 
 import radiadores.igu.buscar.PanelBuscarMaquina;
 import javax.swing.JOptionPane;
-import radiadores.Util;
+import radiadores.utils.Util;
 import radiadores.entidades.Edificio;
 import radiadores.entidades.Maquina;
 import radiadores.entidades.Sector;

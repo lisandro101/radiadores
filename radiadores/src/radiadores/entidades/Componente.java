@@ -1,6 +1,7 @@
 package radiadores.entidades;
 
 import java.io.Serializable;
+import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 import javax.persistence.CascadeType;
@@ -15,6 +16,8 @@ import javax.persistence.InheritanceType;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+import radiadores.persistencia.IPersistente;
 
 /**
  * Contiene los datos de un componente genérico (puede ser una materia prima
@@ -28,8 +31,10 @@ import javax.persistence.Table;
 @Inheritance(strategy=InheritanceType.JOINED)
 @DiscriminatorColumn(name="tipo", discriminatorType=DiscriminatorType.CHAR)
 @DiscriminatorValue("X")
-public class Componente implements Serializable {
+public class Componente implements Serializable, IPersistente {
     private static final long serialVersionUID = 1L;
+    private static final List<String> CAMPOS_UNICOS = Arrays.asList(
+            "nombre", "codigo");
     
     private String id;
     private String codigo;
@@ -108,5 +113,11 @@ public class Componente implements Serializable {
 
     public void setTipo(char tipo) {
         this.tipo = tipo;
+    }
+    
+    @Override
+    @Transient
+    public List<String> getCamposUnicos() {
+        return CAMPOS_UNICOS;
     }
 }

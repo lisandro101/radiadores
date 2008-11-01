@@ -1,6 +1,7 @@
 package radiadores.entidades;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -14,6 +15,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
+import radiadores.persistencia.IPersistente;
 
 /**
  * Contiene los datos de una orden de compra
@@ -23,8 +26,9 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @Table(name="ordenes_de_compra")
-public class OrdenCompra implements Serializable {
+public class OrdenCompra implements Serializable, IPersistente {
     private static final long serialVersionUID = 1L;
+    private static final List<String> CAMPOS_UNICOS = new ArrayList<String>(0);
     
     private String id;
     private Proveedor proveedor;
@@ -107,5 +111,11 @@ public class OrdenCompra implements Serializable {
 
     public void setBorrado(boolean borrado) {
         this.borrado = borrado;
+    }
+
+    @Override
+    @Transient
+    public List<String> getCamposUnicos() {
+        return CAMPOS_UNICOS;
     }
 }

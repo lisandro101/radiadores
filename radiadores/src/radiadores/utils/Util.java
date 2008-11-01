@@ -2,13 +2,12 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package radiadores;
+package radiadores.utils;
 
 import java.awt.Component;
 import java.awt.Container;
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
-import javax.swing.table.AbstractTableModel;
 import org.jdesktop.swingx.JXDatePicker;
 import org.jdesktop.swingx.JXList;
 import org.jdesktop.swingx.JXTable;

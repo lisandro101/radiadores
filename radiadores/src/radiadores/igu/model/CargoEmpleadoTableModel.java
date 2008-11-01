@@ -94,7 +94,7 @@ public class CargoEmpleadoTableModel extends AbstractTableModel implements IMode
         
         switch(columna) {
             case 0:
-                resultado = cargos.get(fila).getNombreCargo();
+                resultado = cargos.get(fila).getNombre();
                 break;
             case 1:
                 resultado = cargos.get(fila).getValorHora();

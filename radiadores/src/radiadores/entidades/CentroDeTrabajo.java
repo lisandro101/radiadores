@@ -1,6 +1,7 @@
 package radiadores.entidades;
 
 import java.io.Serializable;
+import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 import javax.persistence.CascadeType;
@@ -9,6 +10,8 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+import radiadores.persistencia.IPersistente;
 
 /**
  * Contiene la información de un centro de trabajo
@@ -18,8 +21,9 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name="centros_de_trabajo")
-public class CentroDeTrabajo implements Serializable {
+public class CentroDeTrabajo implements IPersistente, Serializable {
     private static final long serialVersionUID = 1L;
+    private static final List<String> CAMPOS_UNICOS = Arrays.asList("nombre");
     
     private String id;
     private List<Maquina> maquinas;
@@ -99,5 +103,11 @@ public class CentroDeTrabajo implements Serializable {
 
     public void setBorrado(boolean borrado) {
         this.borrado = borrado;
+    }
+
+    @Override
+    @Transient
+    public List<String> getCamposUnicos() {
+        return CAMPOS_UNICOS;
     }
 }
