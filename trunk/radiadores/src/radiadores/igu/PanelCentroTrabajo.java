@@ -6,8 +6,10 @@
 
 package radiadores.igu;
 
+import java.util.List;
 import javax.swing.JOptionPane;
 import radiadores.entidades.CentroDeTrabajo;
+import radiadores.entidades.Maquina;
 import radiadores.igu.buscar.PanelBuscarCentroTrabajo;
 import radiadores.igu.buscar.PanelBuscarMaquina;
 import radiadores.igu.buscar.ValidacionBuscar;
@@ -52,7 +54,7 @@ public class PanelCentroTrabajo extends javax.swing.JPanel {
         tfDescripcion = new javax.swing.JTextField();
         lbCodigo = new javax.swing.JLabel();
         tfCodigo = new javax.swing.JTextField();
-        jPanel2 = new javax.swing.JPanel();
+        pMaquinaria = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jtMaquina = new org.jdesktop.swingx.JXTable();
         jPanel4 = new javax.swing.JPanel();
@@ -105,7 +107,7 @@ public class PanelCentroTrabajo extends javax.swing.JPanel {
                 .addGap(16, 16, 16))
         );
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Maquinaria"));
+        pMaquinaria.setBorder(javax.swing.BorderFactory.createTitledBorder("Maquinaria"));
 
         jtMaquina.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -147,20 +149,20 @@ public class PanelCentroTrabajo extends javax.swing.JPanel {
         });
         jPanel4.add(btEliminarMaquina);
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+        javax.swing.GroupLayout pMaquinariaLayout = new javax.swing.GroupLayout(pMaquinaria);
+        pMaquinaria.setLayout(pMaquinariaLayout);
+        pMaquinariaLayout.setHorizontalGroup(
+            pMaquinariaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pMaquinariaLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(pMaquinariaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 573, Short.MAX_VALUE)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 573, Short.MAX_VALUE))
                 .addContainerGap())
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+        pMaquinariaLayout.setVerticalGroup(
+            pMaquinariaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pMaquinariaLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -208,7 +210,7 @@ public class PanelCentroTrabajo extends javax.swing.JPanel {
                 .addGap(72, 72, 72)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(pMaquinaria, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, 605, Short.MAX_VALUE))
                     .addComponent(pCentroTrabajo, javax.swing.GroupLayout.Alignment.CENTER, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(84, 84, 84))
@@ -219,7 +221,7 @@ public class PanelCentroTrabajo extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(pCentroTrabajo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(pMaquinaria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(23, Short.MAX_VALUE))
@@ -261,6 +263,7 @@ private void btAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
         }else{
             FachadaPersistencia.getInstancia().grabar(crearCentroTrabajo(), true);
             Util.getInstancia().limpiarCampos(pCentroTrabajo);
+            Util.getInstancia().limpiarCampos(pMaquinaria);
             centroDeTrabajo = null;
         }
     }
@@ -303,6 +306,10 @@ private void btBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         btModificar.setEnabled(false);
  }
  
+ public void setCentroTrabajo(CentroDeTrabajo cent){
+     centroDeTrabajo = cent;
+ }
+ 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btAgregar;
     private javax.swing.JButton btAgregarMaquina;
@@ -310,7 +317,6 @@ private void btBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     private javax.swing.JButton btEliminar;
     private javax.swing.JButton btEliminarMaquina;
     private javax.swing.JButton btModificar;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
@@ -319,6 +325,7 @@ private void btBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     private javax.swing.JLabel lbDescripcion;
     private javax.swing.JLabel lbNombre;
     private javax.swing.JPanel pCentroTrabajo;
+    private javax.swing.JPanel pMaquinaria;
     private javax.swing.JTextField tfCodigo;
     private javax.swing.JTextField tfDescripcion;
     private javax.swing.JTextField tfNombre;

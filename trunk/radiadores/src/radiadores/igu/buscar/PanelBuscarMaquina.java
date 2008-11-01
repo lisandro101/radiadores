@@ -71,7 +71,7 @@ public class PanelBuscarMaquina extends javax.swing.JDialog {
         btBuscar = new javax.swing.JButton();
         lbCodigo = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
-        pTablaProveedores = new javax.swing.JPanel();
+        pTablaMaquinas = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jtMaquina = new org.jdesktop.swingx.JXTable();
         pBoton = new javax.swing.JPanel();
@@ -146,18 +146,18 @@ public class PanelBuscarMaquina extends javax.swing.JDialog {
         jtMaquina.setEditable(false);
         jScrollPane1.setViewportView(jtMaquina);
 
-        javax.swing.GroupLayout pTablaProveedoresLayout = new javax.swing.GroupLayout(pTablaProveedores);
-        pTablaProveedores.setLayout(pTablaProveedoresLayout);
-        pTablaProveedoresLayout.setHorizontalGroup(
-            pTablaProveedoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pTablaProveedoresLayout.createSequentialGroup()
+        javax.swing.GroupLayout pTablaMaquinasLayout = new javax.swing.GroupLayout(pTablaMaquinas);
+        pTablaMaquinas.setLayout(pTablaMaquinasLayout);
+        pTablaMaquinasLayout.setHorizontalGroup(
+            pTablaMaquinasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pTablaMaquinasLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 386, Short.MAX_VALUE)
                 .addContainerGap())
         );
-        pTablaProveedoresLayout.setVerticalGroup(
-            pTablaProveedoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pTablaProveedoresLayout.createSequentialGroup()
+        pTablaMaquinasLayout.setVerticalGroup(
+            pTablaMaquinasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pTablaMaquinasLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(28, Short.MAX_VALUE))
@@ -186,7 +186,7 @@ public class PanelBuscarMaquina extends javax.swing.JDialog {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(pTablaProveedores, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(pTablaMaquinas, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(pBoton, javax.swing.GroupLayout.DEFAULT_SIZE, 406, Short.MAX_VALUE)
                     .addComponent(pBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
@@ -197,7 +197,7 @@ public class PanelBuscarMaquina extends javax.swing.JDialog {
                 .addGap(17, 17, 17)
                 .addComponent(pBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(pTablaProveedores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(pTablaMaquinas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(pBoton, javax.swing.GroupLayout.DEFAULT_SIZE, 41, Short.MAX_VALUE)
                 .addContainerGap())
@@ -269,7 +269,7 @@ private void btAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
     private javax.swing.JLabel lbNombre;
     private javax.swing.JPanel pBoton;
     private javax.swing.JPanel pBuscar;
-    private javax.swing.JPanel pTablaProveedores;
+    private javax.swing.JPanel pTablaMaquinas;
     private javax.swing.JTextField tfNombre;
     // End of variables declaration//GEN-END:variables
 

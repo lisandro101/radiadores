@@ -7,10 +7,13 @@
 package radiadores.igu.buscar;
 
 import java.util.List;
+import javax.persistence.Query;
+import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
 import radiadores.entidades.CentroDeTrabajo;
 import radiadores.igu.PanelCentroTrabajo;
 import radiadores.igu.model.CentroTrabajoTableModel;
+import radiadores.persistencia.FachadaPersistencia;
 
 /**
  *
@@ -23,7 +26,7 @@ public class PanelBuscarCentroTrabajo extends javax.swing.JDialog {
     private PanelCentroTrabajo panelCentro;
     private int tipoBusqueda;
     private CentroTrabajoTableModel tmOrigen;
-        
+
     /** Creates new form PanelBuscarMaquina */
     public PanelBuscarCentroTrabajo() {
         initComponents();
@@ -82,6 +85,11 @@ public class PanelBuscarCentroTrabajo extends javax.swing.JDialog {
         lbNombre.setText("Nombre:");
 
         btBuscar.setText("Buscar");
+        btBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btBuscarActionPerformed(evt);
+            }
+        });
 
         lbCodigo.setText("Codigo:");
 
@@ -165,6 +173,11 @@ public class PanelBuscarCentroTrabajo extends javax.swing.JDialog {
         );
 
         btAceptar.setText("Aceptar");
+        btAceptar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btAceptarActionPerformed(evt);
+            }
+        });
         pBoton.add(btAceptar);
 
         btCancelar.setText("Cancelar");
@@ -205,6 +218,50 @@ public class PanelBuscarCentroTrabajo extends javax.swing.JDialog {
 private void btCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCancelarActionPerformed
 dispose();
 }//GEN-LAST:event_btCancelarActionPerformed
+
+private void btBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBuscarActionPerformed
+    tmCentro.limpiarTableModel();
+    
+    Query consulta = FachadaPersistencia.getInstancia().crearConsulta("SELECT a FROM CentroDeTrabajo a WHERE (a.nombre) LIKE :valor and a.borrado=false" );
+    consulta.setParameter("valor", "%"+tfNombre.getText()+"%");
+     
+    centros = FachadaPersistencia.getInstancia().buscar(CentroDeTrabajo.class, consulta);
+
+    for (CentroDeTrabajo centroDeTrabajo : centros) {
+        tmCentro.agregarFila(centroDeTrabajo);
+    }
+}//GEN-LAST:event_btBuscarActionPerformed
+
+private void btAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAceptarActionPerformed
+    int indice = jtCentroTrabajo.convertRowIndexToModel(jtCentroTrabajo.getSelectedRow());
+    CentroDeTrabajo resultado;
+ 
+    if(indice ==-1 ){
+        JOptionPane.showMessageDialog(this, "No se ha seleccionado ningun Centro de Trabajo");
+    }
+    else{
+        resultado = tmOrigen.getFila(indice);
+        if(tipoBusqueda == 1){
+            if(tmOrigen.getRowCount()<1){
+                tmOrigen.agregarFila(resultado);       
+                dispose();
+            }
+            else{
+                if(ValidacionBuscar.getInstancia(). centroEstaCargadoEnTabla(tmOrigen, resultado)){
+                    JOptionPane.showMessageDialog(this, "El Centro de Trabajo ya se encuentra cargado");
+                }
+                else{
+                    tmOrigen.agregarFila(resultado);       
+                    dispose();
+                }
+            }
+        }
+        else{
+            panelCentro.setCentroTrabajo(resultado);
+            dispose();
+        }
+    }
+}//GEN-LAST:event_btAceptarActionPerformed
 
     /**
     * @param args the command line arguments
