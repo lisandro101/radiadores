@@ -17,6 +17,10 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     /** Creates new form PantallaPrincipal */
     public PantallaPrincipal() {
         initComponents();
+        inicializar();
+    }
+    
+    private void inicializar(){
         jTabbedPane1.add("   Materia Prima   ", new PanelMateriaPrima());
         jTabbedPane1.add("Producto Componente", new PanelProductoComponente());
         jTabbedPane1.add("Producto Terminado ", new PanelProductoTerminado());
@@ -29,9 +33,6 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         jTabbedPane1.add("       Ruta        ", new PanelRutaFabricacion());
         jTabbedPane1.add("  Centro Trabajo   ", new PanelCentroTrabajo());
         jTabbedPane1.add("   Orden Compra    ", new PanelOrdenCompra());
-                  
-        setSize(850, 650);
-        this.setVisible(true);
     }
 
     /** This method is called from within the constructor to
@@ -52,6 +53,8 @@ public class PantallaPrincipal extends javax.swing.JFrame {
                 formWindowClosing(evt);
             }
         });
+
+        jTabbedPane1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

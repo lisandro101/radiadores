@@ -219,7 +219,7 @@ private void btAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
             JOptionPane.showMessageDialog(this, "La maquina ya se encuentra registrada en el sistema.");
         }else{
             FachadaPersistencia.getInstancia().grabar(crearMaquinaria(), true);
-            Util.getInstancia().limpiarCampos(pCampos);
+            Util.getInstancia().limpiarCampos(this);
             maquina = null;
         }
     }
@@ -231,7 +231,7 @@ private void btEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
     if(opcion == JOptionPane.YES_OPTION) {
         maquina.setBorrado(true);
         FachadaPersistencia.getInstancia().actualizar(maquina, true);
-        Util.getInstancia().limpiarCampos(pCampos);
+        Util.getInstancia().limpiarCampos(this);
         maquina = null;
         inicializarBotones();
     }
@@ -245,7 +245,7 @@ private void btModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
     if(opcion == JOptionPane.YES_OPTION) {
         actualizarMaquina();
         FachadaPersistencia.getInstancia().actualizar(maquina, true);
-        Util.getInstancia().limpiarCampos(pCampos);
+        Util.getInstancia().limpiarCampos(this);
         maquina = null;            
         inicializarBotones();
     }

@@ -12,6 +12,7 @@ import javax.swing.JOptionPane;
 import radiadores.Util;
 import radiadores.entidades.MateriaPrima;
 import radiadores.entidades.MateriaPrima.Estado;
+import radiadores.igu.buscar.PanelBuscarProductoGral;
 import radiadores.igu.buscar.ValidacionBuscar;
 import radiadores.igu.model.ProveedorTableModel;
 import radiadores.persistencia.FachadaPersistencia;
@@ -176,15 +177,20 @@ public class PanelMateriaPrima extends javax.swing.JPanel {
                 .addGap(11, 11, 11)
                 .addGroup(pCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbDescripcion)
-                    .addComponent(tfDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tfDescripcion))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(pCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cbEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                .addGap(2, 2, 2))
         );
 
         btBuscar.setText("Buscar");
+        btBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btBuscarActionPerformed(evt);
+            }
+        });
         pBotones.add(btBuscar);
 
         btAgregar.setText("Agregar");
@@ -268,7 +274,7 @@ public class PanelMateriaPrima extends javax.swing.JPanel {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(35, 35, 35)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(112, Short.MAX_VALUE))
+                .addContainerGap(86, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -289,10 +295,10 @@ public class PanelMateriaPrima extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(pTablaProveedores, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(pCampos, javax.swing.GroupLayout.DEFAULT_SIZE, 369, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(pCampos, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(pTablaProveedores, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
                 .addComponent(pBotones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -311,7 +317,7 @@ private void btModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
     if(opcion == JOptionPane.YES_OPTION) {
         actualizarMateriaPrima();
         FachadaPersistencia.getInstancia().actualizar(materiaPrima, true);
-        Util.getInstancia().limpiarCampos(pCampos);
+        Util.getInstancia().limpiarCampos(this);
         materiaPrima=null;            
         inicializarBotones();
     }
@@ -325,7 +331,7 @@ private void btAsignarProveedorActionPerformed(java.awt.event.ActionEvent evt) {
 }//GEN-LAST:event_btAsignarProveedorActionPerformed
 
 private void btEliminarProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEliminarProveedorActionPerformed
-    int filaSeleccionada = tProveedor.getSelectedRow();
+    int filaSeleccionada = tProveedor.convertRowIndexToModel(tProveedor.getSelectedRow());
     if(filaSeleccionada == -1){
         JOptionPane.showMessageDialog(this, "No se ha seleccionado Proveedor");
     }else{
@@ -343,7 +349,7 @@ private void btAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
             JOptionPane.showMessageDialog(this, "La materia prima ya se encuentra registrado");
         }else{
             FachadaPersistencia.getInstancia().grabar(materiaPrima, true);
-            Util.getInstancia().limpiarCampos(pCampos);
+            Util.getInstancia().limpiarCampos(this);
             
             materiaPrima=null;
         }
@@ -359,11 +365,17 @@ private void btEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
     if(opcion == JOptionPane.YES_OPTION) {
         materiaPrima.setBorrado(true);
         FachadaPersistencia.getInstancia().actualizar(materiaPrima, true);
-        Util.getInstancia().limpiarCampos(pCampos);
+        Util.getInstancia().limpiarCampos(this);
         materiaPrima=null;
         inicializarBotones();
     }
 }//GEN-LAST:event_btEliminarActionPerformed
+
+private void btBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBuscarActionPerformed
+     PanelBuscarProductoGral buscarProv = new PanelBuscarProductoGral(this);   
+     buscarProv.setModal(true);
+     buscarProv.setVisible(true);
+}//GEN-LAST:event_btBuscarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -431,9 +443,8 @@ private void btEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
         tfTamanioLoteEstandar.setText(String.valueOf(mat.getTamanioLoteEstandar()));
         tfUnidadMedida.setText(mat.getUnidadMedida());
         
-        for (int i = 0; i < mat.getProveedores().size(); i++) {
-            tm.agregarFila(mat.getProveedores().get(i));      
-        }
+        tm.agregarFilas(mat.getProveedores());
+        
         cbEstado.setSelectedItem(mat.getEstado());
         
         materiaPrima=mat;

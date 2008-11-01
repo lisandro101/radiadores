@@ -254,13 +254,13 @@ private void btCargoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
 
 private void btAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAgregarActionPerformed
     FachadaPersistencia.getInstancia().grabar(crearEmpleado(), true);
-    Util.getInstancia().limpiarCampos(pEmpleado);
+    Util.getInstancia().limpiarCampos(this);
 }//GEN-LAST:event_btAgregarActionPerformed
 
 private void btEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEliminarActionPerformed
     empleado.setBorrado(true);
     FachadaPersistencia.getInstancia().actualizar(empleado, true);
-    Util.getInstancia().limpiarCampos(pEmpleado);
+    Util.getInstancia().limpiarCampos(this);
 }//GEN-LAST:event_btEliminarActionPerformed
 
 private void btBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBuscarActionPerformed

@@ -6,9 +6,14 @@
 
 package radiadores.igu;
 
-import radiadores.igu.buscar.PanelBuscarComponente;
+import javax.swing.table.TableModel;
+import radiadores.entidades.Componente;
+import radiadores.entidades.MateriaPrima;
+import radiadores.entidades.ProductoComponente;
 import radiadores.igu.buscar.PanelBuscarEmpleado;
 import radiadores.igu.buscar.PanelBuscarCentroTrabajo;
+import radiadores.igu.buscar.PanelBuscarProductoGral;
+import radiadores.igu.model.ProductoGralTableModel;
 
 /**
  *
@@ -16,6 +21,8 @@ import radiadores.igu.buscar.PanelBuscarCentroTrabajo;
  */
 public class PanelDetalleRuta extends javax.swing.JDialog {
 
+    private ProductoComponente productoComponente;
+    private MateriaPrima materiaPrima;
     /** Creates new form PanelDetalleRuta */
     public PanelDetalleRuta() {
         initComponents();
@@ -340,21 +347,11 @@ private void btBuscarEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//
 }//GEN-LAST:event_btBuscarEmpleadoActionPerformed
 
 private void btBuscarComponenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBuscarComponenteActionPerformed
-        PanelBuscarComponente buscarComponente = new PanelBuscarComponente();
+        PanelBuscarProductoGral buscarComponente = new PanelBuscarProductoGral(new ProductoGralTableModel(0));
         buscarComponente.setModal(true); 
         buscarComponente.setVisible(true);
 }//GEN-LAST:event_btBuscarComponenteActionPerformed
 
-    /**
-    * @param args the command line arguments
-    */
-    public static void main(String args[]) {
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new PanelDetalleRuta().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btAceptar;

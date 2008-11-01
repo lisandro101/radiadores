@@ -124,6 +124,14 @@ public class ProveedorTableModel extends AbstractTableModel implements IModeloRe
         fireTableRowsInserted(proveedores.size(), proveedores.size());
     }
     
+    
+    public void agregarFilas(List<Proveedor> proveedoresNuevo) {
+        if(proveedoresNuevo != null){
+            proveedores.addAll(proveedoresNuevo);
+            fireTableRowsInserted(proveedores.size()-proveedoresNuevo.size(), proveedores.size());
+        }
+    }
+    
     /**
      * Limita la cantidad de elementos del modelo al indicado
      * 

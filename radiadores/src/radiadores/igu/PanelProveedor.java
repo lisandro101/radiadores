@@ -228,7 +228,7 @@ private void btEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
     if(opcion == JOptionPane.YES_OPTION) {
         proveedor.setBorrado(true);
         FachadaPersistencia.getInstancia().actualizar(proveedor, true);
-        Util.getInstancia().limpiarCampos(pCampos);
+        Util.getInstancia().limpiarCampos(this);
         proveedor=null;
         inicializarBotones();
     }

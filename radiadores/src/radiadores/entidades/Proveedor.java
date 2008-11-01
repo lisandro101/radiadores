@@ -118,7 +118,8 @@ public class Proveedor implements Serializable {
         this.telefono = telefono;
     }
 
-    @ManyToMany(targetEntity=Componente.class, cascade=CascadeType.ALL)
+    @ManyToMany(targetEntity=Componente.class, cascade=CascadeType.ALL,
+    mappedBy="proveedores")
     public List<Componente> getComponentes() {
         return componentes;
     }

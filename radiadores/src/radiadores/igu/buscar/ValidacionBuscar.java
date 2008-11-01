@@ -34,13 +34,15 @@ public class ValidacionBuscar {
 
     private static ValidacionBuscar instancia;
     
-    public static ValidacionBuscar getInstancia(){
+    public synchronized static ValidacionBuscar getInstancia(){
         if (instancia == null){
             instancia = new ValidacionBuscar();
         }
         return instancia;            
     }
-    
+    private ValidacionBuscar(){
+        
+    }
     
     public boolean proveedorEstaCargadoEnTabla(ProveedorTableModel tm, Proveedor proveedor){
         boolean resultado= false;
@@ -165,7 +167,7 @@ public class ValidacionBuscar {
                     resultado=true;
                 }
             }else if (componentes[i] instanceof JComboBox) {
-                if(((JComboBox) componentes[i]).getToolTipText().equals("")){
+                if(((JComboBox) componentes[i]).getSelectedItem()==null){
                     resultado=true;
                 }
             }

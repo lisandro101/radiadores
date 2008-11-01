@@ -23,10 +23,14 @@ public class Main {
         UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         System.setProperty("apple.laf.useScreenMenuBar", "true");
         
+        
         FachadaPersistencia.getInstancia().buscar(Cargo.class, "Select c from Cargo c");
+        
+        
         PantallaPrincipal p = new PantallaPrincipal();
         
         p.setLocationRelativeTo(null);
+        p.setSize(900, 690);
         p.setVisible(true);
     }
 

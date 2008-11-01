@@ -226,7 +226,7 @@ private void btBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
 }//GEN-LAST:event_btBuscarActionPerformed
 
 private void btAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAceptarActionPerformed
-    int indice = jtMaquina.getSelectedRow();
+    int indice = jtMaquina.convertRowIndexToModel(jtMaquina.getSelectedRow());
     Maquina resultado;
  
     if(indice ==-1 ){
