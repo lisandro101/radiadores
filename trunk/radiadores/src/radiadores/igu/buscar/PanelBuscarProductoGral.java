@@ -32,18 +32,37 @@ public class PanelBuscarProductoGral extends javax.swing.JDialog {
     private ProductoGralTableModel tmBuscar;
     private ProductoGralTableModel tmOrigen;
     private List<Componente> componentes;    
-    private int tipoBusqueda;
+    //private int tipoBusqueda;
 
     
     private PanelMateriaPrima panelMateriaPrima;
     private PanelProductoComponente panelProductoComponente;
     private PanelProductoTerminado panelProductoTerminado;
+    public enum Tipo {
+        TABLE_MODEL ("TableModel"),
+        PANEL_MATERIA_PRIMA ("Panel Materia Prima"),
+        PANEL_PROD_COMPONENTE ("Panel Prod Componente"),
+        PANEL_PROD_TERMINADO ("Panel Prod Terminado");
+        
+        private String nombre;
+        
+        private Tipo(String nombre) {
+            this.nombre = nombre;
+        }
+
+        @Override
+        public String toString() {
+            return nombre;
+        }
+    }
+    
+    private Tipo tipo;
     /** Creates new form PanelBuscarProductoGral */
     
     //Si es para rellenar un Un TableModel
     public PanelBuscarProductoGral(TableModel tm1) {
         initComponents();
-        tipoBusqueda=1;
+        tipo= Tipo.TABLE_MODEL;
         tmOrigen = (ProductoGralTableModel) tm1;
         inicializar();
     }
@@ -51,7 +70,7 @@ public class PanelBuscarProductoGral extends javax.swing.JDialog {
     //Si es para la pantalla Materia prima
     public PanelBuscarProductoGral(PanelMateriaPrima ini) {
         initComponents();
-        tipoBusqueda=2;
+        tipo= Tipo.PANEL_MATERIA_PRIMA;
         panelMateriaPrima= ini;
         inicializar();
     }
@@ -59,7 +78,7 @@ public class PanelBuscarProductoGral extends javax.swing.JDialog {
     //Si es para la pantalla Producto Componente
     public PanelBuscarProductoGral(PanelProductoComponente ini) {
         initComponents();
-        tipoBusqueda=3;
+        tipo= Tipo.PANEL_PROD_COMPONENTE;
         panelProductoComponente= ini;
         inicializar();
     }
@@ -67,7 +86,7 @@ public class PanelBuscarProductoGral extends javax.swing.JDialog {
     //Si es para la pantalla Producto Terminado
     public PanelBuscarProductoGral(PanelProductoTerminado ini) {
         initComponents();
-        tipoBusqueda=4;
+        tipo= Tipo.PANEL_PROD_TERMINADO;
         panelProductoTerminado= ini;
         inicializar();
     }
@@ -222,7 +241,7 @@ public class PanelBuscarProductoGral extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
 private void btAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAceptarActionPerformed
-    int indice = tResultadoComponentes.getSelectedRow();
+    int indice = tResultadoComponentes.convertRowIndexToModel(tResultadoComponentes.getSelectedRow());
     Componente resultado;
 
     
@@ -230,7 +249,7 @@ private void btAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
         JOptionPane.showMessageDialog(this, "No se ha seleccionado Componente");
     }else{
         resultado=tmBuscar.getFila(indice);
-        if(tipoBusqueda==1){
+        if(tipo== Tipo.TABLE_MODEL){
             if(tmOrigen.getRowCount()<1){
                 tmOrigen.agregarFila(resultado);       
                 dispose();
@@ -242,10 +261,10 @@ private void btAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
                     dispose();
                 }
             }
-        }else if(tipoBusqueda==2){
+        }else if(tipo== Tipo.PANEL_MATERIA_PRIMA){
             panelMateriaPrima.setComponente((MateriaPrima)resultado);
             dispose();
-        }else if(tipoBusqueda==3){
+        }else if(tipo== Tipo.PANEL_PROD_COMPONENTE){
             panelProductoComponente.setComponente((ProductoComponente)resultado);
             dispose();
         }else{
@@ -263,16 +282,29 @@ dispose();
 
 private void btBuscarProdTerminadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBuscarProdTerminadoActionPerformed
 
+    int indice;
     tmBuscar.limpiarTableModel();
     
-    Query consulta = FachadaPersistencia.getInstancia().crearConsulta("Select a from Componente a where ( (a.nombre) LIKE :uno or (a.codigo) LIKE :dos ) and a.borrado=false" );
+    
+    Query consulta = FachadaPersistencia.getInstancia().crearConsulta("Select a from Componente a where ( (a.nombre) LIKE :uno or (a.codigo) LIKE :dos ) and a.borrado=false and tipo= :tres" );
     consulta.setParameter("uno", "%"+tfNombre.getText()+"%");
     consulta.setParameter("dos", "%"+tfCodigo.getText()+"%");
-     
+    
+    if(tipo== Tipo.TABLE_MODEL){
+          // TODO: aca depende de q necesitamos para el TableModel  
+    }else if(tipo== Tipo.PANEL_MATERIA_PRIMA){
+        consulta.setParameter("tres", "M");
+    }else if(tipo== Tipo.PANEL_PROD_COMPONENTE){
+        consulta.setParameter("tres", "C");
+    }else{
+        consulta.setParameter("tres", "T");
+    }
+    
+    
     componentes= FachadaPersistencia.getInstancia().buscar(Componente.class, consulta);
 
-    
-    for (int i = 0; i < componentes.size(); i++) {
+    indice=componentes.size();
+    for (int i = 0; i < indice; i++) {
         tmBuscar.agregarFila(componentes.get(i));
     }
        

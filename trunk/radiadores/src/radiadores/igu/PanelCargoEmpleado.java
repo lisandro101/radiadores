@@ -308,7 +308,7 @@ private void btCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
 
 private void btAceptarBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAceptarBuscarActionPerformed
     
-    int indice = tCargos.getSelectedRow();
+    int indice = tCargos.convertRowIndexToModel(tCargos.getSelectedRow());
     
     if(indice == -1){
         JOptionPane.showMessageDialog(this, "No se ha seleccionado Proveedor");

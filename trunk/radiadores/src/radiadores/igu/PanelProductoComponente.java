@@ -10,7 +10,7 @@ import radiadores.igu.buscar.PanelBuscarProveedor;
 import javax.swing.JOptionPane;
 import radiadores.Util;
 import radiadores.entidades.ProductoComponente;
-import radiadores.entidades.ProductoTerminado;
+import radiadores.igu.buscar.PanelBuscarProductoGral;
 import radiadores.igu.buscar.ValidacionBuscar;
 import radiadores.igu.model.ProveedorTableModel;
 import radiadores.persistencia.FachadaPersistencia;
@@ -399,7 +399,7 @@ private void btModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
     if(opcion == JOptionPane.YES_OPTION) {
         actualizarProductoComponente();
         FachadaPersistencia.getInstancia().actualizar(productoComponente, true);
-        Util.getInstancia().limpiarCampos(pCampos);
+        Util.getInstancia().limpiarCampos(this);
         productoComponente=null;            
         inicializarBotones();
     }
@@ -422,7 +422,7 @@ private void btAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
             JOptionPane.showMessageDialog(this, "El producto componente ya se encuentra registrado");
         }else{
             FachadaPersistencia.getInstancia().grabar(productoComponente, true);
-            Util.getInstancia().limpiarCampos(pCampos);
+            Util.getInstancia().limpiarCampos(this);
             
             productoComponente=null;
         }
@@ -431,7 +431,7 @@ private void btAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
 }//GEN-LAST:event_btAgregarActionPerformed
 
 private void btEliminarProvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEliminarProvActionPerformed
-        int filaSeleccionada = tProveedor.getSelectedRow();
+        int filaSeleccionada = tProveedor.convertRowIndexToModel(tProveedor.getSelectedRow());
     if(filaSeleccionada == -1){
         JOptionPane.showMessageDialog(this, "No se ha seleccionado Proveedor");
     }else{
@@ -441,15 +441,9 @@ private void btEliminarProvActionPerformed(java.awt.event.ActionEvent evt) {//GE
 }//GEN-LAST:event_btEliminarProvActionPerformed
 
 private void btBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBuscarActionPerformed
-//    int tipo;
-//    if(rbProdComponente.isSelected()){
-//        tipo=1;
-//    }else{
-//        tipo=2;
-//    }
-    
-    //aca codigo
-    
+     PanelBuscarProductoGral buscarProv = new PanelBuscarProductoGral(this);   
+     buscarProv.setModal(true);
+     buscarProv.setVisible(true);
 }//GEN-LAST:event_btBuscarActionPerformed
 
 private void btEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEliminarActionPerformed
@@ -461,7 +455,7 @@ private void btEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
     if(opcion == JOptionPane.YES_OPTION) {
         productoComponente.setBorrado(true);
         FachadaPersistencia.getInstancia().actualizar(productoComponente, true);
-        Util.getInstancia().limpiarCampos(pCampos);
+        Util.getInstancia().limpiarCampos(this);
         productoComponente=null;
         inicializarBotones();
     }    

@@ -1,12 +1,9 @@
 package radiadores.entidades;
 
 import java.io.Serializable;
-import java.util.List;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -41,10 +38,8 @@ public class MateriaPrima extends Componente implements Serializable {
     private double costoAlmacenamiento;
     private double costoUnitarioPorOmision;
     private String descripcion;
-    private String nombre;
     private double pesoPorUnidad;
     private double precioBase;
-    private List<Proveedor> proveedores;
     private double tamanioLoteEstandar;
     private String unidadMedida;
     private Estado estado;
@@ -76,14 +71,6 @@ public class MateriaPrima extends Componente implements Serializable {
         this.descripcion = descripcion;
     }
 
-//    @Column(name="nombre_materia_prima")
-//    public String getNombre() {
-//        return nombre;
-//    }
-//
-//    public void setNombre(String nombreMateriaPrima) {
-//        this.nombre = nombreMateriaPrima;
-//    }
 
     @Column(name="peso_por_unidad")
     public double getPesoPorUnidad() {
@@ -101,15 +88,6 @@ public class MateriaPrima extends Componente implements Serializable {
 
     public void setPrecioBase(double precioBase) {
         this.precioBase = precioBase;
-    }
-
-    @OneToMany(targetEntity=Proveedor.class, cascade=CascadeType.ALL)
-    public List<Proveedor> getProveedores() {
-        return proveedores;
-    }
-
-    public void setProveedores(List<Proveedor> proveedores) {
-        this.proveedores = proveedores;
     }
 
     @Column(name="tamanio_lote_estandar")

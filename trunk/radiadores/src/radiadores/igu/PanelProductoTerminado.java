@@ -10,6 +10,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import radiadores.Util;
 import radiadores.entidades.ProductoTerminado;
+import radiadores.igu.buscar.PanelBuscarProductoGral;
 import radiadores.igu.buscar.ValidacionBuscar;
 import radiadores.persistencia.FachadaPersistencia;
 
@@ -322,14 +323,9 @@ public class PanelProductoTerminado extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
 private void btBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBuscarActionPerformed
-//int tipo;
-//    if(rbProdComponente.isSelected()){
-//        tipo=1;
-//    }else{
-//        tipo=2;
-//    }
-    
-    //aca codigo
+     PanelBuscarProductoGral buscarProv = new PanelBuscarProductoGral(this);   
+     buscarProv.setModal(true);
+     buscarProv.setVisible(true);
 }//GEN-LAST:event_btBuscarActionPerformed
 
 private void btAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAgregarActionPerformed
@@ -342,7 +338,7 @@ private void btAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
             JOptionPane.showMessageDialog(this, "El Producto ya se encuentra registrado");
         }else{
             FachadaPersistencia.getInstancia().grabar(productoTerminado, true);
-            Util.getInstancia().limpiarCampos(pCampos);
+            Util.getInstancia().limpiarCampos(this);
             
             productoTerminado=null;
         }
@@ -358,7 +354,7 @@ private void btModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
     if(opcion == JOptionPane.YES_OPTION) {
         actualizarProductoTerminado();
         FachadaPersistencia.getInstancia().actualizar(productoTerminado, true);
-        Util.getInstancia().limpiarCampos(pCampos);
+        Util.getInstancia().limpiarCampos(this);
         productoTerminado=null;            
         inicializarBotones();
     }
@@ -373,7 +369,7 @@ private void btEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
     if(opcion == JOptionPane.YES_OPTION) {
         productoTerminado.setBorrado(true);
         FachadaPersistencia.getInstancia().actualizar(productoTerminado, true);
-        Util.getInstancia().limpiarCampos(pCampos);
+        Util.getInstancia().limpiarCampos(this);
         productoTerminado=null;
         inicializarBotones();
     }   
