@@ -205,7 +205,7 @@ private void btBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
 }//GEN-LAST:event_btBuscarActionPerformed
 
 private void btAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAgregarActionPerformed
-    if(ValidacionBuscar.getInstancia().existenCamposVacios(pCampos)){
+    if(ValidacionBuscar.getInstancia().existenCamposVacios(this)){
         JOptionPane.showMessageDialog(this, "Existen campos sin completar");
     }else{
         proveedor= crearProveedor();
@@ -275,16 +275,16 @@ private void btModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
     // End of variables declaration//GEN-END:variables
 
     private Proveedor crearProveedor(){
-        Proveedor prov = new Proveedor();
+        proveedor = new Proveedor();
         
-        prov.setNombreProveedor(tfNombre.getText());
-        prov.setNombreContacto(tfContacto.getText());
-        prov.setTelefono(tfTelefono.getText());
-        prov.setMail(tfMail.getText());
-        prov.setDireccion(tfDireccion.getText());
-        prov.setFechaInicioActividad(dpInicioActividades.getDate());
+        proveedor.setNombreProveedor(tfNombre.getText());
+        proveedor.setNombreContacto(tfContacto.getText());
+        proveedor.setTelefono(tfTelefono.getText());
+        proveedor.setMail(tfMail.getText());
+        proveedor.setDireccion(tfDireccion.getText());
+        proveedor.setFechaInicioActividad(dpInicioActividades.getDate());
         
-        return prov;
+        return proveedor;
     }
     
     private void cargarPantallaProveedor(Proveedor prov){

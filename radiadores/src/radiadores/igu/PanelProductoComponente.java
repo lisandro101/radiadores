@@ -414,7 +414,7 @@ private void btAsignarProveedorActionPerformed(java.awt.event.ActionEvent evt) {
 
 private void btAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAgregarActionPerformed
 
-    if(ValidacionBuscar.getInstancia().existenCamposVacios(pCampos)){
+    if(ValidacionBuscar.getInstancia().existenCamposVacios(this)){
         JOptionPane.showMessageDialog(this, "Existen campos sin completar");
     }else{
         productoComponente= crearProductoComponente();
@@ -515,27 +515,27 @@ private void btEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
     
     
     private ProductoComponente crearProductoComponente(){
-        ProductoComponente prod = new ProductoComponente();
+        productoComponente = new ProductoComponente();
         
-        prod.setCodigo(tfCodigo.getText());
-        prod.setNombre(tfNombre.getText());
-        prod.setCategoria(cbCategoria.getSelectedItem().toString());
-        prod.setEstado(cbEstado.getSelectedItem().toString());
-        prod.setNumeroPlano(tfNroPlano.getText());
-        prod.setPrecioBase(Double.parseDouble(tfPrecioBase.getText()));
-        prod.setPesoUnidad(Double.parseDouble(tfPesoUnidad.getText()));
-        prod.setUnidadMedida(tfUnidadMedida.getText());
-        prod.setCostoAlmacenamiento(Double.parseDouble(tfCostoAlmacenamiento.getText()));
-        prod.setCostoEmision(Double.parseDouble(tfCostoEmision.getText()));
-        prod.setCostoUnitarioOmision(Double.parseDouble(tfCostoUnitOmision.getText()));
-        prod.setTamanioLoteEstandar(Double.parseDouble(tfTamanioLoteEstandar.getText()));
-        prod.setCondicionesEmbalaje(tfCondEmbalaje.getText());
-        prod.setStock(Double.parseDouble(tfStock.getText()));
-        prod.setDescripcion(tfDescripcion.getText());
+        productoComponente.setCodigo(tfCodigo.getText());
+        productoComponente.setNombre(tfNombre.getText());
+        productoComponente.setCategoria(cbCategoria.getSelectedItem().toString());
+        productoComponente.setEstado(cbEstado.getSelectedItem().toString());
+        productoComponente.setNumeroPlano(tfNroPlano.getText());
+        productoComponente.setPrecioBase(Double.parseDouble(tfPrecioBase.getText()));
+        productoComponente.setPesoUnidad(Double.parseDouble(tfPesoUnidad.getText()));
+        productoComponente.setUnidadMedida(tfUnidadMedida.getText());
+        productoComponente.setCostoAlmacenamiento(Double.parseDouble(tfCostoAlmacenamiento.getText()));
+        productoComponente.setCostoEmision(Double.parseDouble(tfCostoEmision.getText()));
+        productoComponente.setCostoUnitarioOmision(Double.parseDouble(tfCostoUnitOmision.getText()));
+        productoComponente.setTamanioLoteEstandar(Double.parseDouble(tfTamanioLoteEstandar.getText()));
+        productoComponente.setCondicionesEmbalaje(tfCondEmbalaje.getText());
+        productoComponente.setStock(Double.parseDouble(tfStock.getText()));
+        productoComponente.setDescripcion(tfDescripcion.getText());
         
-        prod.setProveedores(tm.getFilas());
+        productoComponente.setProveedores(tm.getFilas());
         
-        return prod;
+        return productoComponente;
     }
     
     public void setComponente(ProductoComponente prod){

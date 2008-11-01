@@ -341,7 +341,7 @@ private void btEliminarProveedorActionPerformed(java.awt.event.ActionEvent evt) 
 }//GEN-LAST:event_btEliminarProveedorActionPerformed
 
 private void btAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAgregarActionPerformed
-    if(ValidacionBuscar.getInstancia().existenCamposVacios(pCampos)){
+    if(ValidacionBuscar.getInstancia().existenCamposVacios(this)){
         JOptionPane.showMessageDialog(this, "Existen campos sin completar");
     }else{
         materiaPrima= crearMateriaPrima();
@@ -414,22 +414,21 @@ private void btBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     // End of variables declaration//GEN-END:variables
 
     private MateriaPrima crearMateriaPrima(){
-        MateriaPrima mat = new MateriaPrima();
+        materiaPrima = new MateriaPrima();
 
-        mat.setCodigo(tfCodigo.getText());
-        mat.setCostoAlmacenamiento(Double.parseDouble(tfCostoAlmacenamiento.getText()));        
-        mat.setCostoUnitarioPorOmision(Double.parseDouble(tfCostoUnitPorOmision.getText()));
-        mat.setDescripcion(tfDescripcion.getText());
-        mat.setNombre(tfNombre.getText());
-        mat.setPesoPorUnidad(Double.parseDouble(tfPesoPorUnidad.getText()));
-        mat.setPrecioBase(Double.parseDouble(tfPrecioBase.getText()));
-        mat.setTamanioLoteEstandar(Double.parseDouble(tfTamanioLoteEstandar.getText()));
-        mat.setUnidadMedida(tfUnidadMedida.getText());
-        mat.setProveedores(tm.getFilas());  
-        mat.setEstado((Estado)cbEstado.getSelectedItem());
+        materiaPrima.setCodigo(tfCodigo.getText());
+        materiaPrima.setCostoAlmacenamiento(Double.parseDouble(tfCostoAlmacenamiento.getText()));        
+        materiaPrima.setCostoUnitarioPorOmision(Double.parseDouble(tfCostoUnitPorOmision.getText()));
+        materiaPrima.setDescripcion(tfDescripcion.getText());
+        materiaPrima.setNombre(tfNombre.getText());
+        materiaPrima.setPesoPorUnidad(Double.parseDouble(tfPesoPorUnidad.getText()));
+        materiaPrima.setPrecioBase(Double.parseDouble(tfPrecioBase.getText()));
+        materiaPrima.setTamanioLoteEstandar(Double.parseDouble(tfTamanioLoteEstandar.getText()));
+        materiaPrima.setUnidadMedida(tfUnidadMedida.getText());
+        materiaPrima.setProveedores(tm.getFilas());  
+        materiaPrima.setEstado((Estado)cbEstado.getSelectedItem());
         
-        materiaPrima=mat;
-        return mat;
+        return materiaPrima;
     }
     
     private void cargarPantallaMateriaPrima(MateriaPrima mat){
