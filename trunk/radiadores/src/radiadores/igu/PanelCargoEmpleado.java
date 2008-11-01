@@ -9,7 +9,9 @@ package radiadores.igu;
 import java.util.List;
 import javax.persistence.Query;
 import javax.swing.JOptionPane;
+import radiadores.Util;
 import radiadores.entidades.Cargo;
+import radiadores.igu.buscar.ValidacionBuscar;
 import radiadores.igu.model.CargoEmpleadoTableModel;
 import radiadores.persistencia.FachadaPersistencia;
 
@@ -28,6 +30,7 @@ public class PanelCargoEmpleado extends javax.swing.JDialog {
         initComponents();
         panelEmpleado= emp;
         inicializar();
+        inicializarBotones();
     }
 
     private void inicializar() {
@@ -49,7 +52,6 @@ public class PanelCargoEmpleado extends javax.swing.JDialog {
         jScrollPane1 = new javax.swing.JScrollPane();
         tCargos = new org.jdesktop.swingx.JXTable();
         lbCargos = new javax.swing.JLabel();
-        btAceptarBuscar = new javax.swing.JButton();
         tfNombreCargo = new javax.swing.JTextField();
         btBuscar = new javax.swing.JButton();
         pABMCargo = new javax.swing.JPanel();
@@ -65,10 +67,10 @@ public class PanelCargoEmpleado extends javax.swing.JDialog {
         cbEstado = new javax.swing.JComboBox();
         jPanel1 = new javax.swing.JPanel();
         btAgregar = new javax.swing.JButton();
-        btModifiar = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        btModificar = new javax.swing.JButton();
+        btEliminar = new javax.swing.JButton();
         pBotones = new javax.swing.JPanel();
-        btAceptarGral = new javax.swing.JButton();
+        btAceptarBuscar = new javax.swing.JButton();
         btCerrar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -98,13 +100,6 @@ public class PanelCargoEmpleado extends javax.swing.JDialog {
 
         lbCargos.setText("Nombre Cargo:");
 
-        btAceptarBuscar.setText("Aceptar");
-        btAceptarBuscar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btAceptarBuscarActionPerformed(evt);
-            }
-        });
-
         btBuscar.setText("Buscar");
         btBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -117,20 +112,15 @@ public class PanelCargoEmpleado extends javax.swing.JDialog {
         pTablaLayout.setHorizontalGroup(
             pTablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pTablaLayout.createSequentialGroup()
+                .addGap(22, 22, 22)
                 .addGroup(pTablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 386, Short.MAX_VALUE)
                     .addGroup(pTablaLayout.createSequentialGroup()
-                        .addGap(22, 22, 22)
-                        .addGroup(pTablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 386, Short.MAX_VALUE)
-                            .addGroup(pTablaLayout.createSequentialGroup()
-                                .addComponent(lbCargos)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(tfNombreCargo, javax.swing.GroupLayout.DEFAULT_SIZE, 226, Short.MAX_VALUE)
-                                .addGap(18, 18, 18)
-                                .addComponent(btBuscar))))
-                    .addGroup(pTablaLayout.createSequentialGroup()
-                        .addGap(146, 146, 146)
-                        .addComponent(btAceptarBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(lbCargos)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(tfNombreCargo, javax.swing.GroupLayout.DEFAULT_SIZE, 226, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btBuscar)))
                 .addGap(28, 28, 28))
         );
         pTablaLayout.setVerticalGroup(
@@ -143,9 +133,7 @@ public class PanelCargoEmpleado extends javax.swing.JDialog {
                     .addComponent(tfNombreCargo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
-                .addComponent(btAceptarBuscar)
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pABMCargo.setBorder(javax.swing.BorderFactory.createTitledBorder("ABM"));
@@ -177,21 +165,21 @@ public class PanelCargoEmpleado extends javax.swing.JDialog {
         });
         jPanel1.add(btAgregar);
 
-        btModifiar.setText("Modificar");
-        btModifiar.addActionListener(new java.awt.event.ActionListener() {
+        btModificar.setText("Modificar");
+        btModificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btModifiarActionPerformed(evt);
+                btModificarActionPerformed(evt);
             }
         });
-        jPanel1.add(btModifiar);
+        jPanel1.add(btModificar);
 
-        jButton1.setText("Eliminar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btEliminar.setText("Eliminar");
+        btEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btEliminarActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1);
+        jPanel1.add(btEliminar);
 
         javax.swing.GroupLayout pABMCargoLayout = new javax.swing.GroupLayout(pABMCargo);
         pABMCargo.setLayout(pABMCargoLayout);
@@ -251,13 +239,13 @@ public class PanelCargoEmpleado extends javax.swing.JDialog {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        btAceptarGral.setText("Aceptar");
-        btAceptarGral.addActionListener(new java.awt.event.ActionListener() {
+        btAceptarBuscar.setText("Aceptar");
+        btAceptarBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btAceptarGralActionPerformed(evt);
+                btAceptarBuscarActionPerformed(evt);
             }
         });
-        pBotones.add(btAceptarGral);
+        pBotones.add(btAceptarBuscar);
 
         btCerrar.setText("Cerrar");
         btCerrar.addActionListener(new java.awt.event.ActionListener() {
@@ -274,8 +262,8 @@ public class PanelCargoEmpleado extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(pABMCargo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(pTabla, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(pABMCargo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(pBotones, javax.swing.GroupLayout.DEFAULT_SIZE, 452, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -284,11 +272,11 @@ public class PanelCargoEmpleado extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(pTabla, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addComponent(pABMCargo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                 .addComponent(pBotones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
@@ -298,9 +286,19 @@ private void cbEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
 // TODO add your handling code here:
 }//GEN-LAST:event_cbEstadoActionPerformed
 
-private void btModifiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btModifiarActionPerformed
-// TODO add your handling code here:
-}//GEN-LAST:event_btModifiarActionPerformed
+private void btModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btModificarActionPerformed
+ int opcion = JOptionPane.showConfirmDialog(this,
+                "¿Seguro desea guardar los cambios?", "Aceptar",
+                JOptionPane.YES_NO_OPTION);
+        
+    if(opcion == JOptionPane.YES_OPTION) {
+        actualizarCargoEmpleado();
+        FachadaPersistencia.getInstancia().actualizar(cargo, true);
+        Util.getInstancia().limpiarCampos(this);
+        cargo=null;            
+        inicializarBotones();
+    }
+}//GEN-LAST:event_btModificarActionPerformed
 
 private void btCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCerrarActionPerformed
     dispose();
@@ -317,15 +315,11 @@ private void btAceptarBuscarActionPerformed(java.awt.event.ActionEvent evt) {//G
         panelEmpleado.setCargoEmpleado(cargo);
         cargarPantallaCargo(cargo);
         
-        //dispose();
+        dispose();
         
     }
    
 }//GEN-LAST:event_btAceptarBuscarActionPerformed
-
-private void btAceptarGralActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAceptarGralActionPerformed
-// TODO add your handling code here:
-}//GEN-LAST:event_btAceptarGralActionPerformed
 
 private void btBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBuscarActionPerformed
      
@@ -343,25 +337,36 @@ private void btBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
 }//GEN-LAST:event_btBuscarActionPerformed
 
 private void btAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAgregarActionPerformed
-    FachadaPersistencia.getInstancia().grabar(crearCargo(), true);
+    if(ValidacionBuscar.getInstancia().existenCamposVacios(this)){
+        JOptionPane.showMessageDialog(this, "Existen campos sin completar");
+    }else{
+        cargo= crearCargo();
+        if(ValidacionBuscar.getInstancia().cargoEmpleadoEstaCargadoEnBD(cargo)){
+            JOptionPane.showMessageDialog(this, "El Cargo ya se encuentra registrado");
+        }else{
+            FachadaPersistencia.getInstancia().grabar(cargo, true);
+            Util.getInstancia().limpiarCampos(this);
+            
+            cargo=null;
+        }
+    }
 }//GEN-LAST:event_btAgregarActionPerformed
 
-private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+private void btEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEliminarActionPerformed
     cargo.setBorrado(true);
     FachadaPersistencia.getInstancia().actualizar(cargo, true);
-}//GEN-LAST:event_jButton1ActionPerformed
+}//GEN-LAST:event_btEliminarActionPerformed
 
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btAceptarBuscar;
-    private javax.swing.JButton btAceptarGral;
     private javax.swing.JButton btAgregar;
     private javax.swing.JButton btBuscar;
     private javax.swing.JButton btCerrar;
-    private javax.swing.JButton btModifiar;
+    private javax.swing.JButton btEliminar;
+    private javax.swing.JButton btModificar;
     private javax.swing.JComboBox cbEstado;
-    private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lbCargos;
@@ -382,7 +387,7 @@ private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     // End of variables declaration//GEN-END:variables
 
     private Cargo crearCargo(){
-        Cargo cargo = new Cargo();
+        cargo = new Cargo();
         
         cargo.setNombreCargo(tfNombre.getText());
         cargo.setValorHora(Double.parseDouble(tfPrecioHora.getText()));
@@ -398,5 +403,19 @@ private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         tfPrecioHora.setText(String.valueOf(cargo.getValorHora()));
         tfHorasLaborales.setText(String.valueOf(cargo.getHorasPorMes()));
                 
+    }
+    
+    
+    private void inicializarBotones(){
+        btAgregar.setEnabled(true);
+        btEliminar.setEnabled(false);
+        btModificar.setEnabled(false);
+    }
+    
+    private void actualizarCargoEmpleado(){
+        cargo.setNombreCargo(tfNombre.getText());
+        cargo.setValorHora(Double.parseDouble(tfPrecioHora.getText()));
+        cargo.setHorasPorMes(Integer.parseInt(tfHorasLaborales.getText()));
+        
     }
 }

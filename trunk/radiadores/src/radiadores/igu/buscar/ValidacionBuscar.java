@@ -11,13 +11,16 @@ import java.util.List;
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
 import org.jdesktop.swingx.JXDatePicker;
-import radiadores.entidades.CentroDeTrabajo;
+import org.jdesktop.swingx.JXList;
+import org.jdesktop.swingx.JXTable;
+import radiadores.entidades.Cargo;
 import radiadores.entidades.Componente;
 import radiadores.entidades.MateriaPrima;
 import radiadores.entidades.ProductoComponente;
 import radiadores.entidades.ProductoTerminado;
 import radiadores.entidades.Maquina;
 import radiadores.entidades.Proveedor;
+import radiadores.igu.model.IModeloReiniciable;
 import radiadores.igu.model.ProductoGralTableModel;
 import radiadores.igu.model.MaquinaTableModel;
 import radiadores.igu.model.ProveedorTableModel;
@@ -31,27 +34,26 @@ public class ValidacionBuscar {
 
     private static ValidacionBuscar instancia;
     
-    private ValidacionBuscar(){
-        
-    }
-    
     public synchronized static ValidacionBuscar getInstancia(){
         if (instancia == null){
             instancia = new ValidacionBuscar();
         }
         return instancia;            
     }
+    private ValidacionBuscar(){
+        
+    }
     
     public boolean proveedorEstaCargadoEnTabla(ProveedorTableModel tm, Proveedor proveedor){
         boolean resultado= false;
         List<Proveedor> proveedores= tm.getFilas();
         
-        for (Proveedor prov : proveedores) {
-            if(prov.getNombreProveedor().equals(proveedor.getNombreProveedor())){
-                resultado = true;
+        for (int i = 0; i < proveedores.size(); i++) {
+            if(proveedores.get(i).getNombreProveedor().equals(proveedor.getNombreProveedor())){
+                resultado=true;
+                
             }
         }
-        
         return resultado;
     }
     
@@ -97,21 +99,6 @@ public class ValidacionBuscar {
         return  resultado;
     }
     
-    public boolean centroEstaCargadoEnBD(CentroDeTrabajo centroDeTrabajo) {
-        boolean resultado = false;
-        List<CentroDeTrabajo> centros;
-        
-        centros = FachadaPersistencia.getInstancia().buscar(CentroDeTrabajo.class, "Select c from CentroDeTrabajo c");
-        
-        for (CentroDeTrabajo centro : centros) {
-            if(centroDeTrabajo.getNombre().equals(centro.getNombre())){
-                resultado = true;
-            }
-        }
-            
-        return  resultado;
-    }
-    
 
     public boolean productoComponenteEstaCargadoEnBD(ProductoComponente prod){
         boolean resultado=false;
@@ -152,6 +139,19 @@ public class ValidacionBuscar {
         }    
         return  resultado;
     }
+    public boolean cargoEmpleadoEstaCargadoEnBD(Cargo prod){
+        boolean resultado=false;
+        List<Cargo> cargos;
+        
+        cargos= FachadaPersistencia.getInstancia().buscar(Cargo.class, "Select c from Cargo c");
+        
+        for (int i = 0; i < cargos.size(); i++) {
+            if(prod.getNombreCargo().equals(cargos.get(i).getNombreCargo())){
+                resultado=true;
+            }   
+        }    
+        return  resultado;
+    }
             
 
 
@@ -170,24 +170,32 @@ public class ValidacionBuscar {
         return  resultado;
     }
 
+
     public boolean existenCamposVacios(Container contenedor) {
         boolean resultado=false;
-        Component[] componentes = contenedor.getComponents();
-        
-        for (int i = 0; i < componentes.length; i++) {
-            if (componentes[i] instanceof JTextField) {
-                if(((JTextField) componentes[i]).getText().equals("")){
+        for (Component componente : contenedor.getComponents()) {
+            if (componente instanceof JTextField) {
+                if(((JTextField)componente).getText().trim().equals("")){
                     resultado=true;
                 }
-            }else if (componentes[i] instanceof JComboBox) {
-                if(((JComboBox) componentes[i]).getSelectedItem()==null){
+            } else if (componente instanceof JComboBox) {
+                if(((JComboBox) componente).getSelectedIndex()==-1){
                     resultado=true;
                 }
-            }
-            else if(componentes[i] instanceof JXDatePicker){
-                if(((JXDatePicker) componentes[i]).getDate()==null){
+            } else if (componente instanceof JXDatePicker) {
+                if(((JXDatePicker) componente).getDate()==null){
+                    resultado=true;
+                }          
+            } else if (componente instanceof JXTable) {
+                if(((JXTable)componente).getModel().getRowCount()==0){
                     resultado=true;
                 }
+            } else if (componente instanceof JXList) {
+                if(((JXList)componente).getModel().getSize()==0){
+                    resultado=true;
+                }
+            } else if (componente instanceof Container) {
+                existenCamposVacios((Container)componente);
             }
         }
         return resultado;

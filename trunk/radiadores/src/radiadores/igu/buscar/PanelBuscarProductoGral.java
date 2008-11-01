@@ -286,18 +286,19 @@ private void btBuscarProdTerminadoActionPerformed(java.awt.event.ActionEvent evt
     tmBuscar.limpiarTableModel();
     
     
-    Query consulta = FachadaPersistencia.getInstancia().crearConsulta("Select a from Componente a where ( (a.nombre) LIKE :uno or (a.codigo) LIKE :dos ) and a.borrado=false and tipo= :tres" );
-    consulta.setParameter("uno", "%"+tfNombre.getText()+"%");
-    consulta.setParameter("dos", "%"+tfCodigo.getText()+"%");
+    Query consulta = FachadaPersistencia.getInstancia().crearConsulta("Select a from Componente a where ( (a.nombre) LIKE :nombre or (a.codigo) LIKE :codigo ) and a.borrado=false and a.tipo= :tipo" );
+    consulta.setParameter("nombre", "%"+tfNombre.getText()+"%");
+    consulta.setParameter("codigo", "%"+tfCodigo.getText()+"%");
+    
     
     if(tipo== Tipo.TABLE_MODEL){
           // TODO: aca depende de q necesitamos para el TableModel  
     }else if(tipo== Tipo.PANEL_MATERIA_PRIMA){
-        consulta.setParameter("tres", "M");
+        consulta.setParameter("tipo", 'M');
     }else if(tipo== Tipo.PANEL_PROD_COMPONENTE){
-        consulta.setParameter("tres", "C");
+        consulta.setParameter("tipo", 'C');
     }else{
-        consulta.setParameter("tres", "T");
+        consulta.setParameter("tipo", 'T');
     }
     
     

@@ -36,6 +36,7 @@ public class Componente implements Serializable {
     private String nombre;
     private List<Proveedor> proveedores;
     private boolean borrado;
+    private char tipo;
     
     /**
      * Constructor
@@ -98,5 +99,14 @@ public class Componente implements Serializable {
 
     public void setBorrado(boolean borrado) {
         this.borrado = borrado;
+    }
+
+    @Column(name="tipo")
+    public char getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(char tipo) {
+        this.tipo = tipo;
     }
 }

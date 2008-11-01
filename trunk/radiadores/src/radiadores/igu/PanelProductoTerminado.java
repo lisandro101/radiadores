@@ -330,7 +330,7 @@ private void btBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
 
 private void btAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAgregarActionPerformed
 
-    if(ValidacionBuscar.getInstancia().existenCamposVacios(pCampos)){
+    if(ValidacionBuscar.getInstancia().existenCamposVacios(this)){
         JOptionPane.showMessageDialog(this, "Existen campos sin completar");
     }else{
         productoTerminado= crearProductoTerminado();
@@ -420,27 +420,27 @@ private void btEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
     // End of variables declaration//GEN-END:variables
 
     private ProductoTerminado crearProductoTerminado(){
-        ProductoTerminado prod = new ProductoTerminado();
+        productoTerminado = new ProductoTerminado();
         
-        prod.setCodigo(tfCodigo.getText());
-        prod.setNombre(tfNombre.getText());
-        prod.setCategoria(cbCategoria.getSelectedItem().toString());
-        prod.setEstado(cbEstado.getSelectedItem().toString());
-        prod.setNumeroPlano(tfNroPlano.getText());
-        prod.setPrecioBase(Double.parseDouble(tfPrecioBase.getText()));
-        prod.setPesoUnidad(Double.parseDouble(tfPesoUnidad.getText()));
-        prod.setUnidadMedida(tfUnidadMedida.getText());
-        prod.setCostoAlmacenamiento(Double.parseDouble(tfCostoAlmacenamiento.getText()));
-        prod.setCostoEmision(Double.parseDouble(tfCostoEmision.getText()));
-        prod.setCostoUnitarioOmision(Double.parseDouble(tfCostoUnitOmision.getText()));
-        prod.setTamanioLoteEstandar(Double.parseDouble(tfTamanioLoteEstandar.getText()));
-        prod.setCondicionesEmbalaje(tfCondEmbalaje.getText());
-        prod.setStock(Double.parseDouble(tfStock.getText()));
-        prod.setDescripcion(tfDescripcion.getText());
+        productoTerminado.setCodigo(tfCodigo.getText());
+        productoTerminado.setNombre(tfNombre.getText());
+        productoTerminado.setCategoria(cbCategoria.getSelectedItem().toString());
+        productoTerminado.setEstado(cbEstado.getSelectedItem().toString());
+        productoTerminado.setNumeroPlano(tfNroPlano.getText());
+        productoTerminado.setPrecioBase(Double.parseDouble(tfPrecioBase.getText()));
+        productoTerminado.setPesoUnidad(Double.parseDouble(tfPesoUnidad.getText()));
+        productoTerminado.setUnidadMedida(tfUnidadMedida.getText());
+        productoTerminado.setCostoAlmacenamiento(Double.parseDouble(tfCostoAlmacenamiento.getText()));
+        productoTerminado.setCostoEmision(Double.parseDouble(tfCostoEmision.getText()));
+        productoTerminado.setCostoUnitarioOmision(Double.parseDouble(tfCostoUnitOmision.getText()));
+        productoTerminado.setTamanioLoteEstandar(Double.parseDouble(tfTamanioLoteEstandar.getText()));
+        productoTerminado.setCondicionesEmbalaje(tfCondEmbalaje.getText());
+        productoTerminado.setStock(Double.parseDouble(tfStock.getText()));
+        productoTerminado.setDescripcion(tfDescripcion.getText());
         
-        prod.setPrecioVenta(Double.parseDouble(tfPrecioVenta.getText()));
+        productoTerminado.setPrecioVenta(Double.parseDouble(tfPrecioVenta.getText()));
         
-        return prod;
+        return productoTerminado;
     }
     
     public void setComponente(ProductoTerminado prod){
