@@ -14,12 +14,14 @@ import org.jdesktop.swingx.JXDatePicker;
 import org.jdesktop.swingx.JXList;
 import org.jdesktop.swingx.JXTable;
 import radiadores.entidades.Cargo;
+import radiadores.entidades.CentroDeTrabajo;
 import radiadores.entidades.Componente;
 import radiadores.entidades.MateriaPrima;
 import radiadores.entidades.ProductoComponente;
 import radiadores.entidades.ProductoTerminado;
 import radiadores.entidades.Maquina;
 import radiadores.entidades.Proveedor;
+import radiadores.igu.model.CentroTrabajoTableModel;
 import radiadores.igu.model.IModeloReiniciable;
 import radiadores.igu.model.ProductoGralTableModel;
 import radiadores.igu.model.MaquinaTableModel;
@@ -34,14 +36,14 @@ public class ValidacionBuscar {
 
     private static ValidacionBuscar instancia;
     
-    private ValidacionBuscar() {
-    }
-    
     public synchronized static ValidacionBuscar getInstancia(){
         if (instancia == null){
             instancia = new ValidacionBuscar();
         }
         return instancia;            
+    }
+    private ValidacionBuscar(){
+        
     }
     
     public boolean proveedorEstaCargadoEnTabla(ProveedorTableModel tm, Proveedor proveedor){
@@ -200,4 +202,33 @@ public class ValidacionBuscar {
         }
         return resultado;
     }
+    
+    public boolean centroEstaCargadoEnTabla(CentroTrabajoTableModel tm, CentroDeTrabajo centro){
+        boolean resultado= false;
+        List<CentroDeTrabajo> centros = tm.getFilas();
+        
+        for (CentroDeTrabajo cent : centros) {
+            if(cent.getNombre().equals(centro.getNombre())){
+                resultado = true;
+            }
+        }
+        
+        return resultado;
+    }
+    
+public boolean centroEstaCargadoEnBD(CentroDeTrabajo centroDeTrabajo) {
+        boolean resultado = false;
+        List<CentroDeTrabajo> centros;
+        
+        centros = FachadaPersistencia.getInstancia().buscar(CentroDeTrabajo.class, "Select c from CentroDeTrabajo c");
+        
+        for (CentroDeTrabajo centro : centros) {
+            if(centroDeTrabajo.getNombre().equals(centro.getNombre())){
+                resultado = true;
+            }
+        }
+            
+        return  resultado;
+    }
+
 }
