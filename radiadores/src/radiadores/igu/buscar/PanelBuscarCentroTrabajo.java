@@ -6,17 +6,55 @@
 
 package radiadores.igu.buscar;
 
+import java.util.List;
+import javax.swing.ListSelectionModel;
+import radiadores.entidades.CentroDeTrabajo;
+import radiadores.igu.PanelCentroTrabajo;
+import radiadores.igu.model.CentroTrabajoTableModel;
+
 /**
  *
  * @author  Lisandro
  */
 public class PanelBuscarCentroTrabajo extends javax.swing.JDialog {
 
-    /** Creates new form PanelBuscarCentroTrabajo */
+    private CentroTrabajoTableModel tmCentro;
+    private List<CentroDeTrabajo> centros;
+    private PanelCentroTrabajo panelCentro;
+    private int tipoBusqueda;
+    private CentroTrabajoTableModel tmOrigen;
+        
+    /** Creates new form PanelBuscarMaquina */
     public PanelBuscarCentroTrabajo() {
         initComponents();
+        inicializar();
     }
 
+    
+    /** Creates new form PanelBuscarMaquina */
+    public PanelBuscarCentroTrabajo(CentroTrabajoTableModel tm) { 
+        initComponents();
+        tipoBusqueda = 1;
+        tmOrigen = tm;
+        //TODO Este tipo de busqueda deberia permitir selección multiple
+        inicializar();
+        
+    }
+
+     /** Creates new form PanelBuscarMaquina */
+    public PanelBuscarCentroTrabajo(PanelCentroTrabajo pCentro) {
+        initComponents();
+        tipoBusqueda = 2;
+        panelCentro = pCentro;
+        inicializar();
+    }
+    
+    private void inicializar() {
+        tmCentro = new CentroTrabajoTableModel();
+        jtCentroTrabajo.setModel(tmCentro);
+        jtCentroTrabajo.setSelectionMode(ListSelectionModel.SINGLE_SELECTION );
+    }
+    
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is

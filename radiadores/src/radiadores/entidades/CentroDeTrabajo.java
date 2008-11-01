@@ -25,6 +25,8 @@ public class CentroDeTrabajo implements Serializable {
     private List<Maquina> maquinas;
     private String nombre;
     private boolean borrado;
+    private String descripcion;
+    private String codigo;
 
     /**
      * Constructor
@@ -70,6 +72,24 @@ public class CentroDeTrabajo implements Serializable {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+    
+    @Column(name="descripcion")
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion; 
+    }
+    
+    @Column(name="codigo")
+    public String getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
     }
     
     @Column(name="borrado")
