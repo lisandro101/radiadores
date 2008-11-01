@@ -1,11 +1,15 @@
 package radiadores.entidades;
 
 import java.io.Serializable;
+import java.util.Arrays;
+import java.util.List;
 import java.util.UUID;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+import radiadores.persistencia.IPersistente;
 
 /**
  * Contiene los datos del cargo de un empleado
@@ -15,12 +19,13 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name="cargos")
-public class Cargo implements Serializable {
+public class Cargo implements Serializable, IPersistente {
     private static final long serialVersionUID = 1L;
+    private static final List<String> CAMPOS_UNICOS = Arrays.asList("nombre");
     
     private String id;
     private int horasPorMes;
-    private String nombreCargo;
+    private String nombre;
     private double valorHora;
     private boolean borrado;
 
@@ -62,13 +67,13 @@ public class Cargo implements Serializable {
         this.horasPorMes = horasPorMes;
     }
 
-    @Column(name="nombre_cargo", length=30)
-    public String getNombreCargo() {
-        return nombreCargo;
+    @Column(name="nombre", length=30)
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setNombreCargo(String nombreCargo) {
-        this.nombreCargo = nombreCargo;
+    public void setNombre(String nombreCargo) {
+        this.nombre = nombreCargo;
     }
 
     @Column(name="valor_hora")
@@ -87,5 +92,11 @@ public class Cargo implements Serializable {
 
     public void setBorrado(boolean borrado) {
         this.borrado = borrado;
+    }
+
+    @Override
+    @Transient
+    public List<String> getCamposUnicos() {
+        return CAMPOS_UNICOS;
     }
 }

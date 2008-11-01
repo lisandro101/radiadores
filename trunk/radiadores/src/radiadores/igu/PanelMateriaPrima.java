@@ -9,7 +9,7 @@ package radiadores.igu;
 import radiadores.igu.buscar.PanelBuscarProveedor;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
-import radiadores.Util;
+import radiadores.utils.Util;
 import radiadores.entidades.MateriaPrima;
 import radiadores.entidades.MateriaPrima.Estado;
 import radiadores.igu.buscar.PanelBuscarProductoGral;

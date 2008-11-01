@@ -28,26 +28,28 @@ public class FachadaPersistencia {
         return instancia;
     }
     
-    public void grabar(Object obj, boolean transaccion) {
+    public void grabar(IPersistente obj, boolean transaccion) {
         FabricaManejadores.getInstancia().getManejador().grabar(obj, transaccion);
     }
     
-    public <T> T actualizar(T obj, boolean transaccion) {
+    public <T extends IPersistente> T actualizar(T obj, boolean transaccion) {
         return FabricaManejadores.getInstancia().getManejador().actualizar(
                 obj, transaccion);
     }
     
-    public <T> T buscar(Class<T> clase, Object id) {
+    public <T extends IPersistente> T buscar(Class<T> clase, Object id) {
         return FabricaManejadores.getInstancia().getManejador().buscar(
                 clase, id);
     }
     
-    public <T> List<T> buscar(Class<T> clase, String query) {
+    public <T extends IPersistente> List<T> buscar(Class<T> clase,
+            String query) {
         return FabricaManejadores.getInstancia().getManejador().buscar(
                 clase, query);
     }
     
-    public <T> List<T> buscar(Class<T> clase, Query query) {
+    public <T extends IPersistente> List<T> buscar(Class<T> clase,
+            Query query) {
         return FabricaManejadores.getInstancia().getManejador().buscar(
                 clase, query);
     }

@@ -1,6 +1,7 @@
 package radiadores.entidades;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 import javax.persistence.CascadeType;
@@ -11,6 +12,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+import radiadores.persistencia.IPersistente;
 
 /**
  * Contiene la información del nodo de la ruta
@@ -20,8 +23,9 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name="nodos_ruta")
-public class NodoRuta implements Serializable {
+public class NodoRuta implements Serializable, IPersistente {
     private static final long serialVersionUID = 1L;
+    private static final List<String> CAMPOS_UNICOS = new ArrayList<String>(0);
     
     private String id;
     private List<ParteDeNodo> materiales;
@@ -94,5 +98,11 @@ public class NodoRuta implements Serializable {
 
     public void setBorrado(boolean borrado) {
         this.borrado = borrado;
+    }
+
+    @Override
+    @Transient
+    public List<String> getCamposUnicos() {
+        return CAMPOS_UNICOS;
     }
 }

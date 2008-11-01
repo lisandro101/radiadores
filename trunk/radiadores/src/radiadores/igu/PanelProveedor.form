@@ -19,7 +19,7 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="pCampos" alignment="0" max="32767" attributes="2"/>
-                  <Component id="pBotones" alignment="0" pref="839" max="32767" attributes="1"/>
+                  <Component id="pBotones" alignment="0" pref="869" max="32767" attributes="1"/>
               </Group>
               <EmptySpace min="18" pref="18" max="-2" attributes="0"/>
           </Group>
@@ -49,27 +49,27 @@
                       <Group type="102" alignment="2" attributes="0">
                           <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="53" pref="53" max="53" attributes="0"/>
-                          <Component id="tfNombre" pref="233" max="32767" attributes="1"/>
+                          <Component id="tfNombre" pref="250" max="32767" attributes="1"/>
                       </Group>
                       <Group type="102" alignment="2" attributes="0">
                           <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="46" pref="46" max="46" attributes="0"/>
-                          <Component id="tfContacto" pref="233" max="32767" attributes="1"/>
+                          <Component id="tfContacto" pref="250" max="32767" attributes="1"/>
                       </Group>
                       <Group type="102" alignment="2" attributes="0">
                           <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="48" pref="48" max="48" attributes="0"/>
-                          <Component id="tfTelefono" pref="233" max="32767" attributes="1"/>
+                          <Component id="tfTelefono" pref="250" max="32767" attributes="1"/>
                       </Group>
                       <Group type="102" alignment="2" attributes="0">
                           <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="62" pref="62" max="62" attributes="0"/>
-                          <Component id="tfMail" pref="233" max="32767" attributes="1"/>
+                          <Component id="tfMail" pref="249" max="32767" attributes="1"/>
                       </Group>
                       <Group type="102" alignment="2" attributes="0">
                           <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="47" pref="47" max="47" attributes="0"/>
-                          <Component id="tfDireccion" pref="233" max="32767" attributes="1"/>
+                          <Component id="tfDireccion" pref="246" max="32767" attributes="1"/>
                       </Group>
                       <Group type="102" alignment="2" attributes="0">
                           <Component id="jLabel6" min="-2" max="-2" attributes="0"/>

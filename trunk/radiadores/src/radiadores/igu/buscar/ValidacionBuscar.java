@@ -34,14 +34,14 @@ public class ValidacionBuscar {
 
     private static ValidacionBuscar instancia;
     
+    private ValidacionBuscar() {
+    }
+    
     public synchronized static ValidacionBuscar getInstancia(){
         if (instancia == null){
             instancia = new ValidacionBuscar();
         }
         return instancia;            
-    }
-    private ValidacionBuscar(){
-        
     }
     
     public boolean proveedorEstaCargadoEnTabla(ProveedorTableModel tm, Proveedor proveedor){
@@ -49,7 +49,7 @@ public class ValidacionBuscar {
         List<Proveedor> proveedores= tm.getFilas();
         
         for (int i = 0; i < proveedores.size(); i++) {
-            if(proveedores.get(i).getNombreProveedor().equals(proveedor.getNombreProveedor())){
+            if(proveedores.get(i).getNombre().equals(proveedor.getNombre())){
                 resultado=true;
                 
             }
@@ -92,7 +92,7 @@ public class ValidacionBuscar {
         proveedores= FachadaPersistencia.getInstancia().buscar(Proveedor.class, "Select c from Proveedor c");
         
         for (int i = 0; i < proveedores.size(); i++) {
-            if(proveedor.getNombreProveedor().equals(proveedores.get(i).getNombreProveedor())){
+            if(proveedor.getNombre().equals(proveedores.get(i).getNombre())){
                 resultado=true;
             }   
         }    
@@ -146,7 +146,7 @@ public class ValidacionBuscar {
         cargos= FachadaPersistencia.getInstancia().buscar(Cargo.class, "Select c from Cargo c");
         
         for (int i = 0; i < cargos.size(); i++) {
-            if(prod.getNombreCargo().equals(cargos.get(i).getNombreCargo())){
+            if(prod.getNombre().equals(cargos.get(i).getNombre())){
                 resultado=true;
             }   
         }    

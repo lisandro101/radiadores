@@ -100,7 +100,7 @@ public class ProveedorTableModel extends AbstractTableModel implements IModeloRe
         
         switch(columna) {
             case 0:
-                resultado = proveedores.get(fila).getNombreProveedor();
+                resultado = proveedores.get(fila).getNombre();
                 break;
             case 1:
                 resultado = proveedores.get(fila).getTelefono();
@@ -174,7 +174,7 @@ public class ProveedorTableModel extends AbstractTableModel implements IModeloRe
     public void imprimirModel(){
         
         for (int i = 0; i < proveedores.size(); i++) {
-            System.out.println(proveedores.get(i).getNombreProveedor()+"    "+
+            System.out.println(proveedores.get(i).getNombre()+"    "+
                     proveedores.get(i).getTelefono()+"    "+ 
                     proveedores.get(i).getNombreContacto());     
         }

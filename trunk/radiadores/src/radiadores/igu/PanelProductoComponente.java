@@ -8,7 +8,7 @@ package radiadores.igu;
 
 import radiadores.igu.buscar.PanelBuscarProveedor;
 import javax.swing.JOptionPane;
-import radiadores.Util;
+import radiadores.utils.Util;
 import radiadores.entidades.ProductoComponente;
 import radiadores.igu.buscar.PanelBuscarProductoGral;
 import radiadores.igu.buscar.ValidacionBuscar;

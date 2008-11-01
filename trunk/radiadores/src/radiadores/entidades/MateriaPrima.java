@@ -1,6 +1,9 @@
 package radiadores.entidades;
 
 import java.io.Serializable;
+import java.util.Arrays;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
@@ -34,6 +37,8 @@ public class MateriaPrima extends Componente implements Serializable {
     }
     
     private static final long serialVersionUID = 1L;
+    private static final List<String> CAMPOS_UNICOS = Arrays.asList(
+            "nombre", "codigo");
     
     private double costoAlmacenamiento;
     private double costoUnitarioPorOmision;

@@ -1,6 +1,7 @@
 package radiadores.entidades;
 
 import java.io.Serializable;
+import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 import javax.persistence.CascadeType;
@@ -11,6 +12,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+import radiadores.persistencia.IPersistente;
 
 /**
  * Contiene los datos de una ruta de fabricación
@@ -20,8 +23,9 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name="rutas_de_fabricacion")
-public class RutaFabricacion implements Serializable {
+public class RutaFabricacion implements Serializable, IPersistente {
     private static final long serialVersionUID = 1L;
+    private static final List<String> CAMPOS_UNICOS = Arrays.asList("nombre");
     
     private String id;
     private String nombre;
@@ -92,5 +96,11 @@ public class RutaFabricacion implements Serializable {
 
     public void setBorrado(boolean borrado) {
         this.borrado = borrado;
+    }
+
+    @Override
+    @Transient
+    public List<String> getCamposUnicos() {
+        return CAMPOS_UNICOS;
     }
 }

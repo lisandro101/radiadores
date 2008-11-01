@@ -7,13 +7,13 @@
 package radiadores.igu;
 
 import javax.swing.JOptionPane;
-import radiadores.Util;
 import radiadores.entidades.CentroDeTrabajo;
 import radiadores.igu.buscar.PanelBuscarCentroTrabajo;
 import radiadores.igu.buscar.PanelBuscarMaquina;
 import radiadores.igu.buscar.ValidacionBuscar;
 import radiadores.igu.model.MaquinaTableModel;
 import radiadores.persistencia.FachadaPersistencia;
+import radiadores.utils.Util;
 
 /**
  *

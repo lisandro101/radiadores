@@ -1,6 +1,7 @@
 package radiadores.entidades;
 
 import java.io.Serializable;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -13,6 +14,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
+import radiadores.persistencia.IPersistente;
 
 /**
  * Contiene los datos de un proveedor
@@ -22,15 +25,18 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @Table(name="proveedores")
-public class Proveedor implements Serializable {
+public class Proveedor implements Serializable, IPersistente {
     private static final long serialVersionUID = 1L;
+    private static final List<String> CAMPOS_UNICOS = Arrays.asList(
+            "nombre", "codigo");
     
     private String id;
     private String direccion;
     private Date fechaInicioActividad;
     private String mail;
     private String nombreContacto;
-    private String nombreProveedor;
+    private String codigo;
+    private String nombre;
     private String telefono;
     private List<OrdenCompra> ordenesCompra;
     private List<Componente> componentes;
@@ -100,13 +106,22 @@ public class Proveedor implements Serializable {
         this.nombreContacto = nombreContacto;
     }
 
-    @Column(name="nombre_proveedor", length=100)
-    public String getNombreProveedor() {
-        return nombreProveedor;
+    @Column(name="codigo", length=20)
+    public String getCodigo() {
+        return codigo;
     }
 
-    public void setNombreProveedor(String nombreProveedor) {
-        this.nombreProveedor = nombreProveedor;
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
+    }
+
+    @Column(name="nombre", length=100)
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     @Column(name="telefono", length=15)
@@ -145,5 +160,11 @@ public class Proveedor implements Serializable {
 
     public void setBorrado(boolean borrado) {
         this.borrado = borrado;
+    }
+
+    @Override
+    @Transient
+    public List<String> getCamposUnicos() {
+        return CAMPOS_UNICOS;
     }
 }
