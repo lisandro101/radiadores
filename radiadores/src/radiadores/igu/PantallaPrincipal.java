@@ -8,12 +8,14 @@ package radiadores.igu;
 
 import javax.swing.JOptionPane;
 
+
+
 /**
  *
  * @author  stafoxter
  */
 public class PantallaPrincipal extends javax.swing.JFrame {
-
+    private static final long serialVersionUID = 0;
     /** Creates new form PantallaPrincipal */
     public PantallaPrincipal() {
         initComponents();
@@ -46,7 +48,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
 
         jTabbedPane1 = new javax.swing.JTabbedPane();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Fabrica Radiadores");
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {

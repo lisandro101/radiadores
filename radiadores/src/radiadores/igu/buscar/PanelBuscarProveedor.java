@@ -185,8 +185,8 @@ private void btCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
 private void btBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBuscarActionPerformed
     tmBuscar.limpiarTableModel();
     
-    Query consulta = FachadaPersistencia.getInstancia().crearConsulta("Select a from Proveedor a where (a.nombreProveedor) LIKE :valor and a.borrado=false" );
-    consulta.setParameter("valor", "%"+tfNombre.getText()+"%");
+    Query consulta = FachadaPersistencia.getInstancia().crearConsulta("Select a from Proveedor a where (a.nombre) LIKE :nombre and a.borrado=false" );
+    consulta.setParameter("nombre", "%"+tfNombre.getText()+"%");
      
     proveedores= FachadaPersistencia.getInstancia().buscar(Proveedor.class, consulta);
 
@@ -198,7 +198,7 @@ private void btBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
 }//GEN-LAST:event_btBuscarActionPerformed
 
 private void btAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAceptarActionPerformed
-    int indice = tProveedores.convertRowIndexToModel(tProveedores.getSelectedRow() );
+    int indice = tProveedores.convertRowIndexToModel(tProveedores.getSelectedRow());
     Proveedor resultado;
     
     
