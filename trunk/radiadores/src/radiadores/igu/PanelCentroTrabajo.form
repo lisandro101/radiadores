@@ -20,7 +20,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="103" groupAlignment="2" attributes="0">
                       <Component id="pMaquinaria" alignment="2" max="32767" attributes="1"/>
-                      <Component id="jPanel5" alignment="2" pref="620" max="32767" attributes="1"/>
+                      <Component id="jPanel5" alignment="2" pref="628" max="32767" attributes="1"/>
                   </Group>
                   <Component id="pCentroTrabajo" alignment="2" min="-2" max="-2" attributes="1"/>
               </Group>

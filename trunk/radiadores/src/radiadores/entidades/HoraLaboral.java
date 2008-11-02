@@ -29,6 +29,7 @@ public class HoraLaboral implements Serializable, IPersistente {
     private String id;
     private int cantidad;
     private Empleado empleado;
+    private NodoRuta nodoRuta;
     private CentroDeTrabajo centroDeTrabajo;
     private boolean borrado;
 
@@ -101,5 +102,15 @@ public class HoraLaboral implements Serializable, IPersistente {
     @Transient
     public List<String> getCamposUnicos() {
         return CAMPOS_UNICOS;
+    }
+
+    @JoinColumn(name="nodo_ruta_id")
+    @ManyToOne(targetEntity=NodoRuta.class, cascade=CascadeType.ALL)
+    public NodoRuta getNodoRuta() {
+        return nodoRuta;
+    }
+
+    public void setNodoRuta(NodoRuta nodoRuta) {
+        this.nodoRuta = nodoRuta;
     }
 }

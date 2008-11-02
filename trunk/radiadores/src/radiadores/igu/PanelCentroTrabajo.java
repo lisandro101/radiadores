@@ -276,7 +276,7 @@ private void btAgregarMaquinaActionPerformed(java.awt.event.ActionEvent evt) {//
 }//GEN-LAST:event_btAgregarMaquinaActionPerformed
 
 private void btBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBuscarActionPerformed
-    PanelBuscarCentroTrabajo buscarCentroTrabajo = new PanelBuscarCentroTrabajo(this);   
+    PanelBuscarCentroTrabajo buscarCentroTrabajo = new PanelBuscarCentroTrabajo();   
     buscarCentroTrabajo.setModal(true);
     buscarCentroTrabajo.setVisible(true);
 }//GEN-LAST:event_btBuscarActionPerformed
