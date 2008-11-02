@@ -29,6 +29,7 @@ public class NodoRuta implements Serializable, IPersistente {
     
     private String id;
     private List<ParteDeNodo> materiales;
+    private List<HoraLaboral> horasTrabajadas;
     private CentroDeTrabajo centroTrabajo;
     private RutaFabricacion rutaFabricacion;
     private boolean borrado;
@@ -104,5 +105,15 @@ public class NodoRuta implements Serializable, IPersistente {
     @Transient
     public List<String> getCamposUnicos() {
         return CAMPOS_UNICOS;
+    }
+
+    @OneToMany(targetEntity=HoraLaboral.class, cascade=CascadeType.ALL,
+    mappedBy="nodoRuta")
+    public List<HoraLaboral> getHorasTrabajadas() {
+        return horasTrabajadas;
+    }
+
+    public void setHorasTrabajadas(List<HoraLaboral> horasTrabajadas) {
+        this.horasTrabajadas = horasTrabajadas;
     }
 }

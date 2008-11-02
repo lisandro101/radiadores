@@ -24,8 +24,6 @@ public class PanelBuscarCentroTrabajo extends javax.swing.JDialog {
     private CentroTrabajoTableModel tmCentro;
     private List<CentroDeTrabajo> centros;
     private PanelCentroTrabajo panelCentro;
-    private int tipoBusqueda;
-    private CentroTrabajoTableModel tmOrigen;
 
     /** Creates new form PanelBuscarMaquina */
     public PanelBuscarCentroTrabajo() {
@@ -33,21 +31,9 @@ public class PanelBuscarCentroTrabajo extends javax.swing.JDialog {
         inicializar();
     }
 
-    
-    /** Creates new form PanelBuscarMaquina */
-    public PanelBuscarCentroTrabajo(CentroTrabajoTableModel tm) { 
-        initComponents();
-        tipoBusqueda = 1;
-        tmOrigen = tm;
-        //TODO Este tipo de busqueda deberia permitir selección multiple
-        inicializar();
-        
-    }
-
      /** Creates new form PanelBuscarMaquina */
     public PanelBuscarCentroTrabajo(PanelCentroTrabajo pCentro) {
         initComponents();
-        tipoBusqueda = 2;
         panelCentro = pCentro;
         inicializar();
     }
@@ -234,32 +220,14 @@ private void btBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
 
 private void btAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAceptarActionPerformed
     int indice = jtCentroTrabajo.convertRowIndexToModel(jtCentroTrabajo.getSelectedRow());
-    CentroDeTrabajo resultado;
  
     if(indice ==-1 ){
         JOptionPane.showMessageDialog(this, "No se ha seleccionado ningun Centro de Trabajo");
     }
     else{
-        resultado = tmOrigen.getFila(indice);
-        if(tipoBusqueda == 1){
-            if(tmOrigen.getRowCount()<1){
-                tmOrigen.agregarFila(resultado);       
-                dispose();
-            }
-            else{
-                if(ValidacionBuscar.getInstancia(). centroEstaCargadoEnTabla(tmOrigen, resultado)){
-                    JOptionPane.showMessageDialog(this, "El Centro de Trabajo ya se encuentra cargado");
-                }
-                else{
-                    tmOrigen.agregarFila(resultado);       
-                    dispose();
-                }
-            }
-        }
-        else{
-            panelCentro.setCentroTrabajo(resultado);
-            dispose();
-        }
+        panelCentro.setCentroTrabajo(tmCentro.getFila(indice));
+        dispose();
+        
     }
 }//GEN-LAST:event_btAceptarActionPerformed
 
