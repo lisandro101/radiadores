@@ -8,6 +8,7 @@ package radiadores.igu.buscar;
 import java.awt.Component;
 import java.awt.Container;
 import java.util.List;
+import javax.persistence.Query;
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
 import org.jdesktop.swingx.JXDatePicker;
@@ -27,6 +28,7 @@ import radiadores.igu.model.ProductoGralTableModel;
 import radiadores.igu.model.MaquinaTableModel;
 import radiadores.igu.model.ProveedorTableModel;
 import radiadores.persistencia.FachadaPersistencia;
+import radiadores.persistencia.IPersistente;
 
 /**
  *
@@ -170,6 +172,53 @@ public class ValidacionBuscar {
         }    
         
         return  resultado;
+    }
+    
+    @SuppressWarnings({"unchecked", "unchecked"})
+    public boolean estaDuplicado(IPersistente obj) {
+        boolean resultado = false;
+        
+        if(obj != null && obj.getCamposUnicos().size() > 0) {
+            Class clase = obj.getClass();
+            String nombre = clase.getSimpleName();
+            String nombreCorto = nombre.length() > 0 ?
+                Character.toString(nombre.charAt(0)).toLowerCase() : "x";
+            String consulta = "SELECT " + nombreCorto + " FROM " + nombre +
+                    " " + nombreCorto + " WHERE";
+            List<String> campos = obj.getCamposUnicos();
+            
+            for (int i = 0; i < campos.size(); i++) {
+                String campo = campos.get(i);
+                consulta += (i == 0 ? " " : " OR ") + nombreCorto + "." +
+                        campo + " = :" + campo;
+            }
+            
+            Query query = FachadaPersistencia.getInstancia().crearConsulta(
+                    consulta);
+            
+            for (String campo : campos) {
+                String nombreGetter = campo.length() > 0 ? "get" +
+                    Character.toString(campo.charAt(0)).toUpperCase() +
+                    campo.substring(1) : null;
+                
+                if(nombreGetter != null) {
+                    try {
+                        Object valor = clase.getMethod(nombreGetter).invoke(obj);
+                        query.setParameter(campo, valor);
+                    } catch (Exception ex) {
+                        ex.printStackTrace();
+                    }
+                }
+            }
+            
+            List resultadosBusqueda = FachadaPersistencia.getInstancia().
+                    buscar(clase, query);
+            
+            resultado = resultadosBusqueda != null &&
+                    resultadosBusqueda.size() > 0;
+        }
+        
+        return resultado;
     }
 
 
