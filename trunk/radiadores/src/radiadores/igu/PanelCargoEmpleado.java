@@ -325,7 +325,7 @@ private void btBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
      
     tmBuscar.limpiarTableModel();
     
-    Query consulta = FachadaPersistencia.getInstancia().crearConsulta("Select a from Cargo a where (a.nombreCargo) LIKE :valor and a.borrado=false" );
+    Query consulta = FachadaPersistencia.getInstancia().crearConsulta("Select a from Cargo a where (a.nombre) LIKE :valor and a.borrado=false" );
     consulta.setParameter("valor", "%"+tfNombreCargo.getText()+"%");
      
     cargosResul= FachadaPersistencia.getInstancia().buscar(Cargo.class, consulta);

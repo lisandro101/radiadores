@@ -27,7 +27,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="pTabla" alignment="0" max="32767" attributes="2"/>
                   <Component id="pABMCargo" alignment="0" max="32767" attributes="2"/>
-                  <Component id="pBotones" alignment="0" pref="492" max="32767" attributes="0"/>
+                  <Component id="pBotones" alignment="0" pref="504" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -63,11 +63,11 @@
               <Group type="102" attributes="0">
                   <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jScrollPane1" alignment="0" pref="430" max="32767" attributes="0"/>
+                      <Component id="jScrollPane1" alignment="0" pref="438" max="32767" attributes="0"/>
                       <Group type="102" alignment="0" attributes="1">
                           <Component id="lbCargos" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="tfNombreCargo" pref="226" max="32767" attributes="0"/>
+                          <Component id="tfNombreCargo" pref="278" max="32767" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="btBuscar" min="-2" max="-2" attributes="0"/>
                       </Group>
@@ -153,9 +153,9 @@
                           </Group>
                           <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="tfCodigo" alignment="0" pref="199" max="32767" attributes="1"/>
-                              <Component id="tfNombre" alignment="0" pref="199" max="32767" attributes="1"/>
-                              <Component id="tfPrecioHora" alignment="0" pref="199" max="32767" attributes="1"/>
+                              <Component id="tfCodigo" alignment="0" pref="224" max="32767" attributes="1"/>
+                              <Component id="tfNombre" alignment="0" pref="224" max="32767" attributes="1"/>
+                              <Component id="tfPrecioHora" alignment="0" pref="224" max="32767" attributes="1"/>
                           </Group>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
@@ -165,8 +165,8 @@
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="cbEstado" alignment="0" pref="190" max="32767" attributes="0"/>
-                              <Component id="tfHorasLaborales" alignment="0" pref="190" max="32767" attributes="1"/>
+                              <Component id="cbEstado" alignment="0" pref="224" max="32767" attributes="0"/>
+                              <Component id="tfHorasLaborales" alignment="0" pref="224" max="32767" attributes="1"/>
                           </Group>
                       </Group>
                   </Group>
