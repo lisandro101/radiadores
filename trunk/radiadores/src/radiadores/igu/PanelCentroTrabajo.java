@@ -8,6 +8,8 @@ package radiadores.igu;
 
 import javax.swing.JOptionPane;
 import radiadores.entidades.CentroDeTrabajo;
+import radiadores.entidades.Maquina;
+import radiadores.entidades.MateriaPrima;
 import radiadores.igu.buscar.PanelBuscarCentroTrabajo;
 import radiadores.igu.buscar.PanelBuscarMaquina;
 import radiadores.igu.buscar.ValidacionBuscar;
@@ -64,6 +66,7 @@ public class PanelCentroTrabajo extends javax.swing.JPanel {
         btAgregar = new javax.swing.JButton();
         btModificar = new javax.swing.JButton();
         btEliminar = new javax.swing.JButton();
+        btLimpiar = new javax.swing.JButton();
 
         lbNombre.setText("Nombre");
 
@@ -213,6 +216,14 @@ public class PanelCentroTrabajo extends javax.swing.JPanel {
         });
         jPanel5.add(btEliminar);
 
+        btLimpiar.setText("Limpiar");
+        btLimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btLimpiarActionPerformed(evt);
+            }
+        });
+        jPanel5.add(btLimpiar);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -254,14 +265,24 @@ private void btModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
     if(opcion == JOptionPane.YES_OPTION) {
         actualizarCentroTrabajo();
         FachadaPersistencia.getInstancia().actualizar(centroDeTrabajo, true);
-        Util.getInstancia().limpiarCampos(pCentroTrabajo);
+        Util.getInstancia().limpiarCampos(this);
         centroDeTrabajo = null;            
         inicializarBotones();
     }
 }//GEN-LAST:event_btModificarActionPerformed
 
 private void btEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEliminarActionPerformed
-// TODO add your handling code here:
+    int opcion = JOptionPane.showConfirmDialog(this,
+                "¿Seguro que desea eliminar el Centro de Trabajo?", "Aceptar",
+                JOptionPane.YES_NO_OPTION);
+        
+    if(opcion == JOptionPane.YES_OPTION) {
+        centroDeTrabajo.setBorrado(true);
+        FachadaPersistencia.getInstancia().actualizar(centroDeTrabajo, true);
+        Util.getInstancia().limpiarCampos(this);
+        centroDeTrabajo = null;
+        inicializarBotones();
+    }
 }//GEN-LAST:event_btEliminarActionPerformed
 
 private void btAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAgregarActionPerformed
@@ -272,7 +293,13 @@ private void btAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
         if(ValidacionBuscar.getInstancia().centroEstaCargadoEnBD(centroDeTrabajo)){
             JOptionPane.showMessageDialog(this, "El Centro de Trabajo ya se encuentra cargado en el sistema.");
         }else{
-            FachadaPersistencia.getInstancia().grabar(crearCentroTrabajo(), true);
+            CentroDeTrabajo ct = crearCentroTrabajo();
+            
+            //Actualizo todas las maquinas y por cascadeo se crea el centro.
+            for (Maquina maq : ct.getMaquinas()) {
+                maq.setCentroDeTrabajo(centroDeTrabajo);
+                FachadaPersistencia.getInstancia().actualizar(maq, true);
+            }
             Util.getInstancia().limpiarCampos(this);
             centroDeTrabajo = null;
         }
@@ -302,6 +329,13 @@ private void tfNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tf
         btAgregar.setEnabled(true);
     }
 }//GEN-LAST:event_tfNombreKeyTyped
+
+private void btLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLimpiarActionPerformed
+    Util.getInstancia().limpiarCampos(this);
+    centroDeTrabajo = null;
+    
+    inicializarBotones();
+}//GEN-LAST:event_btLimpiarActionPerformed
 
  private CentroDeTrabajo crearCentroTrabajo(){
         CentroDeTrabajo centro = new CentroDeTrabajo();
@@ -352,6 +386,7 @@ private void tfNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tf
     private javax.swing.JButton btBuscar;
     private javax.swing.JButton btEliminar;
     private javax.swing.JButton btEliminarMaquina;
+    private javax.swing.JButton btLimpiar;
     private javax.swing.JButton btModificar;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
