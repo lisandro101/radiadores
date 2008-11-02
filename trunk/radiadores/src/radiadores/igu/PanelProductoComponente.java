@@ -418,7 +418,7 @@ private void btAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
         JOptionPane.showMessageDialog(this, "Existen campos sin completar");
     }else{
         productoComponente= crearProductoComponente();
-        if(ValidacionBuscar.getInstancia().productoComponenteEstaCargadoEnBD(productoComponente)){
+        if(ValidacionBuscar.getInstancia().estaDuplicado(productoComponente)){
             JOptionPane.showMessageDialog(this, "El producto componente ya se encuentra registrado");
         }else{
             FachadaPersistencia.getInstancia().grabar(productoComponente, true);

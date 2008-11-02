@@ -344,7 +344,7 @@ private void btAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
         JOptionPane.showMessageDialog(this, "Existen campos sin completar");
     }else{
         materiaPrima= crearMateriaPrima();
-        if(ValidacionBuscar.getInstancia().materiaPrimaEstaCargadoEnBD(materiaPrima)){
+        if(ValidacionBuscar.getInstancia().estaDuplicado(materiaPrima)){
             JOptionPane.showMessageDialog(this, "La materia prima ya se encuentra registrada");
         }else{
             FachadaPersistencia.getInstancia().grabar(materiaPrima, true);

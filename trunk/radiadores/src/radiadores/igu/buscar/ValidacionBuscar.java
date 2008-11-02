@@ -17,12 +17,17 @@ import org.jdesktop.swingx.JXTable;
 import radiadores.entidades.Cargo;
 import radiadores.entidades.CentroDeTrabajo;
 import radiadores.entidades.Componente;
+import radiadores.entidades.Empleado;
+import radiadores.entidades.HoraLaboral;
 import radiadores.entidades.MateriaPrima;
 import radiadores.entidades.ProductoComponente;
 import radiadores.entidades.ProductoTerminado;
 import radiadores.entidades.Maquina;
+import radiadores.entidades.ParteDeNodo;
 import radiadores.entidades.Proveedor;
 import radiadores.igu.model.CentroTrabajoTableModel;
+import radiadores.igu.model.ComponenteDetalleRutaTableModel;
+import radiadores.igu.model.EmpleadoDetalleRutaTableModel;
 import radiadores.igu.model.IModeloReiniciable;
 import radiadores.igu.model.ProductoGralTableModel;
 import radiadores.igu.model.MaquinaTableModel;
@@ -60,7 +65,18 @@ public class ValidacionBuscar {
         }
         return resultado;
     }
-    
+    public boolean empleadoEstaCargadoEnTabla(EmpleadoDetalleRutaTableModel tm, HoraLaboral horaLaboral){
+        boolean resultado= false;
+        List<HoraLaboral> empleados= tm.getFilas();
+        
+        for (int i = 0; i < empleados.size(); i++) {
+            if(empleados.get(i).getEmpleado().getNombre().equals(horaLaboral.getEmpleado().getNombre())){
+                resultado=true;
+                
+            }
+        }
+        return resultado;
+    }
 
     public boolean componenteEstaCargadoEnTabla(ProductoGralTableModel tm, Componente valor){
         boolean resultado= false;
@@ -87,6 +103,19 @@ public class ValidacionBuscar {
         
         return resultado;
     }
+    public boolean parteNodoEstaCargadaEnTabla(ComponenteDetalleRutaTableModel tm, Componente parte){
+        boolean resultado = false;
+        List<ParteDeNodo> partes= tm.getFilas();
+        
+        for (int i = 0; i < partes.size(); i++) {
+            if(partes.get(i).getComponente().getNombre().equals(parte.getNombre())){
+                resultado = true;
+            }
+        }
+        
+        return resultado;
+    }
+    
 
     @Deprecated
     public boolean proveedorEstaCargadoEnBD(Proveedor proveedor){
