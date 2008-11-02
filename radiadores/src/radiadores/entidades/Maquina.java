@@ -34,6 +34,7 @@ public class Maquina implements Serializable, IPersistente {
     private String codigo;
     private Date fechaAntiguedad;
     private Date proximoMantenimiento;
+    private Date fechaDeFabricacion;
     private String nombre;
     private CentroDeTrabajo centroDeTrabajo;
     private Sector sector;
@@ -149,5 +150,15 @@ public class Maquina implements Serializable, IPersistente {
     @Transient
     public List<String> getCamposUnicos() {
         return CAMPOS_UNICOS;
+    }
+
+    @Column(name="fecha_fabricacion")
+    @Temporal(TemporalType.DATE)
+    public Date getFechaDeFabricacion() {
+        return fechaDeFabricacion;
+    }
+
+    public void setFechaDeFabricacion(Date fechaDeFabricacion) {
+        this.fechaDeFabricacion = fechaDeFabricacion;
     }
 }

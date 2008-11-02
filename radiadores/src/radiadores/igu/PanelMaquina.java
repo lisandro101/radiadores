@@ -309,7 +309,7 @@ private void tfNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tf
         maqui.setNombre(tfNombre.getText());
         maqui.setEdificio(edificio);
         maqui.setSector(sector);
-        maqui.setFechaAntiguedad(dpFechaDeFabricacion.getDate());
+        maqui.setFechaDeFabricacion(dpFechaDeFabricacion.getDate());
         maqui.setProximoMantenimiento(dpProximoMantenimiento.getDate());
         
         return maqui;
@@ -318,7 +318,7 @@ private void tfNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tf
     private void cargarPantallaMaquina(Maquina _maquina){
         tfNombre.setText(_maquina.getNombre());
         tfCodigo.setText(_maquina.getCodigo());
-        dpFechaDeFabricacion.setDate(_maquina.getFechaAntiguedad());
+        dpFechaDeFabricacion.setDate(_maquina.getFechaDeFabricacion());
         dpProximoMantenimiento.setDate(_maquina.getProximoMantenimiento());
         
         btAgregar.setEnabled(false);
@@ -342,7 +342,7 @@ private void tfNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tf
         maquina.setCodigo(tfCodigo.getText());
         maquina.setEdificio((Edificio) cbEdificio.getSelectedItem()); //TODO revizar actualizaciones de Edificio my Sector
         maquina.setSector((Sector) cbSector.getSelectedItem());
-        maquina.setFechaAntiguedad(dpFechaDeFabricacion.getDate()); //TODO atributo ProxMantenimiento
-//        maquina.setFechaAntiguedad(dpProximoMantenimiento.getDate()); 
+        maquina.setFechaDeFabricacion(dpFechaDeFabricacion.getDate());
+        maquina.setProximoMantenimiento(dpProximoMantenimiento.getDate()); 
     }
 }

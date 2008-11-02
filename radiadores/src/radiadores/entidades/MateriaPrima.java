@@ -46,7 +46,6 @@ public class MateriaPrima extends Componente implements Serializable {
     private double pesoPorUnidad;
     private double precioBase;
     private double tamanioLoteEstandar;
-    private String unidadMedida;
     private Estado estado;
 
     @Column(name="costo_almacenamiento")
@@ -103,16 +102,7 @@ public class MateriaPrima extends Componente implements Serializable {
     public void setTamanioLoteEstandar(double tamanioLoteEstandar) {
         this.tamanioLoteEstandar = tamanioLoteEstandar;
     }
-
-    @Column(name="unidad_medida", length=20)
-    public String getUnidadMedida() {
-        return unidadMedida;
-    }
-
-    public void setUnidadMedida(String unidadMedida) {
-        this.unidadMedida = unidadMedida;
-    }
-    
+  
     @Column(name="estado")
     public Estado getEstado() {
         return estado;

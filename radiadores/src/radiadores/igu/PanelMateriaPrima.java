@@ -336,7 +336,6 @@ private void btEliminarProveedorActionPerformed(java.awt.event.ActionEvent evt) 
         JOptionPane.showMessageDialog(this, "No se ha seleccionado Proveedor");
     }else{
         tm.eliminarFila(filaSeleccionada);
-        tm.imprimirModel();
     }
 }//GEN-LAST:event_btEliminarProveedorActionPerformed
 
@@ -346,12 +345,12 @@ private void btAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
     }else{
         materiaPrima= crearMateriaPrima();
         if(ValidacionBuscar.getInstancia().materiaPrimaEstaCargadoEnBD(materiaPrima)){
-            JOptionPane.showMessageDialog(this, "La materia prima ya se encuentra registrado");
+            JOptionPane.showMessageDialog(this, "La materia prima ya se encuentra registrada");
         }else{
             FachadaPersistencia.getInstancia().grabar(materiaPrima, true);
             Util.getInstancia().limpiarCampos(this);
             
-            materiaPrima=null;
+            materiaPrima = null;
         }
     }
     
@@ -366,7 +365,7 @@ private void btEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
         materiaPrima.setBorrado(true);
         FachadaPersistencia.getInstancia().actualizar(materiaPrima, true);
         Util.getInstancia().limpiarCampos(this);
-        materiaPrima=null;
+        materiaPrima = null;
         inicializarBotones();
     }
 }//GEN-LAST:event_btEliminarActionPerformed
