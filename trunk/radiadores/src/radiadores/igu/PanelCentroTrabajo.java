@@ -6,10 +6,8 @@
 
 package radiadores.igu;
 
-import java.util.List;
 import javax.swing.JOptionPane;
 import radiadores.entidades.CentroDeTrabajo;
-import radiadores.entidades.Maquina;
 import radiadores.igu.buscar.PanelBuscarCentroTrabajo;
 import radiadores.igu.buscar.PanelBuscarMaquina;
 import radiadores.igu.buscar.ValidacionBuscar;
@@ -30,6 +28,7 @@ public class PanelCentroTrabajo extends javax.swing.JPanel {
     public PanelCentroTrabajo() {
         initComponents();
         inicializar();
+        inicializarBotones();
     }
     
     private void inicializar() {      
@@ -70,7 +69,19 @@ public class PanelCentroTrabajo extends javax.swing.JPanel {
 
         lbDescripcion.setText("Descripcion");
 
+        tfNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                tfNombreKeyTyped(evt);
+            }
+        });
+
         lbCodigo.setText("Codigo");
+
+        tfCodigo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                tfCodigoKeyTyped(evt);
+            }
+        });
 
         javax.swing.GroupLayout pCentroTrabajoLayout = new javax.swing.GroupLayout(pCentroTrabajo);
         pCentroTrabajo.setLayout(pCentroTrabajoLayout);
@@ -156,8 +167,8 @@ public class PanelCentroTrabajo extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pMaquinariaLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pMaquinariaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 573, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 573, Short.MAX_VALUE))
+                    .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 596, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 596, Short.MAX_VALUE))
                 .addContainerGap())
         );
         pMaquinariaLayout.setVerticalGroup(
@@ -211,7 +222,7 @@ public class PanelCentroTrabajo extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                         .addComponent(pMaquinaria, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, 605, Short.MAX_VALUE))
+                        .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, 628, Short.MAX_VALUE))
                     .addComponent(pCentroTrabajo, javax.swing.GroupLayout.Alignment.CENTER, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(84, 84, 84))
         );
@@ -262,8 +273,7 @@ private void btAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
             JOptionPane.showMessageDialog(this, "El Centro de Trabajo ya se encuentra cargado en el sistema.");
         }else{
             FachadaPersistencia.getInstancia().grabar(crearCentroTrabajo(), true);
-            Util.getInstancia().limpiarCampos(pCentroTrabajo);
-            Util.getInstancia().limpiarCampos(pMaquinaria);
+            Util.getInstancia().limpiarCampos(this);
             centroDeTrabajo = null;
         }
     }
@@ -276,10 +286,22 @@ private void btAgregarMaquinaActionPerformed(java.awt.event.ActionEvent evt) {//
 }//GEN-LAST:event_btAgregarMaquinaActionPerformed
 
 private void btBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBuscarActionPerformed
-    PanelBuscarCentroTrabajo buscarCentroTrabajo = new PanelBuscarCentroTrabajo();   
+    PanelBuscarCentroTrabajo buscarCentroTrabajo = new PanelBuscarCentroTrabajo(this);   
     buscarCentroTrabajo.setModal(true);
     buscarCentroTrabajo.setVisible(true);
 }//GEN-LAST:event_btBuscarActionPerformed
+
+private void tfCodigoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfCodigoKeyTyped
+    if (!btModificar.isEnabled()){
+        btAgregar.setEnabled(true);
+    }
+}//GEN-LAST:event_tfCodigoKeyTyped
+
+private void tfNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfNombreKeyTyped
+    if (!btModificar.isEnabled()){
+        btAgregar.setEnabled(true);
+    }
+}//GEN-LAST:event_tfNombreKeyTyped
 
  private CentroDeTrabajo crearCentroTrabajo(){
         CentroDeTrabajo centro = new CentroDeTrabajo();
@@ -296,7 +318,7 @@ private void btBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         centroDeTrabajo.setNombre(tfNombre.getText());
         centroDeTrabajo.setCodigo(tfCodigo.getText());
         centroDeTrabajo.setDescripcion(tfDescripcion.getText());
-        centroDeTrabajo.setMaquinas(((MaquinaTableModel)jtMaquina.getModel()).getFilas());
+        centroDeTrabajo.setMaquinas(tmMaquina.getFilas());
         
     }
 
@@ -308,7 +330,21 @@ private void btBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
  
  public void setCentroTrabajo(CentroDeTrabajo cent){
      centroDeTrabajo = cent;
+     cargarPantallaCentro(cent);
  }
+ 
+     private void cargarPantallaCentro(CentroDeTrabajo centro){
+        tfNombre.setText(centro.getNombre());
+        tfCodigo.setText(centro.getCodigo());
+        tfDescripcion.setText(centro.getDescripcion());
+        tmMaquina.agregarFilas(centro.getMaquinas());
+        
+        centroDeTrabajo = centro;
+        
+        btAgregar.setEnabled(false);
+        btModificar.setEnabled(true);
+        btEliminar.setEnabled(true);
+    }
  
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btAgregar;

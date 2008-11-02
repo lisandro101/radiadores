@@ -164,7 +164,7 @@ public class ValidacionBuscar {
 
 
     @Deprecated
-    public boolean maquinaEstaCargadaEnBD(Maquina maquina){ //TODO Hacer este metodo generico para cualquier clase
+    public boolean maquinaEstaCargadaEnBD(Maquina maquina){
         boolean resultado = false;
         List<Maquina> maquinas;
         
@@ -269,7 +269,8 @@ public class ValidacionBuscar {
         
         return resultado;
     }
-    
+
+@Deprecated
 public boolean centroEstaCargadoEnBD(CentroDeTrabajo centroDeTrabajo) {
         boolean resultado = false;
         List<CentroDeTrabajo> centros;

@@ -39,6 +39,7 @@ public class Componente implements Serializable, IPersistente {
     private String id;
     private String codigo;
     private String nombre;
+    private String unidadMedida;
     private List<Proveedor> proveedores;
     private boolean borrado;
     private char tipo;
@@ -119,5 +120,14 @@ public class Componente implements Serializable, IPersistente {
     @Transient
     public List<String> getCamposUnicos() {
         return CAMPOS_UNICOS;
+    }
+
+    @Column(name="unidad_medida", length=20)
+    public String getUnidadMedida() {
+        return unidadMedida;
+    }
+
+    public void setUnidadMedida(String unidadMedida) {
+        this.unidadMedida = unidadMedida;
     }
 }

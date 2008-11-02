@@ -17,7 +17,7 @@ public class MaquinaTableModel extends AbstractTableModel implements IModeloRein
     private static final Class[] CLASE_COLUMNAS =
         {String.class, String.class, String.class};
     
-    private List<Maquina> maquina;
+    private List<Maquina> maquinas;
 
     /**
      * Constructor
@@ -25,7 +25,7 @@ public class MaquinaTableModel extends AbstractTableModel implements IModeloRein
      * @param filas Cantidad de filas iniciales
      */
     public MaquinaTableModel(int filas) {
-        this.maquina = new ArrayList<Maquina>(filas > 0 ? filas : 0);
+        this.maquinas = new ArrayList<Maquina>(filas > 0 ? filas : 0);
     }
     
     /**
@@ -33,7 +33,7 @@ public class MaquinaTableModel extends AbstractTableModel implements IModeloRein
      * 
      */
     public MaquinaTableModel() {
-        this.maquina = new ArrayList<Maquina>(0);
+        this.maquinas = new ArrayList<Maquina>(0);
     }
     
     /**
@@ -77,7 +77,7 @@ public class MaquinaTableModel extends AbstractTableModel implements IModeloRein
      */
     @Override
     public int getRowCount() {
-        return maquina.size();
+        return maquinas.size();
     }
 
     /**
@@ -103,13 +103,13 @@ public class MaquinaTableModel extends AbstractTableModel implements IModeloRein
         
         switch(columna) {
             case 0:
-                resultado = maquina.get(fila).getNombre();
+                resultado = maquinas.get(fila).getNombre();
                 break;
             case 1:
-                resultado = maquina.get(fila).getCodigo();
+                resultado = maquinas.get(fila).getCodigo();
                 break;
             case 2:
-                resultado = maquina.get(fila).getId(); //TODO getUbicacion
+                resultado = maquinas.get(fila).getId(); //TODO getUbicacion
                 break;
         }
         return resultado;
@@ -122,9 +122,9 @@ public class MaquinaTableModel extends AbstractTableModel implements IModeloRein
 
      */
     public void agregarFila(Maquina _maquina) {
-        maquina.add(_maquina);
+        maquinas.add(_maquina);
         
-        fireTableRowsInserted(maquina.size(), maquina.size());
+        fireTableRowsInserted(maquinas.size(), maquinas.size());
     }
     
     /**
@@ -133,9 +133,9 @@ public class MaquinaTableModel extends AbstractTableModel implements IModeloRein
      * @param cantidad Cantidad a la que se quiere limitar el numero de filas
      */
     public void limitarCantidad(int cantidad) {
-        int cantidadAnterior = maquina.size();
+        int cantidadAnterior = maquinas.size();
         
-        maquina = maquina.subList(0, cantidad);
+        maquinas = maquinas.subList(0, cantidad);
         
         fireTableRowsDeleted(cantidad, cantidadAnterior);
     }
@@ -146,32 +146,32 @@ public class MaquinaTableModel extends AbstractTableModel implements IModeloRein
      * @return Todas las filas del modelo
      */
     public List<Maquina> getFilas() {
-        return maquina;
+        return maquinas;
     }
     
     public Maquina getFila(int indice){
-        return maquina.get(indice);
+        return maquinas.get(indice);
         
     }
     
     public void eliminarFila(int indice){        
-        maquina.remove(indice);
+        maquinas.remove(indice);
         fireTableRowsDeleted(indice, indice);       
     }
     
     public void limpiarTableModel() {
-        int tamanio = maquina.size();
-        maquina.clear();
+        int tamanio = maquinas.size();
+        maquinas.clear();
         
         fireTableRowsDeleted(0, tamanio);
     }
     
     public void imprimirModel(){
         
-        for (int i = 0; i < maquina.size(); i++) {
-            System.out.println(maquina.get(i).getNombre()+"    "+
-                    maquina.get(i).getCodigo()+"    "+ 
-                    maquina.get(i).getId()); //TODO getUbicacion     
+        for (int i = 0; i < maquinas.size(); i++) {
+            System.out.println(maquinas.get(i).getNombre()+"    "+
+                    maquinas.get(i).getCodigo()+"    "+ 
+                    maquinas.get(i).getId()); //TODO getUbicacion     
         }
         System.out.println("\n");
     }
@@ -179,5 +179,12 @@ public class MaquinaTableModel extends AbstractTableModel implements IModeloRein
     @Override
     public void reiniciar() {
         limpiarTableModel();
+    }
+    
+    public void agregarFilas(List<Maquina> maquinasNuevas) {
+        if(maquinasNuevas != null){
+            maquinas.addAll(maquinasNuevas);
+            fireTableRowsInserted(maquinas.size()-maquinasNuevas.size(), maquinas.size());
+        }
     }
 }
