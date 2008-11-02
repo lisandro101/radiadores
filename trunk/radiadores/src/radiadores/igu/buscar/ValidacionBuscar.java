@@ -88,7 +88,7 @@ public class ValidacionBuscar {
         return resultado;
     }
 
-  
+    @Deprecated
     public boolean proveedorEstaCargadoEnBD(Proveedor proveedor){
         boolean resultado=false;
         List<Proveedor> proveedores;
@@ -104,6 +104,7 @@ public class ValidacionBuscar {
     }
     
 
+    @Deprecated
     public boolean productoComponenteEstaCargadoEnBD(ProductoComponente prod){
         boolean resultado=false;
         List<ProductoComponente> productos;
@@ -117,6 +118,7 @@ public class ValidacionBuscar {
         }    
         return  resultado;
     }
+    @Deprecated
     public boolean productoTerminadoEstaCargadoEnBD(ProductoTerminado prod){
         boolean resultado=false;
         List<ProductoTerminado> productos;
@@ -130,6 +132,7 @@ public class ValidacionBuscar {
         }    
         return  resultado;
     }
+    @Deprecated
     public boolean materiaPrimaEstaCargadoEnBD(MateriaPrima prod){
         boolean resultado=false;
         List<MateriaPrima> productos;
@@ -143,6 +146,7 @@ public class ValidacionBuscar {
         }    
         return  resultado;
     }
+    @Deprecated
     public boolean cargoEmpleadoEstaCargadoEnBD(Cargo prod){
         boolean resultado=false;
         List<Cargo> cargos;
@@ -159,6 +163,7 @@ public class ValidacionBuscar {
             
 
 
+    @Deprecated
     public boolean maquinaEstaCargadaEnBD(Maquina maquina){ //TODO Hacer este metodo generico para cualquier clase
         boolean resultado = false;
         List<Maquina> maquinas;
