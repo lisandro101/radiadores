@@ -213,7 +213,7 @@ private void btAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
         JOptionPane.showMessageDialog(this, "Existen campos obligatorios sin completar.");
     }else{
         maquina = crearMaquinaria();
-        if(ValidacionBuscar.getInstancia().maquinaEstaCargadaEnBD(maquina)){
+        if(ValidacionBuscar.getInstancia().estaDuplicado(maquina)){
             JOptionPane.showMessageDialog(this, "La maquina ya se encuentra registrada en el sistema.");
         }else{
             FachadaPersistencia.getInstancia().grabar(crearMaquinaria(), true);

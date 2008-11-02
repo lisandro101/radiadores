@@ -341,7 +341,7 @@ private void btAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
         JOptionPane.showMessageDialog(this, "Existen campos sin completar");
     }else{
         cargo= crearCargo();
-        if(ValidacionBuscar.getInstancia().cargoEmpleadoEstaCargadoEnBD(cargo)){
+        if(ValidacionBuscar.getInstancia().estaDuplicado(cargo)){
             JOptionPane.showMessageDialog(this, "El Cargo ya se encuentra registrado");
         }else{
             FachadaPersistencia.getInstancia().grabar(cargo, true);

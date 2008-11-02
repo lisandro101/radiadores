@@ -124,12 +124,12 @@ public class PanelRutaFabricacion extends javax.swing.JPanel {
                 .addGap(10, 10, 10)
                 .addGroup(jpRutaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jpRutaLayout.createSequentialGroup()
-                        .addComponent(tfNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 254, Short.MAX_VALUE)
+                        .addComponent(tfNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 256, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
                         .addComponent(lbCodigo)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(tfCodigo, javax.swing.GroupLayout.DEFAULT_SIZE, 119, Short.MAX_VALUE))
-                    .addComponent(tfDescripcion, javax.swing.GroupLayout.DEFAULT_SIZE, 434, Short.MAX_VALUE))
+                        .addComponent(tfCodigo, javax.swing.GroupLayout.DEFAULT_SIZE, 121, Short.MAX_VALUE))
+                    .addComponent(tfDescripcion, javax.swing.GroupLayout.DEFAULT_SIZE, 438, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jpRutaLayout.setVerticalGroup(
@@ -152,6 +152,11 @@ public class PanelRutaFabricacion extends javax.swing.JPanel {
         jPanel4.add(btBuscarRuta);
 
         btAgregarRuta.setText("Agregar");
+        btAgregarRuta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btAgregarRutaActionPerformed(evt);
+            }
+        });
         jPanel4.add(btAgregarRuta);
 
         btModificarRuta.setText("Modificar");
@@ -178,7 +183,7 @@ public class PanelRutaFabricacion extends javax.swing.JPanel {
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 518, Short.MAX_VALUE)
+                .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 522, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -220,6 +225,10 @@ private void btAgregarNodoActionPerformed(java.awt.event.ActionEvent evt) {//GEN
         detalleRuta.setModal(true);
         detalleRuta.setVisible(true);
 }//GEN-LAST:event_btAgregarNodoActionPerformed
+
+private void btAgregarRutaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAgregarRutaActionPerformed
+// TODO add your handling code here:
+}//GEN-LAST:event_btAgregarRutaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -77,19 +77,19 @@ public class PanelOrdenProduccion extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(lbFecha)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jdFecha, javax.swing.GroupLayout.DEFAULT_SIZE, 116, Short.MAX_VALUE)
+                .addComponent(jdFecha, javax.swing.GroupLayout.DEFAULT_SIZE, 117, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addComponent(lbNumero)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tfNumero, javax.swing.GroupLayout.DEFAULT_SIZE, 84, Short.MAX_VALUE)
+                .addComponent(tfNumero, javax.swing.GroupLayout.DEFAULT_SIZE, 85, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addComponent(lbFechaEntrega)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jdFechaEntrega, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+                .addComponent(jdFechaEntrega, javax.swing.GroupLayout.DEFAULT_SIZE, 141, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addComponent(lbCliente)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(cbCliente, 0, 169, Short.MAX_VALUE)
+                .addComponent(cbCliente, 0, 170, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -156,6 +156,11 @@ public class PanelOrdenProduccion extends javax.swing.JPanel {
         jPanel3.add(btBuscarProducto);
 
         btAgregarProducto.setText("Agregar");
+        btAgregarProducto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btAgregarProductoActionPerformed(evt);
+            }
+        });
         jPanel3.add(btAgregarProducto);
 
         btModificarProducto.setText("Modificar");
@@ -269,7 +274,7 @@ public class PanelOrdenProduccion extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 783, Short.MAX_VALUE)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 787, Short.MAX_VALUE)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
@@ -318,6 +323,10 @@ private void tfProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
 private void btBuscarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBuscarProductoActionPerformed
 // TODO add your handling code here:
 }//GEN-LAST:event_btBuscarProductoActionPerformed
+
+private void btAgregarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAgregarProductoActionPerformed
+// TODO add your handling code here:
+}//GEN-LAST:event_btAgregarProductoActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

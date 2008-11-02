@@ -209,7 +209,7 @@ private void btAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
         JOptionPane.showMessageDialog(this, "Existen campos sin completar");
     }else{
         proveedor= crearProveedor();
-        if(ValidacionBuscar.getInstancia().proveedorEstaCargadoEnBD(proveedor)){
+        if(ValidacionBuscar.getInstancia().estaDuplicado(proveedor)){
             JOptionPane.showMessageDialog(this, "El proveedor ya se encuentra registrado");
         }else{
             FachadaPersistencia.getInstancia().grabar(proveedor, true);
