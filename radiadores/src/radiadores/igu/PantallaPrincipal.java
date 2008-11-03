@@ -34,7 +34,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         jTabbedPane1.add("    Estructura     ", new PanelEstructuraDeProducto());
         jTabbedPane1.add("       Ruta        ", new PanelRutaFabricacion());
         jTabbedPane1.add("  Centro Trabajo   ", new PanelCentroTrabajo());
-        jTabbedPane1.add("   Orden Compra    ", new PanelOrdenCompra());
+        
     }
 
     /** This method is called from within the constructor to
