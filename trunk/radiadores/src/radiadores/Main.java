@@ -8,15 +8,19 @@ import radiadores.persistencia.FachadaPersistencia;
 
 /**
  *
- * @author Lisandro
+ * @author Franco Catena, Mario Mariani, Lisandro Nieto, Sebastián Torres
  */
 public class Main {
 
     /**
-     * @param args the command line arguments
+     * 
+     * @param args
+     * @throws java.lang.ClassNotFoundException
+     * @throws java.lang.InstantiationException
+     * @throws java.lang.IllegalAccessException
+     * @throws javax.swing.UnsupportedLookAndFeelException
      */
-
-    public static void main(String[] args) throws ClassNotFoundException, InstantiationException, 
+    public static void main(String[] args) throws ClassNotFoundException, InstantiationException,
             IllegalAccessException, UnsupportedLookAndFeelException {
         
         
@@ -24,14 +28,19 @@ public class Main {
         System.setProperty("apple.laf.useScreenMenuBar", "true");
         
         
-        FachadaPersistencia.getInstancia().buscar(Cargo.class, "Select c from Cargo c");
-        
-        
         PantallaPrincipal p = new PantallaPrincipal();
         
         p.setLocationRelativeTo(null);
-        p.setSize(900, 690);
         p.setVisible(true);
+        
+        new Thread() {
+            @Override
+            public void run() {
+                FachadaPersistencia.getInstancia().buscar(Cargo.class,
+                        "SELECT c FROM Cargo c WHERE 0 > 1");
+            }
+            
+        }.start();
     }
 
 }

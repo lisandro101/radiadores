@@ -1,9 +1,3 @@
-/*
- * PantallaPrincipal.java
- *
- * Created on 25 de octubre de 2008, 18:13
- */
-
 package radiadores.igu;
 
 import javax.swing.JOptionPane;
@@ -50,6 +44,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Fabrica Radiadores");
+        setMinimumSize(new java.awt.Dimension(600, 400));
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 formWindowClosing(evt);
