@@ -22,7 +22,7 @@ import radiadores.utils.Util;
  *
  * @author Franco Catena, Mario Mariani, Lisandro Nieto, Sebastián Torres
  */
-public class PanelEstructuraDeProducto extends javax.swing.JPanel {
+public class PanelEstructuraDeProducto extends javax.swing.JPanel implements IValidable{
     
     private static final long serialVersionUID = 1L;
 
@@ -442,6 +442,7 @@ private void btBuscarComponenteActionPerformed(java.awt.event.ActionEvent evt) {
         estructuraDeProducto.setProductoTerminado(productoTerminado);
     }
 
+    @Override
     public List<Component> getComponentesObligatorios() {
         return componentesObligatorios;
     }
