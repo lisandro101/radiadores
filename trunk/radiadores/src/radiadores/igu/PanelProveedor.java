@@ -1,30 +1,31 @@
-/*
- * PanelProveedor.java
- *
- * Created on 25 de octubre de 2008, 18:44
- */
-
 package radiadores.igu;
 
+import java.awt.Component;
+import java.util.Arrays;
+import java.util.List;
 import javax.swing.JOptionPane;
 import radiadores.igu.buscar.PanelBuscarProveedor;
 import radiadores.utils.Util;
 import radiadores.entidades.Proveedor;
 import radiadores.igu.buscar.ValidacionBuscar;
 import radiadores.persistencia.FachadaPersistencia;
+import radiadores.utils.IValidable;
 
 /**
  *
- * @author  Lisandro
+ * @author Franco Catena, Mario Mariani, Lisandro Nieto, Sebastián Torres
  */
-public class PanelProveedor extends javax.swing.JPanel {
-
+public class PanelProveedor extends javax.swing.JPanel implements IValidable {
+    private static final long serialVersionUID = 1L;
     
-    Proveedor proveedor;
+    private Proveedor proveedor;
+    private List<Component> componentesObligatorios;
+    
     /** Creates new form PanelProveedor */
     public PanelProveedor() {
         initComponents();
         inicializarBotones();
+        componentesObligatorios = Arrays.asList((Component)tfNombre);
     }
     
 
@@ -316,6 +317,9 @@ private void btModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
         proveedor.setFechaInicioActividad(dpInicioActividades.getDate());
         
     }
-    
-    
+
+    @Override
+    public List<Component> getComponentesObligatorios() {
+        return componentesObligatorios;
+    }
 }

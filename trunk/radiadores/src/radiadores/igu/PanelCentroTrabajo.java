@@ -6,6 +6,9 @@
 
 package radiadores.igu;
 
+import java.awt.Component;
+import java.util.Arrays;
+import java.util.List;
 import javax.swing.JOptionPane;
 import radiadores.entidades.CentroDeTrabajo;
 import radiadores.entidades.Maquina;
@@ -14,18 +17,20 @@ import radiadores.igu.buscar.PanelBuscarMaquina;
 import radiadores.igu.buscar.ValidacionBuscar;
 import radiadores.igu.model.MaquinaTableModel;
 import radiadores.persistencia.FachadaPersistencia;
+import radiadores.utils.IValidable;
 import radiadores.utils.Util;
 
 /**
  *
- * @author  Lisandro
+ * @author  Franco Catena, Mario Mariani, Lisandro Nieto, Sebastián Torres
  */
-public class PanelCentroTrabajo extends javax.swing.JPanel implements iBuscaCentroTrabajo{
+public class PanelCentroTrabajo extends javax.swing.JPanel implements iBuscaCentroTrabajo, IValidable {
     
     private static final long serialVersionUID = 1L;
     
     private MaquinaTableModel tmMaquina;
     private CentroDeTrabajo centroDeTrabajo;
+    private List<Component> componentesObligatorios;
 
     /** Creates new form PanelCentroTrabajo */
     public PanelCentroTrabajo() {
@@ -37,7 +42,7 @@ public class PanelCentroTrabajo extends javax.swing.JPanel implements iBuscaCent
     private void inicializar() {      
         tmMaquina = new MaquinaTableModel();
         jtMaquina.setModel(tmMaquina);
-        
+        componentesObligatorios = Arrays.asList((Component)tfCodigo);
     }
 
     /** This method is called from within the constructor to
@@ -403,4 +408,8 @@ private void btLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
     private javax.swing.JTextField tfNombre;
     // End of variables declaration//GEN-END:variables
 
+    @Override
+    public List<Component> getComponentesObligatorios() {
+        return componentesObligatorios;
+    }
 }

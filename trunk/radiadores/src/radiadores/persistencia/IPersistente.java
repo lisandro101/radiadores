@@ -17,4 +17,11 @@ public interface IPersistente extends Serializable {
      * @return Una lista con los campos que deben ser únicos en la clase
      */
     public List<String> getCamposUnicos();
+    
+    /**
+     * Establece al objeto como borrado
+     * 
+     * @param borrado Valor que indica si está o no borrado el objeto
+     */
+    public void setBorrado(boolean borrado);
 }

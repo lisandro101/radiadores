@@ -1,11 +1,8 @@
-/*
- * PanelMateriaPrima.java
- *
- * Created on 25 de octubre de 2008, 18:18
- */
-
 package radiadores.igu;
 
+import java.awt.Component;
+import java.util.Arrays;
+import java.util.List;
 import radiadores.igu.buscar.PanelBuscarProveedor;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
@@ -16,15 +13,19 @@ import radiadores.igu.buscar.PanelBuscarProductoGral;
 import radiadores.igu.buscar.ValidacionBuscar;
 import radiadores.igu.model.ProveedorTableModel;
 import radiadores.persistencia.FachadaPersistencia;
+import radiadores.utils.IValidable;
 
 /**
  *
- * @author  stafoxter
+ * @author Franco Catena, Mario Mariani, Lisandro Nieto, Sebastián Torres
  */
-public class PanelMateriaPrima extends javax.swing.JPanel {
-
+public class PanelMateriaPrima extends javax.swing.JPanel implements IValidable {
+    private static final long serialVersionUID = 1L;
+    
     private ProveedorTableModel tm;
     private MateriaPrima materiaPrima;
+    private List<Component> componentesObligatorios;
+    
     /** Creates new form PanelMateriaPrima */
     public PanelMateriaPrima() {
         initComponents();
@@ -39,7 +40,7 @@ public class PanelMateriaPrima extends javax.swing.JPanel {
         
         tm = new ProveedorTableModel(0);
         tProveedor.setModel(tm);
-        
+        componentesObligatorios = Arrays.asList((Component)tfCodigo);
     }
     
 
@@ -474,5 +475,9 @@ private void btBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         btEliminar.setEnabled(false);
         btModificar.setEnabled(false);
     }
-    
+
+    @Override
+    public List<Component> getComponentesObligatorios() {
+        return componentesObligatorios;
+    }   
 }

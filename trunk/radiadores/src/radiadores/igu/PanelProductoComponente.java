@@ -1,11 +1,8 @@
-/*
- * PanelProductoComponente.java
- *
- * Created on 26 de octubre de 2008, 12:03
- */
-
 package radiadores.igu;
 
+import java.awt.Component;
+import java.util.Arrays;
+import java.util.List;
 import radiadores.igu.buscar.PanelBuscarProveedor;
 import javax.swing.JOptionPane;
 import radiadores.utils.Util;
@@ -14,14 +11,18 @@ import radiadores.igu.buscar.PanelBuscarProductoGral;
 import radiadores.igu.buscar.ValidacionBuscar;
 import radiadores.igu.model.ProveedorTableModel;
 import radiadores.persistencia.FachadaPersistencia;
+import radiadores.utils.IValidable;
 
 /**
  *
- * @author  stafoxter
+ * @author Franco Catena, Mario Mariani, Lisandro Nieto, Sebastián Torres
  */
-public class PanelProductoComponente extends javax.swing.JPanel {
+public class PanelProductoComponente extends javax.swing.JPanel implements IValidable {
 
+    private static final long serialVersionUID = 1L;
+    
     private ProductoComponente productoComponente;
+    private List<Component> componentesObligatorios;
     
     private ProveedorTableModel tm;
     /** Creates new form PanelProductoComponente */
@@ -29,12 +30,12 @@ public class PanelProductoComponente extends javax.swing.JPanel {
         initComponents();
         inicializar();
         inicializarBotones();
-        
     }
 
     private void inicializar() {
         tm = new ProveedorTableModel(0);
         tProveedor.setModel(tm);
+        componentesObligatorios = Arrays.asList((Component)tfCodigo);
     }
         
     @SuppressWarnings("unchecked")
@@ -597,4 +598,8 @@ private void btEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
         btModificar.setEnabled(false);
     }
     
+    @Override
+    public List<Component> getComponentesObligatorios() {
+        return componentesObligatorios;
+    }
 }
