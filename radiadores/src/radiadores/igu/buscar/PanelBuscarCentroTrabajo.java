@@ -12,6 +12,7 @@ import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
 import radiadores.entidades.CentroDeTrabajo;
 import radiadores.igu.PanelCentroTrabajo;
+import radiadores.igu.iBuscaCentroTrabajo;
 import radiadores.igu.model.CentroTrabajoTableModel;
 import radiadores.persistencia.FachadaPersistencia;
 
@@ -21,18 +22,15 @@ import radiadores.persistencia.FachadaPersistencia;
  */
 public class PanelBuscarCentroTrabajo extends javax.swing.JDialog {
 
+    private static final long serialVersionUID = 1L;
+    
     private CentroTrabajoTableModel tmCentro;
     private List<CentroDeTrabajo> centros;
-    private PanelCentroTrabajo panelCentro;
+    private iBuscaCentroTrabajo panelCentro;
 
-    /** Creates new form PanelBuscarMaquina */
-    public PanelBuscarCentroTrabajo() {
-        initComponents();
-        inicializar();
-    }
-
+    
      /** Creates new form PanelBuscarMaquina */
-    public PanelBuscarCentroTrabajo(PanelCentroTrabajo pCentro) {
+    public PanelBuscarCentroTrabajo(iBuscaCentroTrabajo pCentro) {
         initComponents();
         panelCentro = pCentro;
         inicializar();
@@ -237,7 +235,7 @@ private void btAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new PanelBuscarCentroTrabajo().setVisible(true);
+//                new PanelBuscarCentroTrabajo().setVisible(true);
             }
         });
     }

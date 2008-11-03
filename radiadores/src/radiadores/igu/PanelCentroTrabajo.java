@@ -9,7 +9,6 @@ package radiadores.igu;
 import javax.swing.JOptionPane;
 import radiadores.entidades.CentroDeTrabajo;
 import radiadores.entidades.Maquina;
-import radiadores.entidades.MateriaPrima;
 import radiadores.igu.buscar.PanelBuscarCentroTrabajo;
 import radiadores.igu.buscar.PanelBuscarMaquina;
 import radiadores.igu.buscar.ValidacionBuscar;
@@ -21,7 +20,9 @@ import radiadores.utils.Util;
  *
  * @author  Lisandro
  */
-public class PanelCentroTrabajo extends javax.swing.JPanel {
+public class PanelCentroTrabajo extends javax.swing.JPanel implements iBuscaCentroTrabajo{
+    
+    private static final long serialVersionUID = 1L;
     
     private MaquinaTableModel tmMaquina;
     private CentroDeTrabajo centroDeTrabajo;

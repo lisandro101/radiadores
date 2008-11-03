@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
+import radiadores.entidades.CentroDeTrabajo;
 import radiadores.entidades.Componente;
 import radiadores.entidades.Empleado;
 import radiadores.entidades.HoraLaboral;
@@ -23,14 +24,15 @@ import radiadores.igu.buscar.PanelBuscarProductoGral;
 import radiadores.igu.buscar.ValidacionBuscar;
 import radiadores.igu.model.ComponenteDetalleRutaTableModel;
 import radiadores.igu.model.EmpleadoDetalleRutaTableModel;
-import radiadores.igu.model.ProductoGralTableModel;
 
 /**
  *
  * @author  Lisandro
  */
-public class PanelDetalleRuta extends javax.swing.JDialog {
+public class PanelDetalleRuta extends javax.swing.JDialog implements iBuscaCentroTrabajo{
 
+    private static final long serialVersionUID = 1L;
+    
     private EmpleadoDetalleRutaTableModel tmEmpleado;
     private ComponenteDetalleRutaTableModel tmComponente;
     private List<ProductoComponente> productosComponentes;  //ver
@@ -41,6 +43,7 @@ public class PanelDetalleRuta extends javax.swing.JDialog {
     private List<HoraLaboral> horasLaborales;
     private HoraLaboral horaLaboral;
     private Componente componente;
+    private CentroDeTrabajo centroTrabajo;
     
     private List<ParteDeNodo> partesDeNodos;
     
@@ -53,10 +56,10 @@ public class PanelDetalleRuta extends javax.swing.JDialog {
     }
     
     private void inicializar(){
-        horasLaborales= new ArrayList();
+        horasLaborales= new ArrayList<HoraLaboral>();
         tmEmpleado = new EmpleadoDetalleRutaTableModel(0);
         
-        partesDeNodos = new ArrayList();
+        partesDeNodos = new ArrayList<ParteDeNodo>();
         tmComponente = new ComponenteDetalleRutaTableModel(0);
         
         jtEmpleado.setModel(tmEmpleado);
@@ -407,7 +410,7 @@ private void btCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
 }//GEN-LAST:event_btCancelarActionPerformed
 
 private void btBuscarCentroTrabajoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBuscarCentroTrabajoActionPerformed
-        PanelBuscarCentroTrabajo buscarCentroTrabajo = new PanelBuscarCentroTrabajo();
+        PanelBuscarCentroTrabajo buscarCentroTrabajo = new PanelBuscarCentroTrabajo(this);
         buscarCentroTrabajo.setModal(true);
         buscarCentroTrabajo.setVisible(true);
 }//GEN-LAST:event_btBuscarCentroTrabajoActionPerformed
@@ -519,5 +522,10 @@ private void btEliminarComponenteActionPerformed(java.awt.event.ActionEvent evt)
     
     public ComponenteDetalleRutaTableModel getTableModelComponente(){
         return tmComponente;
+    }
+
+    public void setCentroTrabajo(CentroDeTrabajo ct) {
+        centroTrabajo = ct;
+        tfCentroTrabajo.setText(ct.getNombre());
     }
 }
