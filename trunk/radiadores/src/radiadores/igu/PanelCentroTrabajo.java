@@ -9,6 +9,7 @@ package radiadores.igu;
 import java.awt.Component;
 import java.util.Arrays;
 import java.util.List;
+import radiadores.igu.interfaces.iBuscaCentroTrabajo;
 import javax.swing.JOptionPane;
 import radiadores.entidades.CentroDeTrabajo;
 import radiadores.entidades.Maquina;
@@ -292,20 +293,22 @@ private void btEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
 }//GEN-LAST:event_btEliminarActionPerformed
 
 private void btAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAgregarActionPerformed
-     if(tfCodigo.getText().equals("") || tfNombre.getText().equals("")){
+     if(tfCodigo.getText().trim().equals("") || tfNombre.getText().trim().equals("")){
         JOptionPane.showMessageDialog(this, "Existen campos obligatorios sin completar.");
     }else{
         centroDeTrabajo = crearCentroTrabajo();
-        if(ValidacionBuscar.getInstancia().centroEstaCargadoEnBD(centroDeTrabajo)){
+        if(ValidacionBuscar.getInstancia().estaDuplicado(centroDeTrabajo)){
             JOptionPane.showMessageDialog(this, "El Centro de Trabajo ya se encuentra cargado en el sistema.");
         }else{
             CentroDeTrabajo ct = crearCentroTrabajo();
             
             //Actualizo todas las maquinas y por cascadeo se crea el centro.
+            FachadaPersistencia.getInstancia().comenzarTransaccion();
             for (Maquina maq : ct.getMaquinas()) {
                 maq.setCentroDeTrabajo(centroDeTrabajo);
-                FachadaPersistencia.getInstancia().actualizar(maq, true);
+                FachadaPersistencia.getInstancia().actualizar(maq, false);
             }
+            FachadaPersistencia.getInstancia().finalizarTransaccion();
             Util.getInstancia().limpiarCampos(this);
             centroDeTrabajo = null;
         }
@@ -412,4 +415,5 @@ private void btLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
     public List<Component> getComponentesObligatorios() {
         return componentesObligatorios;
     }
+
 }

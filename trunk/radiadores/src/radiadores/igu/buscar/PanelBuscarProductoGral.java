@@ -9,10 +9,8 @@ package radiadores.igu.buscar;
 import java.util.List;
 import javax.persistence.Query;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.TableModel;
-import org.jdesktop.swingx.JXTable;
 import radiadores.entidades.Componente;
 import radiadores.entidades.EstructuraDeProducto;
 import radiadores.entidades.MateriaPrima;
@@ -23,8 +21,8 @@ import radiadores.igu.PanelEstructuraDeProducto;
 import radiadores.igu.PanelMateriaPrima;
 import radiadores.igu.PanelProductoComponente;
 import radiadores.igu.PanelProductoTerminado;
+import radiadores.igu.interfaces.iBuscaProductoGeneral;
 import radiadores.igu.model.ComponenteDetalleRutaTableModel;
-import radiadores.igu.model.ComponenteEstructuraTableModel;
 import radiadores.igu.model.ProductoGralTableModel;
 import radiadores.persistencia.FachadaPersistencia;
 
@@ -33,6 +31,8 @@ import radiadores.persistencia.FachadaPersistencia;
  * @author  stafoxter
  */
 public class PanelBuscarProductoGral extends javax.swing.JDialog {
+    
+    private static final long serialVersionUID = 1L;
 
     private ProductoGralTableModel tmBuscar;
     private ProductoGralTableModel tmOrigen;
@@ -44,6 +44,7 @@ public class PanelBuscarProductoGral extends javax.swing.JDialog {
     private PanelProductoTerminado panelProductoTerminado;
     private PanelDetalleRuta panelDetalleRuta;
     private PanelEstructuraDeProducto panelEstructuraDeProducto;
+    private iBuscaProductoGeneral iProducto;
     
     public enum Tipo {
         TABLE_MODEL ("TableModel"),
@@ -52,7 +53,8 @@ public class PanelBuscarProductoGral extends javax.swing.JDialog {
         PANEL_PROD_TERMINADO ("Panel Prod Terminado"),
         PANEL_DETALLE_RUTA ("Panel Detalle Ruta"),
         PANEL_ESTRUCTURA ("Panel Estructura"),
-        PANEL_DETALLE_ESTRUCTURA ("Panel Detalle Estructura");
+        PANEL_DETALLE_ESTRUCTURA ("Panel Detalle Estructura"),
+        PANEL_IBUSCA ("Panel IBusca");
         
         private String nombre;
         
@@ -75,6 +77,14 @@ public class PanelBuscarProductoGral extends javax.swing.JDialog {
         tipo= Tipo.TABLE_MODEL;
         tmOrigen = (ProductoGralTableModel) tm1;
         inicializar(); 
+    }
+    
+    //Constructor ara cualquier pantalla que implemente la interface iBuscaProductoGeneral
+    public PanelBuscarProductoGral(iBuscaProductoGeneral iProd) {
+        initComponents();
+        tipo= Tipo.PANEL_IBUSCA;
+        iProducto = iProd;
+        inicializar();
     }
     
     //Si es para la pantalla Materia prima
@@ -293,6 +303,10 @@ private void btAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
                     dispose(); 
                 }
             }
+        }else if(tipo== Tipo.PANEL_IBUSCA){
+            iProducto.setComponente(resultado);
+            dispose();
+        
         }else if(tipo== Tipo.PANEL_DETALLE_ESTRUCTURA){
             panelEstructuraDeProducto.setComponente(resultado);
             dispose();

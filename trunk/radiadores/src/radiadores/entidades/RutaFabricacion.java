@@ -29,6 +29,8 @@ public class RutaFabricacion implements Serializable, IPersistente {
     
     private String id;
     private String nombre;
+    private String descripcion;
+    private String codigo;
     private ProductoTerminado productoTerminado;
     private List<NodoRuta> nodosRuta;
     private boolean borrado;
@@ -102,5 +104,23 @@ public class RutaFabricacion implements Serializable, IPersistente {
     @Transient
     public List<String> getCamposUnicos() {
         return CAMPOS_UNICOS;
+    }
+
+    @Column(name="descripcion", length=500)
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    @Column(name="codigo", length=20)
+    public String getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
     }
 }
