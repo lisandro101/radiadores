@@ -38,7 +38,7 @@ public class PanelOrdenProduccion extends javax.swing.JPanel implements IValidab
         lbNumero = new javax.swing.JLabel();
         tfNumero = new javax.swing.JTextField();
         lbCliente = new javax.swing.JLabel();
-        cbCliente = new javax.swing.JComboBox();
+        tfCliente = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jtProducto = new org.jdesktop.swingx.JXTable();
@@ -81,7 +81,7 @@ public class PanelOrdenProduccion extends javax.swing.JPanel implements IValidab
                 .addContainerGap()
                 .addComponent(lbFecha)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jdFecha, javax.swing.GroupLayout.DEFAULT_SIZE, 117, Short.MAX_VALUE)
+                .addComponent(jdFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 117, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addComponent(lbNumero)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -89,11 +89,11 @@ public class PanelOrdenProduccion extends javax.swing.JPanel implements IValidab
                 .addGap(18, 18, 18)
                 .addComponent(lbFechaEntrega)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jdFechaEntrega, javax.swing.GroupLayout.DEFAULT_SIZE, 141, Short.MAX_VALUE)
+                .addComponent(jdFechaEntrega, javax.swing.GroupLayout.PREFERRED_SIZE, 141, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addComponent(lbCliente)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(cbCliente, 0, 170, Short.MAX_VALUE)
+                .addComponent(tfCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -110,7 +110,7 @@ public class PanelOrdenProduccion extends javax.swing.JPanel implements IValidab
                         .addComponent(jdFechaEntrega, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(lbNumero)
                         .addComponent(lbCliente)
-                        .addComponent(cbCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(tfCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -227,7 +227,7 @@ public class PanelOrdenProduccion extends javax.swing.JPanel implements IValidab
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 489, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 546, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -236,7 +236,7 @@ public class PanelOrdenProduccion extends javax.swing.JPanel implements IValidab
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 279, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE)
                     .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -278,7 +278,7 @@ public class PanelOrdenProduccion extends javax.swing.JPanel implements IValidab
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 787, Short.MAX_VALUE)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 839, Short.MAX_VALUE)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
@@ -343,7 +343,6 @@ private void btAgregarProductoActionPerformed(java.awt.event.ActionEvent evt) {/
     private javax.swing.JButton btModificarOrdenProduccion;
     private javax.swing.JButton btModificarProducto;
     private javax.swing.JButton btProcesarOrdenProduccion;
-    private javax.swing.JComboBox cbCliente;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -360,6 +359,7 @@ private void btAgregarProductoActionPerformed(java.awt.event.ActionEvent evt) {/
     private javax.swing.JLabel lbProducto;
     private javax.swing.JSpinner spCantidad;
     private javax.swing.JLabel tfCantidad;
+    private javax.swing.JTextField tfCliente;
     private javax.swing.JTextField tfNumero;
     private javax.swing.JTextField tfProducto;
     // End of variables declaration//GEN-END:variables
