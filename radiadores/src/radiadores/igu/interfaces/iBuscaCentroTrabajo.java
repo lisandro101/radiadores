@@ -3,7 +3,7 @@
  * and open the template in the editor.
  */
 
-package radiadores.igu;
+package radiadores.igu.interfaces;
 
 import radiadores.entidades.CentroDeTrabajo;
 

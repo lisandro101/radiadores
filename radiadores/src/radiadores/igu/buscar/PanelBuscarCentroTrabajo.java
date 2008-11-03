@@ -12,7 +12,7 @@ import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
 import radiadores.entidades.CentroDeTrabajo;
 import radiadores.igu.PanelCentroTrabajo;
-import radiadores.igu.iBuscaCentroTrabajo;
+import radiadores.igu.interfaces.iBuscaCentroTrabajo;
 import radiadores.igu.model.CentroTrabajoTableModel;
 import radiadores.persistencia.FachadaPersistencia;
 
