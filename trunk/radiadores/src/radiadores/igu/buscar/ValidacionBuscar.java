@@ -271,33 +271,35 @@ public class ValidacionBuscar {
 
 
     public boolean existenCamposVacios(Container contenedor) {
-        boolean resultado=false;
+        //boolean resultado=false;
         for (Component componente : contenedor.getComponents()) {
             if (componente instanceof JTextField) {
                 if(((JTextField)componente).getText().trim().equals("")){
-                    resultado=true;
+                    return true;
                 }
             } else if (componente instanceof JComboBox) {
                 if(((JComboBox) componente).getSelectedIndex()==-1){
-                    resultado=true;
+                    return true;
                 }
             } else if (componente instanceof JXDatePicker) {
                 if(((JXDatePicker) componente).getDate()==null){
-                    resultado=true;
+                    return true;
                 }          
             } else if (componente instanceof JXTable) {
                 if(((JXTable)componente).getModel().getRowCount()==0){
-                    resultado=true;
+                    return true;
                 }
             } else if (componente instanceof JXList) {
                 if(((JXList)componente).getModel().getSize()==0){
-                    resultado=true;
+                    return true;
                 }
             } else if (componente instanceof Container) {
-                existenCamposVacios((Container)componente);
+                if(existenCamposVacios((Container)componente)){
+                    return true;
+                }
             }
         }
-        return resultado;
+        return false;
     }
     
     public boolean centroEstaCargadoEnTabla(CentroTrabajoTableModel tm, CentroDeTrabajo centro){
