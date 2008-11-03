@@ -1,12 +1,8 @@
-/*
- * PanelEstructuraDeProducto.java
- *
- * Created on 30 de octubre de 2008, 17:53
- */
-
 package radiadores.igu;
 
+import java.awt.Component;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
@@ -19,20 +15,24 @@ import radiadores.igu.buscar.PanelBuscarProductoGral.Tipo;
 import radiadores.igu.buscar.ValidacionBuscar;
 import radiadores.igu.model.ComponenteEstructuraTableModel;
 import radiadores.persistencia.FachadaPersistencia;
+import radiadores.utils.IValidable;
 import radiadores.utils.Util;
 
 /**
  *
- * @author  stafoxter
+ * @author Franco Catena, Mario Mariani, Lisandro Nieto, Sebastián Torres
  */
-public class PanelEstructuraDeProducto extends javax.swing.JPanel {
-
+public class PanelEstructuraDeProducto extends javax.swing.JPanel implements IValidable {
+    private static final long serialVersionUID = 1L;
+    
     private ComponenteEstructuraTableModel tmComponente;
     private List<ParteDeEstructura> partesDeEstructuras;
     private ParteDeEstructura parteDeEstructura;
     private ProductoTerminado productoTerminado;
     private Componente componente;
     private EstructuraDeProducto estructuraDeProducto;
+    private List<Component> componentesObligatorios;
+    
     /** Creates new form PanelEstructuraDeProducto */
     public PanelEstructuraDeProducto() {
         initComponents();
@@ -41,12 +41,12 @@ public class PanelEstructuraDeProducto extends javax.swing.JPanel {
 
     
     private void inicializar(){
-
-        partesDeEstructuras = new ArrayList();
+        partesDeEstructuras = new ArrayList<ParteDeEstructura>();
         tmComponente = new ComponenteEstructuraTableModel(0);
 
         jtComponente.setModel(tmComponente);
-        jtComponente.setSelectionMode(ListSelectionModel.SINGLE_SELECTION );
+        jtComponente.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        componentesObligatorios = Arrays.asList((Component)tfCodigo);
     }
 
     @SuppressWarnings("unchecked")
@@ -438,5 +438,10 @@ private void btBuscarComponenteActionPerformed(java.awt.event.ActionEvent evt) {
         }
         estructuraDeProducto.setPartes(partesDeEstructuras);
         estructuraDeProducto.setProductoTerminado(productoTerminado);
+    }
+
+    @Override
+    public List<Component> getComponentesObligatorios() {
+        return componentesObligatorios;
     }
 }

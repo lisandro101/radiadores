@@ -1,11 +1,7 @@
-/*
- * PanelCargoEmpleado.java
- *
- * Created on 26 de octubre de 2008, 20:04
- */
-
 package radiadores.igu;
 
+import java.awt.Component;
+import java.util.Arrays;
 import java.util.List;
 import javax.persistence.Query;
 import javax.swing.JOptionPane;
@@ -14,17 +10,20 @@ import radiadores.entidades.Cargo;
 import radiadores.igu.buscar.ValidacionBuscar;
 import radiadores.igu.model.CargoEmpleadoTableModel;
 import radiadores.persistencia.FachadaPersistencia;
+import radiadores.utils.IValidable;
 
 /**
  *
- * @author  stafoxter
+ * @author  Franco Catena, Mario Mariani, Lisandro Nieto, Sebastián Torres
  */
-public class PanelCargoEmpleado extends javax.swing.JDialog {
+public class PanelCargoEmpleado extends javax.swing.JDialog implements IValidable {
+    private static final long serialVersionUID = 1L;
 
     private CargoEmpleadoTableModel tmBuscar;
     private PanelEmpleado panelEmpleado;
     private Cargo cargo;
     private List<Cargo> cargosResul;
+    private List<Component> componentesObligatorios;
     /** Creates new form PanelCargoEmpleado */
     public PanelCargoEmpleado(PanelEmpleado emp) {
         initComponents();
@@ -36,7 +35,7 @@ public class PanelCargoEmpleado extends javax.swing.JDialog {
     private void inicializar() {
         tmBuscar = new CargoEmpleadoTableModel(0);
         tCargos.setModel(tmBuscar);
-  
+        componentesObligatorios = Arrays.asList((Component)tfCodigo);
     }
     
     /** This method is called from within the constructor to
@@ -114,11 +113,11 @@ public class PanelCargoEmpleado extends javax.swing.JDialog {
             .addGroup(pTablaLayout.createSequentialGroup()
                 .addGap(22, 22, 22)
                 .addGroup(pTablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 386, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 482, Short.MAX_VALUE)
                     .addGroup(pTablaLayout.createSequentialGroup()
                         .addComponent(lbCargos)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(tfNombreCargo, javax.swing.GroupLayout.DEFAULT_SIZE, 226, Short.MAX_VALUE)
+                        .addComponent(tfNombreCargo, javax.swing.GroupLayout.DEFAULT_SIZE, 278, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
                         .addComponent(btBuscar)))
                 .addGap(28, 28, 28))
@@ -195,21 +194,21 @@ public class PanelCargoEmpleado extends javax.swing.JDialog {
                             .addComponent(lbCodigo))
                         .addGap(26, 26, 26)
                         .addGroup(pABMCargoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(tfCodigo, javax.swing.GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE)
-                            .addComponent(tfNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE)
-                            .addComponent(tfPrecioHora, javax.swing.GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE)))
+                            .addComponent(tfCodigo, javax.swing.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE)
+                            .addComponent(tfNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE)
+                            .addComponent(tfPrecioHora, javax.swing.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE)))
                     .addGroup(pABMCargoLayout.createSequentialGroup()
                         .addGroup(pABMCargoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lbHorasLaborales)
                             .addComponent(lbEstado))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(pABMCargoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(cbEstado, 0, 172, Short.MAX_VALUE)
-                            .addComponent(tfHorasLaborales, javax.swing.GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE))))
+                            .addComponent(cbEstado, 0, 242, Short.MAX_VALUE)
+                            .addComponent(tfHorasLaborales, javax.swing.GroupLayout.DEFAULT_SIZE, 242, Short.MAX_VALUE))))
                 .addGap(146, 146, 146))
             .addGroup(pABMCargoLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 416, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 520, Short.MAX_VALUE)
                 .addContainerGap())
         );
         pABMCargoLayout.setVerticalGroup(
@@ -264,7 +263,7 @@ public class PanelCargoEmpleado extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(pTabla, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(pABMCargo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(pBotones, javax.swing.GroupLayout.DEFAULT_SIZE, 452, Short.MAX_VALUE))
+                    .addComponent(pBotones, javax.swing.GroupLayout.DEFAULT_SIZE, 544, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -417,5 +416,10 @@ private void btEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
         cargo.setValorHora(Double.parseDouble(tfPrecioHora.getText()));
         cargo.setHorasPorMes(Integer.parseInt(tfHorasLaborales.getText()));
         
+    }
+
+    @Override
+    public List<Component> getComponentesObligatorios() {
+        return componentesObligatorios;
     }
 }

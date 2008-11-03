@@ -19,7 +19,7 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
                   <Component id="pCampos" alignment="0" max="32767" attributes="0"/>
-                  <Component id="pBotones" alignment="0" pref="793" max="32767" attributes="1"/>
+                  <Component id="pBotones" alignment="0" pref="849" max="32767" attributes="1"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -186,7 +186,7 @@
                           <Component id="lbUnidadMedida" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="tfUnidadMedida" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="22" max="32767" attributes="0"/>
+                      <EmptySpace pref="24" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>

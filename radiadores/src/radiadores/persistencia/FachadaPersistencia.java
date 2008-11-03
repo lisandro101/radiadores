@@ -37,6 +37,11 @@ public class FachadaPersistencia {
                 obj, transaccion);
     }
     
+    public void borrar(IPersistente obj, boolean transaccion) {
+        FabricaManejadores.getInstancia().getManejador().borrar(
+                obj, transaccion);
+    }
+    
     public <T extends IPersistente> T buscar(Class<T> clase, Object id) {
         return FabricaManejadores.getInstancia().getManejador().buscar(
                 clase, id);

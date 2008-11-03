@@ -1,30 +1,32 @@
-/*
- * PanelProductoTerminado.java
- *
- * Created on 30 de octubre de 2008, 21:50
- */
-
 package radiadores.igu;
 
+import java.awt.Component;
+import java.util.Arrays;
+import java.util.List;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import radiadores.utils.Util;
 import radiadores.entidades.ProductoTerminado;
 import radiadores.igu.buscar.PanelBuscarProductoGral;
 import radiadores.igu.buscar.ValidacionBuscar;
 import radiadores.persistencia.FachadaPersistencia;
+import radiadores.utils.IValidable;
 
 /**
  *
- * @author  stafoxter
+ * @author Franco Catena, Mario Mariani, Lisandro Nieto, Sebastián Torres
  */
-public class PanelProductoTerminado extends javax.swing.JPanel {
+public class PanelProductoTerminado extends javax.swing.JPanel implements IValidable {
 
+    private static final long serialVersionUID = 1L;
+    
     private ProductoTerminado productoTerminado;
+    private List<Component> componentesObligatorios;
+    
     /** Creates new form PanelProductoTerminado */
     public PanelProductoTerminado() {
         initComponents();
         inicializarBotones();
+        componentesObligatorios = Arrays.asList((Component)tfCodigo);
     }
 
     /** This method is called from within the constructor to
@@ -494,5 +496,10 @@ private void btEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
         btAgregar.setEnabled(true);
         btEliminar.setEnabled(false);
         btModificar.setEnabled(false);
+    }
+
+    @Override
+    public List<Component> getComponentesObligatorios() {
+        return componentesObligatorios;
     }
 }

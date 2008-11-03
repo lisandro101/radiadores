@@ -1,12 +1,8 @@
-/*
- * PanelDetalleRuta.java
- *
- * Created on 26 de octubre de 2008, 22:01
- */
-
 package radiadores.igu;
 
+import java.awt.Component;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
@@ -24,12 +20,13 @@ import radiadores.igu.buscar.PanelBuscarProductoGral;
 import radiadores.igu.buscar.ValidacionBuscar;
 import radiadores.igu.model.ComponenteDetalleRutaTableModel;
 import radiadores.igu.model.EmpleadoDetalleRutaTableModel;
+import radiadores.utils.IValidable;
 
 /**
  *
- * @author  Lisandro
+ * @author Franco Catena, Mario Mariani, Lisandro Nieto, Sebastián Torres
  */
-public class PanelDetalleRuta extends javax.swing.JDialog implements iBuscaCentroTrabajo{
+public class PanelDetalleRuta extends javax.swing.JDialog implements iBuscaCentroTrabajo, IValidable {
 
     private static final long serialVersionUID = 1L;
     
@@ -44,10 +41,8 @@ public class PanelDetalleRuta extends javax.swing.JDialog implements iBuscaCentr
     private HoraLaboral horaLaboral;
     private Componente componente;
     private CentroDeTrabajo centroTrabajo;
-    
     private List<ParteDeNodo> partesDeNodos;
-    
-
+    private List<Component> componentesObligatorios;
 
     /** Creates new form PanelDetalleRuta */
     public PanelDetalleRuta() {
@@ -64,7 +59,8 @@ public class PanelDetalleRuta extends javax.swing.JDialog implements iBuscaCentr
         
         jtEmpleado.setModel(tmEmpleado);
         jtComponente.setModel(tmComponente);
-        jtEmpleado.setSelectionMode(ListSelectionModel.SINGLE_SELECTION );
+        jtEmpleado.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        componentesObligatorios = Arrays.asList((Component)tfCentroTrabajo);
     }
     public PanelDetalleRuta(String centroTrabajo) {
         initComponents();
@@ -527,5 +523,10 @@ private void btEliminarComponenteActionPerformed(java.awt.event.ActionEvent evt)
     public void setCentroTrabajo(CentroDeTrabajo ct) {
         centroTrabajo = ct;
         tfCentroTrabajo.setText(ct.getNombre());
+    }
+
+    @Override
+    public List<Component> getComponentesObligatorios() {
+        return componentesObligatorios;
     }
 }

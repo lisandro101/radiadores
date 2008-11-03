@@ -1,24 +1,23 @@
-/*
- * PanelRutaFabricacion.java
- *
- * Created on 26 de octubre de 2008, 19:05
- */
-
 package radiadores.igu;
 
+import java.awt.Component;
+import java.util.Arrays;
 import java.util.List;
-import radiadores.entidades.CentroDeTrabajo;
 import radiadores.entidades.NodoRuta;
 import radiadores.igu.model.RutaListModel;
+import radiadores.utils.IValidable;
 
 /**
  *
- * @author  Lisandro
+ * @author Franco Catena, Mario Mariani, Lisandro Nieto, Sebastián Torres
  */
-public class PanelRutaFabricacion extends javax.swing.JPanel {
+public class PanelRutaFabricacion extends javax.swing.JPanel implements IValidable {
 
+    private static final long serialVersionUID = 1L;
+    
     private RutaListModel listModel; 
     private List<NodoRuta> nodos;
+    private List<Component> componentesObligatorios;
     
     /** Creates new form PanelRutaFabricacion */
     public PanelRutaFabricacion() {
@@ -29,6 +28,7 @@ public class PanelRutaFabricacion extends javax.swing.JPanel {
     private void inicializar() {
         listModel = new RutaListModel();
         jlDetalleRuta.setModel(listModel);
+        componentesObligatorios = Arrays.asList((Component)tfCodigo);
     }
 
     /** This method is called from within the constructor to
@@ -251,5 +251,9 @@ private void btAgregarRutaActionPerformed(java.awt.event.ActionEvent evt) {//GEN
     private javax.swing.JTextField tfDescripcion;
     private javax.swing.JTextField tfNombre;
     // End of variables declaration//GEN-END:variables
-
+    
+    @Override
+    public List<Component> getComponentesObligatorios() {
+        return componentesObligatorios;
+    }
 }

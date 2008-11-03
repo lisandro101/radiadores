@@ -1,11 +1,8 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package radiadores.utils;
 
 import java.awt.Component;
 import java.awt.Container;
+import java.util.List;
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
 import org.jdesktop.swingx.JXDatePicker;
@@ -14,8 +11,9 @@ import org.jdesktop.swingx.JXTable;
 import radiadores.igu.model.IModeloReiniciable;
 
 /**
+ * Clase con utilidades varias
  *
- * @author stafoxter
+ * @author Franco Catena, Mario Mariani, Lisandro Nieto, Sebastián Torres
  */
 public class Util {
     
@@ -298,5 +296,34 @@ public class Util {
                 limpiarCampos((Container)componente);
             }
         }
+    }
+    
+    public boolean validar(IValidable validable) {
+        boolean resultado = true;
+        
+        if(validable != null) {
+            List<Component> componentes =
+                    validable.getComponentesObligatorios();
+            
+            resultado = true;
+            
+            for (Component componente : componentes) {
+                if (componente instanceof JTextField) {
+                    resultado &= ((JTextField)componente).getText().trim().length() > 0;
+                } else if (componente instanceof JComboBox) {
+                    resultado &= ((JComboBox)componente).getSelectedIndex() != -1;
+                } else if (componente instanceof JXDatePicker) {
+                    resultado &= ((JXDatePicker)componente).getDate() != null;
+                } else if (componente instanceof JXTable) {
+                    resultado &= ((JXTable)componente).getModel().getRowCount() > 0;
+                } else if (componente instanceof JXList) {
+                    resultado &= ((JXList)componente).getModel().getSize() > 0;
+                } else if (componente instanceof IValidable) {
+                    validar((IValidable)componente);
+                }
+            }
+        }
+        
+        return resultado;
     }
 }

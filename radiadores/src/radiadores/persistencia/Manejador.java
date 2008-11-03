@@ -29,7 +29,7 @@ class Manejador {
         }
     }
     
-    <T> T actualizar(T obj, boolean transaccion) {
+    <T extends IPersistente> T actualizar(T obj, boolean transaccion) {
         T result = null;
         
         if(transaccion) {
@@ -41,6 +41,12 @@ class Manejador {
         }
         
         return result;
+    }
+    
+    void borrar(IPersistente obj, boolean transaccion) {
+        obj.setBorrado(true);
+        
+        actualizar(obj, transaccion);
     }
     
     <T> T buscar(Class<T> clase, Object id) {

@@ -1,20 +1,23 @@
-/*
- * PanelOrdenCompra.java
- *
- * Created on 25 de octubre de 2008, 21:00
- */
-
 package radiadores.igu;
+
+import java.awt.Component;
+import java.util.Arrays;
+import java.util.List;
+import radiadores.utils.IValidable;
 
 /**
  *
- * @author  Lisandro
+ * @author Franco Catena, Mario Mariani, Lisandro Nieto, Sebastián Torres
  */
-public class PanelOrdenCompra extends javax.swing.JPanel {
-
+public class PanelOrdenCompra extends javax.swing.JPanel implements IValidable {
+    private static final long serialVersionUID = 1L;
+    
+    private List<Component> componentesObligatorios;
+    
     /** Creates new form PanelOrdenCompra */
     public PanelOrdenCompra() {
         initComponents();
+        componentesObligatorios = Arrays.asList((Component)jdFecha);
     }
 
     /** This method is called from within the constructor to
@@ -376,4 +379,8 @@ private void btBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     private javax.swing.JTextField tfProveedor;
     // End of variables declaration//GEN-END:variables
 
+    @Override
+    public List<Component> getComponentesObligatorios() {
+        return componentesObligatorios;
+    }
 }

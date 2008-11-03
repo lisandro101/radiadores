@@ -1,11 +1,8 @@
-/*
- * PanelMaquina.java
- *
- * Created on 25 de octubre de 2008, 20:17
- */
-
 package radiadores.igu;
 
+import java.awt.Component;
+import java.util.Arrays;
+import java.util.List;
 import radiadores.igu.buscar.PanelBuscarMaquina;
 import javax.swing.JOptionPane;
 import radiadores.utils.Util;
@@ -14,19 +11,23 @@ import radiadores.entidades.Maquina;
 import radiadores.entidades.Sector;
 import radiadores.igu.buscar.ValidacionBuscar;
 import radiadores.persistencia.FachadaPersistencia;
+import radiadores.utils.IValidable;
 
 /**
  *
- * @author  Lisandro
+ * @author Franco Catena, Mario Mariani, Lisandro Nieto, Sebastián Torres
  */
-public class PanelMaquina extends javax.swing.JPanel {
-
-    Maquina maquina;
+public class PanelMaquina extends javax.swing.JPanel implements IValidable {
+    private static final long serialVersionUID = 1L;
+    
+    private Maquina maquina;
+    private List<Component> componentesObligatorios;
     
     /** Creates new form PanelMaquina */
     public PanelMaquina() {
         initComponents();
         inicializarBotones();
+        componentesObligatorios = Arrays.asList((Component)tfCodigo);
     }
 
     /** This method is called from within the constructor to
@@ -344,5 +345,10 @@ private void tfNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tf
         maquina.setSector((Sector) cbSector.getSelectedItem());
         maquina.setFechaDeFabricacion(dpFechaDeFabricacion.getDate());
         maquina.setProximoMantenimiento(dpProximoMantenimiento.getDate()); 
+    }
+
+    @Override
+    public List<Component> getComponentesObligatorios() {
+        return componentesObligatorios;
     }
 }

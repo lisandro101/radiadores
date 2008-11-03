@@ -1,11 +1,8 @@
-/*
- * PanelEmpleado.java
- *
- * Created on 25 de octubre de 2008, 20:02
- */
-
 package radiadores.igu;
 
+import java.awt.Component;
+import java.util.Arrays;
+import java.util.List;
 import javax.swing.JOptionPane;
 import radiadores.utils.Util;
 import radiadores.entidades.Cargo;
@@ -13,19 +10,24 @@ import radiadores.entidades.Empleado;
 import radiadores.igu.buscar.PanelBuscarEmpleado;
 import radiadores.igu.buscar.ValidacionBuscar;
 import radiadores.persistencia.FachadaPersistencia;
+import radiadores.utils.IValidable;
 
 /**
  *
- * @author  stafoxter
+ * @author Franco Catena, Mario Mariani, Lisandro Nieto, Sebastián Torres
  */
-public class PanelEmpleado extends javax.swing.JPanel {
+public class PanelEmpleado extends javax.swing.JPanel implements IValidable {
+    private static final long serialVersionUID = 1L;
     
     private Empleado empleado;
     private Cargo cargo;
+    private List<Component> componentesObligatorios;
+    
     /** Creates new form PanelEmpleado */
     public PanelEmpleado() {
         initComponents();
         inicializarBotones();
+        componentesObligatorios = Arrays.asList((Component)tfCodigo);
     }
 
     @SuppressWarnings("unchecked")
@@ -219,19 +221,19 @@ public class PanelEmpleado extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(pBotones, javax.swing.GroupLayout.DEFAULT_SIZE, 688, Short.MAX_VALUE)
+                .addComponent(pBotones, javax.swing.GroupLayout.DEFAULT_SIZE, 720, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(115, 115, 115)
+                .addGap(116, 116, 116)
                 .addComponent(pEmpleado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(103, 103, 103))
+                .addGap(102, 102, 102))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(31, 31, 31)
+                .addGap(52, 52, 52)
                 .addComponent(pEmpleado, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
-                .addGap(33, 33, 33)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(pBotones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -394,5 +396,10 @@ private void cbEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         btAgregar.setEnabled(true);
         btEliminar.setEnabled(false);
         btModificar.setEnabled(false);
+    }
+
+    @Override
+    public List<Component> getComponentesObligatorios() {
+        return componentesObligatorios;
     }
 }
