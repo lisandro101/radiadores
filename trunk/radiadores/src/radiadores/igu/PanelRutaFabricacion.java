@@ -13,13 +13,14 @@ import radiadores.igu.buscar.ValidacionBuscar;
 import radiadores.igu.interfaces.iBuscaProductoGeneral;
 import radiadores.igu.model.RutaListModel;
 import radiadores.persistencia.FachadaPersistencia;
+import radiadores.utils.IValidable;
 import radiadores.utils.Util;
 
 /**
  *
  * @author Franco Catena, Mario Mariani, Lisandro Nieto, Sebastián Torres
  */
-public class PanelRutaFabricacion extends javax.swing.JPanel implements iBuscaProductoGeneral{
+public class PanelRutaFabricacion extends javax.swing.JPanel implements iBuscaProductoGeneral, IValidable{
     
     private static final long serialVersionUID = 1L;
 
@@ -32,6 +33,14 @@ public class PanelRutaFabricacion extends javax.swing.JPanel implements iBuscaPr
     public PanelRutaFabricacion() {
         initComponents();
         inicializar();
+    }
+
+    private void actualizarRuta() {
+        rutaFabricacion.setNombre(tfNombre.getText());
+        rutaFabricacion.setCodigo(tfCodigo.getText());
+        rutaFabricacion.setNodosRuta(nodosListModel.getElementos()); 
+        rutaFabricacion.setDescripcion(tfDescripcion.getText().trim());
+        rutaFabricacion.setProductoTerminado(productoTerminado);
     }
 
     private RutaFabricacion crearRutaTrabajo() {
@@ -215,6 +224,11 @@ public class PanelRutaFabricacion extends javax.swing.JPanel implements iBuscaPr
         jPanel4.add(btModificarRuta);
 
         btEliminarRuta.setText("Eliminar");
+        btEliminarRuta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btEliminarRutaActionPerformed(evt);
+            }
+        });
         jPanel4.add(btEliminarRuta);
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
@@ -296,11 +310,11 @@ private void btModificarRutaActionPerformed(java.awt.event.ActionEvent evt) {//G
     int opcion = JOptionPane.showConfirmDialog(this, "¿Seguro desea guardar los cambios?", "Aceptar", JOptionPane.YES_NO_OPTION);
         
     if(opcion == JOptionPane.YES_OPTION) {
-/*        actualizarRuta();
+        actualizarRuta();
         FachadaPersistencia.getInstancia().actualizar(rutaFabricacion, true);
         Util.getInstancia().limpiarCampos(this);
-        maquina = null;            
-        inicializarBotones();*/
+        rutaFabricacion = null;            
+        inicializarBotones();
     }
 }//GEN-LAST:event_btModificarRutaActionPerformed
 
@@ -358,6 +372,18 @@ private void btBuscarProductoActionPerformed(java.awt.event.ActionEvent evt) {//
     buscarProd.setVisible(true);
 }//GEN-LAST:event_btBuscarProductoActionPerformed
 
+private void btEliminarRutaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEliminarRutaActionPerformed
+    int opcion = JOptionPane.showConfirmDialog(this, "¿Seguro desea eliminar la maquina?", "Aceptar", JOptionPane.YES_NO_OPTION);
+        
+    if(opcion == JOptionPane.YES_OPTION) {
+        rutaFabricacion.setBorrado(true);
+        FachadaPersistencia.getInstancia().actualizar(rutaFabricacion, true);
+        Util.getInstancia().limpiarCampos(this);
+        rutaFabricacion = null;
+        inicializarBotones();
+    }
+}//GEN-LAST:event_btEliminarRutaActionPerformed
+
 public void setNodoRuta(NodoRuta nodo){
     nodo.setRutaFabricacion(rutaFabricacion);
     nodosListModel.agregarElemento(nodo);
@@ -397,9 +423,15 @@ private void inicializarBotones(){
     private javax.swing.JTextField tfProducto;
     // End of variables declaration//GEN-END:variables
 
+    @Override
     public void setComponente(Componente comp) {
         productoTerminado = (ProductoTerminado) comp;
         tfProducto.setText(comp.getNombre());
+    }
+    
+     @Override
+    public List<Component> getComponentesObligatorios() {
+        return componentesObligatorios;
     }
 
 }
