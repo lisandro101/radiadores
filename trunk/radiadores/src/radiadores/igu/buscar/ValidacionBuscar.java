@@ -23,10 +23,12 @@ import radiadores.entidades.MateriaPrima;
 import radiadores.entidades.ProductoComponente;
 import radiadores.entidades.ProductoTerminado;
 import radiadores.entidades.Maquina;
+import radiadores.entidades.ParteDeEstructura;
 import radiadores.entidades.ParteDeNodo;
 import radiadores.entidades.Proveedor;
 import radiadores.igu.model.CentroTrabajoTableModel;
 import radiadores.igu.model.ComponenteDetalleRutaTableModel;
+import radiadores.igu.model.ComponenteEstructuraTableModel;
 import radiadores.igu.model.EmpleadoDetalleRutaTableModel;
 import radiadores.igu.model.IModeloReiniciable;
 import radiadores.igu.model.ProductoGralTableModel;
@@ -103,9 +105,21 @@ public class ValidacionBuscar {
         
         return resultado;
     }
-    public boolean parteNodoEstaCargadaEnTabla(ComponenteDetalleRutaTableModel tm, Componente parte){
+    public boolean parteNodoRutaEstaCargadaEnTabla(ComponenteDetalleRutaTableModel tm, Componente parte){
         boolean resultado = false;
         List<ParteDeNodo> partes= tm.getFilas();
+        
+        for (int i = 0; i < partes.size(); i++) {
+            if(partes.get(i).getComponente().getNombre().equals(parte.getNombre())){
+                resultado = true;
+            }
+        }
+        
+        return resultado;
+    }
+    public boolean parteNodoEstructuraEstaCargadaEnTabla(ComponenteEstructuraTableModel tm, Componente parte){
+        boolean resultado = false;
+        List<ParteDeEstructura> partes= tm.getFilas();
         
         for (int i = 0; i < partes.size(); i++) {
             if(partes.get(i).getComponente().getNombre().equals(parte.getNombre())){

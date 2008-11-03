@@ -29,7 +29,7 @@ public class ParteDeEstructura implements Serializable, IPersistente {
     private String id;
     private EstructuraDeProducto estructura;
     private Componente componente;
-    private int cantidad;
+    private double cantidad;
     private boolean borrado;
     
     /**
@@ -80,11 +80,11 @@ public class ParteDeEstructura implements Serializable, IPersistente {
     }
 
     @Column(name="cantidad")
-    public int getCantidad() {
+    public double getCantidad() {
         return cantidad;
     }
 
-    public void setCantidad(int cantidad) {
+    public void setCantidad(double cantidad) {
         this.cantidad = cantidad;
     }
 

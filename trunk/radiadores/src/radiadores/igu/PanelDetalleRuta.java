@@ -452,7 +452,7 @@ private void btAgregarComponenteActionPerformed(java.awt.event.ActionEvent evt) 
             parteDeNodo.setCantidad(Double.parseDouble(tfCantidad.getText()));
             parteDeNodo.setComponente(componente);
             
-            if(ValidacionBuscar.getInstancia().parteNodoEstaCargadaEnTabla(tmComponente, componente)){
+            if(ValidacionBuscar.getInstancia().parteNodoRutaEstaCargadaEnTabla(tmComponente, componente)){
                     JOptionPane.showMessageDialog(this, "El Componente ya se encuentra asignado");
             }else{
                 tmComponente.agregarFila(parteDeNodo);      
