@@ -102,6 +102,14 @@
       </Layout>
       <SubComponents>
         <Component class="org.jdesktop.swingx.JXDatePicker" name="jdFecha">
+          <Properties>
+            <Property name="date" type="java.util.Date" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="new Date()" type="code"/>
+            </Property>
+            <Property name="formats" type="[Ljava.text.DateFormat;" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="&quot;dd/MM/yy&quot;" type="code"/>
+            </Property>
+          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="lbFecha">
           <Properties>
@@ -114,6 +122,11 @@
           </Properties>
         </Component>
         <Component class="org.jdesktop.swingx.JXDatePicker" name="jdFechaEntrega">
+          <Properties>
+            <Property name="formats" type="[Ljava.text.DateFormat;" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="&quot;dd/MM/yy&quot;" type="code"/>
+            </Property>
+          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="lbNumero">
           <Properties>

@@ -74,6 +74,13 @@ public class PanelProveedor extends javax.swing.JPanel implements IValidable {
 
         jLabel5.setText("Direccion");
 
+        dpInicioActividades.setFormats("dd/MM/yy");
+        dpInicioActividades.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dpInicioActividadesActionPerformed(evt);
+            }
+        });
+
         jLabel6.setText("Inicio Actividades ");
 
         javax.swing.GroupLayout pCamposLayout = new javax.swing.GroupLayout(pCampos);
@@ -86,27 +93,27 @@ public class PanelProveedor extends javax.swing.JPanel implements IValidable {
                     .addGroup(pCamposLayout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addGap(53, 53, 53)
-                        .addComponent(tfNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 233, Short.MAX_VALUE))
+                        .addComponent(tfNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 293, Short.MAX_VALUE))
                     .addGroup(pCamposLayout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addGap(46, 46, 46)
-                        .addComponent(tfContacto, javax.swing.GroupLayout.DEFAULT_SIZE, 233, Short.MAX_VALUE))
+                        .addComponent(tfContacto, javax.swing.GroupLayout.DEFAULT_SIZE, 293, Short.MAX_VALUE))
                     .addGroup(pCamposLayout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addGap(48, 48, 48)
-                        .addComponent(tfTelefono, javax.swing.GroupLayout.DEFAULT_SIZE, 233, Short.MAX_VALUE))
+                        .addComponent(tfTelefono, javax.swing.GroupLayout.DEFAULT_SIZE, 293, Short.MAX_VALUE))
                     .addGroup(pCamposLayout.createSequentialGroup()
                         .addComponent(jLabel4)
                         .addGap(62, 62, 62)
-                        .addComponent(tfMail, javax.swing.GroupLayout.DEFAULT_SIZE, 233, Short.MAX_VALUE))
+                        .addComponent(tfMail, javax.swing.GroupLayout.DEFAULT_SIZE, 293, Short.MAX_VALUE))
                     .addGroup(pCamposLayout.createSequentialGroup()
                         .addComponent(jLabel5)
                         .addGap(47, 47, 47)
-                        .addComponent(tfDireccion, javax.swing.GroupLayout.DEFAULT_SIZE, 233, Short.MAX_VALUE))
+                        .addComponent(tfDireccion, javax.swing.GroupLayout.DEFAULT_SIZE, 293, Short.MAX_VALUE))
                     .addGroup(pCamposLayout.createSequentialGroup()
                         .addComponent(jLabel6)
                         .addGap(4, 4, 4)
-                        .addComponent(dpInicioActividades, javax.swing.GroupLayout.DEFAULT_SIZE, 233, Short.MAX_VALUE)))
+                        .addComponent(dpInicioActividades, javax.swing.GroupLayout.DEFAULT_SIZE, 293, Short.MAX_VALUE)))
                 .addGap(257, 257, 257))
         );
         pCamposLayout.setVerticalGroup(
@@ -181,7 +188,7 @@ public class PanelProveedor extends javax.swing.JPanel implements IValidable {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(pCampos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(pBotones, javax.swing.GroupLayout.DEFAULT_SIZE, 839, Short.MAX_VALUE))
+                    .addComponent(pBotones, javax.swing.GroupLayout.DEFAULT_SIZE, 899, Short.MAX_VALUE))
                 .addGap(18, 18, 18))
         );
         layout.setVerticalGroup(
@@ -253,6 +260,10 @@ private void btModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
     
     
 }//GEN-LAST:event_btModificarActionPerformed
+
+private void dpInicioActividadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dpInicioActividadesActionPerformed
+// TODO add your handling code here:
+}//GEN-LAST:event_dpInicioActividadesActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
