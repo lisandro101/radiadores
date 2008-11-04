@@ -316,6 +316,7 @@ public class PanelRutaFabricacion extends javax.swing.JPanel implements iBuscaPr
     }// </editor-fold>//GEN-END:initComponents
 
 private void btEliminarNodoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEliminarNodoActionPerformed
+    //TODO Cuando se eliminan nodos de una ruta cargada tendria q refrescarlo en a BD desp de mostrar una advertencia
     if (jlDetalleRuta.getSelectedIndex() != -1){
         nodosListModel.eliminarElemento(jlDetalleRuta.getSelectedIndex());
     }    
@@ -342,6 +343,7 @@ private void jlDetalleRutaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIR
 }//GEN-LAST:event_jlDetalleRutaMouseClicked
 
 private void btAgregarNodoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAgregarNodoActionPerformed
+    //TODO Cuando se agregan nodos de una ruta cargada tendria q refrescarlo en a BD desp de mostrar una advertencia
     if (!tfNombre.getText().trim().equals("") && !tfCodigo.getText().trim().equals("")){
         PanelDetalleRuta detalleRuta = new PanelDetalleRuta(this);
         detalleRuta.setModal(true);
@@ -390,6 +392,7 @@ private void btBuscarProductoActionPerformed(java.awt.event.ActionEvent evt) {//
 }//GEN-LAST:event_btBuscarProductoActionPerformed
 
 private void btEliminarRutaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEliminarRutaActionPerformed
+    //TODO Agregar un control para que no se puedan eliminar rutas que posean ordenes de produccion vigentes
     int opcion = JOptionPane.showConfirmDialog(this, "¿Seguro desea eliminar la maquina?", "Aceptar", JOptionPane.YES_NO_OPTION);
         
     if(opcion == JOptionPane.YES_OPTION) {
