@@ -92,6 +92,7 @@ public class PanelRutaFabricacion extends javax.swing.JPanel implements iBuscaPr
         btAgregarRuta = new javax.swing.JButton();
         btModificarRuta = new javax.swing.JButton();
         btEliminarRuta = new javax.swing.JButton();
+        btLimpiar = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         lbProducto = new javax.swing.JLabel();
         tfProducto = new javax.swing.JTextField();
@@ -237,6 +238,14 @@ public class PanelRutaFabricacion extends javax.swing.JPanel implements iBuscaPr
         });
         jPanel4.add(btEliminarRuta);
 
+        btLimpiar.setText("Limpiar");
+        btLimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btLimpiarActionPerformed(evt);
+            }
+        });
+        jPanel4.add(btLimpiar);
+
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
         lbProducto.setText("Producto");
@@ -361,11 +370,13 @@ private void btAgregarRutaActionPerformed(java.awt.event.ActionEvent evt) {//GEN
 private void tfNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfNombreKeyTyped
     btAgregarNodo.setEnabled(true);
     btAgregarRuta.setEnabled(true);
+    btBuscarProducto.setEnabled(true);
 }//GEN-LAST:event_tfNombreKeyTyped
 
 private void tfCodigoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfCodigoKeyTyped
     btAgregarNodo.setEnabled(true);
     btAgregarRuta.setEnabled(true);
+    btBuscarProducto.setEnabled(true);
 }//GEN-LAST:event_tfCodigoKeyTyped
 
 private void tfNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfNombreActionPerformed
@@ -396,6 +407,13 @@ private void btBuscarRutaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
     buscarRuta.setVisible(true);
 }//GEN-LAST:event_btBuscarRutaActionPerformed
 
+private void btLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLimpiarActionPerformed
+    Util.getInstancia().limpiarCampos(this);
+    rutaFabricacion = null;
+    
+    inicializarBotones();
+}//GEN-LAST:event_btLimpiarActionPerformed
+
 public void setNodoRuta(NodoRuta nodo){
     nodo.setRutaFabricacion(rutaFabricacion);
     nodosListModel.agregarElemento(nodo);
@@ -407,7 +425,28 @@ private void inicializarBotones(){
     btEliminarNodo.setEnabled(false);
     btEliminarRuta.setEnabled(false);
     btModificarRuta.setEnabled(false);
+    btBuscarProducto.setEnabled(false);
  }
+
+    public void setRuta(RutaFabricacion resultado) {
+        rutaFabricacion = resultado;
+        cargarPantallaRuta(rutaFabricacion);
+    }
+    
+    private void cargarPantallaRuta(RutaFabricacion ruta) {
+        tfNombre.setText(ruta.getNombre());
+        tfCodigo.setText(ruta.getCodigo());
+        tfDescripcion.setText(ruta.getDescripcion());
+        tfProducto.setText(ruta.getProductoTerminado().getNombre());
+        nodosListModel.reiniciar();
+        nodosListModel.agregarElementos(ruta.getNodosRuta());
+        
+        btAgregarNodo.setEnabled(true);
+        btAgregarRuta.setEnabled(false);
+        btModificarRuta.setEnabled(true);
+        btEliminarRuta.setEnabled(true);
+        btEliminarNodo.setEnabled(true);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btAgregarNodo;
@@ -416,6 +455,7 @@ private void inicializarBotones(){
     private javax.swing.JButton btBuscarRuta;
     private javax.swing.JButton btEliminarNodo;
     private javax.swing.JButton btEliminarRuta;
+    private javax.swing.JButton btLimpiar;
     private javax.swing.JButton btModificarRuta;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

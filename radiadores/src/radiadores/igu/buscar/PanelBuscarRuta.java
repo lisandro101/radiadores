@@ -8,6 +8,7 @@ package radiadores.igu.buscar;
 
 import java.util.List;
 import javax.persistence.Query;
+import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
 import radiadores.entidades.RutaFabricacion;
 import radiadores.igu.PanelRutaFabricacion;
@@ -230,7 +231,34 @@ private void btBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
 }//GEN-LAST:event_btBuscarActionPerformed
 
 private void btAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAceptarActionPerformed
-// TODO add your handling code here:
+    int indice = jtRuta.convertRowIndexToModel(jtRuta.getSelectedRow());
+    RutaFabricacion resultado;
+ 
+    if(indice ==-1 ){
+        JOptionPane.showMessageDialog(this, "No se ha seleccionado ninguna ruta");
+    }
+    else{
+        resultado = tmRuta.getFila(indice);
+        if(tipoBusqueda == 1){
+            if(tmOrigen.getRowCount()<1){
+                tmOrigen.agregarFila(resultado);       
+                dispose();
+            }
+            else{
+                if(ValidacionBuscar.getInstancia().rutaEstaCargadaEnTabla(tmOrigen, resultado)){
+                    JOptionPane.showMessageDialog(this, "La ruta ya se encuentra cargada");
+                }
+                else{
+                    tmOrigen.agregarFila(resultado);       
+                    dispose();
+                }
+            }
+        }
+        else{
+            panelRuta.setRuta(resultado);
+            dispose();
+        }
+    }
 }//GEN-LAST:event_btAceptarActionPerformed
 
     /**

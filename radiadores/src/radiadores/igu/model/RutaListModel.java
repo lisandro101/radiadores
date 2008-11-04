@@ -64,6 +64,19 @@ public class RutaListModel extends AbstractListModel implements IModeloReiniciab
         fireIntervalAdded(this, nodos.size(), nodos.size());
     }
     
+    /**
+     * Agrega una lista compuesta de varias instancias de NodoRuta al modelo
+     * 
+     * @param nodos List de nodos a agregar
+
+     */
+    public void agregarElementos(List<NodoRuta> nodoNuevo) {
+        if(nodoNuevo != null){
+            nodos.addAll(nodoNuevo);
+            fireIntervalAdded(this, nodos.size()-nodoNuevo.size(), nodos.size());
+        }
+    }
+    
    /**
      * Limita la cantidad de elementos del modelo al indicado
      * 
