@@ -40,34 +40,23 @@ public class PanelMaquina extends javax.swing.JPanel implements IValidable {
     private void initComponents() {
 
         pCampos = new javax.swing.JPanel();
-        tfNombre = new javax.swing.JTextField();
         tfCodigo = new javax.swing.JTextField();
         lbCodigo = new javax.swing.JLabel();
-        lbNombre = new javax.swing.JLabel();
+        tfNombre = new javax.swing.JTextField();
+        cbEdificio = new javax.swing.JComboBox();
+        cbSector = new javax.swing.JComboBox();
         dpFechaDeFabricacion = new org.jdesktop.swingx.JXDatePicker();
+        dpProximoMantenimiento = new org.jdesktop.swingx.JXDatePicker();
+        lbNombre = new javax.swing.JLabel();
+        lbEdificio = new javax.swing.JLabel();
+        lbSector = new javax.swing.JLabel();
         lbFechaFabricacion = new javax.swing.JLabel();
         lbFechaMantenimiento = new javax.swing.JLabel();
-        dpProximoMantenimiento = new org.jdesktop.swingx.JXDatePicker();
-        lbEdificio = new javax.swing.JLabel();
-        cbEdificio = new javax.swing.JComboBox();
-        lbSector = new javax.swing.JLabel();
-        cbSector = new javax.swing.JComboBox();
         jPanel2 = new javax.swing.JPanel();
         btBuscar = new javax.swing.JButton();
         btAgregar = new javax.swing.JButton();
         btModificar = new javax.swing.JButton();
         btEliminar = new javax.swing.JButton();
-
-        tfNombre.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tfNombreActionPerformed(evt);
-            }
-        });
-        tfNombre.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                tfNombreKeyTyped(evt);
-            }
-        });
 
         tfCodigo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -82,7 +71,20 @@ public class PanelMaquina extends javax.swing.JPanel implements IValidable {
 
         lbCodigo.setText("Codigo :");
 
-        lbNombre.setText("Nombre :");
+        tfNombre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tfNombreActionPerformed(evt);
+            }
+        });
+        tfNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                tfNombreKeyTyped(evt);
+            }
+        });
+
+        cbEdificio.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Casa Central", "Deposito" }));
+
+        cbSector.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1A", "2A", "3G", "7G" }));
 
         dpFechaDeFabricacion.setFormats("dd/MM/yy");
         dpFechaDeFabricacion.addActionListener(new java.awt.event.ActionListener() {
@@ -91,19 +93,17 @@ public class PanelMaquina extends javax.swing.JPanel implements IValidable {
             }
         });
 
-        lbFechaFabricacion.setText("Fecha de Fabricacion :");
-
-        lbFechaMantenimiento.setText("Proximo Mantenimiento :");
-
         dpProximoMantenimiento.setFormats("dd/MM/yy");
+
+        lbNombre.setText("Nombre :");
 
         lbEdificio.setText("Edificio:");
 
-        cbEdificio.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Casa Central", "Deposito" }));
-
         lbSector.setText("Sector:");
 
-        cbSector.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1A", "2A", "3G", "7G" }));
+        lbFechaFabricacion.setText("Fecha de Fabricacion :");
+
+        lbFechaMantenimiento.setText("Proximo Mantenimiento :");
 
         javax.swing.GroupLayout pCamposLayout = new javax.swing.GroupLayout(pCampos);
         pCampos.setLayout(pCamposLayout);
@@ -111,65 +111,51 @@ public class PanelMaquina extends javax.swing.JPanel implements IValidable {
             pCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pCamposLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(pCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addGroup(pCamposLayout.createSequentialGroup()
-                        .addComponent(lbCodigo)
-                        .addGap(82, 82, 82)
-                        .addComponent(tfCodigo, javax.swing.GroupLayout.DEFAULT_SIZE, 348, Short.MAX_VALUE))
-                    .addGroup(pCamposLayout.createSequentialGroup()
-                        .addComponent(lbNombre)
-                        .addGap(78, 78, 78)
-                        .addComponent(tfNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 348, Short.MAX_VALUE))
-                    .addGroup(pCamposLayout.createSequentialGroup()
-                        .addComponent(lbEdificio)
-                        .addGap(85, 85, 85)
-                        .addComponent(cbEdificio, 0, 348, Short.MAX_VALUE))
-                    .addGroup(pCamposLayout.createSequentialGroup()
-                        .addComponent(lbSector)
-                        .addGap(87, 87, 87)
-                        .addComponent(cbSector, 0, 348, Short.MAX_VALUE))
-                    .addGroup(pCamposLayout.createSequentialGroup()
-                        .addComponent(lbFechaFabricacion)
-                        .addGap(14, 14, 14)
-                        .addComponent(dpFechaDeFabricacion, javax.swing.GroupLayout.DEFAULT_SIZE, 348, Short.MAX_VALUE))
-                    .addGroup(pCamposLayout.createSequentialGroup()
-                        .addComponent(lbFechaMantenimiento)
-                        .addGap(4, 4, 4)
-                        .addComponent(dpProximoMantenimiento, javax.swing.GroupLayout.DEFAULT_SIZE, 348, Short.MAX_VALUE)))
+                .addGroup(pCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lbCodigo)
+                    .addComponent(lbNombre)
+                    .addComponent(lbEdificio)
+                    .addComponent(lbSector)
+                    .addComponent(lbFechaFabricacion)
+                    .addComponent(lbFechaMantenimiento))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(cbSector, 0, 311, Short.MAX_VALUE)
+                    .addComponent(cbEdificio, 0, 311, Short.MAX_VALUE)
+                    .addComponent(tfNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 311, Short.MAX_VALUE)
+                    .addComponent(tfCodigo, javax.swing.GroupLayout.DEFAULT_SIZE, 311, Short.MAX_VALUE)
+                    .addGroup(pCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(dpProximoMantenimiento, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(dpFechaDeFabricacion, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         pCamposLayout.setVerticalGroup(
             pCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pCamposLayout.createSequentialGroup()
-                .addGroup(pCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pCamposLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(pCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                            .addGroup(pCamposLayout.createSequentialGroup()
-                                .addComponent(lbCodigo)
-                                .addGap(12, 12, 12)
-                                .addComponent(lbNombre)
-                                .addGap(12, 12, 12)
-                                .addComponent(lbEdificio)
-                                .addGap(12, 12, 12)
-                                .addComponent(lbSector)
-                                .addGap(13, 13, 13)
-                                .addComponent(lbFechaFabricacion)
-                                .addGap(14, 14, 14)
-                                .addComponent(lbFechaMantenimiento))
-                            .addGroup(pCamposLayout.createSequentialGroup()
-                                .addComponent(tfCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(32, 32, 32)
-                                .addComponent(cbEdificio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(6, 6, 6)
-                                .addComponent(cbSector, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(6, 6, 6)
-                                .addComponent(dpFechaDeFabricacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(6, 6, 6)
-                                .addComponent(dpProximoMantenimiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(pCamposLayout.createSequentialGroup()
-                        .addGap(37, 37, 37)
-                        .addComponent(tfNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap()
+                .addGroup(pCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(lbCodigo)
+                    .addComponent(tfCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(tfNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbNombre))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cbEdificio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbEdificio))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cbSector, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbSector))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbFechaFabricacion)
+                    .addComponent(dpFechaDeFabricacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbFechaMantenimiento)
+                    .addComponent(dpProximoMantenimiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -213,7 +199,7 @@ public class PanelMaquina extends javax.swing.JPanel implements IValidable {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(pCampos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 825, Short.MAX_VALUE))
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 487, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -221,7 +207,7 @@ public class PanelMaquina extends javax.swing.JPanel implements IValidable {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(pCampos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );

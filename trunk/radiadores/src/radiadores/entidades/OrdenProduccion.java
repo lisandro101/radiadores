@@ -92,8 +92,8 @@ public class OrdenProduccion implements Serializable, IPersistente {
         this.nombreCliente = nombreCliente;
     }
 
-    @OneToMany(targetEntity=DetalleOrdenProduccion.class, cascade=CascadeType.ALL,
-    mappedBy="ordenProduccion")
+    @OneToMany(targetEntity=DetalleOrdenProduccion.class,
+    cascade=CascadeType.ALL, mappedBy="ordenProduccion")
     public List<DetalleOrdenProduccion> getDetallesOrdenProduccion() {
         return detallesOrdenProduccion;
     }
