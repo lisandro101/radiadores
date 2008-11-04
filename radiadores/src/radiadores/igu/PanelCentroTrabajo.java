@@ -177,8 +177,8 @@ public class PanelCentroTrabajo extends javax.swing.JPanel implements iBuscaCent
             .addGroup(pMaquinariaLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pMaquinariaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 649, Short.MAX_VALUE)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 649, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 668, Short.MAX_VALUE)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 668, Short.MAX_VALUE))
                 .addContainerGap())
         );
         pMaquinariaLayout.setVerticalGroup(
@@ -242,7 +242,7 @@ public class PanelCentroTrabajo extends javax.swing.JPanel implements iBuscaCent
                         .addComponent(pCentroTrabajo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, 671, Short.MAX_VALUE)
+                        .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, 686, Short.MAX_VALUE)
                         .addContainerGap())))
         );
         layout.setVerticalGroup(

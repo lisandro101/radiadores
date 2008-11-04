@@ -11,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+import radiadores.persistencia.IPersistente;
 
 /**
  * Contiene una línea de detalle de la orden de producción
@@ -19,7 +21,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name="detalles_ordenes_de_produccion")
-public class DetalleOrdenProduccion implements Serializable {
+public class DetalleOrdenProduccion implements Serializable, IPersistente {
     private static final long serialVersionUID = 1L;
     private static final List<String> CAMPOS_UNICOS = new ArrayList<String>(0);
     
@@ -27,8 +29,8 @@ public class DetalleOrdenProduccion implements Serializable {
     private int cantidad;
     private ProductoTerminado productoTerminado;
     private boolean borrado;
-
     private OrdenProduccion ordenProduccion;
+    
     /**
      * Constructor
      */
@@ -93,5 +95,11 @@ public class DetalleOrdenProduccion implements Serializable {
 
     public void setOrdenProduccion(OrdenProduccion orden) {
         this.ordenProduccion = orden;
+    }
+
+    @Override
+    @Transient
+    public List<String> getCamposUnicos() {
+        return CAMPOS_UNICOS;
     }
 }

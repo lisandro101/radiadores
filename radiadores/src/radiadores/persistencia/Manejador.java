@@ -22,7 +22,7 @@ class Manejador {
     void grabar(Object obj, boolean transaccion) {
         if(transaccion) {
             comenzarTransaccion();
-            em.persist(obj);
+            em.merge(obj);
             finalizarTransaccion();
         } else {
             em.persist(obj);

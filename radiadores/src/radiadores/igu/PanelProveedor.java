@@ -46,10 +46,10 @@ public class PanelProveedor extends javax.swing.JPanel implements IValidable {
         tfContacto = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         tfTelefono = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
         tfMail = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
         tfDireccion = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
         dpInicioActividades = new org.jdesktop.swingx.JXDatePicker();
         jLabel6 = new javax.swing.JLabel();
         pBotones = new javax.swing.JPanel();
@@ -87,65 +87,61 @@ public class PanelProveedor extends javax.swing.JPanel implements IValidable {
         pCampos.setLayout(pCamposLayout);
         pCamposLayout.setHorizontalGroup(
             pCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pCamposLayout.createSequentialGroup()
-                .addGap(259, 259, 259)
-                .addGroup(pCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addGroup(pCamposLayout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(53, 53, 53)
-                        .addComponent(tfNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 293, Short.MAX_VALUE))
-                    .addGroup(pCamposLayout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addGap(46, 46, 46)
-                        .addComponent(tfContacto, javax.swing.GroupLayout.DEFAULT_SIZE, 293, Short.MAX_VALUE))
-                    .addGroup(pCamposLayout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addGap(48, 48, 48)
-                        .addComponent(tfTelefono, javax.swing.GroupLayout.DEFAULT_SIZE, 293, Short.MAX_VALUE))
-                    .addGroup(pCamposLayout.createSequentialGroup()
+            .addGroup(pCamposLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pCamposLayout.createSequentialGroup()
+                        .addGroup(pCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3))
+                        .addGap(65, 65, 65)
+                        .addGroup(pCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(tfContacto, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)
+                            .addComponent(tfNombre, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)
+                            .addComponent(tfTelefono, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pCamposLayout.createSequentialGroup()
                         .addComponent(jLabel4)
-                        .addGap(62, 62, 62)
-                        .addComponent(tfMail, javax.swing.GroupLayout.DEFAULT_SIZE, 293, Short.MAX_VALUE))
+                        .addGap(80, 80, 80)
+                        .addComponent(tfMail, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE))
                     .addGroup(pCamposLayout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addGap(47, 47, 47)
-                        .addComponent(tfDireccion, javax.swing.GroupLayout.DEFAULT_SIZE, 293, Short.MAX_VALUE))
-                    .addGroup(pCamposLayout.createSequentialGroup()
-                        .addComponent(jLabel6)
-                        .addGap(4, 4, 4)
-                        .addComponent(dpInicioActividades, javax.swing.GroupLayout.DEFAULT_SIZE, 293, Short.MAX_VALUE)))
-                .addGap(257, 257, 257))
+                        .addGroup(pCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel6))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(pCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(dpInicioActividades, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)
+                            .addComponent(tfDireccion, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE))))
+                .addContainerGap())
         );
         pCamposLayout.setVerticalGroup(
             pCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pCamposLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(pCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addGroup(pCamposLayout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(12, 12, 12)
-                        .addComponent(jLabel2)
-                        .addGap(12, 12, 12)
-                        .addComponent(jLabel3)
-                        .addGap(12, 12, 12)
-                        .addComponent(jLabel4)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel5)
-                        .addGap(13, 13, 13)
-                        .addComponent(jLabel6))
-                    .addGroup(pCamposLayout.createSequentialGroup()
-                        .addComponent(tfNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(6, 6, 6)
-                        .addComponent(tfContacto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(6, 6, 6)
-                        .addComponent(tfTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(6, 6, 6)
-                        .addComponent(tfMail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(12, 12, 12)
-                        .addComponent(tfDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(6, 6, 6)
-                        .addComponent(dpInicioActividades, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                    .addComponent(jLabel1)
+                    .addComponent(tfNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(jLabel2)
+                    .addComponent(tfContacto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(jLabel3)
+                    .addComponent(tfTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(tfMail, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(tfDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(dpInicioActividades, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(13, 13, 13))
         );
 
         btBuscar.setText("Buscar");
@@ -186,19 +182,19 @@ public class PanelProveedor extends javax.swing.JPanel implements IValidable {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(pCampos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(pBotones, javax.swing.GroupLayout.DEFAULT_SIZE, 899, Short.MAX_VALUE))
-                .addGap(18, 18, 18))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(pBotones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(pCampos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(72, 72, 72)
+                .addContainerGap()
                 .addComponent(pCampos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 111, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(pBotones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -230,16 +226,20 @@ private void btAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
 
 private void btEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEliminarActionPerformed
     
-    int opcion = JOptionPane.showConfirmDialog(this,
-                "¿Seguro desea eliminar al Proveedor?", "Aceptar",
-                JOptionPane.YES_NO_OPTION);
-        
-    if(opcion == JOptionPane.YES_OPTION) {
-        proveedor.setBorrado(true);
-        FachadaPersistencia.getInstancia().actualizar(proveedor, true);
-        Util.getInstancia().limpiarCampos(this);
-        proveedor=null;
-        inicializarBotones();
+    if(proveedor != null && proveedor.getComponentes().size() > 0) {
+        JOptionPane.showMessageDialog(this, "No puede eliminar un proveedor " +
+                "que tiene componentes asignados");
+    } else {
+        int opcion = JOptionPane.showConfirmDialog(this,
+                    "¿Seguro desea eliminar al Proveedor?", "Aceptar",
+                    JOptionPane.YES_NO_OPTION);
+
+        if(opcion == JOptionPane.YES_OPTION) {
+            FachadaPersistencia.getInstancia().borrar(proveedor, true);
+            Util.getInstancia().limpiarCampos(this);
+            proveedor=null;
+            inicializarBotones();
+        }
     }
     
 }//GEN-LAST:event_btEliminarActionPerformed
