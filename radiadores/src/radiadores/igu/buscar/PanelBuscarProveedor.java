@@ -22,6 +22,8 @@ import radiadores.persistencia.FachadaPersistencia;
  * @author  stafoxter
  */
 public class PanelBuscarProveedor extends javax.swing.JDialog {
+    private static final long serialVersionUID = 1L;
+    
     private ProveedorTableModel tmBuscar;
     private ProveedorTableModel tmOrigen;
     private List<Proveedor> proveedores;

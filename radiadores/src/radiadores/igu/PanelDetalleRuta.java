@@ -599,8 +599,9 @@ private void btGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
         
         return nodo;
     }
-
+    
+    @Override
     public List<Component> getComponentesObligatorios() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return componentesObligatorios;
     }
 }
