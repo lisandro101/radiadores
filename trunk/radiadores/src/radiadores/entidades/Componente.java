@@ -130,4 +130,28 @@ public class Componente implements Serializable, IPersistente {
     public void setUnidadMedida(String unidadMedida) {
         this.unidadMedida = unidadMedida;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Componente other = (Componente) obj;
+        if (this.codigo != other.codigo && (this.codigo == null || !this.codigo.equals(other.codigo))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 61 * hash + (this.codigo != null ? this.codigo.hashCode() : 0);
+        return hash;
+    }
+
+   
 }

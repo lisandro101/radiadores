@@ -17,12 +17,14 @@ import org.jdesktop.swingx.JXTable;
 import radiadores.entidades.Cargo;
 import radiadores.entidades.CentroDeTrabajo;
 import radiadores.entidades.Componente;
+import radiadores.entidades.DetalleOrdenCompra;
 import radiadores.entidades.Empleado;
 import radiadores.entidades.HoraLaboral;
 import radiadores.entidades.MateriaPrima;
 import radiadores.entidades.ProductoComponente;
 import radiadores.entidades.ProductoTerminado;
 import radiadores.entidades.Maquina;
+import radiadores.entidades.OrdenCompra;
 import radiadores.entidades.ParteDeEstructura;
 import radiadores.entidades.ParteDeNodo;
 import radiadores.entidades.Proveedor;
@@ -33,6 +35,7 @@ import radiadores.igu.model.EmpleadoDetalleRutaTableModel;
 import radiadores.igu.model.IModeloReiniciable;
 import radiadores.igu.model.ProductoGralTableModel;
 import radiadores.igu.model.MaquinaTableModel;
+import radiadores.igu.model.OrdenCompraTableModel;
 import radiadores.igu.model.ProveedorTableModel;
 import radiadores.persistencia.FachadaPersistencia;
 import radiadores.persistencia.IPersistente;
@@ -86,6 +89,19 @@ public class ValidacionBuscar {
         
         for (int i = 0; i < componentes.size(); i++) {
             if(componentes.get(i).getNombre().equals(valor.getNombre())){
+                resultado=true;
+                
+            }
+        }
+        return resultado;
+    }
+    
+    public boolean componenteEstaCargadoOrdenEnTabla(OrdenCompraTableModel tm, DetalleOrdenCompra valor){
+        boolean resultado= false;
+        List<DetalleOrdenCompra> detallesOrdenCompra= tm.getFilas();
+        
+        for (int i = 0; i < detallesOrdenCompra.size(); i++) {
+            if(detallesOrdenCompra.get(i).getComponente().getNombre().equals(valor.getComponente().getNombre())){
                 resultado=true;
                 
             }

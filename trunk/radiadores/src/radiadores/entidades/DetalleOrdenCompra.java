@@ -28,7 +28,7 @@ public class DetalleOrdenCompra implements Serializable, IPersistente {
     private static final List<String> CAMPOS_UNICOS = new ArrayList<String>(0);
     
     private String id;
-    private int cantidad;
+    private double cantidad;
     private Componente componente;
     private OrdenCompra ordenCompra;
     private boolean borrado;
@@ -61,11 +61,11 @@ public class DetalleOrdenCompra implements Serializable, IPersistente {
     }
 
     @Column(name="cantidad")
-    public int getCantidad() {
+    public double getCantidad() {
         return cantidad;
     }
     
-    public void setCantidad(int cantidad) {
+    public void setCantidad(double cantidad) {
         this.cantidad = cantidad;
     }
 

@@ -30,7 +30,7 @@ public class EstructuraDeProducto implements Serializable, IPersistente {
     private String id;
     private List<ParteDeEstructura> partes;
     private ProductoTerminado productoTerminado;
-    private Componente componente;           // me parece q no va =!
+   
     private boolean borrado;
 
     /**
@@ -80,15 +80,6 @@ public class EstructuraDeProducto implements Serializable, IPersistente {
         this.productoTerminado = productoTerminado;
     }
 
-    @JoinColumn(name="componente_id")
-    @ManyToOne(targetEntity=Componente.class, cascade=CascadeType.ALL)
-    public Componente getComponente() {
-        return componente;
-    }
-
-    public void setComponente(Componente componente) {
-        this.componente = componente;
-    }
     
     @Column(name="borrado")
     public boolean isBorrado() {
