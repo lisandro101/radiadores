@@ -1,33 +1,33 @@
 package radiadores.igu.model;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
-import radiadores.entidades.DetalleOrdenProduccion;
-import radiadores.entidades.ProductoTerminado;
+import radiadores.entidades.Cargo;
+import radiadores.entidades.OrdenCompra;
+import radiadores.entidades.OrdenProduccion;
 
 /**
  *
  * @author Franco Catena, Mario Mariani, Lisandro Nieto, Sebastián Torres
  */
-public class OrdenProduccionTableModel extends AbstractTableModel implements IModeloReiniciable {
+public class BuscarOrdenProduccionTableModel extends AbstractTableModel implements IModeloReiniciable {
     private static final long serialVersionUID = 1L;
-    private static final String[] NOMBRE_COLUMNAS =
-        {"Codigo", "Producto", "Cantidad", "Precio"};
-    private static final boolean[] COLUMNAS_EDITABLES =
-        {false, false, true, true};
+    private static final String[] NOMBRE_COLUMNAS = {"Nro Orden", "Cliente", "Fecha Emisión", "Fecha Entrega"};
+    private static final boolean[] COLUMNAS_EDITABLES = {false, false, false, false};
     private static final Class[] CLASE_COLUMNAS =
-        {String.class, String.class, Integer.class, Double.class};
+        {String.class, String.class, Date.class, Date.class};
     
-    private List<DetalleOrdenProduccion> detallesOrdenProduccion;
-    
+    private List<OrdenProduccion> ordenes;
+
     /**
      * Constructor
      * 
      * @param filas Cantidad de filas iniciales
      */
-    public OrdenProduccionTableModel(int filas) {
-        this.detallesOrdenProduccion = new ArrayList<DetalleOrdenProduccion>(filas > 0 ? filas : 0);
+    public BuscarOrdenProduccionTableModel(int filas) {
+        this.ordenes = new ArrayList<OrdenProduccion>(filas > 0 ? filas : 0);
     }
 
     /**
@@ -71,7 +71,7 @@ public class OrdenProduccionTableModel extends AbstractTableModel implements IMo
      */
     @Override
     public int getRowCount() {
-        return detallesOrdenProduccion.size();
+        return ordenes.size();
     }
 
     /**
@@ -97,42 +97,32 @@ public class OrdenProduccionTableModel extends AbstractTableModel implements IMo
         
         switch(columna) {
             case 0:
-                resultado = detallesOrdenProduccion.get(fila).getProductoTerminado().getCodigo();
+                resultado = ordenes.get(fila).getNroOrdenProduccion();
                 break;
             case 1:
-                resultado = detallesOrdenProduccion.get(fila).getProductoTerminado().getNombre();
+                resultado = ordenes.get(fila).getNombreCliente();
                 break;
             case 2:
-                resultado = detallesOrdenProduccion.get(fila).getCantidad();
+                resultado = ordenes.get(fila).getFecha();
                 break;
             case 3:
-                resultado = detallesOrdenProduccion.get(fila).getProductoTerminado().getPrecioVenta();
+                resultado = ordenes.get(fila).getFechaEstimadaEntrega();
                 break;    
         }
         return resultado;
     }
     
     /**
-     * Agrega el producto al modelo
+     * Agrega Proveedor al modelo
      * 
-     * @param productoTerminado Producto a agregar
+     * @param proveedor Proveedor a agregar
 
      */
-    public void agregarFila(DetalleOrdenProduccion productoTerminado) {
-        detallesOrdenProduccion.add(productoTerminado);
+    public void agregarFila(OrdenProduccion cargo) {
+        ordenes.add(cargo);
         
-        fireTableRowsInserted(detallesOrdenProduccion.size(), detallesOrdenProduccion.size());
+        fireTableRowsInserted(ordenes.size(), ordenes.size());
     }
-    
-    
-    public void agregarFilas(List<DetalleOrdenProduccion> proveedoresNuevo) {
-        if(proveedoresNuevo != null){
-            detallesOrdenProduccion.addAll(proveedoresNuevo);
-            fireTableRowsInserted(detallesOrdenProduccion.size()-proveedoresNuevo.size(), detallesOrdenProduccion.size());
-        }
-    }
-    
-    
     
     /**
      * Limita la cantidad de elementos del modelo al indicado
@@ -140,9 +130,9 @@ public class OrdenProduccionTableModel extends AbstractTableModel implements IMo
      * @param cantidad Cantidad a la que se quiere limitar el numero de filas
      */
     public void limitarCantidad(int cantidad) {
-        int cantidadAnterior = detallesOrdenProduccion.size();
+        int cantidadAnterior = ordenes.size();
         
-        detallesOrdenProduccion = detallesOrdenProduccion.subList(0, cantidad);
+        ordenes = ordenes.subList(0, cantidad);
         
         fireTableRowsDeleted(cantidad, cantidadAnterior);
     }
@@ -152,24 +142,23 @@ public class OrdenProduccionTableModel extends AbstractTableModel implements IMo
      * 
      * @return Todas las filas del modelo
      */
-    public List<DetalleOrdenProduccion> getFilas() {
-        return detallesOrdenProduccion;
+    public List<OrdenProduccion> getFilas() {
+        return ordenes;
     }
     
-    public DetalleOrdenProduccion getFila(int indice){
-        return detallesOrdenProduccion.get(indice);
+    public OrdenProduccion getFila(int indice){
+        return ordenes.get(indice);
         
     }
     
     public void eliminarFila(int indice){        
-        detallesOrdenProduccion.remove(indice);
-        
+        ordenes.remove(indice);
         fireTableRowsDeleted(indice, indice);       
     }
     
     public void limpiarTableModel(){        
-        int tamanio = detallesOrdenProduccion.size();
-        detallesOrdenProduccion.clear();
+        int tamanio = ordenes.size();
+        ordenes.clear();
         
         fireTableRowsDeleted(0, tamanio);
     }
@@ -179,12 +168,5 @@ public class OrdenProduccionTableModel extends AbstractTableModel implements IMo
         limpiarTableModel();
     }
     
-    @Override
-    public void setValueAt(Object valor, int fila, int columna) {
-        if(columna == 3) {
-            detallesOrdenProduccion.get(fila).getProductoTerminado().setPrecioVenta((Double)valor);
-        }else if(columna == 2) {
-            detallesOrdenProduccion.get(fila).setCantidad((Integer)valor);
-        }
-    }
+
 }

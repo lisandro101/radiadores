@@ -32,8 +32,9 @@ public class OrdenProduccion implements Serializable, IPersistente {
     private Date fecha;
     private Date fechaEstimadaEntrega;
     private String nombreCliente;
-    private List<ProductoTerminado> productosTerminado;
+    private List<DetalleOrdenProduccion> detallesOrdenProduccion;
     private boolean borrado;
+    private String nroOrdenProduccion;
     
     /**
      * Constructor
@@ -91,14 +92,14 @@ public class OrdenProduccion implements Serializable, IPersistente {
         this.nombreCliente = nombreCliente;
     }
 
-    @OneToMany(targetEntity=ProductoTerminado.class, cascade=CascadeType.ALL,
+    @OneToMany(targetEntity=DetalleOrdenProduccion.class, cascade=CascadeType.ALL,
     mappedBy="ordenProduccion")
-    public List<ProductoTerminado> getProductosTerminado() {
-        return productosTerminado;
+    public List<DetalleOrdenProduccion> getDetallesOrdenProduccion() {
+        return detallesOrdenProduccion;
     }
 
-    public void setProductosTerminado(List<ProductoTerminado> productosTerminado) {
-        this.productosTerminado = productosTerminado;
+    public void setDetallesOrdenProduccion(List<DetalleOrdenProduccion> detalles) {
+        this.detallesOrdenProduccion = detalles;
     }
 
     @Column(name="borrado")
@@ -114,5 +115,14 @@ public class OrdenProduccion implements Serializable, IPersistente {
     @Transient
     public List<String> getCamposUnicos() {
         return CAMPOS_UNICOS;
+    }
+    
+    @Column(name="nro_orden_produccion", length=100)
+    public String getNroOrdenProduccion() {
+        return nroOrdenProduccion;
+    }
+
+    public void setNroOrdenProduccion(String nroOrden) {
+        this.nroOrdenProduccion = nroOrden;
     }
 }
