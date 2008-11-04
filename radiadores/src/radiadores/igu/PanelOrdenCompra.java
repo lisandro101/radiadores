@@ -418,7 +418,7 @@ private void tfCantidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
 private void btProcesarOrdenCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btProcesarOrdenCompraActionPerformed
     crearOrdenCompra();
     if(ValidacionBuscar.getInstancia().estaDuplicado(ordenCompra)){
-        JOptionPane.showMessageDialog(this, "Existen campos vacios");
+        JOptionPane.showMessageDialog(this, "Orden ya registrada");
     }else{
         if(ValidacionBuscar.getInstancia().existenCamposVacios(this)){
             JOptionPane.showMessageDialog(this, "Existen campos vacios");

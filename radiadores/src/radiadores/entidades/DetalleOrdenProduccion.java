@@ -10,6 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 /**
  * Contiene una línea de detalle de la orden de producción
@@ -17,6 +18,7 @@ import javax.persistence.ManyToOne;
  * @author Franco Catena, Mario Mariani, Lisandro Nieto, Sebastián Torres
  */
 @Entity
+@Table(name="detalles_ordenes_de_produccion")
 public class DetalleOrdenProduccion implements Serializable {
     private static final long serialVersionUID = 1L;
     private static final List<String> CAMPOS_UNICOS = new ArrayList<String>(0);
@@ -26,6 +28,7 @@ public class DetalleOrdenProduccion implements Serializable {
     private ProductoTerminado productoTerminado;
     private boolean borrado;
 
+    private OrdenProduccion ordenProduccion;
     /**
      * Constructor
      */
@@ -79,5 +82,16 @@ public class DetalleOrdenProduccion implements Serializable {
 
     public void setBorrado(boolean borrado) {
         this.borrado = borrado;
+    }
+    
+    
+    @JoinColumn(name="orden_de_produccion_id")
+    @ManyToOne(targetEntity=OrdenProduccion.class, cascade=CascadeType.ALL)
+    public OrdenProduccion getOrdenProduccion() {
+        return ordenProduccion;
+    }
+
+    public void setOrdenProduccion(OrdenProduccion orden) {
+        this.ordenProduccion = orden;
     }
 }

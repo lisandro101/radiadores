@@ -18,6 +18,7 @@ import radiadores.entidades.Cargo;
 import radiadores.entidades.CentroDeTrabajo;
 import radiadores.entidades.Componente;
 import radiadores.entidades.DetalleOrdenCompra;
+import radiadores.entidades.DetalleOrdenProduccion;
 import radiadores.entidades.Empleado;
 import radiadores.entidades.HoraLaboral;
 import radiadores.entidades.MateriaPrima;
@@ -37,6 +38,7 @@ import radiadores.igu.model.IModeloReiniciable;
 import radiadores.igu.model.ProductoGralTableModel;
 import radiadores.igu.model.MaquinaTableModel;
 import radiadores.igu.model.OrdenCompraTableModel;
+import radiadores.igu.model.OrdenProduccionTableModel;
 import radiadores.igu.model.ProveedorTableModel;
 import radiadores.igu.model.RutaTableModel;
 import radiadores.persistencia.FachadaPersistencia;
@@ -111,6 +113,19 @@ public class ValidacionBuscar {
         return resultado;
     }
 
+    public boolean componenteEstaCargadoOrdenProdEnTabla(OrdenProduccionTableModel tm, DetalleOrdenProduccion valor){
+        boolean resultado= false;
+        List<DetalleOrdenProduccion> detallesOrdenProduccion= tm.getFilas();
+        
+        for (int i = 0; i < detallesOrdenProduccion.size(); i++) {
+            if(detallesOrdenProduccion.get(i).getProductoTerminado().getNombre().equals(valor.getProductoTerminado().getNombre())){
+                resultado=true;
+                
+            }
+        }
+        return resultado;
+    }
+    
     public boolean maquinaEstaCargadaEnTabla(MaquinaTableModel tm, Maquina maquina){
         boolean resultado = false;
         List<Maquina> maquinas= tm.getFilas();

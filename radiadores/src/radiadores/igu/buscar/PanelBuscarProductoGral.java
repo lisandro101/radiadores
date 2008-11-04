@@ -20,6 +20,7 @@ import radiadores.igu.PanelDetalleRuta;
 import radiadores.igu.PanelEstructuraDeProducto;
 import radiadores.igu.PanelMateriaPrima;
 import radiadores.igu.PanelOrdenCompra;
+import radiadores.igu.PanelOrdenProduccion;
 import radiadores.igu.PanelProductoComponente;
 import radiadores.igu.PanelProductoTerminado;
 import radiadores.igu.interfaces.iBuscaProductoGeneral;
@@ -46,6 +47,7 @@ public class PanelBuscarProductoGral extends javax.swing.JDialog {
     private PanelDetalleRuta panelDetalleRuta;
     private PanelEstructuraDeProducto panelEstructuraDeProducto;
     private PanelOrdenCompra panelOrdenCompra;
+    private PanelOrdenProduccion panelOrdenProduccion;
     private iBuscaProductoGeneral iProducto;
     
     public enum Tipo {
@@ -135,6 +137,13 @@ public class PanelBuscarProductoGral extends javax.swing.JDialog {
         initComponents();
         tipo= Tipo.PANEL_ORDEN_COMPRA;
         panelOrdenCompra= tm1;
+        inicializar();
+    }
+    
+    public PanelBuscarProductoGral(PanelOrdenProduccion tm1) {
+        initComponents();
+        tipo= Tipo.PANEL_ORDEN_PRODUCCION;
+        panelOrdenProduccion= tm1;
         inicializar();
     }
     
@@ -357,9 +366,10 @@ private void btAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
 
             dispose();       
         }else if(tipo==Tipo.PANEL_ORDEN_COMPRA){
-            
-            
             panelOrdenCompra.setComponente(resultado);
+            dispose();
+        }else if(tipo==Tipo.PANEL_ORDEN_PRODUCCION){
+            panelOrdenProduccion.setProductoTerminado((ProductoTerminado)resultado);
             dispose();
         }
                
