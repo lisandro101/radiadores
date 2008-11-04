@@ -2,6 +2,7 @@ package radiadores.igu;
 
 import java.awt.Component;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 import javax.swing.JOptionPane;
 import radiadores.entidades.Componente;
@@ -82,9 +83,14 @@ public class PanelOrdenCompra extends javax.swing.JPanel implements IValidable {
         btModificarOrdenCompra = new javax.swing.JButton();
         btAnularOrdenCompra = new javax.swing.JButton();
 
+        jdFecha.setDate(new Date());
+        jdFecha.setFormats("dd/MM/yy");
+
         lbFecha.setText("Fecha");
 
         lbFechaEntrega.setText("Fecha de Entrega");
+
+        jdFechaEntrega.setFormats("dd/MM/yy");
 
         lbNumero.setText("Numero");
 

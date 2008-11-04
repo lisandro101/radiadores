@@ -112,6 +112,10 @@ public class PanelEmpleado extends javax.swing.JPanel implements IValidable {
             }
         });
 
+        dpFechaNacimiento.setFormats("dd/MM/yy");
+
+        dpFechaIngreso.setFormats("dd/MM/yy");
+
         lbCargo.setText("Cargo:");
 
         tfCargo.setEditable(false);

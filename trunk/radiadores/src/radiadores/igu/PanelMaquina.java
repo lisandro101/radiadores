@@ -84,9 +84,18 @@ public class PanelMaquina extends javax.swing.JPanel implements IValidable {
 
         lbNombre.setText("Nombre :");
 
+        dpFechaDeFabricacion.setFormats("dd/MM/yy");
+        dpFechaDeFabricacion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dpFechaDeFabricacionActionPerformed(evt);
+            }
+        });
+
         lbFechaFabricacion.setText("Fecha de Fabricacion :");
 
         lbFechaMantenimiento.setText("Proximo Mantenimiento :");
+
+        dpProximoMantenimiento.setFormats("dd/MM/yy");
 
         lbEdificio.setText("Edificio:");
 
@@ -111,12 +120,12 @@ public class PanelMaquina extends javax.swing.JPanel implements IValidable {
                     .addComponent(lbFechaMantenimiento))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(tfCodigo, javax.swing.GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE)
-                    .addComponent(tfNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE)
-                    .addComponent(cbEdificio, 0, 186, Short.MAX_VALUE)
-                    .addComponent(cbSector, 0, 186, Short.MAX_VALUE)
-                    .addComponent(dpFechaDeFabricacion, javax.swing.GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE)
-                    .addComponent(dpProximoMantenimiento, javax.swing.GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE))
+                    .addComponent(tfCodigo, javax.swing.GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE)
+                    .addComponent(tfNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE)
+                    .addComponent(cbEdificio, 0, 228, Short.MAX_VALUE)
+                    .addComponent(cbSector, 0, 228, Short.MAX_VALUE)
+                    .addComponent(dpFechaDeFabricacion, javax.swing.GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE)
+                    .addComponent(dpProximoMantenimiento, javax.swing.GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE))
                 .addGap(228, 228, 228))
         );
         pCamposLayout.setVerticalGroup(
@@ -188,7 +197,7 @@ public class PanelMaquina extends javax.swing.JPanel implements IValidable {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 783, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 825, Short.MAX_VALUE)
                     .addComponent(pCampos, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -269,6 +278,10 @@ private void tfNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tf
         btAgregar.setEnabled(true);
     }
 }//GEN-LAST:event_tfNombreKeyTyped
+
+private void dpFechaDeFabricacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dpFechaDeFabricacionActionPerformed
+// TODO add your handling code here:
+}//GEN-LAST:event_dpFechaDeFabricacionActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
