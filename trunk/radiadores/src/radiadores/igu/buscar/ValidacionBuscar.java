@@ -28,6 +28,7 @@ import radiadores.entidades.OrdenCompra;
 import radiadores.entidades.ParteDeEstructura;
 import radiadores.entidades.ParteDeNodo;
 import radiadores.entidades.Proveedor;
+import radiadores.entidades.RutaFabricacion;
 import radiadores.igu.model.CentroTrabajoTableModel;
 import radiadores.igu.model.ComponenteDetalleRutaTableModel;
 import radiadores.igu.model.ComponenteEstructuraTableModel;
@@ -37,6 +38,7 @@ import radiadores.igu.model.ProductoGralTableModel;
 import radiadores.igu.model.MaquinaTableModel;
 import radiadores.igu.model.OrdenCompraTableModel;
 import radiadores.igu.model.ProveedorTableModel;
+import radiadores.igu.model.RutaTableModel;
 import radiadores.persistencia.FachadaPersistencia;
 import radiadores.persistencia.IPersistente;
 
@@ -324,6 +326,19 @@ public class ValidacionBuscar {
         
         for (CentroDeTrabajo cent : centros) {
             if(cent.getNombre().equals(centro.getNombre())){
+                resultado = true;
+            }
+        }
+        
+        return resultado;
+    }
+    
+    public boolean rutaEstaCargadaEnTabla(RutaTableModel tm, RutaFabricacion ruta){
+        boolean resultado= false;
+        List<RutaFabricacion> rutas = tm.getFilas();
+        
+        for (RutaFabricacion rut : rutas) {
+            if(rut.getNombre().equals(ruta.getNombre())){
                 resultado = true;
             }
         }
