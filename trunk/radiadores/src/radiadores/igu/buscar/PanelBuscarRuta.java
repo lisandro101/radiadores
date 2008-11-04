@@ -6,15 +6,55 @@
 
 package radiadores.igu.buscar;
 
+import java.util.List;
+import javax.persistence.Query;
+import javax.swing.ListSelectionModel;
+import radiadores.entidades.RutaFabricacion;
+import radiadores.igu.PanelRutaFabricacion;
+import radiadores.igu.model.RutaTableModel;
+import radiadores.persistencia.FachadaPersistencia;
+
 /**
  *
  * @author  Lisandro
  */
 public class PanelBuscarRuta extends javax.swing.JDialog {
+    private static final long serialVersionUID = 1L;
+    
+    private RutaTableModel tmRuta;
+    private PanelRutaFabricacion panelRuta;
+    private int tipoBusqueda;
+    private RutaTableModel tmOrigen;
+    private List<RutaFabricacion> rutas;
 
     /** Creates new form PanelBuscarCentroTrabajo */
     public PanelBuscarRuta() {
         initComponents();
+        inicializar();
+    }
+    
+    /** Creates new form PanelBuscarMaquina */
+    public PanelBuscarRuta(RutaTableModel tm) { 
+        initComponents();
+        tipoBusqueda = 1;
+        tmOrigen = tm;
+        //TODO Este tipo de busqueda deberia permitir selección multiple
+        inicializar();
+        
+    }
+    
+    /** Creates new form PanelBuscarMaquina */
+    public PanelBuscarRuta(PanelRutaFabricacion pRuta) {
+        initComponents();
+        tipoBusqueda = 2;
+        panelRuta = pRuta;
+        inicializar();
+    }
+    
+    private void inicializar() {
+        tmRuta = new RutaTableModel();
+        jtRuta.setModel(tmRuta);
+        jtRuta.setSelectionMode(ListSelectionModel.SINGLE_SELECTION );
     }
 
     /** This method is called from within the constructor to
@@ -34,7 +74,7 @@ public class PanelBuscarRuta extends javax.swing.JDialog {
         tfCodigo = new javax.swing.JTextField();
         pTablaProveedores = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jtCentroTrabajo = new org.jdesktop.swingx.JXTable();
+        jtRuta = new org.jdesktop.swingx.JXTable();
         pBoton = new javax.swing.JPanel();
         btAceptar = new javax.swing.JButton();
         btCancelar = new javax.swing.JButton();
@@ -44,6 +84,11 @@ public class PanelBuscarRuta extends javax.swing.JDialog {
         lbNombre.setText("Nombre:");
 
         btBuscar.setText("Buscar");
+        btBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btBuscarActionPerformed(evt);
+            }
+        });
 
         lbCodigo.setText("Codigo:");
 
@@ -81,7 +126,7 @@ public class PanelBuscarRuta extends javax.swing.JDialog {
                 .addContainerGap())
         );
 
-        jtCentroTrabajo.setModel(new javax.swing.table.DefaultTableModel(
+        jtRuta.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},
                 {null, null},
@@ -106,8 +151,8 @@ public class PanelBuscarRuta extends javax.swing.JDialog {
                 return canEdit [columnIndex];
             }
         });
-        jtCentroTrabajo.setEditable(false);
-        jScrollPane1.setViewportView(jtCentroTrabajo);
+        jtRuta.setEditable(false);
+        jScrollPane1.setViewportView(jtRuta);
 
         javax.swing.GroupLayout pTablaProveedoresLayout = new javax.swing.GroupLayout(pTablaProveedores);
         pTablaProveedores.setLayout(pTablaProveedoresLayout);
@@ -127,6 +172,11 @@ public class PanelBuscarRuta extends javax.swing.JDialog {
         );
 
         btAceptar.setText("Aceptar");
+        btAceptar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btAceptarActionPerformed(evt);
+            }
+        });
         pBoton.add(btAceptar);
 
         btCancelar.setText("Cancelar");
@@ -168,6 +218,21 @@ private void btCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
 dispose();
 }//GEN-LAST:event_btCancelarActionPerformed
 
+private void btBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBuscarActionPerformed
+    tmRuta.limpiarTableModel();
+    
+    Query consulta = FachadaPersistencia.getInstancia().crearConsulta("Select a from RutaFabricacion a where (a.nombre) LIKE :valor and a.borrado=false" );
+    consulta.setParameter("valor", "%"+tfNombre.getText()+"%");
+     
+    rutas = FachadaPersistencia.getInstancia().buscar(RutaFabricacion.class, consulta);
+    
+    tmRuta.agregarFilas(rutas);
+}//GEN-LAST:event_btBuscarActionPerformed
+
+private void btAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAceptarActionPerformed
+// TODO add your handling code here:
+}//GEN-LAST:event_btAceptarActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -184,7 +249,7 @@ dispose();
     private javax.swing.JButton btBuscar;
     private javax.swing.JButton btCancelar;
     private javax.swing.JScrollPane jScrollPane1;
-    private org.jdesktop.swingx.JXTable jtCentroTrabajo;
+    private org.jdesktop.swingx.JXTable jtRuta;
     private javax.swing.JLabel lbCodigo;
     private javax.swing.JLabel lbNombre;
     private javax.swing.JPanel pBoton;

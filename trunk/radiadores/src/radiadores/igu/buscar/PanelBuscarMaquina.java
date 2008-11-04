@@ -19,6 +19,7 @@ import javax.swing.*;
  * @author  stafoxter
  */
 public class PanelBuscarMaquina extends javax.swing.JDialog {
+    private static final long serialVersionUID = 1L;
 
     private MaquinaTableModel tmMaquina;
     private List<Maquina> maquinas;

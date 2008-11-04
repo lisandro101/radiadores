@@ -9,6 +9,7 @@ import radiadores.entidades.NodoRuta;
 import radiadores.entidades.ProductoTerminado;
 import radiadores.entidades.RutaFabricacion;
 import radiadores.igu.buscar.PanelBuscarProductoGral;
+import radiadores.igu.buscar.PanelBuscarRuta;
 import radiadores.igu.buscar.ValidacionBuscar;
 import radiadores.igu.interfaces.iBuscaProductoGeneral;
 import radiadores.igu.model.RutaListModel;
@@ -205,6 +206,11 @@ public class PanelRutaFabricacion extends javax.swing.JPanel implements iBuscaPr
         );
 
         btBuscarRuta.setText("Buscar");
+        btBuscarRuta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btBuscarRutaActionPerformed(evt);
+            }
+        });
         jPanel4.add(btBuscarRuta);
 
         btAgregarRuta.setText("Agregar");
@@ -383,6 +389,12 @@ private void btEliminarRutaActionPerformed(java.awt.event.ActionEvent evt) {//GE
         inicializarBotones();
     }
 }//GEN-LAST:event_btEliminarRutaActionPerformed
+
+private void btBuscarRutaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBuscarRutaActionPerformed
+    PanelBuscarRuta buscarRuta = new PanelBuscarRuta(this);
+    buscarRuta.setModal(true);
+    buscarRuta.setVisible(true);
+}//GEN-LAST:event_btBuscarRutaActionPerformed
 
 public void setNodoRuta(NodoRuta nodo){
     nodo.setRutaFabricacion(rutaFabricacion);

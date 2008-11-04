@@ -9,12 +9,10 @@ package radiadores.igu.buscar;
 import java.util.List;
 import javax.persistence.Query;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import javax.swing.ListSelectionModel;
 import radiadores.entidades.Empleado;
 import radiadores.igu.PanelDetalleRuta;
 import radiadores.igu.PanelEmpleado;
-import radiadores.igu.PanelRutaFabricacion;
 import radiadores.igu.model.EmpleadoTableModel;
 import radiadores.persistencia.FachadaPersistencia;
 
@@ -23,6 +21,7 @@ import radiadores.persistencia.FachadaPersistencia;
  * @author  Lisandro
  */
 public class PanelBuscarEmpleado extends javax.swing.JDialog {
+    private static final long serialVersionUID = 1L;
 
     private List<Empleado> empleados;
     private PanelEmpleado panelEmpleado;
