@@ -15,11 +15,11 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="1" attributes="0">
+          <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="1" attributes="0">
-                  <Component id="jPanel2" alignment="0" pref="825" max="32767" attributes="0"/>
-                  <Component id="pCampos" alignment="0" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="2" attributes="0">
+                  <Component id="pCampos" alignment="2" min="-2" max="-2" attributes="0"/>
+                  <Component id="jPanel2" alignment="2" pref="825" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -28,11 +28,11 @@
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
-              <Component id="pCampos" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="97" max="32767" attributes="0"/>
-              <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
+              <Component id="pCampos" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -43,63 +43,83 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace min="-2" pref="247" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="lbCodigo" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="lbNombre" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="lbEdificio" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="lbSector" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="lbFechaFabricacion" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="lbFechaMantenimiento" alignment="0" min="-2" max="-2" attributes="0"/>
-                  </Group>
+              <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="tfCodigo" alignment="0" pref="228" max="32767" attributes="3"/>
-                      <Component id="tfNombre" alignment="0" pref="228" max="32767" attributes="3"/>
-                      <Component id="cbEdificio" alignment="0" pref="228" max="32767" attributes="1"/>
-                      <Component id="cbSector" alignment="0" pref="228" max="32767" attributes="1"/>
-                      <Component id="dpFechaDeFabricacion" alignment="0" pref="228" max="32767" attributes="3"/>
-                      <Component id="dpProximoMantenimiento" alignment="0" pref="228" max="32767" attributes="3"/>
+                  <Group type="103" groupAlignment="2" attributes="0">
+                      <Group type="102" alignment="2" attributes="0">
+                          <Component id="lbCodigo" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="82" max="-2" attributes="0"/>
+                          <Component id="tfCodigo" pref="348" max="32767" attributes="2"/>
+                      </Group>
+                      <Group type="102" alignment="2" attributes="0">
+                          <Component id="lbNombre" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="78" max="-2" attributes="0"/>
+                          <Component id="tfNombre" pref="348" max="32767" attributes="2"/>
+                      </Group>
+                      <Group type="102" alignment="2" attributes="0">
+                          <Component id="lbEdificio" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="85" max="-2" attributes="0"/>
+                          <Component id="cbEdificio" pref="348" max="32767" attributes="1"/>
+                      </Group>
+                      <Group type="102" alignment="2" attributes="0">
+                          <Component id="lbSector" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="87" max="-2" attributes="0"/>
+                          <Component id="cbSector" pref="348" max="32767" attributes="1"/>
+                      </Group>
+                      <Group type="102" alignment="2" attributes="0">
+                          <Component id="lbFechaFabricacion" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
+                          <Component id="dpFechaDeFabricacion" pref="348" max="32767" attributes="2"/>
+                      </Group>
+                      <Group type="102" alignment="2" attributes="0">
+                          <Component id="lbFechaMantenimiento" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
+                          <Component id="dpProximoMantenimiento" pref="348" max="32767" attributes="2"/>
+                      </Group>
                   </Group>
-                  <EmptySpace min="-2" pref="228" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="lbCodigo" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="tfCodigo" alignment="3" min="-2" max="-2" attributes="0"/>
+              <Group type="102" attributes="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="2" attributes="0">
+                              <Group type="102" alignment="2" attributes="0">
+                                  <Component id="lbCodigo" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="12" pref="12" max="12" attributes="0"/>
+                                  <Component id="lbNombre" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="12" pref="12" max="12" attributes="0"/>
+                                  <Component id="lbEdificio" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="12" pref="12" max="12" attributes="0"/>
+                                  <Component id="lbSector" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="13" pref="13" max="13" attributes="0"/>
+                                  <Component id="lbFechaFabricacion" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="14" pref="14" max="14" attributes="0"/>
+                                  <Component id="lbFechaMantenimiento" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="2" attributes="0">
+                                  <Component id="tfCodigo" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
+                                  <Component id="cbEdificio" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="6" pref="6" max="6" attributes="0"/>
+                                  <Component id="cbSector" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="6" pref="6" max="6" attributes="0"/>
+                                  <Component id="dpFechaDeFabricacion" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="6" pref="6" max="6" attributes="0"/>
+                                  <Component id="dpProximoMantenimiento" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
+                          <Component id="tfNombre" min="-2" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="lbNombre" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="tfNombre" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="lbEdificio" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="cbEdificio" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="lbSector" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="cbSector" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="lbFechaFabricacion" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="dpFechaDeFabricacion" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="lbFechaMantenimiento" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="dpProximoMantenimiento" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace pref="36" max="32767" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
