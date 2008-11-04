@@ -35,7 +35,7 @@ public class OrdenCompra implements Serializable, IPersistente {
     private Date fecha;
     private Date fechaEstimadaEntrega;
     private List<DetalleOrdenCompra> detallesOrdenCompra;
-    private String NroOrdenCompra;
+    private String nroOrdenCompra;
     private boolean borrado;
 
     /**
@@ -107,11 +107,11 @@ public class OrdenCompra implements Serializable, IPersistente {
     
     @Column(name="nro_orden_compra")
     public String getNroOrdenCompra() {
-        return NroOrdenCompra;
+        return nroOrdenCompra;
     }
 
     public void setNroOrdenCompra(String NroOrdenCompra) {
-        this.NroOrdenCompra = NroOrdenCompra;
+        this.nroOrdenCompra = NroOrdenCompra;
     }
     
     

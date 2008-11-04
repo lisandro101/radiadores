@@ -113,11 +113,11 @@ public class PanelCargoEmpleado extends javax.swing.JDialog implements IValidabl
             .addGroup(pTablaLayout.createSequentialGroup()
                 .addGap(22, 22, 22)
                 .addGroup(pTablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 482, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 490, Short.MAX_VALUE)
                     .addGroup(pTablaLayout.createSequentialGroup()
                         .addComponent(lbCargos)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(tfNombreCargo, javax.swing.GroupLayout.DEFAULT_SIZE, 278, Short.MAX_VALUE)
+                        .addComponent(tfNombreCargo, javax.swing.GroupLayout.DEFAULT_SIZE, 330, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
                         .addComponent(btBuscar)))
                 .addGap(28, 28, 28))
@@ -144,8 +144,6 @@ public class PanelCargoEmpleado extends javax.swing.JDialog implements IValidabl
         lbPrecioHora.setText("Precio Hora:");
 
         lbNombre.setText("Nombre:");
-
-        tfCodigo.setEditable(false);
 
         lbEstado.setText("Estado:");
 
@@ -194,17 +192,17 @@ public class PanelCargoEmpleado extends javax.swing.JDialog implements IValidabl
                             .addComponent(lbCodigo))
                         .addGap(26, 26, 26)
                         .addGroup(pABMCargoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(tfCodigo, javax.swing.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE)
-                            .addComponent(tfNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE)
-                            .addComponent(tfPrecioHora, javax.swing.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE)))
+                            .addComponent(tfCodigo, javax.swing.GroupLayout.DEFAULT_SIZE, 276, Short.MAX_VALUE)
+                            .addComponent(tfNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 276, Short.MAX_VALUE)
+                            .addComponent(tfPrecioHora, javax.swing.GroupLayout.DEFAULT_SIZE, 276, Short.MAX_VALUE)))
                     .addGroup(pABMCargoLayout.createSequentialGroup()
                         .addGroup(pABMCargoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lbHorasLaborales)
                             .addComponent(lbEstado))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(pABMCargoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(cbEstado, 0, 242, Short.MAX_VALUE)
-                            .addComponent(tfHorasLaborales, javax.swing.GroupLayout.DEFAULT_SIZE, 242, Short.MAX_VALUE))))
+                            .addComponent(cbEstado, 0, 276, Short.MAX_VALUE)
+                            .addComponent(tfHorasLaborales, javax.swing.GroupLayout.DEFAULT_SIZE, 276, Short.MAX_VALUE))))
                 .addGap(146, 146, 146))
             .addGroup(pABMCargoLayout.createSequentialGroup()
                 .addContainerGap()
@@ -263,7 +261,7 @@ public class PanelCargoEmpleado extends javax.swing.JDialog implements IValidabl
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(pTabla, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(pABMCargo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(pBotones, javax.swing.GroupLayout.DEFAULT_SIZE, 544, Short.MAX_VALUE))
+                    .addComponent(pBotones, javax.swing.GroupLayout.DEFAULT_SIZE, 556, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -336,7 +334,7 @@ private void btBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
 }//GEN-LAST:event_btBuscarActionPerformed
 
 private void btAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAgregarActionPerformed
-    if(ValidacionBuscar.getInstancia().existenCamposVacios(this)){
+    if(ValidacionBuscar.getInstancia().existenCamposVacios(pABMCargo)){
         JOptionPane.showMessageDialog(this, "Existen campos sin completar");
     }else{
         cargo= crearCargo();

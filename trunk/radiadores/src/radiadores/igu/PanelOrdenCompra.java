@@ -8,6 +8,7 @@ import radiadores.entidades.Componente;
 import radiadores.entidades.DetalleOrdenCompra;
 import radiadores.entidades.OrdenCompra;
 import radiadores.entidades.Proveedor;
+import radiadores.igu.buscar.PanelBuscarOrdenCompra;
 import radiadores.igu.buscar.PanelBuscarProductoGral;
 import radiadores.igu.buscar.PanelBuscarProductoGral.Tipo;
 import radiadores.igu.buscar.PanelBuscarProveedor;
@@ -80,7 +81,6 @@ public class PanelOrdenCompra extends javax.swing.JPanel implements IValidable {
         btProcesarOrdenCompra = new javax.swing.JButton();
         btModificarOrdenCompra = new javax.swing.JButton();
         btAnularOrdenCompra = new javax.swing.JButton();
-        btImprimirOrdenCompra = new javax.swing.JButton();
 
         lbFecha.setText("Fecha");
 
@@ -245,7 +245,7 @@ public class PanelOrdenCompra extends javax.swing.JPanel implements IValidable {
                         .addGap(311, 311, 311)
                         .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 703, Short.MAX_VALUE)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 703, Short.MAX_VALUE))
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 703, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -258,15 +258,19 @@ public class PanelOrdenCompra extends javax.swing.JPanel implements IValidable {
                     .addComponent(tfCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lbCantidad))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 203, Short.MAX_VALUE)
                 .addGap(3, 3, 3)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(35, Short.MAX_VALUE))
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         btBuscarOrdenCompra.setText("Buscar");
+        btBuscarOrdenCompra.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btBuscarOrdenCompraActionPerformed(evt);
+            }
+        });
         jPanel4.add(btBuscarOrdenCompra);
 
         btProcesarOrdenCompra.setText("Procesar");
@@ -293,26 +297,16 @@ public class PanelOrdenCompra extends javax.swing.JPanel implements IValidable {
         });
         jPanel4.add(btAnularOrdenCompra);
 
-        btImprimirOrdenCompra.setText("Imprimir");
-        btImprimirOrdenCompra.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btImprimirOrdenCompraActionPerformed(evt);
-            }
-        });
-        jPanel4.add(btImprimirOrdenCompra);
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 749, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 739, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -322,9 +316,8 @@ public class PanelOrdenCompra extends javax.swing.JPanel implements IValidable {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(64, 64, 64)
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -370,10 +363,6 @@ private void btAnularOrdenCompraActionPerformed(java.awt.event.ActionEvent evt) 
     }   
 }//GEN-LAST:event_btAnularOrdenCompraActionPerformed
 
-private void btImprimirOrdenCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btImprimirOrdenCompraActionPerformed
-// TODO add your handling code here:
-}//GEN-LAST:event_btImprimirOrdenCompraActionPerformed
-
 private void tfArticuloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfArticuloActionPerformed
 // TODO add your handling code here:
 }//GEN-LAST:event_tfArticuloActionPerformed
@@ -389,12 +378,14 @@ private void tfProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
 }//GEN-LAST:event_tfProveedorActionPerformed
 
 private void btBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBuscarActionPerformed
+    Util.getInstancia().limpiarCampos(this);
     PanelBuscarProveedor buscarProv = new PanelBuscarProveedor(this, Tipo.PANEL_ORDEN_COMPRA);   
     buscarProv.setModal(true);
     buscarProv.setVisible(true);
 }//GEN-LAST:event_btBuscarActionPerformed
 
 private void btAgregarArticuloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAgregarArticuloActionPerformed
+    
     double cantidad = Double.parseDouble(tfCantidad.getText());
         if(componente == null ||cantidad ==0){
             JOptionPane.showMessageDialog(this, "Existen campos vacios");
@@ -412,6 +403,8 @@ private void btAgregarArticuloActionPerformed(java.awt.event.ActionEvent evt) {/
                     JOptionPane.showMessageDialog(this, "El Componente ya se encuentra asignado");
                 }else{
                     tm.agregarFila(detalleOrdenCompra);
+                    //tfArticulo.setText("");
+                    tfCantidad.setText("0");
 
                 }
             }
@@ -437,6 +430,12 @@ private void btProcesarOrdenCompraActionPerformed(java.awt.event.ActionEvent evt
     }
 }//GEN-LAST:event_btProcesarOrdenCompraActionPerformed
 
+private void btBuscarOrdenCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBuscarOrdenCompraActionPerformed
+    PanelBuscarOrdenCompra panelBusqueda = new PanelBuscarOrdenCompra(this);
+    panelBusqueda.setModal(true);
+    panelBusqueda.setVisible(true);
+}//GEN-LAST:event_btBuscarOrdenCompraActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btAgregarArticulo;
@@ -445,7 +444,6 @@ private void btProcesarOrdenCompraActionPerformed(java.awt.event.ActionEvent evt
     private javax.swing.JButton btBuscarArticulo;
     private javax.swing.JButton btBuscarOrdenCompra;
     private javax.swing.JButton btEliminarArticulo;
-    private javax.swing.JButton btImprimirOrdenCompra;
     private javax.swing.JButton btModificarOrdenCompra;
     private javax.swing.JButton btProcesarOrdenCompra;
     private javax.swing.JPanel jPanel1;
@@ -475,7 +473,7 @@ private void btProcesarOrdenCompraActionPerformed(java.awt.event.ActionEvent evt
     }
 
     public void setOrdenCompra(OrdenCompra ordenCompra) {
-        this.ordenCompra = ordenCompra;
+        cargarPantallaOrdenCompra(ordenCompra);
     }
 
     public void setProveedor(Proveedor proveedor) {
