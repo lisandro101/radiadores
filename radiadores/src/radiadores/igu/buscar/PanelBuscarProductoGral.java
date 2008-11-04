@@ -19,6 +19,7 @@ import radiadores.entidades.ProductoTerminado;
 import radiadores.igu.PanelDetalleRuta;
 import radiadores.igu.PanelEstructuraDeProducto;
 import radiadores.igu.PanelMateriaPrima;
+import radiadores.igu.PanelOrdenCompra;
 import radiadores.igu.PanelProductoComponente;
 import radiadores.igu.PanelProductoTerminado;
 import radiadores.igu.interfaces.iBuscaProductoGeneral;
@@ -44,6 +45,7 @@ public class PanelBuscarProductoGral extends javax.swing.JDialog {
     private PanelProductoTerminado panelProductoTerminado;
     private PanelDetalleRuta panelDetalleRuta;
     private PanelEstructuraDeProducto panelEstructuraDeProducto;
+    private PanelOrdenCompra panelOrdenCompra;
     private iBuscaProductoGeneral iProducto;
     
     public enum Tipo {
@@ -54,6 +56,9 @@ public class PanelBuscarProductoGral extends javax.swing.JDialog {
         PANEL_DETALLE_RUTA ("Panel Detalle Ruta"),
         PANEL_ESTRUCTURA ("Panel Estructura"),
         PANEL_DETALLE_ESTRUCTURA ("Panel Detalle Estructura"),
+        PANEL_PROVEEDOR ("Panel Proveedor"),
+        PANEL_ORDEN_COMPRA ("Panel Orden Compra"),
+        PANEL_ORDEN_PRODUCCION ("Panel Orden Produccion"),
         PANEL_IBUSCA ("Panel IBusca");
         
         private String nombre;
@@ -126,12 +131,12 @@ public class PanelBuscarProductoGral extends javax.swing.JDialog {
         inicializar();
     }
     
-//    public PanelBuscarProductoGral(ComponenteEstructuraTableModel tm1) {
-//        initComponents();
-//        tipo= Tipo.PANEL_DETALLE_ESTRUCTURA;
-//        tmDetalleEstructura= tm1;
-//        inicializar();
-//    }
+    public PanelBuscarProductoGral(PanelOrdenCompra tm1) {
+        initComponents();
+        tipo= Tipo.PANEL_ORDEN_COMPRA;
+        panelOrdenCompra= tm1;
+        inicializar();
+    }
     
     private void inicializar() {
         tmBuscar = new ProductoGralTableModel(0);
@@ -351,6 +356,11 @@ private void btAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
             }
 
             dispose();       
+        }else if(tipo==Tipo.PANEL_ORDEN_COMPRA){
+            
+            
+            panelOrdenCompra.setComponente(resultado);
+            dispose();
         }
                
         
@@ -366,7 +376,7 @@ private void btBuscarProdTerminadoActionPerformed(java.awt.event.ActionEvent evt
     int indice;
     tmBuscar.limpiarTableModel();
     
-    if(tipo==Tipo.PANEL_DETALLE_RUTA || tipo== Tipo.PANEL_DETALLE_ESTRUCTURA){
+    if(tipo==Tipo.PANEL_DETALLE_RUTA || tipo== Tipo.PANEL_DETALLE_ESTRUCTURA || tipo==Tipo.PANEL_ORDEN_COMPRA){
 
         consulta = FachadaPersistencia.getInstancia().crearConsulta("Select a from Componente a where ( (a.nombre) LIKE :nombre or (a.codigo) LIKE :codigo ) and a.borrado=false and a.tipo IN (:tipo1, :tipo2)"  );
         consulta.setParameter("nombre", "%"+tfNombre.getText()+"%");

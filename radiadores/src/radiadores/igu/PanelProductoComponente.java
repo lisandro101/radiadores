@@ -422,7 +422,7 @@ private void btAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
         if(ValidacionBuscar.getInstancia().estaDuplicado(productoComponente)){
             JOptionPane.showMessageDialog(this, "El producto componente ya se encuentra registrado");
         }else{
-            FachadaPersistencia.getInstancia().grabar(productoComponente, true);
+            FachadaPersistencia.getInstancia().actualizar(productoComponente, true);
             Util.getInstancia().limpiarCampos(this);
             
             productoComponente=null;

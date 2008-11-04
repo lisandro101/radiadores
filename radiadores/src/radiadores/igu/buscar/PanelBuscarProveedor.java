@@ -10,8 +10,10 @@ import radiadores.igu.*;
 import java.util.List;
 import javax.persistence.Query;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.ListSelectionModel;
 import radiadores.entidades.Proveedor;
+import radiadores.igu.buscar.PanelBuscarProductoGral.Tipo;
 import radiadores.igu.model.ProveedorTableModel;
 import radiadores.persistencia.FachadaPersistencia;
 
@@ -23,22 +25,33 @@ public class PanelBuscarProveedor extends javax.swing.JDialog {
     private ProveedorTableModel tmBuscar;
     private ProveedorTableModel tmOrigen;
     private List<Proveedor> proveedores;
-    private PanelProveedor panelOrigen;
-    private int tipoBusqueda;
+    //private PanelProveedor panelOrigen;
+    private PanelProveedor panelProveedor;
+    private PanelOrdenCompra panelOrdenCompra;
+    //private int tipoBusqueda;
+    private Tipo tipo;
     /** Creates new form PanelBuscarProveedor */
     
     public PanelBuscarProveedor(ProveedorTableModel tm1) {
         initComponents();
-        tipoBusqueda=1;
+        //tipoBusqueda=1;
+        tipo= Tipo.TABLE_MODEL;
         tmOrigen = tm1;
         inicializar();
         
     }
     
-    public PanelBuscarProveedor(PanelProveedor prov) {
+    //public PanelBuscarProveedor(PanelProveedor prov) {
+    
+    public PanelBuscarProveedor(JPanel panel, Tipo tipo1) {
         initComponents();
-        tipoBusqueda=2;
-        panelOrigen= prov;
+        tipo=tipo1;
+        if(tipo== Tipo.PANEL_PROVEEDOR){
+            panelProveedor= (PanelProveedor)panel;
+        }else if(tipo== Tipo.PANEL_ORDEN_COMPRA){
+            panelOrdenCompra= (PanelOrdenCompra)panel;
+        }
+        
         inicializar();
     }
     
@@ -200,13 +213,12 @@ private void btBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
 private void btAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAceptarActionPerformed
     int indice = tProveedores.convertRowIndexToModel(tProveedores.getSelectedRow());
     Proveedor resultado;
-    
-    
+
     if(indice ==-1 ){
         JOptionPane.showMessageDialog(this, "No se ha seleccionado Proveedor");
     }else{
         resultado=tmBuscar.getFila(indice);
-        if(tipoBusqueda==1){
+        if(tipo== Tipo.TABLE_MODEL){
             if(tmOrigen.getRowCount()<1){
                 tmOrigen.agregarFila(resultado);       
                 dispose();
@@ -218,8 +230,11 @@ private void btAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
                     dispose();
                 }
             }
-        }else{
-            panelOrigen.setProveedor(resultado);
+        }else if(tipo==Tipo.PANEL_PROVEEDOR){
+            panelProveedor.setProveedor(resultado);
+            dispose();
+        }else if(tipo==Tipo.PANEL_ORDEN_COMPRA){
+            panelOrdenCompra.setProveedor(resultado);
             dispose();
         }
     }

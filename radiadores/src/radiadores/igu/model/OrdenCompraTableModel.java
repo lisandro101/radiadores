@@ -8,31 +8,29 @@ package radiadores.igu.model;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
-import radiadores.entidades.HoraLaboral;
-import radiadores.entidades.ParteDeEstructura;
-import radiadores.entidades.ParteDeNodo;
+import radiadores.entidades.DetalleOrdenCompra;
 
 /**
  *
  * @author stafoxter
  */
 
-public class ComponenteEstructuraTableModel extends AbstractTableModel implements IModeloReiniciable {
+public class OrdenCompraTableModel extends AbstractTableModel implements IModeloReiniciable {
     private static final long serialVersionUID = 1L;
-    private static final String[] NOMBRE_COLUMNAS = {"Componente", "Unidad Medida", "Cantidad"};
+    private static final String[] NOMBRE_COLUMNAS = {"Código", "Articulo", "Cantidad"};
     private static final boolean[] COLUMNAS_EDITABLES = {false, false, true};
     private static final Class[] CLASE_COLUMNAS =
         {String.class, String.class, Double.class};
     
-    private List<ParteDeEstructura> partesDeEstructura;
+    private List<DetalleOrdenCompra> detallesOrdenCompra;
 
     /**
      * Constructor
      * 
      * @param filas Cantidad de filas iniciales
      */
-    public ComponenteEstructuraTableModel(int filas) {
-        this.partesDeEstructura = new ArrayList<ParteDeEstructura>(filas > 0 ? filas : 0);
+    public OrdenCompraTableModel(int filas) {
+        this.detallesOrdenCompra = new ArrayList<DetalleOrdenCompra>(filas > 0 ? filas : 0);
     }
 
     /**
@@ -76,7 +74,7 @@ public class ComponenteEstructuraTableModel extends AbstractTableModel implement
      */
     @Override
     public int getRowCount() {
-        return partesDeEstructura.size();
+        return detallesOrdenCompra.size();
     }
 
     /**
@@ -102,13 +100,13 @@ public class ComponenteEstructuraTableModel extends AbstractTableModel implement
         
         switch(columna) {
             case 0:
-                resultado = partesDeEstructura.get(fila).getComponente().getNombre();
+                resultado = detallesOrdenCompra.get(fila).getComponente().getCodigo();
                 break;
             case 1:
-                resultado = partesDeEstructura.get(fila).getComponente().getUnidadMedida();
+                resultado = detallesOrdenCompra.get(fila).getComponente().getNombre();
                 break;
             case 2:
-                resultado = partesDeEstructura.get(fila).getCantidad();
+                resultado = detallesOrdenCompra.get(fila).getCantidad();
                 break;
         }
         return resultado;
@@ -117,7 +115,7 @@ public class ComponenteEstructuraTableModel extends AbstractTableModel implement
     @Override
     public void setValueAt(Object valor, int fila, int columna) {
         if(columna == 2) {
-            partesDeEstructura.get(fila).setCantidad((Double)valor);
+            detallesOrdenCompra.get(fila).setCantidad((Double)valor);
         }
     }
     
@@ -127,17 +125,17 @@ public class ComponenteEstructuraTableModel extends AbstractTableModel implement
      * @param proveedor Proveedor a agregar
 
      */
-    public void agregarFila(ParteDeEstructura hora) {
-        partesDeEstructura.add(hora);
+    public void agregarFila(DetalleOrdenCompra hora) {
+        detallesOrdenCompra.add(hora);
         
-        fireTableRowsInserted(partesDeEstructura.size(), partesDeEstructura.size());
+        fireTableRowsInserted(detallesOrdenCompra.size(), detallesOrdenCompra.size());
     }
     
     
-    public void agregarFilas(List<ParteDeEstructura> proveedoresNuevo) {
+    public void agregarFilas(List<DetalleOrdenCompra> proveedoresNuevo) {
         if(proveedoresNuevo != null){
-            partesDeEstructura.addAll(proveedoresNuevo);
-            fireTableRowsInserted(partesDeEstructura.size()-proveedoresNuevo.size(), partesDeEstructura.size());
+            detallesOrdenCompra.addAll(proveedoresNuevo);
+            fireTableRowsInserted(detallesOrdenCompra.size()-proveedoresNuevo.size(), detallesOrdenCompra.size());
         }
     }
     
@@ -147,9 +145,9 @@ public class ComponenteEstructuraTableModel extends AbstractTableModel implement
      * @param cantidad Cantidad a la que se quiere limitar el numero de filas
      */
     public void limitarCantidad(int cantidad) {
-        int cantidadAnterior = partesDeEstructura.size();
+        int cantidadAnterior = detallesOrdenCompra.size();
         
-        partesDeEstructura = partesDeEstructura.subList(0, cantidad);
+        detallesOrdenCompra = detallesOrdenCompra.subList(0, cantidad);
         
         fireTableRowsDeleted(cantidad, cantidadAnterior);
     }
@@ -159,23 +157,23 @@ public class ComponenteEstructuraTableModel extends AbstractTableModel implement
      * 
      * @return Todas las filas del modelo
      */
-    public List<ParteDeEstructura> getFilas() {
-        return partesDeEstructura;
+    public List<DetalleOrdenCompra> getFilas() {
+        return detallesOrdenCompra;
     }
     
-    public ParteDeEstructura getFila(int indice){
-        return partesDeEstructura.get(indice);
+    public DetalleOrdenCompra getFila(int indice){
+        return detallesOrdenCompra.get(indice);
         
     }
     
     public void eliminarFila(int indice){        
-        partesDeEstructura.remove(indice);
+        detallesOrdenCompra.remove(indice);
         fireTableRowsDeleted(indice, indice);       
     }
     
     public void limpiarTableModel(){
-        int tamanio = partesDeEstructura.size();
-        partesDeEstructura.clear();
+        int tamanio = detallesOrdenCompra.size();
+        detallesOrdenCompra.clear();
         
         fireTableRowsDeleted(0, tamanio);
     }

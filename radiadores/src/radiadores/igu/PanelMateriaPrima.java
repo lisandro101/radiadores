@@ -348,7 +348,7 @@ private void btAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
         if(ValidacionBuscar.getInstancia().estaDuplicado(materiaPrima)){
             JOptionPane.showMessageDialog(this, "La materia prima ya se encuentra registrada");
         }else{
-            FachadaPersistencia.getInstancia().grabar(materiaPrima, true);
+            FachadaPersistencia.getInstancia().actualizar(materiaPrima, true);
             Util.getInstancia().limpiarCampos(this);
             
             materiaPrima = null;
@@ -445,7 +445,7 @@ private void btBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         tm.agregarFilas(mat.getProveedores());
         
         cbEstado.setSelectedItem(mat.getEstado());
-        
+        btModificar.setEnabled(true);
         materiaPrima=mat;
     }
     

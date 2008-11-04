@@ -167,4 +167,26 @@ public class Proveedor implements Serializable, IPersistente {
     public List<String> getCamposUnicos() {
         return CAMPOS_UNICOS;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Proveedor other = (Proveedor) obj;
+        if (this.codigo != other.codigo && (this.codigo == null || !this.codigo.equals(other.codigo))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 53 * hash + (this.codigo != null ? this.codigo.hashCode() : 0);
+        return hash;
+    }
 }

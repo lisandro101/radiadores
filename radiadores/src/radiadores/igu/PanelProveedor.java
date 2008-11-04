@@ -7,6 +7,7 @@ import javax.swing.JOptionPane;
 import radiadores.igu.buscar.PanelBuscarProveedor;
 import radiadores.utils.Util;
 import radiadores.entidades.Proveedor;
+import radiadores.igu.buscar.PanelBuscarProductoGral.Tipo;
 import radiadores.igu.buscar.ValidacionBuscar;
 import radiadores.persistencia.FachadaPersistencia;
 import radiadores.utils.IValidable;
@@ -200,7 +201,7 @@ private void tfNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
 
 private void btBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBuscarActionPerformed
      
-     PanelBuscarProveedor buscarProv = new PanelBuscarProveedor(this);   
+     PanelBuscarProveedor buscarProv = new PanelBuscarProveedor(this, Tipo.PANEL_PROVEEDOR);   
      buscarProv.setModal(true);
      buscarProv.setVisible(true);
 }//GEN-LAST:event_btBuscarActionPerformed
