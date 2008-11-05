@@ -35,6 +35,12 @@ public class PanelProveedor extends javax.swing.JPanel implements IValidable {
         btEliminar.setEnabled(false);
         btModificar.setEnabled(false);
     }
+    
+    private void pantallaCargadaBotones(){
+        btAgregar.setEnabled(false);
+        btModificar.setEnabled(true);
+        btEliminar.setEnabled(true);
+    }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -308,9 +314,8 @@ private void dpInicioActividadesActionPerformed(java.awt.event.ActionEvent evt) 
         tfDireccion.setText(prov.getDireccion());
         dpInicioActividades.setDate(prov.getFechaInicioActividad());
         
-        btAgregar.setEnabled(false);
-        btModificar.setEnabled(true);
-        btEliminar.setEnabled(true);
+        pantallaCargadaBotones();
+        
     }
     
     public void setProveedor(Proveedor prov){

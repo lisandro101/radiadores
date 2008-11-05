@@ -284,16 +284,23 @@ private void btAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
 }//GEN-LAST:event_btAgregarActionPerformed
 
 private void btEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEliminarActionPerformed
-    int opcion = JOptionPane.showConfirmDialog(this,
-                "¿Seguro desea eliminar al Empleado?", "Aceptar",
-                JOptionPane.YES_NO_OPTION);
-        
-    if(opcion == JOptionPane.YES_OPTION) {
-        empleado.setBorrado(true);
-        FachadaPersistencia.getInstancia().actualizar(empleado, true);
-        Util.getInstancia().limpiarCampos(this);
-        empleado=null;
-        inicializarBotones();
+    
+    if(empleado != null && ValidacionEliminar.getInstancia().empleadoEstaRelacionado(empleado)) {
+        JOptionPane.showMessageDialog(this, "No puede eliminar al Empleado " +
+                "se encuentra asignado a tareas");
+    }else{
+    
+        int opcion = JOptionPane.showConfirmDialog(this,
+                    "¿Seguro desea eliminar al Empleado?", "Aceptar",
+                    JOptionPane.YES_NO_OPTION);
+
+        if(opcion == JOptionPane.YES_OPTION) {
+            empleado.setBorrado(true);
+            FachadaPersistencia.getInstancia().actualizar(empleado, true);
+            Util.getInstancia().limpiarCampos(this);
+            empleado=null;
+            inicializarBotones();
+        }
     }
     
 }//GEN-LAST:event_btEliminarActionPerformed
@@ -377,6 +384,7 @@ private void cbEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         cbEstado.setToolTipText(emp.getEstado());
         dpFechaIngreso.setDate(emp.getFechaIngreso());
         dpFechaNacimiento.setDate(emp.getFechaNacimiento());
+        pantallaCargadaBotones();
     }
     
     private void actualizarEmpleado(){
@@ -395,6 +403,11 @@ private void cbEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         btAgregar.setEnabled(true);
         btEliminar.setEnabled(false);
         btModificar.setEnabled(false);
+    }
+    private void pantallaCargadaBotones(){
+        btAgregar.setEnabled(false);
+        btModificar.setEnabled(true);
+        btEliminar.setEnabled(true);
     }
 
     @Override
