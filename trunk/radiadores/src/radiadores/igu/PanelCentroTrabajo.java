@@ -46,6 +46,17 @@ public class PanelCentroTrabajo extends javax.swing.JPanel implements iBuscaCent
         componentesObligatorios = Arrays.asList((Component)tfCodigo);
     }
 
+    private void inicializarBotones(){
+        btAgregar.setEnabled(true);
+        btEliminar.setEnabled(false);
+        btModificar.setEnabled(false);
+    }
+    
+    private void pantallaCargadaBotones(){
+        btAgregar.setEnabled(false);
+        btModificar.setEnabled(true);
+        btEliminar.setEnabled(true);
+    }
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -366,18 +377,14 @@ private void btLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
         
     }
 
- private void inicializarBotones(){
-        btAgregar.setEnabled(false);
-        btEliminar.setEnabled(false);
-        btModificar.setEnabled(false);
- }
+
  
  public void setCentroTrabajo(CentroDeTrabajo cent){
      centroDeTrabajo = cent;
      cargarPantallaCentro(cent);
  }
  
-     private void cargarPantallaCentro(CentroDeTrabajo centro){
+  private void cargarPantallaCentro(CentroDeTrabajo centro){
         tfNombre.setText(centro.getNombre());
         tfCodigo.setText(centro.getCodigo());
         tfDescripcion.setText(centro.getDescripcion());
@@ -385,10 +392,8 @@ private void btLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
         
         centroDeTrabajo = centro;
         
-        btAgregar.setEnabled(false);
-        btModificar.setEnabled(true);
-        btEliminar.setEnabled(true);
-    }
+        pantallaCargadaBotones();
+  }
  
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btAgregar;

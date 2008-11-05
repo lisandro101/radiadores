@@ -35,9 +35,20 @@ public class PanelCargoEmpleado extends javax.swing.JDialog implements IValidabl
     private void inicializar() {
         tmBuscar = new CargoEmpleadoTableModel(0);
         tCargos.setModel(tmBuscar);
-        componentesObligatorios = Arrays.asList((Component)tfCodigo);
+        //componentesObligatorios = Arrays.asList((Component)tfCodigo);
     }
     
+    private void inicializarBotones(){
+        btAgregar.setEnabled(true);
+        btEliminar.setEnabled(false);
+        btModificar.setEnabled(false);
+    }
+    
+    private void pantallaCargadaBotones(){
+        btAgregar.setEnabled(false);
+        btModificar.setEnabled(true);
+        btEliminar.setEnabled(true);
+    }
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -55,13 +66,11 @@ public class PanelCargoEmpleado extends javax.swing.JDialog implements IValidabl
         btBuscar = new javax.swing.JButton();
         pABMCargo = new javax.swing.JPanel();
         lbHorasLaborales = new javax.swing.JLabel();
-        lbCodigo = new javax.swing.JLabel();
         lbPrecioHora = new javax.swing.JLabel();
         lbNombre = new javax.swing.JLabel();
         tfHorasLaborales = new javax.swing.JTextField();
         tfPrecioHora = new javax.swing.JTextField();
         tfNombre = new javax.swing.JTextField();
-        tfCodigo = new javax.swing.JTextField();
         lbEstado = new javax.swing.JLabel();
         cbEstado = new javax.swing.JComboBox();
         jPanel1 = new javax.swing.JPanel();
@@ -95,6 +104,11 @@ public class PanelCargoEmpleado extends javax.swing.JDialog implements IValidabl
                 return canEdit [columnIndex];
             }
         });
+        tCargos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tCargosMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tCargos);
 
         lbCargos.setText("Nombre Cargo:");
@@ -117,7 +131,7 @@ public class PanelCargoEmpleado extends javax.swing.JDialog implements IValidabl
                     .addGroup(pTablaLayout.createSequentialGroup()
                         .addComponent(lbCargos)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(tfNombreCargo, javax.swing.GroupLayout.DEFAULT_SIZE, 360, Short.MAX_VALUE)
+                        .addComponent(tfNombreCargo, javax.swing.GroupLayout.DEFAULT_SIZE, 404, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
                         .addComponent(btBuscar)))
                 .addContainerGap())
@@ -130,15 +144,13 @@ public class PanelCargoEmpleado extends javax.swing.JDialog implements IValidabl
                     .addComponent(btBuscar)
                     .addComponent(tfNombreCargo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 136, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 133, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         pABMCargo.setBorder(javax.swing.BorderFactory.createTitledBorder("ABM"));
 
         lbHorasLaborales.setText("Horas Laborales:");
-
-        lbCodigo.setText("Código:");
 
         lbPrecioHora.setText("Precio Hora:");
 
@@ -187,31 +199,25 @@ public class PanelCargoEmpleado extends javax.swing.JDialog implements IValidabl
                     .addGroup(pABMCargoLayout.createSequentialGroup()
                         .addGroup(pABMCargoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lbPrecioHora)
-                            .addComponent(lbNombre)
-                            .addComponent(lbCodigo))
+                            .addComponent(lbNombre))
                         .addGap(26, 26, 26)
                         .addGroup(pABMCargoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(tfNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 462, Short.MAX_VALUE)
-                            .addComponent(tfPrecioHora, javax.swing.GroupLayout.DEFAULT_SIZE, 462, Short.MAX_VALUE)
-                            .addComponent(tfCodigo, javax.swing.GroupLayout.DEFAULT_SIZE, 462, Short.MAX_VALUE)))
+                            .addComponent(tfNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 479, Short.MAX_VALUE)
+                            .addComponent(tfPrecioHora, javax.swing.GroupLayout.DEFAULT_SIZE, 479, Short.MAX_VALUE)))
                     .addGroup(pABMCargoLayout.createSequentialGroup()
                         .addGroup(pABMCargoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lbHorasLaborales)
                             .addComponent(lbEstado))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(pABMCargoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(cbEstado, 0, 453, Short.MAX_VALUE)
-                            .addComponent(tfHorasLaborales, javax.swing.GroupLayout.DEFAULT_SIZE, 453, Short.MAX_VALUE)))
-                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 564, Short.MAX_VALUE))
+                            .addComponent(cbEstado, 0, 479, Short.MAX_VALUE)
+                            .addComponent(tfHorasLaborales, javax.swing.GroupLayout.DEFAULT_SIZE, 479, Short.MAX_VALUE)))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 564, Short.MAX_VALUE))
                 .addContainerGap())
         );
         pABMCargoLayout.setVerticalGroup(
             pABMCargoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pABMCargoLayout.createSequentialGroup()
-                .addGroup(pABMCargoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lbCodigo)
-                    .addComponent(tfCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pABMCargoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbNombre)
                     .addComponent(tfNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -254,9 +260,9 @@ public class PanelCargoEmpleado extends javax.swing.JDialog implements IValidabl
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(pTabla, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(pABMCargo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(pBotones, javax.swing.GroupLayout.DEFAULT_SIZE, 588, Short.MAX_VALUE))
+                    .addComponent(pTabla, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(pBotones, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -266,9 +272,8 @@ public class PanelCargoEmpleado extends javax.swing.JDialog implements IValidabl
                 .addComponent(pTabla, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(pABMCargo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(pBotones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(pBotones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
@@ -345,9 +350,35 @@ private void btAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
 }//GEN-LAST:event_btAgregarActionPerformed
 
 private void btEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEliminarActionPerformed
-    cargo.setBorrado(true);
-    FachadaPersistencia.getInstancia().actualizar(cargo, true);
+    
+    if(cargo != null && ValidacionEliminar.getInstancia().cargoEstaRelacionado(cargo)) {
+        JOptionPane.showMessageDialog(this, "No puede eliminar el cargo " +
+                "que tiene Personal asignado");
+    }else {
+        int opcion = JOptionPane.showConfirmDialog(this,
+                    "¿Seguro desea eliminar el Cargo?", "Aceptar",
+                    JOptionPane.YES_NO_OPTION);
+
+        if(opcion == JOptionPane.YES_OPTION) {
+            FachadaPersistencia.getInstancia().borrar(cargo, true);
+            Util.getInstancia().limpiarCampos(this);
+            cargo=null;
+            inicializarBotones();
+        }
+    }
 }//GEN-LAST:event_btEliminarActionPerformed
+
+private void tCargosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tCargosMouseClicked
+    int indice = tCargos.getSelectedRow();
+    Cargo resultado;
+ 
+    if(indice >= 0 ){
+        indice = tCargos.convertRowIndexToModel(indice);
+        resultado=tmBuscar.getFila(indice);
+            cargarPantallaCargo(resultado);
+        
+    }
+}//GEN-LAST:event_tCargosMouseClicked
 
     
 
@@ -362,7 +393,6 @@ private void btEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lbCargos;
-    private javax.swing.JLabel lbCodigo;
     private javax.swing.JLabel lbEstado;
     private javax.swing.JLabel lbHorasLaborales;
     private javax.swing.JLabel lbNombre;
@@ -371,7 +401,6 @@ private void btEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
     private javax.swing.JPanel pBotones;
     private javax.swing.JPanel pTabla;
     private org.jdesktop.swingx.JXTable tCargos;
-    private javax.swing.JTextField tfCodigo;
     private javax.swing.JTextField tfHorasLaborales;
     private javax.swing.JTextField tfNombre;
     private javax.swing.JTextField tfNombreCargo;
@@ -389,20 +418,16 @@ private void btEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
         return cargo;
     }
     
-    private void cargarPantallaCargo(Cargo cargo){
+    private void cargarPantallaCargo(Cargo cargo1){
+        cargo= cargo1;
+        tfNombre.setText(cargo1.getNombre());
+        tfPrecioHora.setText(String.valueOf(cargo1.getValorHora()));
+        tfHorasLaborales.setText(String.valueOf(cargo1.getHorasPorMes()));
         
-        tfNombre.setText(cargo.getNombre());
-        tfPrecioHora.setText(String.valueOf(cargo.getValorHora()));
-        tfHorasLaborales.setText(String.valueOf(cargo.getHorasPorMes()));
-                
+        pantallaCargadaBotones();
     }
     
-    
-    private void inicializarBotones(){
-        btAgregar.setEnabled(true);
-        btEliminar.setEnabled(false);
-        btModificar.setEnabled(false);
-    }
+
     
     private void actualizarCargoEmpleado(){
         cargo.setNombre(tfNombre.getText());
