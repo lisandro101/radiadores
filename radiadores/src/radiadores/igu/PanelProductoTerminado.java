@@ -370,10 +370,11 @@ private void btEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
                 "que tiene proveedores asociados");
     } else {
         int opcion = JOptionPane.showConfirmDialog(this,
-                    "¿Seguro desea eliminar el Producto Terminado?", "Aceptar",
+                    "¿Seguro desea eliminar el Producto Terminado?"+ "\nSe eliminaran Estructura y Ruta asociados", "Aceptar",
                     JOptionPane.YES_NO_OPTION);
 
         if(opcion == JOptionPane.YES_OPTION) {
+            ValidacionEliminar.getInstancia().eliminarRutaEstructuraAsociados(productoTerminado);
             FachadaPersistencia.getInstancia().borrar(productoTerminado, true);
             Util.getInstancia().limpiarCampos(this);
             productoTerminado=null;
@@ -479,6 +480,7 @@ private void btEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
     }
     
     private void cargarPantallaProductoTerminado(ProductoTerminado prod){
+        Util.getInstancia().limpiarCampos(this);
         tfCodigo.setText(prod.getCodigo());
         tfNombre.setText(prod.getNombre());
         cbCategoria.setToolTipText(prod.getCategoria());
@@ -495,6 +497,7 @@ private void btEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
         tfStock.setText(String.valueOf(prod.getStock()));
         tfDescripcion.setText(prod.getDescripcion());
         tfPrecioVenta.setText(String.valueOf(prod.getPrecioVenta()));
+        pantallaCargadaBotones();
     }
     
     private void inicializarBotones(){
@@ -503,8 +506,21 @@ private void btEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
         btModificar.setEnabled(false);
     }
 
+    private void pantallaCargadaBotones(){
+        btAgregar.setEnabled(false);
+        btModificar.setEnabled(true);
+        btEliminar.setEnabled(true);
+    }
+            
+            
     @Override
     public List<Component> getComponentesObligatorios() {
         return componentesObligatorios;
     }
+
+    public ProductoTerminado getProductoTerminado() {
+        return productoTerminado;
+    }
+    
+    
 }

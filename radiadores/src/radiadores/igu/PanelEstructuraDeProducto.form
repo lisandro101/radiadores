@@ -20,7 +20,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="pProductoTerminado" alignment="1" max="32767" attributes="2"/>
                   <Component id="pTablaComponentes" alignment="0" max="32767" attributes="2"/>
-                  <Component id="pBotones" alignment="1" pref="573" max="32767" attributes="2"/>
+                  <Component id="pBotones" alignment="1" pref="577" max="32767" attributes="2"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>

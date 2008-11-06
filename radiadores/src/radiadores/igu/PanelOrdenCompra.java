@@ -528,4 +528,9 @@ private void btBuscarOrdenCompraActionPerformed(java.awt.event.ActionEvent evt) 
     public List<Component> getComponentesObligatorios() {
         return componentesObligatorios;
     }
+
+    public OrdenCompra getOrdenCompra() {
+        return ordenCompra;
+    }
+    
 }

@@ -414,4 +414,10 @@ private void cbEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     public List<Component> getComponentesObligatorios() {
         return componentesObligatorios;
     }
+
+    public Empleado getEmpleado() {
+        return empleado;
+    }
+    
+    
 }

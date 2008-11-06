@@ -71,4 +71,9 @@ public class FachadaPersistencia {
     public void finalizarTransaccion() {
         FabricaManejadores.getInstancia().getManejador().finalizarTransaccion();
     }
+    
+    public void borrarFisico(IPersistente obj, boolean transaccion) {
+        FabricaManejadores.getInstancia().getManejador().borrarFisico(
+                obj, transaccion);
+    }
 }

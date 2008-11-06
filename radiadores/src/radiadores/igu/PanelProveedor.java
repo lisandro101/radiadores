@@ -339,4 +339,9 @@ private void dpInicioActividadesActionPerformed(java.awt.event.ActionEvent evt) 
     public List<Component> getComponentesObligatorios() {
         return componentesObligatorios;
     }
+
+    public Proveedor getProveedor() {
+        return proveedor;
+    }
+    
 }
