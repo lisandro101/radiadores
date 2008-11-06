@@ -20,7 +20,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="jPanel2" alignment="0" max="32767" attributes="2"/>
                   <Component id="jPanel1" alignment="0" max="32767" attributes="2"/>
-                  <Component id="jPanel4" alignment="1" pref="722" max="32767" attributes="2"/>
+                  <Component id="jPanel4" alignment="1" pref="813" max="32767" attributes="2"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -51,7 +51,7 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
                           <Component id="lbFecha" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="32" max="32767" attributes="1"/>
+                          <EmptySpace pref="67" max="32767" attributes="1"/>
                           <Component id="jdFecha" min="-2" pref="128" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="lbNumero" min="-2" max="-2" attributes="0"/>
@@ -179,7 +179,7 @@
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="lbArticulo" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
-                          <Component id="tfArticulo" pref="342" max="32767" attributes="0"/>
+                          <Component id="tfArticulo" pref="474" max="32767" attributes="0"/>
                           <EmptySpace min="-2" max="-2" attributes="0"/>
                           <Component id="btBuscarArticulo" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" max="-2" attributes="0"/>
@@ -189,11 +189,11 @@
                           <EmptySpace min="65" pref="65" max="65" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
-                          <Component id="jPanel3" pref="682" max="32767" attributes="0"/>
+                          <Component id="jPanel3" pref="761" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jPanel5" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <Component id="jScrollPane1" alignment="0" pref="698" max="32767" attributes="0"/>
+                      <Component id="jScrollPane1" alignment="0" pref="777" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" max="-2" attributes="0"/>
               </Group>

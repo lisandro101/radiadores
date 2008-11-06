@@ -422,4 +422,8 @@ private void btLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
         return componentesObligatorios;
     }
 
+    public CentroDeTrabajo getCentroDeTrabajo() {
+        return centroDeTrabajo;
+    }
+    
 }

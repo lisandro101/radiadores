@@ -61,6 +61,7 @@ public class PanelDetalleRuta extends javax.swing.JDialog implements iBuscaCentr
         jtEmpleado.setModel(tmEmpleado);
         jtComponente.setModel(tmComponente);
         jtEmpleado.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        jtComponente.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         componentesObligatorios = Arrays.asList((Component)tfCentroTrabajo);
     }
     public PanelDetalleRuta(String centroTrabajo) {

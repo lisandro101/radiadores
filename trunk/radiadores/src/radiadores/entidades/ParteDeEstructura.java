@@ -70,7 +70,7 @@ public class ParteDeEstructura implements Serializable, IPersistente {
     }
 
     @JoinColumn(name="componente_id")
-    @ManyToOne(targetEntity=Componente.class, cascade=CascadeType.ALL)
+    @ManyToOne(targetEntity=Componente.class)  //, cascade=CascadeType.ALL) //TODO: quite el borrado en cascada para poder eliminar partes de estructuras fisicamente sin eliminar Componentes
     public Componente getComponente() {
         return componente;
     }

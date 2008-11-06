@@ -365,4 +365,10 @@ private void dpFechaDeFabricacionActionPerformed(java.awt.event.ActionEvent evt)
     public List<Component> getComponentesObligatorios() {
         return componentesObligatorios;
     }
+
+    public Maquina getMaquina() {
+        return maquina;
+    }
+    
+    
 }

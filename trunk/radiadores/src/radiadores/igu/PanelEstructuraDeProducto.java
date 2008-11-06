@@ -42,15 +42,26 @@ public class PanelEstructuraDeProducto extends javax.swing.JPanel implements IVa
 
     
     private void inicializar(){
-
         partesDeEstructuras = new ArrayList<ParteDeEstructura>();
         tmComponente = new ComponenteEstructuraTableModel(0);
 
         jtComponente.setModel(tmComponente);
         jtComponente.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         componentesObligatorios = Arrays.asList((Component)tfCodigo);
+        inicializarBotones();
     }
 
+    private void inicializarBotones(){
+        btAgregar.setEnabled(true);
+        btEliminar.setEnabled(false);
+        btModificar.setEnabled(false);
+    }
+    
+    private void pantallaCargadaBotones(){
+        btAgregar.setEnabled(false);
+        btModificar.setEnabled(true);
+        btEliminar.setEnabled(true);
+    }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -307,7 +318,7 @@ private void btModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
         FachadaPersistencia.getInstancia().actualizar(estructuraDeProducto, true);
         Util.getInstancia().limpiarCampos(this);
         estructuraDeProducto=null;            
-        //inicializarBotones();
+        inicializarBotones();
     }
 }//GEN-LAST:event_btModificarActionPerformed
 
@@ -321,7 +332,7 @@ private void btEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
         FachadaPersistencia.getInstancia().actualizar(estructuraDeProducto, true);
         Util.getInstancia().limpiarCampos(this);
         estructuraDeProducto=null;
-        //inicializarBotones();
+        inicializarBotones();
     }   
 }//GEN-LAST:event_btEliminarActionPerformed
 
@@ -354,6 +365,7 @@ int filaSeleccionada = jtComponente.convertRowIndexToModel(jtComponente.getSelec
     if(filaSeleccionada == -1){
         JOptionPane.showMessageDialog(this, "No se ha seleccionado Componente");
     }else{
+        FachadaPersistencia.getInstancia().borrarFisico(tmComponente.getFila(filaSeleccionada), true);
         tmComponente.eliminarFila(filaSeleccionada);
         
     }
@@ -406,6 +418,7 @@ private void btBuscarComponenteActionPerformed(java.awt.event.ActionEvent evt) {
         tfCodigo.setText(productoTerminado.getCodigo());
         tfNombre.setText(productoTerminado.getNombre()); 
         tmComponente.agregarFilas(partesDeEstructuras);
+        pantallaCargadaBotones();
         
     }
     
@@ -446,4 +459,10 @@ private void btBuscarComponenteActionPerformed(java.awt.event.ActionEvent evt) {
     public List<Component> getComponentesObligatorios() {
         return componentesObligatorios;
     }
+
+    public EstructuraDeProducto getEstructuraDeProducto() {
+        return estructuraDeProducto;
+    }
+    
+    
 }

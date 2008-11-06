@@ -443,23 +443,27 @@ private void btBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
 }//GEN-LAST:event_btBuscarActionPerformed
 
 private void btEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEliminarActionPerformed
-
-    if(productoComponente != null &&
-            productoComponente.getProveedores().size() > 0) {
-        JOptionPane.showMessageDialog(this, "No puede eliminar un producto " +
-                "que tiene proveedores asociados");
+    if(productoComponente != null && ValidacionEliminar.getInstancia().productoComponenteEstaRelacionada(productoComponente)){
+        JOptionPane.showMessageDialog(this, "No puede eliminar el Producto Componente " +
+                "se utiliza en alguna estructura");
     } else {
-        int opcion = JOptionPane.showConfirmDialog(this,
-                    "¿Seguro desea eliminar el Producto Componente?", "Aceptar",
-                    JOptionPane.YES_NO_OPTION);
+//        if(productoComponente != null &&
+//                productoComponente.getProveedores().size() > 0) {
+//            JOptionPane.showMessageDialog(this, "No puede eliminar un producto " +
+//                    "que tiene proveedores asociados");
+//        } else {
+            int opcion = JOptionPane.showConfirmDialog(this,
+                        "¿Seguro desea eliminar el Producto Componente?", "Aceptar",
+                        JOptionPane.YES_NO_OPTION);
 
-        if(opcion == JOptionPane.YES_OPTION) {
-            productoComponente.setBorrado(true);
-            FachadaPersistencia.getInstancia().actualizar(productoComponente, true);
-            Util.getInstancia().limpiarCampos(this);
-            productoComponente=null;
-            inicializarBotones();
-        }  
+            if(opcion == JOptionPane.YES_OPTION) {
+                productoComponente.setBorrado(true);
+                FachadaPersistencia.getInstancia().actualizar(productoComponente, true);
+                Util.getInstancia().limpiarCampos(this);
+                productoComponente=null;
+                inicializarBotones();
+            }  
+//        }
     }
 }//GEN-LAST:event_btEliminarActionPerformed
 
@@ -572,6 +576,7 @@ private void btEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
     
     
     private void cargarPantallaProductoComponente(ProductoComponente prod){
+        Util.getInstancia().limpiarCampos(this);
         tfCodigo.setText(prod.getCodigo());
         tfNombre.setText(prod.getNombre());
         cbCategoria.setToolTipText(prod.getCategoria());
@@ -591,7 +596,7 @@ private void btEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
         for (int i = 0; i < prod.getProveedores().size(); i++) {
             tm.agregarFila(prod.getProveedores().get(i));        
         }
-        
+        pantallaCargadaBotones();
     }
     private void inicializarBotones(){
         btAgregar.setEnabled(true);
@@ -599,8 +604,19 @@ private void btEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
         btModificar.setEnabled(false);
     }
     
+    private void pantallaCargadaBotones(){
+        btAgregar.setEnabled(false);
+        btModificar.setEnabled(true);
+        btEliminar.setEnabled(true);
+    }
+    
     @Override
     public List<Component> getComponentesObligatorios() {
         return componentesObligatorios;
     }
+
+    public ProductoComponente getProductoComponente() {
+        return productoComponente;
+    }
+    
 }

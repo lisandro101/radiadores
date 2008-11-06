@@ -504,4 +504,10 @@ private void btBuscarOrdenProduccionActionPerformed(java.awt.event.ActionEvent e
     public List<Component> getComponentesObligatorios() {
         return componentesObligatorios;
     }
+
+    public OrdenProduccion getOrdenProduccion() {
+        return ordenProduccion;
+    }
+    
+    
 }

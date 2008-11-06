@@ -20,7 +20,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="jPanel2" alignment="0" max="32767" attributes="0"/>
                   <Component id="jPanel1" alignment="0" max="32767" attributes="0"/>
-                  <Component id="jPanel4" alignment="0" pref="733" max="32767" attributes="0"/>
+                  <Component id="jPanel4" alignment="0" pref="805" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -62,7 +62,7 @@
                   <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
                   <Component id="lbCliente" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" max="-2" attributes="0"/>
-                  <Component id="tfCliente" pref="153" max="32767" attributes="0"/>
+                  <Component id="tfCliente" pref="283" max="32767" attributes="0"/>
                   <EmptySpace min="-2" max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -162,9 +162,9 @@
               <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jScrollPane1" alignment="0" pref="709" max="32767" attributes="0"/>
+                      <Component id="jScrollPane1" alignment="0" pref="769" max="32767" attributes="0"/>
                       <Component id="jPanel5" alignment="0" max="32767" attributes="0"/>
-                      <Component id="jPanel3" alignment="0" pref="709" max="32767" attributes="0"/>
+                      <Component id="jPanel3" alignment="0" pref="769" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -236,7 +236,7 @@
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace pref="7" max="32767" attributes="0"/>
+                      <EmptySpace pref="14" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="2" attributes="0">
                           <Component id="lbCantidad" alignment="2" min="-2" max="-2" attributes="0"/>
                           <Component id="spCantidad" alignment="2" min="-2" max="-2" attributes="0"/>

@@ -87,4 +87,16 @@ class Manejador {
     void finalizarTransaccion() {
         em.getTransaction().commit();
     }
+    
+    void borrarFisico(IPersistente obj, boolean transaccion) {
+          
+        if(transaccion) {
+            comenzarTransaccion();
+            em.remove(obj);
+            finalizarTransaccion();
+        } else {
+            em.remove(obj);  
+            
+        }        
+    }        
 }

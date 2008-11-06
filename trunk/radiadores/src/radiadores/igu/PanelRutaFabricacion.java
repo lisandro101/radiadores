@@ -486,4 +486,9 @@ private void inicializarBotones(){
         return componentesObligatorios;
     }
 
+    public RutaFabricacion getRutaFabricacion() {
+        return rutaFabricacion;
+    }
+
+     
 }

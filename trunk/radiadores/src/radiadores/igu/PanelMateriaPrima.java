@@ -332,6 +332,7 @@ private void btAsignarProveedorActionPerformed(java.awt.event.ActionEvent evt) {
 }//GEN-LAST:event_btAsignarProveedorActionPerformed
 
 private void btEliminarProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEliminarProveedorActionPerformed
+        
     int filaSeleccionada = tProveedor.convertRowIndexToModel(tProveedor.getSelectedRow());
     if(filaSeleccionada == -1){
         JOptionPane.showMessageDialog(this, "No se ha seleccionado Proveedor");
@@ -341,26 +342,28 @@ private void btEliminarProveedorActionPerformed(java.awt.event.ActionEvent evt) 
 }//GEN-LAST:event_btEliminarProveedorActionPerformed
 
 private void btAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAgregarActionPerformed
-    if(ValidacionBuscar.getInstancia().existenCamposVacios(this)){
-        JOptionPane.showMessageDialog(this, "Existen campos sin completar");
-    }else{
-        materiaPrima= crearMateriaPrima();
-        if(ValidacionBuscar.getInstancia().estaDuplicado(materiaPrima)){
-            JOptionPane.showMessageDialog(this, "La materia prima ya se encuentra registrada");
+    
+
+        if(ValidacionBuscar.getInstancia().existenCamposVacios(this)){
+            JOptionPane.showMessageDialog(this, "Existen campos sin completar");
         }else{
-            FachadaPersistencia.getInstancia().actualizar(materiaPrima, true);
-            Util.getInstancia().limpiarCampos(this);
-            
-            materiaPrima = null;
+            materiaPrima= crearMateriaPrima();
+            if(ValidacionBuscar.getInstancia().estaDuplicado(materiaPrima)){
+                JOptionPane.showMessageDialog(this, "La materia prima ya se encuentra registrada");
+            }else{
+                FachadaPersistencia.getInstancia().actualizar(materiaPrima, true);
+                Util.getInstancia().limpiarCampos(this);
+
+                materiaPrima = null;
+            }
         }
-    }
     
 }//GEN-LAST:event_btAgregarActionPerformed
 
 private void btEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEliminarActionPerformed
-    if(materiaPrima != null && materiaPrima.getProveedores().size() > 0) {
-        JOptionPane.showMessageDialog(this, "No puede eliminar una materia " +
-                "prima con proveedores asignados");
+    if(materiaPrima != null && ValidacionEliminar.getInstancia().materiaPrimaEstaRelacionada(materiaPrima)){
+        JOptionPane.showMessageDialog(this, "No puede eliminar la Materia Prima " +
+                "se utiliza en alguna estructura");
     } else {
         int opcion = JOptionPane.showConfirmDialog(this,
                     "¿Seguro desea eliminar la Materia Prima?", "Aceptar",
@@ -436,6 +439,7 @@ private void btBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     }
     
     private void cargarPantallaMateriaPrima(MateriaPrima mat){
+        Util.getInstancia().limpiarCampos(this);
         tfCodigo.setText(mat.getCodigo());
         tfCostoAlmacenamiento.setText(String.valueOf(mat.getCostoAlmacenamiento()));
         tfCostoUnitPorOmision.setText(String.valueOf(mat.getCostoUnitarioPorOmision()));
@@ -451,6 +455,7 @@ private void btBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         cbEstado.setSelectedItem(mat.getEstado());
         btModificar.setEnabled(true);
         materiaPrima=mat;
+        pantallaCargadaBotones();
     }
     
     public void setComponente(MateriaPrima mat){
@@ -479,7 +484,17 @@ private void btBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         btEliminar.setEnabled(false);
         btModificar.setEnabled(false);
     }
+    private void pantallaCargadaBotones(){
+        btAgregar.setEnabled(false);
+        btModificar.setEnabled(true);
+        btEliminar.setEnabled(true);
+    }
 
+    public MateriaPrima getMateriaPrima() {
+        return materiaPrima;
+    }
+    
+        
     @Override
     public List<Component> getComponentesObligatorios() {
         return componentesObligatorios;
