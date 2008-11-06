@@ -29,6 +29,7 @@ public class PanelRutaFabricacion extends javax.swing.JPanel implements iBuscaPr
     private RutaFabricacion rutaFabricacion;
     private ProductoTerminado productoTerminado;
     private List<Component> componentesObligatorios;
+    private boolean hayQueActualizar;
     
     /** Creates new form PanelRutaFabricacion */
     public PanelRutaFabricacion() {
@@ -326,7 +327,8 @@ private void btModificarRutaActionPerformed(java.awt.event.ActionEvent evt) {//G
         actualizarRuta();
         FachadaPersistencia.getInstancia().actualizar(rutaFabricacion, true);
         Util.getInstancia().limpiarCampos(this);
-        rutaFabricacion = null;            
+        rutaFabricacion = null;
+        hayQueActualizar = false;
         inicializarBotones();
     }
 }//GEN-LAST:event_btModificarRutaActionPerformed
@@ -344,8 +346,8 @@ private void btAgregarNodoActionPerformed(java.awt.event.ActionEvent evt) {//GEN
     if (!tfNombre.getText().trim().equals("") && !tfCodigo.getText().trim().equals("")){
         PanelDetalleRuta detalleRuta = new PanelDetalleRuta(this);
         detalleRuta.setModal(true);
-        detalleRuta.setVisible(true);
-    }
+        detalleRuta.setVisible(true);  
+        }
     else {
         JOptionPane.showMessageDialog(this, "No ha definido una ruta valida.");
     }
@@ -362,6 +364,7 @@ private void btAgregarRutaActionPerformed(java.awt.event.ActionEvent evt) {//GEN
             FachadaPersistencia.getInstancia().actualizar(rutaFabricacion, true);
             Util.getInstancia().limpiarCampos(this);
             rutaFabricacion = null;
+            hayQueActualizar = false;
         }
     }
 }//GEN-LAST:event_btAgregarRutaActionPerformed
@@ -397,6 +400,7 @@ private void btEliminarRutaActionPerformed(java.awt.event.ActionEvent evt) {//GE
         FachadaPersistencia.getInstancia().borrar(rutaFabricacion, true);
         Util.getInstancia().limpiarCampos(this);
         rutaFabricacion = null;
+        hayQueActualizar = false;
         inicializarBotones();
     }
 }//GEN-LAST:event_btEliminarRutaActionPerformed
@@ -410,13 +414,17 @@ private void btBuscarRutaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
 private void btLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLimpiarActionPerformed
     Util.getInstancia().limpiarCampos(this);
     rutaFabricacion = null;
-    
+    hayQueActualizar = false;
     inicializarBotones();
 }//GEN-LAST:event_btLimpiarActionPerformed
 
 public void setNodoRuta(NodoRuta nodo){
     nodo.setRutaFabricacion(rutaFabricacion);
     nodosListModel.agregarElemento(nodo);
+    
+    if (hayQueActualizar) {
+        FachadaPersistencia.getInstancia().actualizar(rutaFabricacion, true);
+    }       
 }
 
 private void inicializarBotones(){
@@ -429,6 +437,7 @@ private void inicializarBotones(){
  }
 
     public void setRuta(RutaFabricacion resultado) {
+        hayQueActualizar = true;
         rutaFabricacion = resultado;
         cargarPantallaRuta(rutaFabricacion);
     }
