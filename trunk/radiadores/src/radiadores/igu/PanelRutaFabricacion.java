@@ -335,7 +335,7 @@ private void btModificarRutaActionPerformed(java.awt.event.ActionEvent evt) {//G
 
 private void jlDetalleRutaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlDetalleRutaMouseClicked
     if (evt.getClickCount() == 2) { 
-        PanelDetalleRuta detalleRuta = new PanelDetalleRuta((String)jlDetalleRuta.getSelectedValue());
+        PanelDetalleRuta detalleRuta = new PanelDetalleRuta(nodosListModel.getNodo(jlDetalleRuta.convertIndexToModel(jlDetalleRuta.getSelectedIndex())));
         detalleRuta.setModal(true);
         detalleRuta.setVisible(true);
     }
@@ -361,7 +361,8 @@ private void btAgregarRutaActionPerformed(java.awt.event.ActionEvent evt) {//GEN
         if(ValidacionBuscar.getInstancia().estaDuplicado(rutaFabricacion)){
             JOptionPane.showMessageDialog(this, "La Ruta de Trabajo ya se encuentra cargada en el sistema.");
         }else{       
-            FachadaPersistencia.getInstancia().actualizar(rutaFabricacion, true);
+            //FachadaPersistencia.getInstancia().actualizar(rutaFabricacion, true);
+            
             Util.getInstancia().limpiarCampos(this);
             rutaFabricacion = null;
             hayQueActualizar = false;

@@ -119,9 +119,9 @@
                   <Group type="103" groupAlignment="1" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jScrollPane1" pref="453" max="32767" attributes="0"/>
+                          <Component id="jScrollPane1" pref="457" max="32767" attributes="0"/>
                       </Group>
-                      <Component id="jPanel3" alignment="0" pref="463" max="32767" attributes="0"/>
+                      <Component id="jPanel3" alignment="0" pref="467" max="32767" attributes="0"/>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="pEmpleadoAgregar" max="32767" attributes="0"/>
@@ -136,7 +136,7 @@
               <Group type="102" alignment="1" attributes="0">
                   <Component id="pEmpleadoAgregar" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jScrollPane1" pref="177" max="32767" attributes="0"/>
+                  <Component id="jScrollPane1" pref="164" max="32767" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jPanel3" min="-2" max="-2" attributes="0"/>
               </Group>
@@ -195,7 +195,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="lbEmpleado" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="tfEmpleado" pref="228" max="32767" attributes="0"/>
+                      <Component id="tfEmpleado" pref="232" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="btBuscarEmpleado" min="-2" pref="32" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
@@ -270,13 +270,13 @@
                   <Group type="103" groupAlignment="1" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jScrollPane2" pref="453" max="32767" attributes="0"/>
+                          <Component id="jScrollPane2" pref="457" max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="pComponenteAgregar" max="32767" attributes="0"/>
                       </Group>
-                      <Component id="jPanel5" alignment="0" pref="463" max="32767" attributes="0"/>
+                      <Component id="jPanel5" alignment="0" pref="467" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -286,9 +286,9 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <Component id="pComponenteAgregar" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" max="-2" attributes="0"/>
-                  <Component id="jScrollPane2" pref="221" max="32767" attributes="0"/>
-                  <EmptySpace min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="jScrollPane2" pref="208" max="32767" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
                   <Component id="jPanel5" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" max="-2" attributes="0"/>
               </Group>
@@ -343,17 +343,30 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="1" attributes="0">
+                  <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="lbComponente" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="tfComponente" pref="213" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="1" attributes="0">
+                              <Component id="lbComponente" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="tfComponente" pref="352" max="32767" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="lbCantidad" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="tfCantidad" min="-2" pref="78" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="lbCantidad1" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="tfCantidadRestante" min="-2" pref="78" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="lbCantidad2" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="tfCantidadTotal" min="-2" pref="84" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="btBuscarComponente" min="-2" pref="32" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
-                      <Component id="lbCantidad" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="tfCantidad" min="-2" pref="78" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -364,10 +377,17 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="2" attributes="0">
                           <Component id="lbComponente" alignment="2" min="-2" max="-2" attributes="0"/>
-                          <Component id="lbCantidad" alignment="2" min="-2" max="-2" attributes="0"/>
-                          <Component id="tfCantidad" alignment="2" min="-2" max="-2" attributes="0"/>
-                          <Component id="tfComponente" alignment="2" min="-2" max="-2" attributes="0"/>
                           <Component id="btBuscarComponente" alignment="2" min="-2" max="-2" attributes="0"/>
+                          <Component id="tfComponente" alignment="2" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="lbCantidad" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="tfCantidad" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lbCantidad1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="tfCantidadRestante" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lbCantidad2" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="tfCantidadTotal" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
@@ -401,6 +421,26 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="tfCantidad">
+            </Component>
+            <Component class="javax.swing.JLabel" name="lbCantidad1">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Restante"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="tfCantidadRestante">
+              <Properties>
+                <Property name="editable" type="boolean" value="false"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="lbCantidad2">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Total"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="tfCantidadTotal">
+              <Properties>
+                <Property name="editable" type="boolean" value="false"/>
+              </Properties>
             </Component>
           </SubComponents>
         </Container>
