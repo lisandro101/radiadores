@@ -36,6 +36,7 @@ public class RutaListModel extends AbstractListModel implements IModeloReiniciab
      * 
      * @return Cantidad de elementos
      */
+    @Override
     public int getSize() {
         return nodos.size();
     }
@@ -46,9 +47,17 @@ public class RutaListModel extends AbstractListModel implements IModeloReiniciab
      * @param index Indice de elementos
      * @return Devuelve el valor del elemento indicado
      */
+    @Override
     public Object getElementAt(int index) {
         Object resultado = null;
         resultado = nodos.get(index).getCentroTrabajo().getNombre();
+        
+        return resultado;
+    }
+    
+    public NodoRuta getNodo(int index) {
+        NodoRuta resultado = null;
+        resultado = nodos.get(index);
         
         return resultado;
     }

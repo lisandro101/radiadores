@@ -50,7 +50,15 @@ public class PanelDetalleRuta extends javax.swing.JDialog implements iBuscaCentr
         panelRuta = pRuta;
         inicializar();
     }
-    
+  
+    public PanelDetalleRuta(NodoRuta nodo) {
+        initComponents();
+        inicializar();
+        cargarNodo(nodo);
+        tfCentroTrabajo.setEnabled(false);
+        btBuscarCentroTrabajo.setVisible(false);
+    }
+  
     private void inicializar(){
         horasLaborales= new ArrayList<HoraLaboral>();
         tmEmpleado = new EmpleadoDetalleRutaTableModel(0);
@@ -64,11 +72,16 @@ public class PanelDetalleRuta extends javax.swing.JDialog implements iBuscaCentr
         jtComponente.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         componentesObligatorios = Arrays.asList((Component)tfCentroTrabajo);
     }
-    public PanelDetalleRuta(String centroTrabajo) {
-        initComponents();
-        tfCentroTrabajo.setText(centroTrabajo);
-        tfCentroTrabajo.setEnabled(false);
-        btBuscarCentroTrabajo.setVisible(false);
+    
+    private void cargarNodo(NodoRuta nodo) {
+        
+        tfCentroTrabajo.setText(nodo.getCentroTrabajo().getNombre());
+        for (HoraLaboral hora : nodo.getHorasTrabajadas()) {
+            tmEmpleado.agregarFila(hora);
+        }
+        for (ParteDeNodo parteNodo : nodo.getMateriales()) {
+            tmComponente.agregarFila(parteNodo);
+        }    
     }
 
     /** This method is called from within the constructor to
@@ -108,6 +121,10 @@ public class PanelDetalleRuta extends javax.swing.JDialog implements iBuscaCentr
         btBuscarComponente = new javax.swing.JButton();
         lbCantidad = new javax.swing.JLabel();
         tfCantidad = new javax.swing.JTextField();
+        lbCantidad1 = new javax.swing.JLabel();
+        tfCantidadRestante = new javax.swing.JTextField();
+        lbCantidad2 = new javax.swing.JLabel();
+        tfCantidadTotal = new javax.swing.JTextField();
         jPanel6 = new javax.swing.JPanel();
         btGuardar = new javax.swing.JButton();
         btCancelar = new javax.swing.JButton();
@@ -133,7 +150,7 @@ public class PanelDetalleRuta extends javax.swing.JDialog implements iBuscaCentr
                 .addContainerGap()
                 .addComponent(lbCentroTrabajo)
                 .addGap(18, 18, 18)
-                .addComponent(tfCentroTrabajo, javax.swing.GroupLayout.DEFAULT_SIZE, 321, Short.MAX_VALUE)
+                .addComponent(tfCentroTrabajo, javax.swing.GroupLayout.DEFAULT_SIZE, 325, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btBuscarCentroTrabajo, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -220,7 +237,7 @@ public class PanelDetalleRuta extends javax.swing.JDialog implements iBuscaCentr
                 .addContainerGap()
                 .addComponent(lbEmpleado)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tfEmpleado, javax.swing.GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE)
+                .addComponent(tfEmpleado, javax.swing.GroupLayout.DEFAULT_SIZE, 232, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btBuscarEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(16, 16, 16)
@@ -250,8 +267,8 @@ public class PanelDetalleRuta extends javax.swing.JDialog implements iBuscaCentr
                 .addGroup(pEmpleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pEmpleadoLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 453, Short.MAX_VALUE))
-                    .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 463, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 457, Short.MAX_VALUE))
+                    .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 467, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pEmpleadoLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(pEmpleadoAgregar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
@@ -262,7 +279,7 @@ public class PanelDetalleRuta extends javax.swing.JDialog implements iBuscaCentr
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pEmpleadoLayout.createSequentialGroup()
                 .addComponent(pEmpleadoAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 164, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -330,21 +347,39 @@ public class PanelDetalleRuta extends javax.swing.JDialog implements iBuscaCentr
 
         lbCantidad.setText("Cantidad");
 
+        lbCantidad1.setText("Restante");
+
+        tfCantidadRestante.setEditable(false);
+
+        lbCantidad2.setText("Total");
+
+        tfCantidadTotal.setEditable(false);
+
         javax.swing.GroupLayout pComponenteAgregarLayout = new javax.swing.GroupLayout(pComponenteAgregar);
         pComponenteAgregar.setLayout(pComponenteAgregarLayout);
         pComponenteAgregarLayout.setHorizontalGroup(
             pComponenteAgregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pComponenteAgregarLayout.createSequentialGroup()
+            .addGroup(pComponenteAgregarLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lbComponente)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tfComponente, javax.swing.GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE)
+                .addGroup(pComponenteAgregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pComponenteAgregarLayout.createSequentialGroup()
+                        .addComponent(lbComponente)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(tfComponente, javax.swing.GroupLayout.DEFAULT_SIZE, 352, Short.MAX_VALUE))
+                    .addGroup(pComponenteAgregarLayout.createSequentialGroup()
+                        .addComponent(lbCantidad)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(tfCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(lbCantidad1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(tfCantidadRestante, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(lbCantidad2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(tfCantidadTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btBuscarComponente, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(16, 16, 16)
-                .addComponent(lbCantidad)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tfCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         pComponenteAgregarLayout.setVerticalGroup(
@@ -353,10 +388,16 @@ public class PanelDetalleRuta extends javax.swing.JDialog implements iBuscaCentr
                 .addContainerGap()
                 .addGroup(pComponenteAgregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(lbComponente)
+                    .addComponent(btBuscarComponente)
+                    .addComponent(tfComponente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pComponenteAgregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbCantidad)
                     .addComponent(tfCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tfComponente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btBuscarComponente))
+                    .addComponent(lbCantidad1)
+                    .addComponent(tfCantidadRestante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbCantidad2)
+                    .addComponent(tfCantidadTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -368,11 +409,11 @@ public class PanelDetalleRuta extends javax.swing.JDialog implements iBuscaCentr
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel4Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 453, Short.MAX_VALUE))
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 457, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel4Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(pComponenteAgregar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jPanel5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 463, Short.MAX_VALUE))
+                    .addComponent(jPanel5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 467, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
@@ -380,7 +421,7 @@ public class PanelDetalleRuta extends javax.swing.JDialog implements iBuscaCentr
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addComponent(pComponenteAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 221, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -412,7 +453,7 @@ public class PanelDetalleRuta extends javax.swing.JDialog implements iBuscaCentr
                     .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.CENTER, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(pEmpleado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 485, Short.MAX_VALUE))
+                    .addComponent(jPanel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 489, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -549,6 +590,8 @@ private void btGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
     private org.jdesktop.swingx.JXTable jtComponente;
     private org.jdesktop.swingx.JXTable jtEmpleado;
     private javax.swing.JLabel lbCantidad;
+    private javax.swing.JLabel lbCantidad1;
+    private javax.swing.JLabel lbCantidad2;
     private javax.swing.JLabel lbCentroTrabajo;
     private javax.swing.JLabel lbComponente;
     private javax.swing.JLabel lbEmpleado;
@@ -557,6 +600,8 @@ private void btGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
     private javax.swing.JPanel pEmpleado;
     private javax.swing.JPanel pEmpleadoAgregar;
     private javax.swing.JTextField tfCantidad;
+    private javax.swing.JTextField tfCantidadRestante;
+    private javax.swing.JTextField tfCantidadTotal;
     private javax.swing.JTextField tfCentroTrabajo;
     private javax.swing.JTextField tfComponente;
     private javax.swing.JTextField tfEmpleado;
@@ -584,6 +629,7 @@ private void btGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
         return tmComponente;
     }
 
+    @Override
     public void setCentroTrabajo(CentroDeTrabajo ct) {
         centroTrabajo = ct;
         tfCentroTrabajo.setText(ct.getNombre());
