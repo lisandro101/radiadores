@@ -70,7 +70,6 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="cbEstado" pref="208" max="32767" attributes="1"/>
                               <Component id="tfDescripcion" alignment="0" pref="208" max="32767" attributes="1"/>
-                              <Component id="tfUnidadMedida" alignment="0" pref="208" max="32767" attributes="1"/>
                               <Component id="tfPrecioBase" alignment="0" pref="208" max="32767" attributes="1"/>
                               <Component id="tfTamanioLoteEstandar" alignment="0" pref="208" max="32767" attributes="1"/>
                               <Component id="tfPesoPorUnidad" alignment="0" pref="208" max="32767" attributes="1"/>
@@ -78,6 +77,11 @@
                               <Component id="tfCostoAlmacenamiento" alignment="0" pref="208" max="32767" attributes="1"/>
                               <Component id="tfNombre" alignment="0" pref="208" max="32767" attributes="1"/>
                               <Component id="tfCodigo" alignment="0" pref="208" max="32767" attributes="3"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="tfUnidadMedida" min="-2" pref="83" max="-2" attributes="1"/>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Component id="jComboBox1" pref="115" max="32767" attributes="0"/>
+                              </Group>
                           </Group>
                       </Group>
                   </Group>
@@ -127,6 +131,7 @@
                   <Group type="103" groupAlignment="2" attributes="0">
                       <Component id="lbUnidadMedida" alignment="2" min="-2" max="-2" attributes="0"/>
                       <Component id="tfUnidadMedida" alignment="2" min="-2" max="-2" attributes="0"/>
+                      <Component id="jComboBox1" alignment="2" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="2" attributes="0">
@@ -221,6 +226,21 @@
               <StringArray count="0"/>
             </Property>
           </Properties>
+        </Component>
+        <Component class="javax.swing.JComboBox" name="jComboBox1">
+          <Properties>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+              <StringArray count="4">
+                <StringItem index="0" value="Item 1"/>
+                <StringItem index="1" value="Item 2"/>
+                <StringItem index="2" value="Item 3"/>
+                <StringItem index="3" value="Item 4"/>
+              </StringArray>
+            </Property>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jComboBox1ActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
