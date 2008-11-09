@@ -6,6 +6,7 @@
 
 package radiadores.igu.buscar;
 
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Query;
 import javax.swing.JOptionPane;
@@ -14,8 +15,10 @@ import javax.swing.table.TableModel;
 import radiadores.entidades.Componente;
 import radiadores.entidades.EstructuraDeProducto;
 import radiadores.entidades.MateriaPrima;
+import radiadores.entidades.ParteDeEstructura;
 import radiadores.entidades.ProductoComponente;
 import radiadores.entidades.ProductoTerminado;
+import radiadores.entidades.RutaFabricacion;
 import radiadores.igu.PanelDetalleRuta;
 import radiadores.igu.PanelEstructuraDeProducto;
 import radiadores.igu.PanelMateriaPrima;
@@ -23,6 +26,7 @@ import radiadores.igu.PanelOrdenCompra;
 import radiadores.igu.PanelOrdenProduccion;
 import radiadores.igu.PanelProductoComponente;
 import radiadores.igu.PanelProductoTerminado;
+import radiadores.igu.PanelRutaFabricacion;
 import radiadores.igu.interfaces.iBuscaProductoGeneral;
 import radiadores.igu.model.ComponenteDetalleRutaTableModel;
 import radiadores.igu.model.ProductoGralTableModel;
@@ -49,6 +53,9 @@ public class PanelBuscarProductoGral extends javax.swing.JDialog {
     private PanelOrdenCompra panelOrdenCompra;
     private PanelOrdenProduccion panelOrdenProduccion;
     private iBuscaProductoGeneral iProducto;
+    private PanelRutaFabricacion panelRutaFabricacion;
+    List<EstructuraDeProducto> estructuras;
+    List<ParteDeEstructura> partes;
     
     public enum Tipo {
         TABLE_MODEL ("TableModel"),
@@ -61,7 +68,8 @@ public class PanelBuscarProductoGral extends javax.swing.JDialog {
         PANEL_PROVEEDOR ("Panel Proveedor"),
         PANEL_ORDEN_COMPRA ("Panel Orden Compra"),
         PANEL_ORDEN_PRODUCCION ("Panel Orden Produccion"),
-        PANEL_IBUSCA ("Panel IBusca");
+        PANEL_IBUSCA ("Panel IBusca"),
+        PANEL_RUTA_FABRICACION ("Panel Ruta Fabricacion");
         
         private String nombre;
         
@@ -146,6 +154,14 @@ public class PanelBuscarProductoGral extends javax.swing.JDialog {
         panelOrdenProduccion= tm1;
         inicializar();
     }
+    
+    public PanelBuscarProductoGral(PanelRutaFabricacion tm1) {
+        initComponents();
+        tipo= Tipo.PANEL_RUTA_FABRICACION;
+        panelRutaFabricacion= tm1;
+        inicializar();
+    }
+    
     
     private void inicializar() {
         tmBuscar = new ProductoGralTableModel(0);
@@ -336,12 +352,14 @@ private void btAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
 
             if(tmDetalleRuta.getRowCount()<1){
                 panelDetalleRuta.setComponente(resultado);       
+                asignarCantidad(resultado);
                 dispose(); 
             }else{
                 if(ValidacionBuscar.getInstancia().parteNodoRutaEstaCargadaEnTabla(tmDetalleRuta, resultado)){
                     JOptionPane.showMessageDialog(this, "El Componente ya se encuentra asignado");
                 }else{
                     panelDetalleRuta.setComponente(resultado);   
+                    asignarCantidad(resultado);
                     dispose(); 
                 }
             }
@@ -371,6 +389,9 @@ private void btAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
         }else if(tipo==Tipo.PANEL_ORDEN_PRODUCCION){
             panelOrdenProduccion.setProductoTerminado((ProductoTerminado)resultado);
             dispose();
+        }else if(tipo== Tipo.PANEL_RUTA_FABRICACION){
+            panelRutaFabricacion.setComponente((ProductoTerminado)resultado);
+            dispose();
         }
                
         
@@ -386,15 +407,58 @@ private void btBuscarProdTerminadoActionPerformed(java.awt.event.ActionEvent evt
     int indice;
     tmBuscar.limpiarTableModel();
     
-    if(tipo==Tipo.PANEL_DETALLE_RUTA || tipo== Tipo.PANEL_DETALLE_ESTRUCTURA || tipo==Tipo.PANEL_ORDEN_COMPRA){
+    if( tipo== Tipo.PANEL_DETALLE_ESTRUCTURA || tipo==Tipo.PANEL_ORDEN_COMPRA){
 
-        consulta = FachadaPersistencia.getInstancia().crearConsulta("Select a from Componente a where ( (a.nombre) LIKE :nombre or (a.codigo) LIKE :codigo ) and a.borrado=false and a.tipo IN (:tipo1, :tipo2)"  );
+        consulta = FachadaPersistencia.getInstancia().crearConsulta("Select a from Componente a where ( (a.nombre) LIKE :nombre or (a.codigo) LIKE :codigo ) and a.borrado=false and a.tipo IN (:tipo1, :tipo2)");
         consulta.setParameter("nombre", "%"+tfNombre.getText()+"%");
         consulta.setParameter("codigo", "%"+tfCodigo.getText()+"%");
         consulta.setParameter("tipo1", 'C');
         consulta.setParameter("tipo2", 'M');
         componentes= FachadaPersistencia.getInstancia().buscar(Componente.class, consulta);
         
+    }else if(tipo== Tipo.PANEL_DETALLE_RUTA){
+        consulta = FachadaPersistencia.getInstancia().crearConsulta("Select a from EstructuraDeProducto a where a.productoTerminado = :producto and a.borrado=false");
+        consulta.setParameter("producto", panelDetalleRuta.getProductoTerminado());    
+        estructuras= FachadaPersistencia.getInstancia().buscar(EstructuraDeProducto.class, consulta);
+        componentes= new ArrayList<Componente>();
+        
+        System.out.println("nombre del prod terminado:"+ panelDetalleRuta.getProductoTerminado().getNombre());
+        System.out.println("size de la cantidad de estructuras q encontro del producto: "+ estructuras.size());
+        if(estructuras.size()==1){
+            partes= estructuras.get(0).getPartes();
+            
+            for (ParteDeEstructura parteDeEstructura1 : partes) {
+                componentes.add(parteDeEstructura1.getComponente());
+            }
+        
+        }
+       
+    }else if(tipo== Tipo.PANEL_RUTA_FABRICACION){
+        consulta = FachadaPersistencia.getInstancia().crearConsulta("Select a from EstructuraDeProducto a where a.borrado=false");
+        estructuras= FachadaPersistencia.getInstancia().buscar(EstructuraDeProducto.class, consulta);
+
+        componentes= new ArrayList<Componente>();
+        List<Componente> comTemp = new ArrayList<Componente>();
+        
+        if(estructuras.size()>=1){
+            for (EstructuraDeProducto estructura : estructuras) {
+                comTemp.add(estructura.getProductoTerminado());
+            }
+        } 
+        
+        List<RutaFabricacion> rutas;
+
+        for (Componente compo : comTemp) {
+            consulta = FachadaPersistencia.getInstancia().crearConsulta("Select a from RutaFabricacion a where a.productoTerminado = :producto and a.borrado=false");
+            consulta.setParameter("producto", compo);
+            rutas= FachadaPersistencia.getInstancia().buscar(RutaFabricacion.class, consulta);
+            
+            if(rutas.size()==0){
+                componentes.add(compo);
+            }
+            
+        }
+    
     }else{
         consulta = FachadaPersistencia.getInstancia().crearConsulta("Select a from Componente a where ( (a.nombre) LIKE :nombre or (a.codigo) LIKE :codigo ) and a.borrado=false and a.tipo= :tipo" );
         consulta.setParameter("nombre", "%"+tfNombre.getText()+"%");
@@ -437,4 +501,11 @@ private void btBuscarProdTerminadoActionPerformed(java.awt.event.ActionEvent evt
     private javax.swing.JTextField tfNombre;
     // End of variables declaration//GEN-END:variables
 
+    private void asignarCantidad(Componente componente){
+        for (ParteDeEstructura parteDeEstructura1 : partes) {
+            if(parteDeEstructura1.getComponente().getNombre().equals(componente.getNombre())){
+                panelDetalleRuta.setCantComponente(parteDeEstructura1.getCantidad());
+            }
+        }       
+    }
 }
