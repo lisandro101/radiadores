@@ -361,8 +361,7 @@ private void btAgregarRutaActionPerformed(java.awt.event.ActionEvent evt) {//GEN
         if(ValidacionBuscar.getInstancia().estaDuplicado(rutaFabricacion)){
             JOptionPane.showMessageDialog(this, "La Ruta de Trabajo ya se encuentra cargada en el sistema.");
         }else{       
-            //FachadaPersistencia.getInstancia().actualizar(rutaFabricacion, true);
-            
+            FachadaPersistencia.getInstancia().actualizar(rutaFabricacion, true);
             Util.getInstancia().limpiarCampos(this);
             rutaFabricacion = null;
             hayQueActualizar = false;
@@ -423,9 +422,9 @@ public void setNodoRuta(NodoRuta nodo){
     nodo.setRutaFabricacion(rutaFabricacion);
     nodosListModel.agregarElemento(nodo);
     
-    if (hayQueActualizar) {
+    /*if (hayQueActualizar) {
         FachadaPersistencia.getInstancia().actualizar(rutaFabricacion, true);
-    }       
+    }*/       
 }
 
 private void inicializarBotones(){
@@ -488,6 +487,7 @@ private void inicializarBotones(){
     @Override
     public void setComponente(Componente comp) {
         productoTerminado = (ProductoTerminado) comp;
+        rutaFabricacion.setProductoTerminado((ProductoTerminado) comp);
         tfProducto.setText(comp.getNombre());
     }
     
