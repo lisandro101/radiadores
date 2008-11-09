@@ -624,8 +624,9 @@ private void btGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
 //        
 //    }
     public void setComponente(Componente comp){
-        componente= comp;
+        componente = comp;
         tfComponente.setText(comp.getNombre());
+        tfCantidadTotal.setText(""+cantComponente);
     }
     
     public ComponenteDetalleRutaTableModel getTableModelComponente(){

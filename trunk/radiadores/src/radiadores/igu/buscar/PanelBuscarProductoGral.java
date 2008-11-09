@@ -351,15 +351,15 @@ private void btAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
         }else if(tipo== Tipo.PANEL_DETALLE_RUTA){
 
             if(tmDetalleRuta.getRowCount()<1){
-                panelDetalleRuta.setComponente(resultado);       
                 asignarCantidad(resultado);
+                panelDetalleRuta.setComponente(resultado);       
                 dispose(); 
             }else{
                 if(ValidacionBuscar.getInstancia().parteNodoRutaEstaCargadaEnTabla(tmDetalleRuta, resultado)){
                     JOptionPane.showMessageDialog(this, "El Componente ya se encuentra asignado");
                 }else{
-                    panelDetalleRuta.setComponente(resultado);   
                     asignarCantidad(resultado);
+                    panelDetalleRuta.setComponente(resultado);   
                     dispose(); 
                 }
             }
