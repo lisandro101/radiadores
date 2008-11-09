@@ -1,93 +1,145 @@
 package radiadores.igu.model;
 
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.AbstractListModel;
-import radiadores.entidades.Maquina;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.event.EventListenerList;
+import javax.swing.event.ListDataListener;
 
 /**
  *
  * @author Franco Catena, Mario Mariani, Lisandro Nieto, Sebastián Torres
  */
 
-public class UnidadMedidaTableModel extends AbstractListModel implements IModeloReiniciable {
+public class UnidadMedidaTableModel extends DefaultComboBoxModel  {
+   
     private static final long serialVersionUID = 1L;
-
     
-    public enum Unidad{
-        CENTIMETRO ("cm"),
-        METRO ("m"),
-        CENTIMETRO_2 ("cm2"),
-        METRO_2 ("m2"),
-        CENTIMETRO_3 ("cm3"),
-        METRO_3 ("m3"),
-        LITRO ("l"),
-        GRAMO ("gr"),
-        KILOGRAMO ("Kg"),
-        UNIDAD ("unid");
-        
-        private String unidad;
-        
-        private Unidad(String nombre) {
-            this.unidad = nombre;
-        }
+    private List<String> nodos;
 
-        @Override
-        public String toString() {
-            return unidad;
-        }
+   /**
+     * Constructor por defecto
+     * 
+     */
+    public UnidadMedidaTableModel() {
+        this.nodos = new ArrayList<String>();
+        inicializar();
     }
     
+    private void inicializar(){
+        nodos.add(" ");
+        nodos.add("cm");
+        nodos.add("m");
+        nodos.add("cm2");
+        nodos.add("m2");
+        nodos.add("cm3");
+        nodos.add("m3");
+        nodos.add("l");
+        nodos.add("gr");
+        nodos.add("Kg");
+        nodos.add("unid");
+
+    }
+   /**
+     * Constructor
+     * 
+     * @param elementos Cantidad de elementos iniciales
+     */
+    public UnidadMedidaTableModel(int elementos) {
+        this.nodos = new ArrayList<String>(elementos > 0 ? elementos : 0);
+    }
+
+   /**
+     * Devuelve la cantidad elementos
+     * 
+     * @return Cantidad de elementos
+     */
     @Override
     public int getSize() {
-        return Unidad.values().length;
+        return nodos.size();
     }
 
+   /**
+     * Devuelve el valor del elemento indicado
+     * 
+     * @param index Indice de elementos
+     * @return Devuelve el valor del elemento indicado
+     */
     @Override
     public Object getElementAt(int index) {
-//        Object resultado = null;
+        Object resultado = null;
+        resultado = nodos.get(index);
         
+        return resultado;
+    }
+    
+    public String getNodo(int index) {
+        String resultado = null;
+        resultado = nodos.get(index);
+        
+        return resultado;
+    }
+    
+   /**
+     * Agrega una instancia de NodoRuta al modelo
+     * 
+     * @param nodo NodoRuta a agregar
 
-//        switch(index) {
-//            case 0:
-//                resultado = Unidad.CENTIMETRO;
-//                break;
-//            case 1:
-//                resultado = Unidad.METRO;
-//                break;
-//            case 2:
-//                resultado = Unidad.CENTIMETRO_2;
-//                break;
-//            case 3:
-//                resultado = Unidad.METRO_2;
-//                break;
-//            case 4:
-//                resultado = Unidad.CENTIMETRO_3;
-//                break;
-//            case 5:
-//                resultado = Unidad.METRO_3;
-//                break;
-//            case 6:
-//                resultado = Unidad.LITRO;
-//                break;
-//            case 7:
-//                resultado = Unidad.GRAMO;
-//                break;
-//            case 8:
-//                resultado = Unidad.KILOGRAMO;
-//                break;
-//            case 9:
-//                resultado = Unidad.UNIDAD;
-//                break;    
-//        }
-//        return resultado;
-        return Unidad.values()[index];
+     */
+    public void agregarElemento(String nodo) {
+        nodos.add(nodo);
+        fireIntervalAdded(this, nodos.size(), nodos.size());
     }
     
-    @Override
-    public void reiniciar() {
-        throw new UnsupportedOperationException("Not supported yet.");
+    /**
+     * Agrega una lista compuesta de varias instancias de NodoRuta al modelo
+     * 
+     * @param nodos List de nodos a agregar
+
+     */
+    public void agregarElementos(List<String> nodoNuevo) {
+        if(nodoNuevo != null){
+            nodos.addAll(nodoNuevo);
+            fireIntervalAdded(this, nodos.size()-nodoNuevo.size(), nodos.size());
+        }
     }
     
+   /**
+     * Limita la cantidad de elementos del modelo al indicado
+     * 
+     * @param cantidad Cantidad a la que se quiere limitar el numero de filas
+     */
+    public void limitarCantidad(int cantidad) {
+        int cantidadAnterior = nodos.size();
+        
+        nodos = nodos.subList(0, cantidad);
+        
+        fireIntervalRemoved(this, cantidad, cantidadAnterior);
+    }
     
+   /**
+     * Devuelve todos los elementos del modelo
+     * 
+     * @return Todos los elementos del modelo
+     */
+    public List<String> getElementos() {     
+        
+        return new ArrayList<String>(nodos);
+    }
     
+   /**
+     * Elimina un elemento del modelo
+     * 
+     * @param indice Indice del elemento a eliminar
+     */    
+    public void eliminarElemento(int indice){        
+        nodos.remove(indice);
+        fireIntervalRemoved(this, indice, indice);       
+    }
+
+
+    
+
 
 }

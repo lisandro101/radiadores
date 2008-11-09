@@ -3,6 +3,7 @@ package radiadores.igu;
 import java.awt.Component;
 import java.util.Arrays;
 import java.util.List;
+import javax.swing.ComboBoxModel;
 import radiadores.igu.buscar.PanelBuscarProveedor;
 import javax.swing.JOptionPane;
 import radiadores.utils.Util;
@@ -10,6 +11,7 @@ import radiadores.entidades.ProductoComponente;
 import radiadores.igu.buscar.PanelBuscarProductoGral;
 import radiadores.igu.buscar.ValidacionBuscar;
 import radiadores.igu.model.ProveedorTableModel;
+import radiadores.igu.model.UnidadMedidaTableModel;
 import radiadores.persistencia.FachadaPersistencia;
 import radiadores.utils.IValidable;
 
@@ -25,8 +27,10 @@ public class PanelProductoComponente extends javax.swing.JPanel implements IVali
     private List<Component> componentesObligatorios;
     
     private ProveedorTableModel tm;
+    private ComboBoxModel tmUnidadMedida;
     /** Creates new form PanelProductoComponente */
     public PanelProductoComponente() {
+        tmUnidadMedida=  new UnidadMedidaTableModel();
         initComponents();
         inicializar();
         inicializarBotones();
@@ -78,9 +82,9 @@ public class PanelProductoComponente extends javax.swing.JPanel implements IVali
         tfNroPlano = new javax.swing.JTextField();
         tfNombre = new javax.swing.JTextField();
         tfCodigo = new javax.swing.JTextField();
-        tfUnidadMedida = new javax.swing.JTextField();
         cbEstado = new javax.swing.JComboBox();
         cbCategoria = new javax.swing.JComboBox();
+        cbUnidadMedida = new javax.swing.JComboBox();
         pTablaProveedores = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tProveedor = new org.jdesktop.swingx.JXTable();
@@ -150,13 +154,13 @@ public class PanelProductoComponente extends javax.swing.JPanel implements IVali
                     .addComponent(lbCostoAlmacenamiento))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pProductoTerminado2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(tfCostoAlmacenamiento, javax.swing.GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE)
-                    .addComponent(tfCostoEmision, javax.swing.GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE)
-                    .addComponent(tfCostoUnitOmision, javax.swing.GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE)
-                    .addComponent(tfTamanioLoteEstandar, javax.swing.GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE)
-                    .addComponent(tfCondEmbalaje, javax.swing.GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE)
-                    .addComponent(tfStock, javax.swing.GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE)
-                    .addComponent(tfDescripcion, javax.swing.GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE))
+                    .addComponent(tfCostoAlmacenamiento, javax.swing.GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE)
+                    .addComponent(tfCostoEmision, javax.swing.GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE)
+                    .addComponent(tfCostoUnitOmision, javax.swing.GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE)
+                    .addComponent(tfTamanioLoteEstandar, javax.swing.GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE)
+                    .addComponent(tfCondEmbalaje, javax.swing.GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE)
+                    .addComponent(tfStock, javax.swing.GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE)
+                    .addComponent(tfDescripcion, javax.swing.GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE))
                 .addContainerGap())
         );
         pProductoTerminado2Layout.setVerticalGroup(
@@ -212,41 +216,46 @@ public class PanelProductoComponente extends javax.swing.JPanel implements IVali
 
         cbCategoria.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Curva A", "Curva B", "Curva C" }));
 
+        cbUnidadMedida.setModel(tmUnidadMedida);
+        cbUnidadMedida.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbUnidadMedidaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout pProductoTerminado1Layout = new javax.swing.GroupLayout(pProductoTerminado1);
         pProductoTerminado1.setLayout(pProductoTerminado1Layout);
         pProductoTerminado1Layout.setHorizontalGroup(
             pProductoTerminado1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pProductoTerminado1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(pProductoTerminado1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(pProductoTerminado1Layout.createSequentialGroup()
-                        .addGroup(pProductoTerminado1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lbCodigo)
-                            .addComponent(lbNombre)
-                            .addComponent(lbCategoria)
-                            .addComponent(lbEstado)
-                            .addComponent(lbNroPlano)
-                            .addComponent(lbPrecioBase)
-                            .addComponent(lbPesoUnidad))
-                        .addGap(20, 20, 20))
-                    .addGroup(pProductoTerminado1Layout.createSequentialGroup()
-                        .addComponent(lbUnidadMedida)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                 .addGroup(pProductoTerminado1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(tfUnidadMedida, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
-                    .addComponent(tfPesoUnidad, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
-                    .addComponent(tfPrecioBase, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
-                    .addComponent(tfNroPlano, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
-                    .addComponent(cbEstado, 0, 168, Short.MAX_VALUE)
-                    .addComponent(cbCategoria, 0, 168, Short.MAX_VALUE)
-                    .addComponent(tfNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
-                    .addComponent(tfCodigo, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(lbUnidadMedida)
+                    .addComponent(lbPesoUnidad)
+                    .addComponent(lbPrecioBase)
+                    .addComponent(lbNroPlano)
+                    .addComponent(lbEstado)
+                    .addComponent(lbCategoria)
+                    .addComponent(lbNombre)
+                    .addComponent(lbCodigo))
+                .addGap(9, 9, 9)
+                .addGroup(pProductoTerminado1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(tfPesoUnidad, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 181, Short.MAX_VALUE)
+                    .addComponent(tfPrecioBase, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 181, Short.MAX_VALUE)
+                    .addComponent(tfNroPlano, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 181, Short.MAX_VALUE)
+                    .addComponent(cbEstado, javax.swing.GroupLayout.Alignment.LEADING, 0, 181, Short.MAX_VALUE)
+                    .addComponent(cbCategoria, javax.swing.GroupLayout.Alignment.LEADING, 0, 181, Short.MAX_VALUE)
+                    .addComponent(tfNombre, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 181, Short.MAX_VALUE)
+                    .addComponent(tfCodigo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 181, Short.MAX_VALUE)
+                    .addGroup(pProductoTerminado1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cbUnidadMedida, 0, 181, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         pProductoTerminado1Layout.setVerticalGroup(
             pProductoTerminado1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pProductoTerminado1Layout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(pProductoTerminado1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbCodigo)
                     .addComponent(tfCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -277,8 +286,7 @@ public class PanelProductoComponente extends javax.swing.JPanel implements IVali
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pProductoTerminado1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbUnidadMedida)
-                    .addComponent(tfUnidadMedida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(cbUnidadMedida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
         javax.swing.GroupLayout pCamposLayout = new javax.swing.GroupLayout(pCampos);
@@ -288,17 +296,19 @@ public class PanelProductoComponente extends javax.swing.JPanel implements IVali
             .addGroup(pCamposLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(pProductoTerminado1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(pProductoTerminado2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pCamposLayout.setVerticalGroup(
             pCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pCamposLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(pCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(pCamposLayout.createSequentialGroup()
                     .addComponent(pProductoTerminado1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(pProductoTerminado2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addContainerGap())
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pCamposLayout.createSequentialGroup()
+                    .addComponent(pProductoTerminado2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(54, 54, 54)))
         );
 
         pTablaProveedores.setBorder(javax.swing.BorderFactory.createTitledBorder("Proveedores"));
@@ -368,17 +378,17 @@ public class PanelProductoComponente extends javax.swing.JPanel implements IVali
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(pTablaProveedores, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(pCampos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(pBotones, javax.swing.GroupLayout.DEFAULT_SIZE, 617, Short.MAX_VALUE)))
+                        .addComponent(pBotones, javax.swing.GroupLayout.DEFAULT_SIZE, 629, Short.MAX_VALUE))
+                    .addComponent(pCampos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(pCampos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(pCampos, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(29, 29, 29)
                 .addComponent(pTablaProveedores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(pBotones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -467,6 +477,10 @@ private void btEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
     }
 }//GEN-LAST:event_btEliminarActionPerformed
 
+private void cbUnidadMedidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbUnidadMedidaActionPerformed
+// TODO add your handling code here:
+}//GEN-LAST:event_cbUnidadMedidaActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup bgTipoProd;
@@ -478,6 +492,7 @@ private void btEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
     private javax.swing.JButton btModificar;
     private javax.swing.JComboBox cbCategoria;
     private javax.swing.JComboBox cbEstado;
+    private javax.swing.JComboBox cbUnidadMedida;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lbCategoria;
@@ -513,7 +528,6 @@ private void btEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
     private javax.swing.JTextField tfPrecioBase;
     private javax.swing.JTextField tfStock;
     private javax.swing.JTextField tfTamanioLoteEstandar;
-    private javax.swing.JTextField tfUnidadMedida;
     // End of variables declaration//GEN-END:variables
 
     
@@ -530,7 +544,7 @@ private void btEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
         productoComponente.setNumeroPlano(tfNroPlano.getText());
         productoComponente.setPrecioBase(Double.parseDouble(tfPrecioBase.getText()));
         productoComponente.setPesoUnidad(Double.parseDouble(tfPesoUnidad.getText()));
-        productoComponente.setUnidadMedida(tfUnidadMedida.getText());
+        productoComponente.setUnidadMedida((String) cbUnidadMedida.getSelectedItem());
         productoComponente.setCostoAlmacenamiento(Double.parseDouble(tfCostoAlmacenamiento.getText()));
         productoComponente.setCostoEmision(Double.parseDouble(tfCostoEmision.getText()));
         productoComponente.setCostoUnitarioOmision(Double.parseDouble(tfCostoUnitOmision.getText()));
@@ -561,7 +575,7 @@ private void btEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
         productoComponente.setNumeroPlano(tfNroPlano.getText());
         productoComponente.setPrecioBase(Double.parseDouble(tfPrecioBase.getText()));
         productoComponente.setPesoUnidad(Double.parseDouble(tfPesoUnidad.getText()));
-        productoComponente.setUnidadMedida(tfUnidadMedida.getText());
+        productoComponente.setUnidadMedida((String) cbUnidadMedida.getSelectedItem());
         productoComponente.setCostoAlmacenamiento(Double.parseDouble(tfCostoAlmacenamiento.getText()));
         productoComponente.setCostoEmision(Double.parseDouble(tfCostoEmision.getText()));
         productoComponente.setCostoUnitarioOmision(Double.parseDouble(tfCostoUnitOmision.getText()));
@@ -584,7 +598,7 @@ private void btEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
         tfNroPlano.setText(prod.getNumeroPlano());
         tfPrecioBase.setText(String.valueOf(prod.getPrecioBase())); 
         tfPesoUnidad.setText(String.valueOf(prod.getPesoUnidad()));
-        tfUnidadMedida.setText(prod.getUnidadMedida());
+        cbUnidadMedida.setSelectedItem(prod.getUnidadMedida());
         tfCostoAlmacenamiento.setText(String.valueOf(prod.getCostoAlmacenamiento()));
         tfCostoEmision.setText(String.valueOf(prod.getCostoEmision()));
         tfCostoUnitOmision.setText(String.valueOf(prod.getCostoUnitarioOmision()));

@@ -3,6 +3,8 @@ package radiadores.igu;
 import java.awt.Component;
 import java.util.Arrays;
 import java.util.List;
+import javax.swing.AbstractListModel;
+import javax.swing.ComboBoxModel;
 import radiadores.igu.buscar.PanelBuscarProveedor;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
@@ -12,6 +14,7 @@ import radiadores.entidades.MateriaPrima.Estado;
 import radiadores.igu.buscar.PanelBuscarProductoGral;
 import radiadores.igu.buscar.ValidacionBuscar;
 import radiadores.igu.model.ProveedorTableModel;
+import radiadores.igu.model.UnidadMedidaTableModel;
 import radiadores.persistencia.FachadaPersistencia;
 import radiadores.utils.IValidable;
 
@@ -25,9 +28,11 @@ public class PanelMateriaPrima extends javax.swing.JPanel implements IValidable 
     private ProveedorTableModel tm;
     private MateriaPrima materiaPrima;
     private List<Component> componentesObligatorios;
+    private ComboBoxModel tmUnidadMedida;
     
     /** Creates new form PanelMateriaPrima */
     public PanelMateriaPrima() {
+        tmUnidadMedida=  new UnidadMedidaTableModel();
         initComponents();
         inicializar();
         inicializarBotones();
@@ -37,10 +42,11 @@ public class PanelMateriaPrima extends javax.swing.JPanel implements IValidable 
     private void inicializar() {
         DefaultComboBoxModel dcm = new DefaultComboBoxModel(Estado.values());
         cbEstado.setModel(dcm);   
-        
+
         tm = new ProveedorTableModel(0);
         tProveedor.setModel(tm);
         componentesObligatorios = Arrays.asList((Component)tfCodigo);
+        
     }
     
 
@@ -64,12 +70,11 @@ public class PanelMateriaPrima extends javax.swing.JPanel implements IValidable 
         tfPesoPorUnidad = new javax.swing.JTextField();
         tfNombre = new javax.swing.JTextField();
         tfCodigo = new javax.swing.JTextField();
-        tfUnidadMedida = new javax.swing.JTextField();
         lbDescripcion = new javax.swing.JLabel();
         tfDescripcion = new javax.swing.JTextField();
         lbEstado = new javax.swing.JLabel();
         cbEstado = new javax.swing.JComboBox();
-        jComboBox1 = new javax.swing.JComboBox();
+        cbUnidadMedida = new javax.swing.JComboBox();
         pBotones = new javax.swing.JPanel();
         btBuscar = new javax.swing.JButton();
         btAgregar = new javax.swing.JButton();
@@ -108,10 +113,10 @@ public class PanelMateriaPrima extends javax.swing.JPanel implements IValidable 
 
         lbEstado.setText("Estado:");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+        cbUnidadMedida.setModel(tmUnidadMedida);
+        cbUnidadMedida.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
+                cbUnidadMedidaActionPerformed(evt);
             }
         });
 
@@ -145,10 +150,7 @@ public class PanelMateriaPrima extends javax.swing.JPanel implements IValidable 
                             .addComponent(tfCostoAlmacenamiento, javax.swing.GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE)
                             .addComponent(tfNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE)
                             .addComponent(tfCodigo, javax.swing.GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE)
-                            .addGroup(pCamposLayout.createSequentialGroup()
-                                .addComponent(tfUnidadMedida, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jComboBox1, 0, 115, Short.MAX_VALUE)))))
+                            .addComponent(cbUnidadMedida, javax.swing.GroupLayout.Alignment.TRAILING, 0, 208, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         pCamposLayout.setVerticalGroup(
@@ -185,8 +187,7 @@ public class PanelMateriaPrima extends javax.swing.JPanel implements IValidable 
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(lbUnidadMedida)
-                    .addComponent(tfUnidadMedida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cbUnidadMedida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(11, 11, 11)
                 .addGroup(pCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(lbDescripcion)
@@ -396,9 +397,9 @@ private void btBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
      buscarProv.setVisible(true);
 }//GEN-LAST:event_btBuscarActionPerformed
 
-private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+private void cbUnidadMedidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbUnidadMedidaActionPerformed
 // TODO add your handling code here:
-}//GEN-LAST:event_jComboBox1ActionPerformed
+}//GEN-LAST:event_cbUnidadMedidaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -409,7 +410,7 @@ private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
     private javax.swing.JButton btEliminarProveedor;
     private javax.swing.JButton btModificar;
     private javax.swing.JComboBox cbEstado;
-    private javax.swing.JComboBox jComboBox1;
+    private javax.swing.JComboBox cbUnidadMedida;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lbCodigo;
@@ -434,7 +435,6 @@ private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
     private javax.swing.JTextField tfPesoPorUnidad;
     private javax.swing.JTextField tfPrecioBase;
     private javax.swing.JTextField tfTamanioLoteEstandar;
-    private javax.swing.JTextField tfUnidadMedida;
     // End of variables declaration//GEN-END:variables
 
     private MateriaPrima crearMateriaPrima(){
@@ -448,7 +448,7 @@ private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
         materiaPrima.setPesoPorUnidad(Double.parseDouble(tfPesoPorUnidad.getText()));
         materiaPrima.setPrecioBase(Double.parseDouble(tfPrecioBase.getText()));
         materiaPrima.setTamanioLoteEstandar(Double.parseDouble(tfTamanioLoteEstandar.getText()));
-        materiaPrima.setUnidadMedida(tfUnidadMedida.getText());
+        materiaPrima.setUnidadMedida((String) cbUnidadMedida.getSelectedItem());
         materiaPrima.setProveedores(tm.getFilas());  
         materiaPrima.setEstado((Estado)cbEstado.getSelectedItem());
         
@@ -465,7 +465,7 @@ private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
         tfPesoPorUnidad.setText(String.valueOf(mat.getPesoPorUnidad()));
         tfPrecioBase.setText(String.valueOf(mat.getPrecioBase()));
         tfTamanioLoteEstandar.setText(String.valueOf(mat.getTamanioLoteEstandar()));
-        tfUnidadMedida.setText(mat.getUnidadMedida());
+        cbUnidadMedida.setSelectedItem(mat.getUnidadMedida());
         
         tm.agregarFilas(mat.getProveedores());
         
@@ -491,7 +491,7 @@ private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
         materiaPrima.setPesoPorUnidad(Double.parseDouble(tfPesoPorUnidad.getText()));
         materiaPrima.setPrecioBase(Double.parseDouble(tfPrecioBase.getText()));
         materiaPrima.setTamanioLoteEstandar(Double.parseDouble(tfTamanioLoteEstandar.getText()));
-        materiaPrima.setUnidadMedida(tfUnidadMedida.getText());
+        materiaPrima.setUnidadMedida((String) cbUnidadMedida.getSelectedItem());
         materiaPrima.setProveedores(tm.getFilas());  
         materiaPrima.setEstado((Estado)cbEstado.getSelectedItem());
         
