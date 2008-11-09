@@ -52,15 +52,19 @@ public class PanelEstructuraDeProducto extends javax.swing.JPanel implements IVa
     }
 
     private void inicializarBotones(){
-        btAgregar.setEnabled(true);
+        btBuscarComponente.setEnabled(false);
         btEliminar.setEnabled(false);
-        btModificar.setEnabled(false);
+        btGuardar.setEnabled(false);
+        btAgregarComponente.setEnabled(false);
+        btEliminarComponente.setEnabled(false);
     }
     
     private void pantallaCargadaBotones(){
-        btAgregar.setEnabled(false);
-        btModificar.setEnabled(true);
+        btBuscarComponente.setEnabled(true);
+        btGuardar.setEnabled(true);
         btEliminar.setEnabled(true);
+        btAgregarComponente.setEnabled(true);
+        btEliminarComponente.setEnabled(true);
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -84,8 +88,7 @@ public class PanelEstructuraDeProducto extends javax.swing.JPanel implements IVa
         lbCantidad = new javax.swing.JLabel();
         tfCantidad = new javax.swing.JTextField();
         pBotones = new javax.swing.JPanel();
-        btAgregar = new javax.swing.JButton();
-        btModificar = new javax.swing.JButton();
+        btGuardar = new javax.swing.JButton();
         btEliminar = new javax.swing.JButton();
 
         pProductoTerminado.setBorder(javax.swing.BorderFactory.createTitledBorder("Producto Terminado"));
@@ -242,21 +245,13 @@ public class PanelEstructuraDeProducto extends javax.swing.JPanel implements IVa
                 .addGap(11, 11, 11))
         );
 
-        btAgregar.setText("Agregar");
-        btAgregar.addActionListener(new java.awt.event.ActionListener() {
+        btGuardar.setText("Guardar");
+        btGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btAgregarActionPerformed(evt);
+                btGuardarActionPerformed(evt);
             }
         });
-        pBotones.add(btAgregar);
-
-        btModificar.setText("Modificar");
-        btModificar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btModificarActionPerformed(evt);
-            }
-        });
-        pBotones.add(btModificar);
+        pBotones.add(btGuardar);
 
         btEliminar.setText("Eliminar");
         btEliminar.addActionListener(new java.awt.event.ActionListener() {
@@ -275,7 +270,7 @@ public class PanelEstructuraDeProducto extends javax.swing.JPanel implements IVa
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(pProductoTerminado, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(pTablaComponentes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(pBotones, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 573, Short.MAX_VALUE))
+                    .addComponent(pBotones, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 577, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -291,24 +286,7 @@ public class PanelEstructuraDeProducto extends javax.swing.JPanel implements IVa
         );
     }// </editor-fold>//GEN-END:initComponents
 
-private void btAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAgregarActionPerformed
-    estructuraDeProducto = crearEstructuraProducto();
-    if(ValidacionBuscar.getInstancia().estaDuplicado(estructuraDeProducto)){
-        JOptionPane.showMessageDialog(this, "Existen campos vacios");
-    }else{
-        if(ValidacionBuscar.getInstancia().existenCamposVacios(this)){
-            JOptionPane.showMessageDialog(this, "Existen campos vacios");
-        }else{
-   
-            FachadaPersistencia.getInstancia().grabar(estructuraDeProducto, true);
-            FachadaPersistencia.getInstancia().actualizar(estructuraDeProducto, true);
-            Util.getInstancia().limpiarCampos(this);
-            estructuraDeProducto=null;
-        }
-    }
-}//GEN-LAST:event_btAgregarActionPerformed
-
-private void btModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btModificarActionPerformed
+private void btGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btGuardarActionPerformed
     int opcion = JOptionPane.showConfirmDialog(this,
                 "¿Seguro desea guardar los cambios?", "Aceptar",
                 JOptionPane.YES_NO_OPTION);
@@ -320,7 +298,7 @@ private void btModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
         estructuraDeProducto=null;            
         inicializarBotones();
     }
-}//GEN-LAST:event_btModificarActionPerformed
+}//GEN-LAST:event_btGuardarActionPerformed
 
 private void btEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEliminarActionPerformed
     int opcion = JOptionPane.showConfirmDialog(this,
@@ -379,13 +357,12 @@ private void btBuscarComponenteActionPerformed(java.awt.event.ActionEvent evt) {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btAgregar;
     private javax.swing.JButton btAgregarComponente;
     private javax.swing.JButton btBuscarComponente;
     private javax.swing.JButton btBuscarProdTerminado;
     private javax.swing.JButton btEliminar;
     private javax.swing.JButton btEliminarComponente;
-    private javax.swing.JButton btModificar;
+    private javax.swing.JButton btGuardar;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane2;
     private org.jdesktop.swingx.JXTable jtComponente;
@@ -407,6 +384,7 @@ private void btBuscarComponenteActionPerformed(java.awt.event.ActionEvent evt) {
         productoTerminado=prod;
         tfCodigo.setText(productoTerminado.getCodigo());
         tfNombre.setText(productoTerminado.getNombre()); 
+        pantallaCargadaBotones();
         
     }
     public void setEstructura(EstructuraDeProducto estructura){
@@ -427,6 +405,7 @@ private void btBuscarComponenteActionPerformed(java.awt.event.ActionEvent evt) {
         componente=con;
         tfComponente.setText(componente.getNombre());
         tfCantidad.setText("");
+        pantallaCargadaBotones();
     }
     
     public ComponenteEstructuraTableModel getTableModelComponente(){
