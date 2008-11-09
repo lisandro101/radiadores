@@ -13,6 +13,7 @@ import radiadores.entidades.Empleado;
 import radiadores.entidades.HoraLaboral;
 import radiadores.entidades.NodoRuta;
 import radiadores.entidades.ParteDeNodo;
+import radiadores.entidades.ProductoTerminado;
 import radiadores.igu.buscar.PanelBuscarEmpleado;
 import radiadores.igu.buscar.PanelBuscarCentroTrabajo;
 import radiadores.igu.buscar.PanelBuscarProductoGral;
@@ -42,7 +43,8 @@ public class PanelDetalleRuta extends javax.swing.JDialog implements iBuscaCentr
     private List<ParteDeNodo> partesDeNodos;
     private  PanelRutaFabricacion panelRuta;
     private List<Component> componentesObligatorios;
-    
+    private ProductoTerminado productoTerminado;
+    private double cantComponente;
 
     /** Creates new form PanelDetalleRuta */
     public PanelDetalleRuta(PanelRutaFabricacion pRuta) {
@@ -71,6 +73,7 @@ public class PanelDetalleRuta extends javax.swing.JDialog implements iBuscaCentr
         jtEmpleado.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         jtComponente.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         componentesObligatorios = Arrays.asList((Component)tfCentroTrabajo);
+        productoTerminado= panelRuta.getProductoTerminado();
     }
     
     private void cargarNodo(NodoRuta nodo) {
@@ -651,4 +654,19 @@ private void btGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
     public List<Component> getComponentesObligatorios() {
         return componentesObligatorios;
     }
+
+    public ProductoTerminado getProductoTerminado() {
+        productoTerminado= panelRuta.getProductoTerminado();
+        return productoTerminado;
+    }
+
+    public double getCantComponente() {
+        return cantComponente;
+    }
+
+    public void setCantComponente(double cantComponente) {
+        this.cantComponente = cantComponente;
+    }
+    
+    
 }

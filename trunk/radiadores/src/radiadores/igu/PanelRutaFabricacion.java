@@ -335,7 +335,8 @@ private void btModificarRutaActionPerformed(java.awt.event.ActionEvent evt) {//G
 
 private void jlDetalleRutaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlDetalleRutaMouseClicked
     if (evt.getClickCount() == 2) { 
-        PanelDetalleRuta detalleRuta = new PanelDetalleRuta(nodosListModel.getNodo(jlDetalleRuta.convertIndexToModel(jlDetalleRuta.getSelectedIndex())));
+        //PanelDetalleRuta detalleRuta = new PanelDetalleRuta((String)jlDetalleRuta.getSelectedValue());
+        PanelDetalleRuta detalleRuta = new PanelDetalleRuta(this);
         detalleRuta.setModal(true);
         detalleRuta.setVisible(true);
     }
@@ -440,9 +441,12 @@ private void inicializarBotones(){
         hayQueActualizar = true;
         rutaFabricacion = resultado;
         cargarPantallaRuta(rutaFabricacion);
+        productoTerminado= resultado.getProductoTerminado();
     }
     
     private void cargarPantallaRuta(RutaFabricacion ruta) {
+        rutaFabricacion=ruta;
+        
         tfNombre.setText(ruta.getNombre());
         tfCodigo.setText(ruta.getCodigo());
         tfDescripcion.setText(ruta.getDescripcion());
@@ -500,5 +504,11 @@ private void inicializarBotones(){
         return rutaFabricacion;
     }
 
+    public ProductoTerminado getProductoTerminado() {
+        
+        return productoTerminado;
+    }
+
+    
      
 }
