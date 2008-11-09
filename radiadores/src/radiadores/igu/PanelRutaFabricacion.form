@@ -74,8 +74,8 @@
               <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jScrollPane1" alignment="1" pref="533" max="32767" attributes="0"/>
-                      <Component id="jPanel2" alignment="0" pref="533" max="32767" attributes="0"/>
+                      <Component id="jScrollPane1" alignment="1" pref="537" max="32767" attributes="0"/>
+                      <Component id="jPanel2" alignment="0" pref="537" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -275,7 +275,7 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="lbProducto" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="tfProducto" pref="448" max="32767" attributes="0"/>
+                  <Component id="tfProducto" pref="452" max="32767" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="btBuscarProducto" min="-2" pref="32" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
