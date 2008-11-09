@@ -335,8 +335,8 @@ private void btModificarRutaActionPerformed(java.awt.event.ActionEvent evt) {//G
 
 private void jlDetalleRutaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlDetalleRutaMouseClicked
     if (evt.getClickCount() == 2) { 
-        //PanelDetalleRuta detalleRuta = new PanelDetalleRuta((String)jlDetalleRuta.getSelectedValue());
-        PanelDetalleRuta detalleRuta = new PanelDetalleRuta(this);
+        PanelDetalleRuta detalleRuta = new PanelDetalleRuta(nodosListModel.getNodo(jlDetalleRuta.convertIndexToModel(jlDetalleRuta.getSelectedIndex())));
+        //PanelDetalleRuta detalleRuta = new PanelDetalleRuta(this);
         detalleRuta.setModal(true);
         detalleRuta.setVisible(true);
     }
@@ -362,7 +362,16 @@ private void btAgregarRutaActionPerformed(java.awt.event.ActionEvent evt) {//GEN
         if(ValidacionBuscar.getInstancia().estaDuplicado(rutaFabricacion)){
             JOptionPane.showMessageDialog(this, "La Ruta de Trabajo ya se encuentra cargada en el sistema.");
         }else{       
-            FachadaPersistencia.getInstancia().actualizar(rutaFabricacion, true);
+            
+            //Actualizo todas los nodos y por cascadeo se crea la ruta.
+            FachadaPersistencia.getInstancia().comenzarTransaccion();
+            for (NodoRuta nodo : rutaFabricacion.getNodosRuta()) {
+                nodo.setRutaFabricacion(rutaFabricacion);
+                FachadaPersistencia.getInstancia().actualizar(nodo, false);
+            }
+            FachadaPersistencia.getInstancia().finalizarTransaccion();
+            
+            //FachadaPersistencia.getInstancia().actualizar(rutaFabricacion, true);
             Util.getInstancia().limpiarCampos(this);
             rutaFabricacion = null;
             hayQueActualizar = false;
@@ -445,14 +454,14 @@ private void inicializarBotones(){
     }
     
     private void cargarPantallaRuta(RutaFabricacion ruta) {
-        rutaFabricacion=ruta;
-        
         tfNombre.setText(ruta.getNombre());
         tfCodigo.setText(ruta.getCodigo());
         tfDescripcion.setText(ruta.getDescripcion());
         tfProducto.setText(ruta.getProductoTerminado().getNombre());
         nodosListModel.reiniciar();
         nodosListModel.agregarElementos(ruta.getNodosRuta());
+        
+        rutaFabricacion = ruta;
         
         btAgregarNodo.setEnabled(true);
         btAgregarRuta.setEnabled(false);
