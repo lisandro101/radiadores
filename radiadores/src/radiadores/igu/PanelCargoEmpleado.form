@@ -62,11 +62,11 @@
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="1" attributes="0">
-                      <Component id="jScrollPane1" alignment="0" pref="564" max="32767" attributes="0"/>
+                      <Component id="jScrollPane1" alignment="0" pref="568" max="32767" attributes="0"/>
                       <Group type="102" alignment="1" attributes="0">
                           <Component id="lbCargos" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="tfNombreCargo" pref="404" max="32767" attributes="0"/>
+                          <Component id="tfNombreCargo" pref="408" max="32767" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="btBuscar" min="-2" max="-2" attributes="0"/>
                       </Group>
@@ -153,8 +153,8 @@
                           </Group>
                           <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="tfNombre" alignment="0" pref="479" max="32767" attributes="1"/>
-                              <Component id="tfPrecioHora" alignment="0" pref="479" max="32767" attributes="1"/>
+                              <Component id="tfNombre" alignment="0" pref="483" max="32767" attributes="1"/>
+                              <Component id="tfPrecioHora" alignment="0" pref="483" max="32767" attributes="1"/>
                           </Group>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
@@ -164,11 +164,11 @@
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="cbEstado" alignment="0" pref="479" max="32767" attributes="0"/>
-                              <Component id="tfHorasLaborales" alignment="0" pref="479" max="32767" attributes="1"/>
+                              <Component id="cbEstado" alignment="0" pref="483" max="32767" attributes="0"/>
+                              <Component id="tfHorasLaborales" alignment="0" pref="483" max="32767" attributes="1"/>
                           </Group>
                       </Group>
-                      <Component id="jPanel1" alignment="0" pref="564" max="32767" attributes="0"/>
+                      <Component id="jPanel1" alignment="0" pref="568" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
