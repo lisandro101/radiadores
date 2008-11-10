@@ -306,7 +306,7 @@ private void btAceptarBuscarActionPerformed(java.awt.event.ActionEvent evt) {//G
     int indice = tCargos.convertRowIndexToModel(tCargos.getSelectedRow());
     
     if(indice == -1){
-        JOptionPane.showMessageDialog(this, "No se ha seleccionado Proveedor");
+        JOptionPane.showMessageDialog(this, "No se ha seleccionado un Cargo");
     }else{
         cargo = tmBuscar.getFila(indice);
         panelEmpleado.setCargoEmpleado(cargo);
