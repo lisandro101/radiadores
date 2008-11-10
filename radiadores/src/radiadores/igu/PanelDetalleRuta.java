@@ -50,12 +50,17 @@ public class PanelDetalleRuta extends javax.swing.JDialog implements iBuscaCentr
     public PanelDetalleRuta(PanelRutaFabricacion pRuta) {
         initComponents();
         panelRuta = pRuta;
+        productoTerminado = panelRuta.getProductoTerminado();
         inicializar();
     }
   
-    public PanelDetalleRuta(NodoRuta nodo) {
+    public PanelDetalleRuta(NodoRuta nodo, ProductoTerminado prod) {
         initComponents();
+        
+        productoTerminado=prod;
         inicializar();
+        
+        
         cargarNodo(nodo);
         tfCentroTrabajo.setEnabled(false);
         btBuscarCentroTrabajo.setVisible(false);
@@ -73,7 +78,7 @@ public class PanelDetalleRuta extends javax.swing.JDialog implements iBuscaCentr
         jtEmpleado.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         jtComponente.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         componentesObligatorios = Arrays.asList((Component)tfCentroTrabajo);
-//        productoTerminado = panelRuta.getProductoTerminado();
+        
     }
     
     private void cargarNodo(NodoRuta nodo) {
@@ -85,6 +90,7 @@ public class PanelDetalleRuta extends javax.swing.JDialog implements iBuscaCentr
         for (ParteDeNodo parteNodo : nodo.getMateriales()) {
             tmComponente.agregarFila(parteNodo);
         }    
+       
     }
 
     /** This method is called from within the constructor to
