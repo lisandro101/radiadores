@@ -35,7 +35,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <Component id="jPanel4" pref="569" max="32767" attributes="0"/>
+                      <Component id="jPanel4" pref="573" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -151,8 +151,8 @@
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="tfNombre" alignment="0" pref="312" max="32767" attributes="0"/>
-                      <Component id="tfDescripcion" alignment="0" pref="312" max="32767" attributes="2"/>
+                      <Component id="tfNombre" alignment="0" pref="316" max="32767" attributes="0"/>
+                      <Component id="tfDescripcion" alignment="0" pref="316" max="32767" attributes="2"/>
                   </Group>
                   <EmptySpace min="-2" max="-2" attributes="0"/>
                   <Component id="lbCodigo" min="-2" max="-2" attributes="0"/>
