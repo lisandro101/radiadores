@@ -320,6 +320,10 @@ private void btAceptarBuscarActionPerformed(java.awt.event.ActionEvent evt) {//G
 
 private void btBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBuscarActionPerformed
      
+    buscarCargo();
+}//GEN-LAST:event_btBuscarActionPerformed
+
+private void buscarCargo(){
     tmBuscar.limpiarTableModel();
     
     Query consulta = FachadaPersistencia.getInstancia().crearConsulta("Select a from Cargo a where (a.nombre) LIKE :valor and a.borrado=false" );
@@ -331,20 +335,23 @@ private void btBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     for (int i = 0; i < cargosResul.size(); i++) {
         tmBuscar.agregarFila(cargosResul.get(i));
     }
-}//GEN-LAST:event_btBuscarActionPerformed
+} 
+        
 
 private void btAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAgregarActionPerformed
     if(ValidacionBuscar.getInstancia().existenCamposVacios(pABMCargo)){
         JOptionPane.showMessageDialog(this, "Existen campos sin completar");
     }else{
-        cargo= crearCargo();
+        cargo = crearCargo();
         if(ValidacionBuscar.getInstancia().estaDuplicado(cargo)){
             JOptionPane.showMessageDialog(this, "El Cargo ya se encuentra registrado");
         }else{
             FachadaPersistencia.getInstancia().grabar(cargo, true);
             Util.getInstancia().limpiarCampos(this);
             
-            cargo=null;
+            buscarCargo();
+            
+            cargo = null;
         }
     }
 }//GEN-LAST:event_btAgregarActionPerformed
