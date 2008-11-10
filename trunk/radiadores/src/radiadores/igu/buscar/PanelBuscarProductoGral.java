@@ -390,7 +390,7 @@ private void btAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
             panelOrdenProduccion.setProductoTerminado((ProductoTerminado)resultado);
             dispose();
         }else if(tipo== Tipo.PANEL_RUTA_FABRICACION){
-            panelRutaFabricacion.setComponente((ProductoTerminado)resultado);
+            panelRutaFabricacion.setComponente(resultado);
             dispose();
         }
                

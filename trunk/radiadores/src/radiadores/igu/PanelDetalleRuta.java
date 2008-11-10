@@ -73,7 +73,7 @@ public class PanelDetalleRuta extends javax.swing.JDialog implements iBuscaCentr
         jtEmpleado.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         jtComponente.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         componentesObligatorios = Arrays.asList((Component)tfCentroTrabajo);
-        productoTerminado= panelRuta.getProductoTerminado();
+//        productoTerminado = panelRuta.getProductoTerminado();
     }
     
     private void cargarNodo(NodoRuta nodo) {
@@ -657,7 +657,7 @@ private void btGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
     }
 
     public ProductoTerminado getProductoTerminado() {
-        productoTerminado= panelRuta.getProductoTerminado();
+        productoTerminado = panelRuta.getProductoTerminado();
         return productoTerminado;
     }
 

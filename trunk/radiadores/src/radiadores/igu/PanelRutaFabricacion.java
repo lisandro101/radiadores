@@ -369,9 +369,9 @@ private void btAgregarRutaActionPerformed(java.awt.event.ActionEvent evt) {//GEN
                 nodo.setRutaFabricacion(rutaFabricacion);
                 FachadaPersistencia.getInstancia().actualizar(nodo, false);
             }
+            FachadaPersistencia.getInstancia().actualizar(rutaFabricacion, false);
             FachadaPersistencia.getInstancia().finalizarTransaccion();
-            
-            //FachadaPersistencia.getInstancia().actualizar(rutaFabricacion, true);
+                        
             Util.getInstancia().limpiarCampos(this);
             rutaFabricacion = null;
             hayQueActualizar = false;
@@ -450,7 +450,7 @@ private void inicializarBotones(){
         hayQueActualizar = true;
         rutaFabricacion = resultado;
         cargarPantallaRuta(rutaFabricacion);
-        productoTerminado= resultado.getProductoTerminado();
+        productoTerminado = resultado.getProductoTerminado();
     }
     
     private void cargarPantallaRuta(RutaFabricacion ruta) {
@@ -500,8 +500,8 @@ private void inicializarBotones(){
     @Override
     public void setComponente(Componente comp) {
         productoTerminado = (ProductoTerminado) comp;
-        rutaFabricacion.setProductoTerminado((ProductoTerminado) comp);
-        tfProducto.setText(comp.getNombre());
+        rutaFabricacion.setProductoTerminado(productoTerminado);
+        tfProducto.setText(productoTerminado.getNombre());
     }
     
      @Override
