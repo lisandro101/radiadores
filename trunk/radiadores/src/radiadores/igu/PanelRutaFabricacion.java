@@ -5,7 +5,9 @@ import java.util.Arrays;
 import java.util.List;
 import javax.swing.JOptionPane;
 import radiadores.entidades.Componente;
+import radiadores.entidades.HoraLaboral;
 import radiadores.entidades.NodoRuta;
+import radiadores.entidades.ParteDeNodo;
 import radiadores.entidades.ProductoTerminado;
 import radiadores.entidades.RutaFabricacion;
 import radiadores.igu.buscar.PanelBuscarProductoGral;
@@ -29,7 +31,6 @@ public class PanelRutaFabricacion extends javax.swing.JPanel implements iBuscaPr
     private RutaFabricacion rutaFabricacion;
     private ProductoTerminado productoTerminado;
     private List<Component> componentesObligatorios;
-    private boolean hayQueActualizar;
     
     /** Creates new form PanelRutaFabricacion */
     public PanelRutaFabricacion() {
@@ -50,7 +51,7 @@ public class PanelRutaFabricacion extends javax.swing.JPanel implements iBuscaPr
         
         ruta.setCodigo(tfCodigo.getText());
         ruta.setNombre(tfNombre.getText());
-        ruta.setDescripcion(tfNombre.getText());
+        ruta.setDescripcion(tfDescripcion.getText());
         ruta.setNodosRuta(nodosListModel.getElementos());
         ruta.setProductoTerminado(productoTerminado);
         
@@ -325,18 +326,33 @@ private void btModificarRutaActionPerformed(java.awt.event.ActionEvent evt) {//G
         
     if(opcion == JOptionPane.YES_OPTION) {
         actualizarRuta();
-        FachadaPersistencia.getInstancia().actualizar(rutaFabricacion, true);
+        persistirRuta();
         Util.getInstancia().limpiarCampos(this);
         rutaFabricacion = null;
-        hayQueActualizar = false;
         inicializarBotones();
     }
 }//GEN-LAST:event_btModificarRutaActionPerformed
 
+private void persistirRuta() {
+    //Actualizo las horas y los materiales, y por cascadeo se crean los nodos y las rutas. Esto es xq las relaciones estan al revéz.
+    FachadaPersistencia.getInstancia().comenzarTransaccion();
+        for (NodoRuta nodo: rutaFabricacion.getNodosRuta()) {
+            nodo.setRutaFabricacion(rutaFabricacion);
+            for (HoraLaboral hora : nodo.getHorasTrabajadas()) {
+                hora.setNodoRuta(nodo);
+                FachadaPersistencia.getInstancia().actualizar(hora, false);
+            }   
+            for (ParteDeNodo pn : nodo.getMateriales()) {
+                pn.setNodoRuta(nodo);
+                FachadaPersistencia.getInstancia().actualizar(pn, false);
+            }
+        }
+    FachadaPersistencia.getInstancia().finalizarTransaccion();
+}
+
 private void jlDetalleRutaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlDetalleRutaMouseClicked
     if (evt.getClickCount() == 2) { 
-        PanelDetalleRuta detalleRuta = new PanelDetalleRuta(nodosListModel.getNodo(jlDetalleRuta.convertIndexToModel(jlDetalleRuta.getSelectedIndex())), productoTerminado);
-        //PanelDetalleRuta detalleRuta = new PanelDetalleRuta(this);
+        PanelDetalleRuta detalleRuta = new PanelDetalleRuta(this, nodosListModel.getNodo(jlDetalleRuta.convertIndexToModel(jlDetalleRuta.getSelectedIndex())));
         detalleRuta.setModal(true);
         detalleRuta.setVisible(true);
     }
@@ -362,19 +378,9 @@ private void btAgregarRutaActionPerformed(java.awt.event.ActionEvent evt) {//GEN
         if(ValidacionBuscar.getInstancia().estaDuplicado(rutaFabricacion)){
             JOptionPane.showMessageDialog(this, "La Ruta de Trabajo ya se encuentra cargada en el sistema.");
         }else{       
-            
-            //Actualizo todas los nodos y por cascadeo se crea la ruta.
-            FachadaPersistencia.getInstancia().comenzarTransaccion();
-            for (NodoRuta nodo : rutaFabricacion.getNodosRuta()) {
-                nodo.setRutaFabricacion(rutaFabricacion);
-                FachadaPersistencia.getInstancia().actualizar(nodo, false);
-            }
-            FachadaPersistencia.getInstancia().actualizar(rutaFabricacion, false);
-            FachadaPersistencia.getInstancia().finalizarTransaccion();
-                        
+            persistirRuta();
             Util.getInstancia().limpiarCampos(this);
             rutaFabricacion = null;
-            hayQueActualizar = false;
         }
     }
 }//GEN-LAST:event_btAgregarRutaActionPerformed
@@ -410,7 +416,6 @@ private void btEliminarRutaActionPerformed(java.awt.event.ActionEvent evt) {//GE
         FachadaPersistencia.getInstancia().borrar(rutaFabricacion, true);
         Util.getInstancia().limpiarCampos(this);
         rutaFabricacion = null;
-        hayQueActualizar = false;
         inicializarBotones();
     }
 }//GEN-LAST:event_btEliminarRutaActionPerformed
@@ -424,17 +429,12 @@ private void btBuscarRutaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
 private void btLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLimpiarActionPerformed
     Util.getInstancia().limpiarCampos(this);
     rutaFabricacion = null;
-    hayQueActualizar = false;
     inicializarBotones();
 }//GEN-LAST:event_btLimpiarActionPerformed
 
 public void setNodoRuta(NodoRuta nodo){
-    nodo.setRutaFabricacion(rutaFabricacion);
-    nodosListModel.agregarElemento(nodo);
-    
-    /*if (hayQueActualizar) {
-        FachadaPersistencia.getInstancia().actualizar(rutaFabricacion, true);
-    }*/       
+        nodo.setRutaFabricacion(rutaFabricacion);
+        nodosListModel.agregarElemento(nodo);  
 }
 
 private void inicializarBotones(){
@@ -447,7 +447,6 @@ private void inicializarBotones(){
  }
 
     public void setRuta(RutaFabricacion resultado) {
-        hayQueActualizar = true;
         rutaFabricacion = resultado;
         productoTerminado = resultado.getProductoTerminado();
         

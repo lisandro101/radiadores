@@ -34,10 +34,7 @@ public class PanelDetalleRuta extends javax.swing.JDialog implements iBuscaCentr
     private EmpleadoDetalleRutaTableModel tmEmpleado;
     private ComponenteDetalleRutaTableModel tmComponente;
     private Empleado empleado;
-    private ParteDeNodo parteDeNodo;
-    private NodoRuta nodoRuta;
     private List<HoraLaboral> horasLaborales;
-    private HoraLaboral horaLaboral;
     private Componente componente;
     private CentroDeTrabajo centroTrabajo;
     private List<ParteDeNodo> partesDeNodos;
@@ -54,13 +51,11 @@ public class PanelDetalleRuta extends javax.swing.JDialog implements iBuscaCentr
         inicializar();
     }
   
-    public PanelDetalleRuta(NodoRuta nodo, ProductoTerminado prod) {
+    public PanelDetalleRuta(PanelRutaFabricacion pRuta, NodoRuta nodo) {
         initComponents();
-        
-        productoTerminado=prod;
+        panelRuta = pRuta;
+        productoTerminado = pRuta.getProductoTerminado();
         inicializar();
-        
-        
         cargarNodo(nodo);
         tfCentroTrabajo.setEnabled(false);
         btBuscarCentroTrabajo.setVisible(false);
@@ -84,9 +79,12 @@ public class PanelDetalleRuta extends javax.swing.JDialog implements iBuscaCentr
     private void cargarNodo(NodoRuta nodo) {
         
         tfCentroTrabajo.setText(nodo.getCentroTrabajo().getNombre());
+        centroTrabajo = nodo.getCentroTrabajo();
+        
         for (HoraLaboral hora : nodo.getHorasTrabajadas()) {
             tmEmpleado.agregarFila(hora);
         }
+        
         for (ParteDeNodo parteNodo : nodo.getMateriales()) {
             tmComponente.agregarFila(parteNodo);
         }    
@@ -519,7 +517,7 @@ private void btAgregarEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {/
         if(empleado == null || tfHoras.getText().trim().equals("")){
             JOptionPane.showMessageDialog(this, "Existen campos vacios");
         }else{
-            horaLaboral= new HoraLaboral();
+            HoraLaboral horaLaboral= new HoraLaboral();
             horaLaboral.setCantidad(Integer.parseInt(tfHoras.getText()));
             horaLaboral.setEmpleado(empleado);
             
@@ -536,7 +534,7 @@ private void btAgregarComponenteActionPerformed(java.awt.event.ActionEvent evt) 
         if(componente == null || tfCantidad.getText().trim().equals("")){
             JOptionPane.showMessageDialog(this, "Existen campos vacios");
         }else{
-            parteDeNodo= new ParteDeNodo();
+            ParteDeNodo parteDeNodo= new ParteDeNodo();
             parteDeNodo.setCantidad(Double.parseDouble(tfCantidad.getText()));
             parteDeNodo.setComponente(componente);
             
@@ -564,13 +562,11 @@ private void btGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
         JOptionPane.showMessageDialog(this, "Existen campos obligatorios sin completar.");
     }
     else{
-        nodoRuta = crearNodoRuta();
+        NodoRuta nodoRuta = crearNodo();
         if(ValidacionBuscar.getInstancia().estaDuplicado(nodoRuta)){
             JOptionPane.showMessageDialog(this, "El Centro de Trabajo ya se encuentra cargado en el sistema.");
         }
         else{
-                //FachadaPersistencia.getInstancia().grabar(nodoRuta, true);
-                Util.getInstancia().limpiarCampos(this);
                 panelRuta.setNodoRuta(nodoRuta);
                 nodoRuta = null;
                 dispose();
@@ -645,7 +641,7 @@ private void btGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
         tfCentroTrabajo.setText(ct.getNombre());
     }
     
-    private NodoRuta crearNodoRuta(){
+    private NodoRuta crearNodo(){
         NodoRuta nodo = new NodoRuta();
         horasLaborales = tmEmpleado.getFilas();
         partesDeNodos = tmComponente.getFilas();
