@@ -32,7 +32,7 @@ public abstract class Producto extends Componente implements Serializable {
     private double tamanioLoteEstandar;
     private String unidadMedida;
     private String estado;
-    private double stock;
+    
     private boolean borrado;
 
     @Column(name="categoria", length=100)
@@ -161,14 +161,7 @@ public abstract class Producto extends Componente implements Serializable {
         this.estado = estado;
     }
     
-    @Column(name="stock")
-    public double getStock() {
-        return stock;
-    }
-
-    public void setStock(double stock) {
-        this.stock = stock;
-    }
+   
     
     @Column(name="borrado")
     public boolean isBorrado() {

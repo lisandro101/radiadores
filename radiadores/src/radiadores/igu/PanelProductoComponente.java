@@ -138,6 +138,8 @@ public class PanelProductoComponente extends javax.swing.JPanel implements IVali
 
         lbDescripcion.setText("Descripción:");
 
+        tfStock.setEditable(false);
+
         javax.swing.GroupLayout pProductoTerminado2Layout = new javax.swing.GroupLayout(pProductoTerminado2);
         pProductoTerminado2.setLayout(pProductoTerminado2Layout);
         pProductoTerminado2Layout.setHorizontalGroup(
@@ -419,7 +421,7 @@ private void btAsignarProveedorActionPerformed(java.awt.event.ActionEvent evt) {
 }//GEN-LAST:event_btAsignarProveedorActionPerformed
 
 private void btAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAgregarActionPerformed
-
+    tfStock.setText("0");
     if(ValidacionBuscar.getInstancia().existenCamposVacios(this)){
         JOptionPane.showMessageDialog(this, "Existen campos sin completar");
     }else{

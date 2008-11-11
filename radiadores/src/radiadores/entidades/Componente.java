@@ -43,7 +43,7 @@ public class Componente implements Serializable, IPersistente {
     private List<Proveedor> proveedores;
     private boolean borrado;
     private char tipo;
-    
+    private double stock;
     /**
      * Constructor
      */
@@ -153,5 +153,12 @@ public class Componente implements Serializable, IPersistente {
         return hash;
     }
 
-   
+     @Column(name="stock")
+    public double getStock() {
+        return stock;
+    }
+
+    public void setStock(double stock) {
+        this.stock = stock;
+    }
 }

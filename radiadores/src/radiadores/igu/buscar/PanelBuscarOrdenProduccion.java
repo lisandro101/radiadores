@@ -9,16 +9,10 @@ package radiadores.igu.buscar;
 import radiadores.igu.*;
 import java.util.List;
 import javax.persistence.Query;
-import radiadores.entidades.Maquina;
-import radiadores.igu.model.MaquinaTableModel;
 import radiadores.persistencia.FachadaPersistencia;
 import javax.swing.*;
-import radiadores.entidades.OrdenCompra;
 import radiadores.entidades.OrdenProduccion;
-import radiadores.entidades.Proveedor;
-import radiadores.igu.model.BuscarOrdenCompraTableModel;
 import radiadores.igu.model.BuscarOrdenProduccionTableModel;
-import radiadores.igu.model.OrdenCompraTableModel;
 
 /**
  *
@@ -69,7 +63,7 @@ public class PanelBuscarOrdenProduccion extends javax.swing.JDialog {
         tOrdenProduccion = new org.jdesktop.swingx.JXTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Buscar Maquinaria");
+        setTitle("Orden Producción");
 
         lbNombre.setText("Nro Orden:");
 
@@ -134,17 +128,17 @@ public class PanelBuscarOrdenProduccion extends javax.swing.JDialog {
 
         tOrdenProduccion.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Nro Orden", "Cliente", "Fecha Emisión", "Fecha Entrega"
+                "Nro Orden", "Cliente", "Fecha Emisión", "Fecha Entrega", "Estado"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
