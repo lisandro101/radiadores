@@ -14,10 +14,10 @@ import radiadores.entidades.OrdenProduccion;
  */
 public class BuscarOrdenProduccionTableModel extends AbstractTableModel implements IModeloReiniciable {
     private static final long serialVersionUID = 1L;
-    private static final String[] NOMBRE_COLUMNAS = {"Nro Orden", "Cliente", "Fecha Emisión", "Fecha Entrega"};
-    private static final boolean[] COLUMNAS_EDITABLES = {false, false, false, false};
+    private static final String[] NOMBRE_COLUMNAS = {"Nro Orden", "Cliente", "Fecha Emisión", "Fecha Entrega", "Estado"};
+    private static final boolean[] COLUMNAS_EDITABLES = {false, false, false, false, false};
     private static final Class[] CLASE_COLUMNAS =
-        {String.class, String.class, Date.class, Date.class};
+        {String.class, String.class, Date.class, Date.class, String.class};
     
     private List<OrdenProduccion> ordenes;
 
@@ -107,7 +107,10 @@ public class BuscarOrdenProduccionTableModel extends AbstractTableModel implemen
                 break;
             case 3:
                 resultado = ordenes.get(fila).getFechaEstimadaEntrega();
-                break;    
+                break;  
+            case 4:
+                resultado = ordenes.get(fila).getEstado().toString();
+                break;     
         }
         return resultado;
     }
@@ -168,5 +171,5 @@ public class BuscarOrdenProduccionTableModel extends AbstractTableModel implemen
         limpiarTableModel();
     }
     
-
+    
 }

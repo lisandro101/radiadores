@@ -35,7 +35,41 @@ public class OrdenProduccion implements Serializable, IPersistente {
     private List<DetalleOrdenProduccion> detallesOrdenProduccion;
     private boolean borrado;
     private String nroOrdenProduccion;
+    private EstadoOrdenProd estado;
     
+    public enum EstadoOrdenProd {
+        PROCESANDO ("Procesando"),
+        TERMINADO ("Terminado"),
+        ANULADO ("Anulado"),
+        SUSPENDIDO ("Suspendido");
+        
+        private String nombre;
+        
+        private EstadoOrdenProd(String nombre) {
+            this.nombre = nombre;
+        }
+        
+        public EstadoOrdenProd obtenerEstado(String valor) {
+        EstadoOrdenProd resultado = null;
+        if(valor.equals("Procesando")){
+            resultado= EstadoOrdenProd.PROCESANDO;
+        }else if(valor.equals("Terminado")){
+            resultado= EstadoOrdenProd.TERMINADO;
+        }else if(valor.equals("Anulado")){
+            resultado= EstadoOrdenProd.ANULADO;
+        }else if(valor.equals("Suspendido")){
+            resultado= EstadoOrdenProd.SUSPENDIDO;
+        }
+        
+        return resultado;
+    }
+
+        
+        @Override
+        public String toString() {
+            return nombre;
+        }
+    }
     /**
      * Constructor
      */
@@ -125,4 +159,15 @@ public class OrdenProduccion implements Serializable, IPersistente {
     public void setNroOrdenProduccion(String nroOrden) {
         this.nroOrdenProduccion = nroOrden;
     }
+    
+    @Column(name="estado")
+    public EstadoOrdenProd getEstado() {
+        return estado;
+    }
+
+    public void setEstado(EstadoOrdenProd estado) {
+        this.estado = estado;
+    }
+
+    
 }

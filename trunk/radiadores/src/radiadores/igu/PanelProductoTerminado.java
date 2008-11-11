@@ -223,6 +223,8 @@ public class PanelProductoTerminado extends javax.swing.JPanel implements IValid
 
         lbStock.setText("Stock:");
 
+        tfStock.setEditable(false);
+
         lbPrecioVenta.setText("Precio Venta:");
 
         javax.swing.GroupLayout pProductoTerminado2Layout = new javax.swing.GroupLayout(pProductoTerminado2);
@@ -340,7 +342,7 @@ private void btBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
 }//GEN-LAST:event_btBuscarActionPerformed
 
 private void btAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAgregarActionPerformed
-
+    tfStock.setText("0");
     if(ValidacionBuscar.getInstancia().existenCamposVacios(this)){
         JOptionPane.showMessageDialog(this, "Existen campos sin completar");
     }else{
