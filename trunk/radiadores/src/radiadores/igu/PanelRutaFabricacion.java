@@ -351,23 +351,23 @@ private void persistirRuta() {
 }
 
 private void jlDetalleRutaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlDetalleRutaMouseClicked
-    if (evt.getClickCount() == 2) { 
-        PanelDetalleRuta detalleRuta = new PanelDetalleRuta(this, nodosListModel.getNodo(jlDetalleRuta.convertIndexToModel(jlDetalleRuta.getSelectedIndex())));
-        detalleRuta.setModal(true);
-        detalleRuta.setVisible(true);
+    if (evt.getClickCount() == 2) {
+        int indice = jlDetalleRuta.convertIndexToModel(jlDetalleRuta.getSelectedIndex());
+        NodoRuta nodoRuta = PanelDetalleRuta.obtenerNodo(productoTerminado, nodosListModel.getNodo(indice));
+        
+        nodosListModel.agregarElemento(nodoRuta);
     }
 }//GEN-LAST:event_jlDetalleRutaMouseClicked
 
 private void btAgregarNodoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAgregarNodoActionPerformed
     //TODO Cuando se agregan nodos de una ruta cargada tendria q refrescarlo en a BD desp de mostrar una advertencia
     if (!tfNombre.getText().trim().equals("") && !tfCodigo.getText().trim().equals("")){
-        PanelDetalleRuta detalleRuta = new PanelDetalleRuta(this);
-        detalleRuta.setModal(true);
-        detalleRuta.setVisible(true);  
+        NodoRuta nodoRuta = PanelDetalleRuta.obtenerNodo(productoTerminado); 
+        nodosListModel.agregarElemento(nodoRuta);
         }
     else {
         JOptionPane.showMessageDialog(this, "No ha definido una ruta valida.");
-    }
+    } 
 }//GEN-LAST:event_btAgregarNodoActionPerformed
 
 private void btAgregarRutaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAgregarRutaActionPerformed

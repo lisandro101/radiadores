@@ -69,6 +69,10 @@ public class RutaListModel extends AbstractListModel implements IModeloReiniciab
 
      */
     public void agregarElemento(NodoRuta nodo) {
+        if(nodos.contains(nodo)) {
+            nodos.remove(nodo);
+        }
+        
         nodos.add(nodo);
         fireIntervalAdded(this, nodos.size(), nodos.size());
     }
