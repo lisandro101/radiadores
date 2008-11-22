@@ -13,10 +13,10 @@ import radiadores.entidades.OrdenCompra;
  */
 public class BuscarOrdenCompraTableModel extends AbstractTableModel implements IModeloReiniciable {
     private static final long serialVersionUID = 1L;
-    private static final String[] NOMBRE_COLUMNAS = {"Nro Orden", "Proveedor", "Fecha Emisión", "Fecha Entrega"};
-    private static final boolean[] COLUMNAS_EDITABLES = {false, false, false, false};
+    private static final String[] NOMBRE_COLUMNAS = {"Nro Orden", "Proveedor", "Fecha Emisión", "Fecha Entrega", "Estado"};
+    private static final boolean[] COLUMNAS_EDITABLES = {false, false, false, false, false};
     private static final Class[] CLASE_COLUMNAS =
-        {String.class, String.class, Date.class, Date.class};
+        {String.class, String.class, Date.class, Date.class, String.class};
     
     private List<OrdenCompra> ordenes;
 
@@ -106,6 +106,9 @@ public class BuscarOrdenCompraTableModel extends AbstractTableModel implements I
                 break;
             case 3:
                 resultado = ordenes.get(fila).getFechaEstimadaEntrega();
+                break;    
+            case 4:
+                resultado = ordenes.get(fila).getEstado().toString();
                 break;    
         }
         return resultado;

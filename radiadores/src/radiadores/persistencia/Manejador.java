@@ -72,6 +72,18 @@ class Manejador {
         return result;
     }
     
+    <T> T obtenerPrimero(Class<T> clase, Query query) {
+        query.setMaxResults(1);
+        
+        List list = query.getResultList();
+        
+        return list.size() > 0 ? clase.cast(list.get(0)) : null;
+    }
+    
+    <T> T obtenerPrimero(Class<T> clase, String consulta) {
+        return obtenerPrimero(clase, em.createQuery(consulta));
+    }
+    
     Query crearConsulta(String query) {
         return em.createQuery(query);
     }

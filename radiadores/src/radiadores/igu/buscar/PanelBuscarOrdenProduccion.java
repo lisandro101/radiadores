@@ -63,7 +63,7 @@ public class PanelBuscarOrdenProduccion extends javax.swing.JDialog {
         tOrdenProduccion = new org.jdesktop.swingx.JXTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Orden Producción");
+        setTitle("Buscar Orden Producción");
 
         lbNombre.setText("Nro Orden:");
 
@@ -73,6 +73,8 @@ public class PanelBuscarOrdenProduccion extends javax.swing.JDialog {
                 btBuscarActionPerformed(evt);
             }
         });
+
+        tfCliente.setEditable(false);
 
         lbCliente.setText("Cliente");
 
@@ -181,19 +183,25 @@ private void btCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
 
 private void btBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBuscarActionPerformed
     tm.limpiarTableModel();
-    
-    Query consulta = FachadaPersistencia.getInstancia().crearConsulta("Select a from OrdenProduccion a where (a.nroOrdenProduccion) LIKE :nro and (a.nombreCliente) LIKE :cliente and a.borrado=false" );
-    consulta.setParameter("nro", "%"+tfNroOrden.getText()+"%");
-    consulta.setParameter("cliente", "%"+tfCliente.getText()+"%");
-    
-     
+    Query consulta;
+
+    if (tfNroOrden.getText().trim().equals("")) {
+        consulta = FachadaPersistencia.getInstancia().crearConsulta("Select a from OrdenProduccion a where a.borrado=false");
+        
+    } else {
+        consulta = FachadaPersistencia.getInstancia().crearConsulta("Select a from OrdenProduccion a where (a.nroOrdenProduccion) LIKE :nro and a.borrado=false"); //(a.nombreCliente) LIKE :cliente and a.borrado=false" );
+        consulta.setParameter("nro", tfNroOrden.getText());
+    //  consulta.setParameter("cliente", "%"+tfCliente.getText()+"%");
+    }
+
+
     ordenesProduccion = FachadaPersistencia.getInstancia().buscar(OrdenProduccion.class, consulta);
 
-    
+
     for (int i = 0; i < ordenesProduccion.size(); i++) {
         tm.agregarFila(ordenesProduccion.get(i));
     }
-    
+
 }//GEN-LAST:event_btBuscarActionPerformed
 
 private void btAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAceptarActionPerformed

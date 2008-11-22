@@ -34,7 +34,7 @@ public class OrdenProduccion implements Serializable, IPersistente {
     private String nombreCliente;
     private List<DetalleOrdenProduccion> detallesOrdenProduccion;
     private boolean borrado;
-    private String nroOrdenProduccion;
+    private int nroOrdenProduccion;
     private EstadoOrdenProd estado;
     
     public enum EstadoOrdenProd {
@@ -49,20 +49,20 @@ public class OrdenProduccion implements Serializable, IPersistente {
             this.nombre = nombre;
         }
         
-        public EstadoOrdenProd obtenerEstado(String valor) {
-        EstadoOrdenProd resultado = null;
-        if(valor.equals("Procesando")){
-            resultado= EstadoOrdenProd.PROCESANDO;
-        }else if(valor.equals("Terminado")){
-            resultado= EstadoOrdenProd.TERMINADO;
-        }else if(valor.equals("Anulado")){
-            resultado= EstadoOrdenProd.ANULADO;
-        }else if(valor.equals("Suspendido")){
-            resultado= EstadoOrdenProd.SUSPENDIDO;
-        }
-        
-        return resultado;
-    }
+//        public EstadoOrdenProd obtenerEstado(String valor) {
+//        EstadoOrdenProd resultado = null;
+//        if(valor.equals("Procesando")){
+//            resultado= EstadoOrdenProd.PROCESANDO;
+//        }else if(valor.equals("Terminado")){
+//            resultado= EstadoOrdenProd.TERMINADO;
+//        }else if(valor.equals("Anulado")){
+//            resultado= EstadoOrdenProd.ANULADO;
+//        }else if(valor.equals("Suspendido")){
+//            resultado= EstadoOrdenProd.SUSPENDIDO;
+//        }
+//        
+//        return resultado;
+//    }
 
         
         @Override
@@ -151,12 +151,12 @@ public class OrdenProduccion implements Serializable, IPersistente {
         return CAMPOS_UNICOS;
     }
     
-    @Column(name="nro_orden_produccion", length=100)
-    public String getNroOrdenProduccion() {
+    @Column(name="nro_orden_produccion")
+    public int getNroOrdenProduccion() {
         return nroOrdenProduccion;
     }
 
-    public void setNroOrdenProduccion(String nroOrden) {
+    public void setNroOrdenProduccion(int nroOrden) {
         this.nroOrdenProduccion = nroOrden;
     }
     

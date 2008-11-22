@@ -125,7 +125,7 @@ private void jTabbedPane1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRS
                 if(panelMateriaPrima.getMateriaPrima()== null){
                     limpiarCampos(panelMateriaPrima);
                 }else{ 
-                    avisoPanelCargado(panelMateriaPrima);
+//                    avisoPanelCargado(panelMateriaPrima);
                     guardarInfoPanel(panelMateriaPrima);
                     limpiarCampos(panelMateriaPrima);
                 }

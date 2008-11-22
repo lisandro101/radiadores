@@ -59,6 +59,18 @@ public class FachadaPersistencia {
                 clase, query);
     }
     
+    public <T extends IPersistente> T obtenerPrimero(
+            Class<T> clase, Query query) {
+        return FabricaManejadores.getInstancia().getManejador().obtenerPrimero(
+                clase, query);
+    }
+    
+    public <T extends IPersistente> T obtenerPrimero(
+            Class<T> clase, String consulta) {
+        return FabricaManejadores.getInstancia().getManejador().obtenerPrimero(
+                clase, consulta);
+    }
+    
     public Query crearConsulta(String query) {
         return FabricaManejadores.getInstancia().getManejador().crearConsulta(
                 query);

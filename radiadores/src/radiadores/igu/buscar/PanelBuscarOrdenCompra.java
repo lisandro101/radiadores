@@ -56,7 +56,7 @@ public class PanelBuscarOrdenCompra extends javax.swing.JDialog {
 
         pBuscar = new javax.swing.JPanel();
         lbNombre = new javax.swing.JLabel();
-        tfNombre = new javax.swing.JTextField();
+        tfNroOrden = new javax.swing.JTextField();
         btBuscar = new javax.swing.JButton();
         pBoton = new javax.swing.JPanel();
         btAceptar = new javax.swing.JButton();
@@ -65,7 +65,7 @@ public class PanelBuscarOrdenCompra extends javax.swing.JDialog {
         tOrdenCompra = new org.jdesktop.swingx.JXTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Buscar Maquinaria");
+        setTitle("Buscar Orden Compra");
 
         lbNombre.setText("Nro Orden:");
 
@@ -84,7 +84,7 @@ public class PanelBuscarOrdenCompra extends javax.swing.JDialog {
                 .addContainerGap()
                 .addComponent(lbNombre)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tfNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 389, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(tfNroOrden, javax.swing.GroupLayout.PREFERRED_SIZE, 389, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
                 .addComponent(btBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -95,7 +95,7 @@ public class PanelBuscarOrdenCompra extends javax.swing.JDialog {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(pBuscarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbNombre)
-                    .addComponent(tfNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tfNroOrden, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btBuscar))
                 .addGap(31, 31, 31))
         );
@@ -118,17 +118,17 @@ public class PanelBuscarOrdenCompra extends javax.swing.JDialog {
 
         tOrdenCompra.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Nro Orden", "Proveedor", "Fecha Emisión", "Fecha Entrega"
+                "Nro Orden", "Proveedor", "Fecha Emisión", "Fecha Entrega", "Estado"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -172,8 +172,15 @@ private void btCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
 private void btBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBuscarActionPerformed
     tm.limpiarTableModel();
     
-    Query consulta = FachadaPersistencia.getInstancia().crearConsulta("Select a from OrdenCompra a where (a.nroOrdenCompra) LIKE :nro and a.borrado=false" );
-    consulta.setParameter("nro", "%"+tfNombre.getText()+"%");
+    Query consulta; 
+    
+    if(tfNroOrden.getText().trim().equals("")){
+        consulta = FachadaPersistencia.getInstancia().crearConsulta("Select a from OrdenCompra a where a.borrado=false");
+    }else{
+        consulta= FachadaPersistencia.getInstancia().crearConsulta("Select a from OrdenCompra a where (a.nroOrdenCompra) LIKE :nro and a.borrado=false" );
+        consulta.setParameter("nro", tfNroOrden.getText());
+    }
+    
     
      
     ordenesCompra = FachadaPersistencia.getInstancia().buscar(OrdenCompra.class, consulta);
@@ -190,7 +197,7 @@ private void btAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
     OrdenCompra resultado;
  
     if(indice ==-1 ){
-        JOptionPane.showMessageDialog(this, "No se ha seleccionado maquina");
+        JOptionPane.showMessageDialog(this, "No se ha seleccionado Orden Compra");
     }else{
         resultado = tm.getFila(indice);
 //        if(tipoBusqueda == 1){
@@ -225,7 +232,7 @@ private void btAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
     private javax.swing.JPanel pBoton;
     private javax.swing.JPanel pBuscar;
     private org.jdesktop.swingx.JXTable tOrdenCompra;
-    private javax.swing.JTextField tfNombre;
+    private javax.swing.JTextField tfNroOrden;
     // End of variables declaration//GEN-END:variables
 
 }
