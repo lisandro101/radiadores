@@ -38,57 +38,59 @@ public class PanelDetalleRuta extends javax.swing.JDialog implements iBuscaCentr
     private Componente componente;
     private CentroDeTrabajo centroTrabajo;
     private List<ParteDeNodo> partesDeNodos;
-    private  PanelRutaFabricacion panelRuta;
     private List<Component> componentesObligatorios;
     private ProductoTerminado productoTerminado;
     private double cantComponente;
+    private boolean estaActualizando = false;
+    private static NodoRuta nodoDeRuta;
 
     /** Creates new form PanelDetalleRuta */
-    public PanelDetalleRuta(PanelRutaFabricacion pRuta) {
+    public PanelDetalleRuta(ProductoTerminado producto) {
         initComponents();
-        panelRuta = pRuta;
-        productoTerminado = panelRuta.getProductoTerminado();
+        productoTerminado = producto;
         inicializar();
+        estaActualizando = false;
     }
-  
-    public PanelDetalleRuta(PanelRutaFabricacion pRuta, NodoRuta nodo) {
+
+    public PanelDetalleRuta(ProductoTerminado producto, NodoRuta nodo) {
         initComponents();
-        panelRuta = pRuta;
-        productoTerminado = pRuta.getProductoTerminado();
+        productoTerminado = producto;
         inicializar();
         cargarNodo(nodo);
         tfCentroTrabajo.setEnabled(false);
         btBuscarCentroTrabajo.setVisible(false);
+        estaActualizando = true;
+        nodoDeRuta = nodo;
     }
-  
-    private void inicializar(){
-        horasLaborales= new ArrayList<HoraLaboral>();
+
+    private void inicializar() {
+        horasLaborales = new ArrayList<HoraLaboral>();
         tmEmpleado = new EmpleadoDetalleRutaTableModel(0);
-        
+
         partesDeNodos = new ArrayList<ParteDeNodo>();
         tmComponente = new ComponenteDetalleRutaTableModel(0);
-        
+
         jtEmpleado.setModel(tmEmpleado);
         jtComponente.setModel(tmComponente);
         jtEmpleado.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         jtComponente.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        componentesObligatorios = Arrays.asList((Component)tfCentroTrabajo);
-        
+        componentesObligatorios = Arrays.asList((Component) tfCentroTrabajo);
+
     }
-    
+
     private void cargarNodo(NodoRuta nodo) {
-        
+
         tfCentroTrabajo.setText(nodo.getCentroTrabajo().getNombre());
         centroTrabajo = nodo.getCentroTrabajo();
-        
+
         for (HoraLaboral hora : nodo.getHorasTrabajadas()) {
             tmEmpleado.agregarFila(hora);
         }
-        
+
         for (ParteDeNodo parteNodo : nodo.getMateriales()) {
             tmComponente.agregarFila(parteNodo);
-        }    
-       
+        }
+
     }
 
     /** This method is called from within the constructor to
@@ -482,11 +484,11 @@ public class PanelDetalleRuta extends javax.swing.JDialog implements iBuscaCentr
 
 private void btBuscarEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBuscarEliminarActionPerformed
     int filaSeleccionada = jtEmpleado.convertRowIndexToModel(jtEmpleado.getSelectedRow());
-    if(filaSeleccionada == -1){
+    if (filaSeleccionada == -1) {
         JOptionPane.showMessageDialog(this, "No se ha seleccionado Empleado");
-    }else{
+    } else {
         tmEmpleado.eliminarFila(filaSeleccionada);
-        
+
     }
 }//GEN-LAST:event_btBuscarEliminarActionPerformed
 
@@ -495,86 +497,85 @@ private void btCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
 }//GEN-LAST:event_btCancelarActionPerformed
 
 private void btBuscarCentroTrabajoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBuscarCentroTrabajoActionPerformed
-        PanelBuscarCentroTrabajo buscarCentroTrabajo = new PanelBuscarCentroTrabajo(this);
-        buscarCentroTrabajo.setModal(true);
-        buscarCentroTrabajo.setVisible(true);
+    PanelBuscarCentroTrabajo buscarCentroTrabajo = new PanelBuscarCentroTrabajo(this);
+    buscarCentroTrabajo.setModal(true);
+    buscarCentroTrabajo.setVisible(true);
 }//GEN-LAST:event_btBuscarCentroTrabajoActionPerformed
 
 private void btBuscarEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBuscarEmpleadoActionPerformed
-        PanelBuscarEmpleado buscarEmpleado = new PanelBuscarEmpleado(this);
-        buscarEmpleado.setModal(true); 
-        buscarEmpleado.setVisible(true);
+    PanelBuscarEmpleado buscarEmpleado = new PanelBuscarEmpleado(this);
+    buscarEmpleado.setModal(true);
+    buscarEmpleado.setVisible(true);
 }//GEN-LAST:event_btBuscarEmpleadoActionPerformed
 
 private void btBuscarComponenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBuscarComponenteActionPerformed
-        PanelBuscarProductoGral buscarComponente = new PanelBuscarProductoGral(this);
-        buscarComponente.setModal(true); 
-        buscarComponente.setVisible(true);
+    PanelBuscarProductoGral buscarComponente = new PanelBuscarProductoGral(this);
+    buscarComponente.setModal(true);
+    buscarComponente.setVisible(true);
 }//GEN-LAST:event_btBuscarComponenteActionPerformed
 
 private void btAgregarEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAgregarEmpleadoActionPerformed
-        
-        if(empleado == null || tfHoras.getText().trim().equals("")){
-            JOptionPane.showMessageDialog(this, "Existen campos vacios");
-        }else{
-            HoraLaboral horaLaboral= new HoraLaboral();
-            horaLaboral.setCantidad(Integer.parseInt(tfHoras.getText()));
-            horaLaboral.setEmpleado(empleado);
-            
-            if(ValidacionBuscar.getInstancia().empleadoEstaCargadoEnTabla(tmEmpleado, horaLaboral)){
-                    JOptionPane.showMessageDialog(this, "El Empleado ya se encuentra asignado");
-            }else{
-                tmEmpleado.agregarFila(horaLaboral);
-                Util.getInstancia().limpiarCampos(pEmpleadoAgregar);
-            }
+
+    if (empleado == null || tfHoras.getText().trim().equals("")) {
+        JOptionPane.showMessageDialog(this, "Existen campos vacios");
+    } else {
+        HoraLaboral horaLaboral = new HoraLaboral();
+        horaLaboral.setCantidad(Integer.parseInt(tfHoras.getText()));
+        horaLaboral.setEmpleado(empleado);
+
+        if (ValidacionBuscar.getInstancia().empleadoEstaCargadoEnTabla(tmEmpleado, horaLaboral)) {
+            JOptionPane.showMessageDialog(this, "El Empleado ya se encuentra asignado");
+        } else {
+            tmEmpleado.agregarFila(horaLaboral);
+            Util.getInstancia().limpiarCampos(pEmpleadoAgregar);
         }
+    }
 }//GEN-LAST:event_btAgregarEmpleadoActionPerformed
 
 private void btAgregarComponenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAgregarComponenteActionPerformed
-        if(componente == null || tfCantidad.getText().trim().equals("")){
-            JOptionPane.showMessageDialog(this, "Existen campos vacios");
-        }else{
-            ParteDeNodo parteDeNodo= new ParteDeNodo();
-            parteDeNodo.setCantidad(Double.parseDouble(tfCantidad.getText()));
-            parteDeNodo.setComponente(componente);
-            
-            if(ValidacionBuscar.getInstancia().parteNodoRutaEstaCargadaEnTabla(tmComponente, componente)){
-                    JOptionPane.showMessageDialog(this, "El Componente ya se encuentra asignado");
-            }else{
-                tmComponente.agregarFila(parteDeNodo);
-                Util.getInstancia().limpiarCampos(pComponenteAgregar);
-            }
+    if (componente == null || tfCantidad.getText().trim().equals("")) {
+        JOptionPane.showMessageDialog(this, "Existen campos vacios");
+    } else {
+        ParteDeNodo parteDeNodo = new ParteDeNodo();
+        parteDeNodo.setCantidad(Double.parseDouble(tfCantidad.getText()));
+        parteDeNodo.setComponente(componente);
+
+        if (ValidacionBuscar.getInstancia().parteNodoRutaEstaCargadaEnTabla(tmComponente, componente)) {
+            JOptionPane.showMessageDialog(this, "El Componente ya se encuentra asignado");
+        } else {
+            tmComponente.agregarFila(parteDeNodo);
+            Util.getInstancia().limpiarCampos(pComponenteAgregar);
         }
+    }
 }//GEN-LAST:event_btAgregarComponenteActionPerformed
 
 private void btEliminarComponenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEliminarComponenteActionPerformed
     int filaSeleccionada = jtComponente.convertRowIndexToModel(jtComponente.getSelectedRow());
-    if(filaSeleccionada == -1){
+    if (filaSeleccionada == -1) {
         JOptionPane.showMessageDialog(this, "No se ha seleccionado Componente");
-    }else{
+    } else {
         tmComponente.eliminarFila(filaSeleccionada);
-        
+
     }
 }//GEN-LAST:event_btEliminarComponenteActionPerformed
 
 private void btGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btGuardarActionPerformed
-    if(tfCentroTrabajo.getText().equals("")){
+    if (tfCentroTrabajo.getText().equals("")) {
         JOptionPane.showMessageDialog(this, "Existen campos obligatorios sin completar.");
-    }
-    else{
-        NodoRuta nodoRuta = crearNodo();
-        if(ValidacionBuscar.getInstancia().estaDuplicado(nodoRuta)){
-            JOptionPane.showMessageDialog(this, "El Centro de Trabajo ya se encuentra cargado en el sistema.");
+    } else {
+        if (!estaActualizando) {
+            nodoDeRuta = new NodoRuta();  
         }
-        else{
-                panelRuta.setNodoRuta(nodoRuta);
-                nodoRuta = null;
-                dispose();
+        
+        nodoDeRuta = setearNodo(nodoDeRuta);
+        
+        if (ValidacionBuscar.getInstancia().estaDuplicado(nodoDeRuta)) {
+            JOptionPane.showMessageDialog(this, "El Centro de Trabajo ya se encuentra cargado en el sistema.");
+        } else {
+            dispose();
         }
     }
 }//GEN-LAST:event_btGuardarActionPerformed
-
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btAgregarComponente;
     private javax.swing.JButton btAgregarEmpleado;
@@ -612,9 +613,9 @@ private void btGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
     private javax.swing.JTextField tfEmpleado;
     private javax.swing.JTextField tfHoras;
     // End of variables declaration//GEN-END:variables
-
-    public void setEmpleado(Empleado emp){
-        empleado =  emp;
+    
+    public void setEmpleado(Empleado emp) {
+        empleado = emp;
         tfEmpleado.setText(emp.getNombre());
     }
 //    public void agregarMateriaPrima(MateriaPrima mat){
@@ -625,13 +626,13 @@ private void btGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
 //        
 //        
 //    }
-    public void setComponente(Componente comp){
+    public void setComponente(Componente comp) {
         componente = comp;
         tfComponente.setText(comp.getNombre());
-        tfCantidadTotal.setText(""+cantComponente);
+        tfCantidadTotal.setText("" + cantComponente);
     }
-    
-    public ComponenteDetalleRutaTableModel getTableModelComponente(){
+
+    public ComponenteDetalleRutaTableModel getTableModelComponente() {
         return tmComponente;
     }
 
@@ -640,26 +641,25 @@ private void btGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
         centroTrabajo = ct;
         tfCentroTrabajo.setText(ct.getNombre());
     }
-    
-    private NodoRuta crearNodo(){
-        NodoRuta nodo = new NodoRuta();
+
+    private NodoRuta setearNodo(NodoRuta nodo) {
+
         horasLaborales = tmEmpleado.getFilas();
         partesDeNodos = tmComponente.getFilas();
-        
+
         nodo.setCentroTrabajo(centroTrabajo);
         nodo.setHorasTrabajadas(horasLaborales);
         nodo.setMateriales(partesDeNodos);
-        
+
         return nodo;
     }
-    
+
     @Override
     public List<Component> getComponentesObligatorios() {
         return componentesObligatorios;
     }
 
     public ProductoTerminado getProductoTerminado() {
-        productoTerminado = panelRuta.getProductoTerminado();
         return productoTerminado;
     }
 
@@ -670,6 +670,24 @@ private void btGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
     public void setCantComponente(double cantComponente) {
         this.cantComponente = cantComponente;
     }
+
+    public static synchronized NodoRuta obtenerNodo(ProductoTerminado producto, NodoRuta nodo) {
+        PanelDetalleRuta panelDetalleRuta = new PanelDetalleRuta(producto, nodo);
+
+        panelDetalleRuta.setLocationRelativeTo(null);
+        panelDetalleRuta.setModal(true);
+        panelDetalleRuta.setVisible(true);
+
+        return nodoDeRuta;
+    }
     
-    
+        public static synchronized NodoRuta obtenerNodo(ProductoTerminado producto) {
+        PanelDetalleRuta panelDetalleRuta = new PanelDetalleRuta(producto);
+
+        panelDetalleRuta.setLocationRelativeTo(null);
+        panelDetalleRuta.setModal(true);
+        panelDetalleRuta.setVisible(true);
+
+        return nodoDeRuta;
+    }
 }
