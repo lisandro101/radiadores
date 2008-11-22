@@ -69,10 +69,7 @@ public class GestorOrdenCompra {
         ProductoComponente productoComponente;
         
         for (DetalleOrdenCompra detalle : orden.getDetallesOrdenCompra()) {
-            //cantNueva= detalle.getComponente().getStock();
             cantNueva= detalle.getCantidad();
-//            System.out.println("nombre componente: "+ detalle.getComponente().getNombre());
-//            System.out.println("nueva cantidad de materia prima: " +cantNueva);
             if(detalle.getComponente().getTipo()=='M'){
                 materiaPrima =  FachadaPersistencia.getInstancia().buscar(MateriaPrima.class, (Object)detalle.getComponente().getId());
                 cantStock= materiaPrima.getStock()+ cantNueva;
