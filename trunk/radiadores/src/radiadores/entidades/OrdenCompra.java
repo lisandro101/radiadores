@@ -35,12 +35,12 @@ public class OrdenCompra implements Serializable, IPersistente {
     private Date fecha;
     private Date fechaEstimadaEntrega;
     private List<DetalleOrdenCompra> detallesOrdenCompra;
-    private String nroOrdenCompra;
+    private int nroOrdenCompra;
     private boolean borrado;
     private EstadoOrdenCompra estado;
     
     public enum EstadoOrdenCompra {
-        PROCESANDO ("Procesando"),
+        PENDIENTE ("Pendiente"),
         TERMINADO ("Terminado"),
         ANULADO ("Anulado");
         
@@ -125,11 +125,11 @@ public class OrdenCompra implements Serializable, IPersistente {
     }
     
     @Column(name="nro_orden_compra")
-    public String getNroOrdenCompra() {
+    public int getNroOrdenCompra() {
         return nroOrdenCompra;
     }
 
-    public void setNroOrdenCompra(String NroOrdenCompra) {
+    public void setNroOrdenCompra(int NroOrdenCompra) {
         this.nroOrdenCompra = NroOrdenCompra;
     }
     

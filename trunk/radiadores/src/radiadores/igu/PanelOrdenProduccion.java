@@ -372,8 +372,8 @@ private void btModificarOrdenProduccionActionPerformed(java.awt.event.ActionEven
     if(opcion == JOptionPane.YES_OPTION) {
         actualizarOrdenProduccion();
         FachadaPersistencia.getInstancia().actualizar(ordenProduccion, true);
-        Util.getInstancia().limpiarCampos(this);
-        ordenProduccion=null;            
+//        Util.getInstancia().limpiarCampos(this);
+//        ordenProduccion=null;            
         //inicializarBotones();
     }
 }//GEN-LAST:event_btModificarOrdenProduccionActionPerformed
@@ -387,6 +387,7 @@ private void btAnularOrdenProduccionActionPerformed(java.awt.event.ActionEvent e
         //ordenProduccion.setBorrado(true);
         if(GestorOrdenProduccion.getInstancia().anularOrden(ordenProduccion)){
             FachadaPersistencia.getInstancia().actualizar(ordenProduccion, true);
+            tfEstado.setText(ordenProduccion.getEstado().toString());
         }else{
             JOptionPane.showMessageDialog(this, "No es posible anular la orden."+"\nEsta en estado: "+ordenProduccion.getEstado().toString());
         }
@@ -432,18 +433,24 @@ private void btAgregarProductoActionPerformed(java.awt.event.ActionEvent evt) {/
 
 private void btProcesarOrdenProduccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btProcesarOrdenProduccionActionPerformed
     crearOrdenProduccion();
-    if(ValidacionBuscar.getInstancia().estaDuplicado(ordenProduccion)){
+    if (ValidacionBuscar.getInstancia().estaDuplicado(ordenProduccion)) {
         JOptionPane.showMessageDialog(this, "Orden ya registrada");
-    }else{
+    } else {
 //        if(ValidacionBuscar.getInstancia().existenCamposVacios(this)){
 //            JOptionPane.showMessageDialog(this, "Existen campos vacios");
 //        }else{
-            
+        if(tfCliente.getText().trim().equals("") || !(tm.getRowCount() >= 1)){
+            JOptionPane.showMessageDialog(this, "Existen campos vacios");
+        } else {
             GestorOrdenProduccion.getInstancia().procesarOrden(ordenProduccion);
             tfEstado.setText(ordenProduccion.getEstado().toString());
-            ordenProduccion.setEstado(ordenProduccion.getEstado());
+            tfNumero.setText(GestorOrdenProduccion.getInstancia().obtenerNroOrden());
+            //ordenProduccion.setEstado(ordenProduccion.getEstado());
+            ordenProduccion.setNroOrdenProduccion(Integer.parseInt(tfNumero.getText()));
             FachadaPersistencia.getInstancia().actualizar(ordenProduccion, true);
-//        }
+            btProcesarOrdenProduccion.setEnabled(false);
+        }
+
     }
 }//GEN-LAST:event_btProcesarOrdenProduccionActionPerformed
 
@@ -457,6 +464,7 @@ private void btBuscarOrdenProduccionActionPerformed(java.awt.event.ActionEvent e
 private void btLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLimpiarActionPerformed
     Util.getInstancia().limpiarCampos(this);
     ordenProduccion=null;
+    btProcesarOrdenProduccion.setEnabled(true);
 }//GEN-LAST:event_btLimpiarActionPerformed
 
 
@@ -498,20 +506,24 @@ private void btLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
      private OrdenProduccion crearOrdenProduccion(){
         ordenProduccion= new OrdenProduccion();
         
-        ordenProduccion.setNroOrdenProduccion(tfNumero.getText());
+        //ordenProduccion.setNroOrdenProduccion(Integer.parseInt(tfNumero.getText()));
         ordenProduccion.setNombreCliente(tfCliente.getText());
         ordenProduccion.setDetallesOrdenProduccion(tm.getFilas());
         ordenProduccion.setFecha(jdFecha.getDate());
         ordenProduccion.setFechaEstimadaEntrega(jdFechaEntrega.getDate());
         
+         for (DetalleOrdenProduccion detalle : ordenProduccion.getDetallesOrdenProduccion()) {
+             detalle.setOrdenProduccion(ordenProduccion);
+         }
         
         return ordenProduccion;
     }
 
     private void cargarPantallaOrdenProduccion(OrdenProduccion orden){
+        Util.getInstancia().limpiarCampos(this);
         ordenProduccion = orden;
         
-        tfNumero.setText(orden.getNroOrdenProduccion());
+        tfNumero.setText(Integer.toString(orden.getNroOrdenProduccion()));
         tfCliente.setText(orden.getNombreCliente());
         tm.agregarFilas(orden.getDetallesOrdenProduccion());
         jdFecha.setDate(orden.getFecha());
@@ -520,7 +532,7 @@ private void btLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
     }
     
     private void actualizarOrdenProduccion(){
-        ordenProduccion.setNroOrdenProduccion(tfNumero.getText());
+        ordenProduccion.setNroOrdenProduccion(Integer.parseInt(tfNumero.getText()));
         ordenProduccion.setNombreCliente(tfCliente.getText());
         ordenProduccion.setDetallesOrdenProduccion(tm.getFilas());
         ordenProduccion.setFecha(jdFecha.getDate());
