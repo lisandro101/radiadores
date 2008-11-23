@@ -1,5 +1,6 @@
 package radiadores;
 
+import java.util.UUID;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import radiadores.entidades.Cargo;
@@ -42,5 +43,4 @@ public class Main {
             
         }.start();
     }
-
 }
