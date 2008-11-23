@@ -404,7 +404,7 @@ dispose();
 
 private void btBuscarProdTerminadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBuscarProdTerminadoActionPerformed
     Query consulta;
-    int indice;
+//    int indice;
     tmBuscar.limpiarTableModel();
     
     if( tipo== Tipo.PANEL_DETALLE_ESTRUCTURA || tipo==Tipo.PANEL_ORDEN_COMPRA){
@@ -459,6 +459,16 @@ private void btBuscarProdTerminadoActionPerformed(java.awt.event.ActionEvent evt
             
         }
     
+    }else if(tipo==Tipo.PANEL_ORDEN_PRODUCCION){
+        
+        consulta = FachadaPersistencia.getInstancia().crearConsulta("Select a from RutaFabricacion a where a.borrado=false");
+        
+        List<RutaFabricacion> rutas = FachadaPersistencia.getInstancia().buscar(RutaFabricacion.class, consulta);
+        
+        for (RutaFabricacion rutaFabricacion : rutas) {
+            componentes.add(rutaFabricacion.getProductoTerminado());
+        }
+        
     }else{
         consulta = FachadaPersistencia.getInstancia().crearConsulta("Select a from Componente a where ( (a.nombre) LIKE :nombre or (a.codigo) LIKE :codigo ) and a.borrado=false and a.tipo= :tipo" );
         consulta.setParameter("nombre", "%"+tfNombre.getText()+"%");
@@ -477,11 +487,15 @@ private void btBuscarProdTerminadoActionPerformed(java.awt.event.ActionEvent evt
         componentes= FachadaPersistencia.getInstancia().buscar(Componente.class, consulta);
     }
     
-    indice=componentes.size();
-    for (int i = 0; i < indice; i++) {
-        tmBuscar.agregarFila(componentes.get(i));
+//    indice=componentes.size();
+//    for (int i = 0; i < indice; i++) {
+//        tmBuscar.agregarFila(componentes.get(i));
+//    }
+    if(componentes != null){
+        for (Componente componente : componentes) {
+            tmBuscar.agregarFila(componente);
+        }
     }
-       
 }//GEN-LAST:event_btBuscarProdTerminadoActionPerformed
 
 
