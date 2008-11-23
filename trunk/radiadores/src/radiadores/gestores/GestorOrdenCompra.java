@@ -5,9 +5,11 @@
 
 package radiadores.gestores;
 
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Query;
 import javax.swing.JOptionPane;
+import radiadores.entidades.Componente;
 import radiadores.entidades.DetalleOrdenCompra;
 import radiadores.entidades.DetalleOrdenProduccion;
 import radiadores.entidades.EstructuraDeProducto;
@@ -18,6 +20,8 @@ import radiadores.entidades.OrdenProduccion;
 import radiadores.entidades.OrdenProduccion.EstadoOrdenProd;
 import radiadores.entidades.ParteDeEstructura;
 import radiadores.entidades.ProductoComponente;
+import radiadores.entidades.ProductoTerminado;
+import radiadores.igu.model.OrdenCompraTableModel;
 import radiadores.persistencia.FachadaPersistencia;
 
 /**
@@ -46,6 +50,7 @@ public class GestorOrdenCompra {
     public boolean anularOrden(OrdenCompra orden){
         if(orden.getEstado()==EstadoOrdenCompra.PENDIENTE){
             orden.setEstado(EstadoOrdenCompra.ANULADO);
+            FachadaPersistencia.getInstancia().actualizar(orden, true);
             return true;
         }
         return false;
@@ -55,6 +60,7 @@ public class GestorOrdenCompra {
         if(orden.getEstado()==EstadoOrdenCompra.PENDIENTE){
             sumarMateriales(orden);
             orden.setEstado(EstadoOrdenCompra.TERMINADO);
+            FachadaPersistencia.getInstancia().actualizar(orden, true);
             return true;
         }
         return false;
@@ -94,29 +100,78 @@ public class GestorOrdenCompra {
         
         return Integer.toString(ultimaOrden + 1);
     }
-//    private void sumarMateriales(OrdenCompra orden){
-//
-//        double cantStock;
-//        double cantNecesaria;
-//        
-//        for (DetalleOrdenProduccion detalle : orden.getDetallesOrdenProduccion()) {
-//
-//                for (ParteDeEstructura parte : estructura.getPartes()) {
-//                    cantStock= parte.getComponente().getStock();
-//                    cantNecesaria= parte.getCantidad()*detalle.getCantidad();
-//                    
-//                    cantStock= cantStock-cantNecesaria;
-//                    parte.getComponente().setStock(cantStock);
-//                    
-//                    if(parte.getComponente().getTipo()=='M'){
-//                        FachadaPersistencia.getInstancia().actualizar((MateriaPrima)parte.getComponente(), true);
-//                    }else{
-//                        FachadaPersistencia.getInstancia().actualizar((ProductoComponente)parte.getComponente(), true);
-//                    }
-//                    
-//                 }
-//             }
-//    }
+
+    public void generarOrdenAutomatica(OrdenCompraTableModel tm){
+        Query consulta;
+        List<Componente> componentes;
+        double stockAntiguo;
+        double stockReservaAntiguo;
+        double stockNecesario;
+        double cantEnOrdenProdSuspendida;
+        double cantEnOrdenCompraPendiente;
+                
+        consulta = FachadaPersistencia.getInstancia().crearConsulta("Select a from Componente a where  a.borrado=false and a.tipo IN (M, C)");
+        componentes= FachadaPersistencia.getInstancia().buscar(Componente.class, consulta);     
+        
+        for (Componente componente : componentes) {
+            stockAntiguo= componente.getStock();
+            //stockReservaAntiguo= componente.getStockReserva();
+            stockReservaAntiguo= 50.666;
+            
+            
+            
+            
+            
+            
+            //stockNecesario= stockAntiguo - ordenesProduccionSuspendidas + oredenesCompraPendientes;
+            stockNecesario=25.666;
+            
+            if(stockReservaAntiguo>stockNecesario){
+                stockNecesario= stockReservaAntiguo;
+            }
+            
+            DetalleOrdenCompra detalle = new DetalleOrdenCompra();
+            detalle.setComponente(componente);
+            detalle.setCantidad(stockNecesario);     
+            tm.agregarFila(detalle);
+        }
+    }
 
  
+    private double calcularOrdenProdSuspendida(Componente componente){
+        double resultado=0;
+        
+        Query consulta;
+        List<Componente> componentes;
+        List<ParteDeEstructura> partes;
+        ProductoTerminado productoTerminado;
+        List<DetalleOrdenProduccion> detallesOrdenProduccionTemp;
+        List<DetalleOrdenProduccion> detallesOrdenProduccion = new ArrayList<DetalleOrdenProduccion>();
+        
+        consulta = FachadaPersistencia.getInstancia().crearConsulta("Select a from ParteDeEstructura a where a.componente= :comp and  a.borrado=false");
+        consulta.setParameter("comp", componente);
+        partes= FachadaPersistencia.getInstancia().buscar(ParteDeEstructura.class, consulta);
+        
+        for (ParteDeEstructura parteDeEstructura : partes) {
+            productoTerminado= parteDeEstructura.getEstructura().getProductoTerminado();
+            
+            consulta = FachadaPersistencia.getInstancia().crearConsulta("Select a from DetalleOrdenProduccion a where a.productoTerminado= :termiando and  a.borrado=false");
+            consulta.setParameter("terminado", productoTerminado);
+            detallesOrdenProduccionTemp= FachadaPersistencia.getInstancia().buscar(DetalleOrdenProduccion.class, consulta);
+            
+            for (DetalleOrdenProduccion detalleOrdenProduccion : detallesOrdenProduccionTemp) {
+                if(detalleOrdenProduccion.getOrdenProduccion().getEstado()== EstadoOrdenProd.SUSPENDIDO){
+                    detallesOrdenProduccion.add(detalleOrdenProduccion);
+                } 
+            }
+            
+            
+            
+        }
+        
+        componentes= FachadaPersistencia.getInstancia().buscar(Componente.class, consulta);  
+        
+        
+        return resultado;
+    }
 }

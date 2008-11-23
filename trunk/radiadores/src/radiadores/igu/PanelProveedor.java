@@ -7,6 +7,7 @@ import javax.swing.JOptionPane;
 import radiadores.igu.buscar.PanelBuscarProveedor;
 import radiadores.utils.Util;
 import radiadores.entidades.Proveedor;
+import radiadores.gestores.GestorProveedor;
 import radiadores.igu.buscar.PanelBuscarProductoGral.Tipo;
 import radiadores.igu.buscar.ValidacionBuscar;
 import radiadores.persistencia.FachadaPersistencia;
@@ -232,9 +233,8 @@ private void btAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
 
 private void btEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEliminarActionPerformed
     
-    if(proveedor != null && proveedor.getComponentes().size() > 0) {
-        JOptionPane.showMessageDialog(this, "No puede eliminar un proveedor " +
-                "que tiene componentes asignados");
+    if(!GestorProveedor.getInstancia().sePuedeEliminar(proveedor)) {
+        JOptionPane.showMessageDialog(this, "No se puede eliminar el proveedor, se encuentra asignado");
     } else {
         int opcion = JOptionPane.showConfirmDialog(this,
                     "¿Seguro desea eliminar al Proveedor?", "Aceptar",

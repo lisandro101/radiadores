@@ -14,6 +14,7 @@ import radiadores.entidades.OrdenProduccion;
 import radiadores.entidades.OrdenProduccion.EstadoOrdenProd;
 import radiadores.entidades.ParteDeEstructura;
 import radiadores.entidades.ProductoComponente;
+import radiadores.entidades.ProductoTerminado;
 import radiadores.persistencia.FachadaPersistencia;
 
 /**
@@ -54,6 +55,7 @@ public class GestorOrdenProduccion {
     public boolean anularOrden(OrdenProduccion orden) {
         if (orden.getEstado() == EstadoOrdenProd.SUSPENDIDO) {
             orden.setEstado(EstadoOrdenProd.ANULADO);
+            FachadaPersistencia.getInstancia().actualizar(orden, true);
             return true;
         }
         return false;
@@ -62,6 +64,8 @@ public class GestorOrdenProduccion {
     public boolean terminarOrden(OrdenProduccion orden) {
         if (orden.getEstado() == EstadoOrdenProd.PROCESANDO) {
             orden.setEstado(EstadoOrdenProd.TERMINADO);
+            sumarProductoTerminado(orden);
+            FachadaPersistencia.getInstancia().actualizar(orden, true);
             return true;
         }
         return false;
@@ -144,6 +148,19 @@ public class GestorOrdenProduccion {
                 FachadaPersistencia.getInstancia().actualizar(ordenProduccion, true);
             }
             
+        }
+    }
+    
+    private void sumarProductoTerminado(OrdenProduccion orden){
+        List<DetalleOrdenProduccion> detalle= orden.getDetallesOrdenProduccion();
+        ProductoTerminado terminado;
+        double stockAnterior;
+        for (DetalleOrdenProduccion detalleOrdenProduccion : detalle) {
+            terminado= detalleOrdenProduccion.getProductoTerminado();
+            stockAnterior= terminado.getStock();
+            terminado.setStock(stockAnterior+ detalleOrdenProduccion.getCantidad());
+            FachadaPersistencia.getInstancia().actualizar(terminado, true);
+                    
         }
         
     }

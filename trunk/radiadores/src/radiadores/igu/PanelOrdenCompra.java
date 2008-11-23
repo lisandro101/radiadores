@@ -12,6 +12,7 @@ import radiadores.entidades.OrdenCompra;
 import radiadores.entidades.Proveedor;
 import radiadores.gestores.GestorOrdenCompra;
 import radiadores.gestores.GestorOrdenProduccion;
+import radiadores.gestores.GestorProveedor;
 import radiadores.igu.buscar.PanelBuscarOrdenCompra;
 import radiadores.igu.buscar.PanelBuscarProductoGral;
 import radiadores.igu.buscar.PanelBuscarProductoGral.Tipo;
@@ -424,6 +425,7 @@ private void tfArticuloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
 }//GEN-LAST:event_tfArticuloActionPerformed
 
 private void btBuscarArticuloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBuscarArticuloActionPerformed
+
     PanelBuscarProductoGral buscarComponente = new PanelBuscarProductoGral(this);
     buscarComponente.setModal(true); 
     buscarComponente.setVisible(true);
@@ -449,7 +451,7 @@ private void btAgregarArticuloActionPerformed(java.awt.event.ActionEvent evt) {/
         if(proveedor==null){
             JOptionPane.showMessageDialog(this, "Debe asignar proveedor");
         }else{
-            if(!proveedor.getComponentes().contains(componente)){
+            if(!GestorProveedor.getInstancia().proveeComponente(componente, proveedor)){
                 JOptionPane.showMessageDialog(this, "El proveedor no provee el componente seleccionado");
         
             }else{
