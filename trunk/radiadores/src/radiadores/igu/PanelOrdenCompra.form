@@ -395,6 +395,14 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btLimpiarActionPerformed"/>
           </Events>
         </Component>
+        <Component class="javax.swing.JButton" name="btGenerarOrdenAuto">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Generar Orden Auto"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btGenerarOrdenAutoActionPerformed"/>
+          </Events>
+        </Component>
       </SubComponents>
     </Container>
   </SubComponents>

@@ -13,7 +13,7 @@ import radiadores.igu.model.OrdenCompraTableModel;
  *
  * @author  stafoxter
  */
-public class PanelOrdenCompraAutomatica extends javax.swing.JFrame {
+public class PanelOrdenCompraAutomatica extends javax.swing.JDialog {
 
     OrdenCompraTableModel tm;
     public PanelOrdenCompraAutomatica() {
@@ -29,6 +29,9 @@ public class PanelOrdenCompraAutomatica extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tProductos = new org.jdesktop.swingx.JXTable();
         jLabel1 = new javax.swing.JLabel();
+        pBoton = new javax.swing.JPanel();
+        btAceptar = new javax.swing.JButton();
+        btCancelar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -63,13 +66,29 @@ public class PanelOrdenCompraAutomatica extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel1.setText("Orden Compra Automática");
 
+        btAceptar.setText("Aceptar");
+        btAceptar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btAceptarActionPerformed(evt);
+            }
+        });
+        pBoton.add(btAceptar);
+
+        btCancelar.setText("Cancelar");
+        btCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btCancelarActionPerformed(evt);
+            }
+        });
+        pBoton.add(btCancelar);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                .addComponent(jLabel1)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.CENTER)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.CENTER, javax.swing.GroupLayout.DEFAULT_SIZE, 302, Short.MAX_VALUE)
+            .addComponent(pBoton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 302, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -77,12 +96,21 @@ public class PanelOrdenCompraAutomatica extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(64, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE)
+                .addGap(27, 27, 27)
+                .addComponent(pBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+private void btAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAceptarActionPerformed
+
+}//GEN-LAST:event_btAceptarActionPerformed
+
+private void btCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCancelarActionPerformed
+dispose();
+}//GEN-LAST:event_btCancelarActionPerformed
 
     /**
     * @param args the command line arguments
@@ -94,8 +122,11 @@ public class PanelOrdenCompraAutomatica extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btAceptar;
+    private javax.swing.JButton btCancelar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JPanel pBoton;
     private org.jdesktop.swingx.JXTable tProductos;
     // End of variables declaration//GEN-END:variables
     private void cargarTabla(){
