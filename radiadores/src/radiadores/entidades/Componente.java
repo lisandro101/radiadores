@@ -44,6 +44,7 @@ public class Componente implements Serializable, IPersistente {
     private boolean borrado;
     private char tipo;
     private double stock;
+    private double stockReserva;
     /**
      * Constructor
      */
@@ -153,7 +154,7 @@ public class Componente implements Serializable, IPersistente {
         return hash;
     }
 
-     @Column(name="stock")
+    @Column(name="stock")
     public double getStock() {
         return stock;
     }
@@ -161,4 +162,15 @@ public class Componente implements Serializable, IPersistente {
     public void setStock(double stock) {
         this.stock = stock;
     }
+    
+    @Column(name="stock_reserva")
+    public double getStockReserva() {
+        return stockReserva;
+    }
+
+    public void setStockReserva(double stockReserva) {
+        this.stockReserva = stockReserva;
+    }
+    
+    
 }

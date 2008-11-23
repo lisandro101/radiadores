@@ -110,21 +110,15 @@ public class GestorOrdenCompra {
         double cantEnOrdenProdSuspendida;
         double cantEnOrdenCompraPendiente;
                 
-        consulta = FachadaPersistencia.getInstancia().crearConsulta("Select a from Componente a where  a.borrado=false and a.tipo IN (M, C)");
+        consulta = FachadaPersistencia.getInstancia().crearConsulta("Select a from Componente a where  a.borrado=false and a.tipo IN (:tipo1, :tipo2)");
+        consulta.setParameter("tipo1", 'C');
+        consulta.setParameter("tipo2", 'M');
         componentes= FachadaPersistencia.getInstancia().buscar(Componente.class, consulta);     
         
         for (Componente componente : componentes) {
             stockAntiguo= componente.getStock();
-            //stockReservaAntiguo= componente.getStockReserva();
-            stockReservaAntiguo= 50.666;
-            
-            
-            
-            
-            
-            
-            //stockNecesario= stockAntiguo - ordenesProduccionSuspendidas + oredenesCompraPendientes;
-            stockNecesario=25.666;
+            stockReservaAntiguo= componente.getStockReserva();
+            stockNecesario= stockAntiguo - calcularOrdenProdSuspendida(componente) + calcularOredenesCompraPendientes(componente);
             
             if(stockReservaAntiguo>stockNecesario){
                 stockNecesario= stockReservaAntiguo;
@@ -139,14 +133,14 @@ public class GestorOrdenCompra {
 
  
     private double calcularOrdenProdSuspendida(Componente componente){
-        double resultado=0;
+        double resultado=0.0;
         
         Query consulta;
-        List<Componente> componentes;
+        //List<Componente> componentes;
         List<ParteDeEstructura> partes;
         ProductoTerminado productoTerminado;
         List<DetalleOrdenProduccion> detallesOrdenProduccionTemp;
-        List<DetalleOrdenProduccion> detallesOrdenProduccion = new ArrayList<DetalleOrdenProduccion>();
+       // List<DetalleOrdenProduccion> detallesOrdenProduccion = new ArrayList<DetalleOrdenProduccion>();
         
         consulta = FachadaPersistencia.getInstancia().crearConsulta("Select a from ParteDeEstructura a where a.componente= :comp and  a.borrado=false");
         consulta.setParameter("comp", componente);
@@ -155,13 +149,15 @@ public class GestorOrdenCompra {
         for (ParteDeEstructura parteDeEstructura : partes) {
             productoTerminado= parteDeEstructura.getEstructura().getProductoTerminado();
             
-            consulta = FachadaPersistencia.getInstancia().crearConsulta("Select a from DetalleOrdenProduccion a where a.productoTerminado= :termiando and  a.borrado=false");
+            consulta = FachadaPersistencia.getInstancia().crearConsulta("Select a from DetalleOrdenProduccion a where a.productoTerminado= :terminado and  a.borrado=false");
             consulta.setParameter("terminado", productoTerminado);
             detallesOrdenProduccionTemp= FachadaPersistencia.getInstancia().buscar(DetalleOrdenProduccion.class, consulta);
             
             for (DetalleOrdenProduccion detalleOrdenProduccion : detallesOrdenProduccionTemp) {
                 if(detalleOrdenProduccion.getOrdenProduccion().getEstado()== EstadoOrdenProd.SUSPENDIDO){
-                    detallesOrdenProduccion.add(detalleOrdenProduccion);
+                    //detallesOrdenProduccion.add(detalleOrdenProduccion); //al pedo
+                    resultado += detalleOrdenProduccion.getCantidad();
+                    
                 } 
             }
             
@@ -169,9 +165,27 @@ public class GestorOrdenCompra {
             
         }
         
-        componentes= FachadaPersistencia.getInstancia().buscar(Componente.class, consulta);  
+        //componentes= FachadaPersistencia.getInstancia().buscar(Componente.class, consulta);  
         
         
         return resultado;
     }
+    
+    private double calcularOredenesCompraPendientes(Componente componente){
+        double resultado=0.0;
+        List<DetalleOrdenCompra> detalleOrdenCompras;
+        Query consulta;
+        consulta = FachadaPersistencia.getInstancia().crearConsulta("Select a from DetalleOrdenCompra a where a.componente= :com and  a.borrado=false");
+        consulta.setParameter("com", componente);
+        detalleOrdenCompras = FachadaPersistencia.getInstancia().buscar(DetalleOrdenCompra.class, consulta);
+        
+        for (DetalleOrdenCompra detalleOrdenCompra : detalleOrdenCompras) {
+            if(detalleOrdenCompra.getOrdenCompra().getEstado()== EstadoOrdenCompra.PENDIENTE){
+                resultado += detalleOrdenCompra.getCantidad();
+            }
+        }
+        
+        return resultado;
+    }
+            
 }

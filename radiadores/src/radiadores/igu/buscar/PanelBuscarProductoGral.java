@@ -464,6 +464,7 @@ private void btBuscarProdTerminadoActionPerformed(java.awt.event.ActionEvent evt
         consulta = FachadaPersistencia.getInstancia().crearConsulta("Select a from RutaFabricacion a where a.borrado=false");
         
         List<RutaFabricacion> rutas = FachadaPersistencia.getInstancia().buscar(RutaFabricacion.class, consulta);
+        componentes= new ArrayList<Componente>();
         
         for (RutaFabricacion rutaFabricacion : rutas) {
             componentes.add(rutaFabricacion.getProductoTerminado());

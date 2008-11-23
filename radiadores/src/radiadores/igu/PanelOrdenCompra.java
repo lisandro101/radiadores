@@ -94,6 +94,7 @@ public class PanelOrdenCompra extends javax.swing.JPanel implements IValidable {
         btModificarOrdenCompra = new javax.swing.JButton();
         btAnularOrdenCompra = new javax.swing.JButton();
         btLimpiar = new javax.swing.JButton();
+        btGenerarOrdenAuto = new javax.swing.JButton();
 
         jdFecha.setDate(new Date());
         jdFecha.setFormats("dd/MM/yy");
@@ -353,6 +354,14 @@ public class PanelOrdenCompra extends javax.swing.JPanel implements IValidable {
         });
         jPanel4.add(btLimpiar);
 
+        btGenerarOrdenAuto.setText("Generar Orden Auto");
+        btGenerarOrdenAuto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btGenerarOrdenAutoActionPerformed(evt);
+            }
+        });
+        jPanel4.add(btGenerarOrdenAuto);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -530,6 +539,13 @@ private void btLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
     btEntregado.setEnabled(false);
 }//GEN-LAST:event_btLimpiarActionPerformed
 
+private void btGenerarOrdenAutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btGenerarOrdenAutoActionPerformed
+    PanelOrdenCompraAutomatica auto = new PanelOrdenCompraAutomatica();
+    
+    auto.setModal(true);
+    auto.setVisible(true);
+}//GEN-LAST:event_btGenerarOrdenAutoActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btAgregarArticulo;
@@ -539,6 +555,7 @@ private void btLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
     private javax.swing.JButton btBuscarOrdenCompra;
     private javax.swing.JButton btEliminarArticulo;
     private javax.swing.JButton btEntregado;
+    private javax.swing.JButton btGenerarOrdenAuto;
     private javax.swing.JButton btLimpiar;
     private javax.swing.JButton btModificarOrdenCompra;
     private javax.swing.JButton btProcesarOrdenCompra;
@@ -601,6 +618,10 @@ private void btLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
         return ordenCompra;
     }
 
+    public void setTableModelComponentes(OrdenCompraTableModel tableModel){
+        
+    }
+    
     private void cargarPantallaOrdenCompra(OrdenCompra orden){
         Util.getInstancia().limpiarCampos(this);
         ordenCompra = orden;

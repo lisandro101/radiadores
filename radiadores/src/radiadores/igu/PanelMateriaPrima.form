@@ -33,13 +33,12 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="pCampos" alignment="1" max="32767" attributes="3"/>
-                  <Component id="pTablaProveedores" alignment="1" max="32767" attributes="1"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="pTablaProveedores" max="32767" attributes="1"/>
+                  <Component id="pCampos" max="32767" attributes="3"/>
               </Group>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Component id="pBotones" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -53,23 +52,32 @@
               <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="lbCostoAlmacenamiento" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Group type="103" alignment="0" groupAlignment="0" attributes="0">
-                          <Component id="lbPesoPorUnid" min="-2" max="-2" attributes="0"/>
-                          <Component id="lbUnidadMedida" min="-2" max="-2" attributes="0"/>
-                          <Component id="lbNombre" min="-2" max="-2" attributes="0"/>
-                          <Component id="lbCodigo" min="-2" max="-2" attributes="0"/>
-                          <Component id="lbTamanioLoteEstandar" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="lbPrecioBase" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="lbStock" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="lbDescripcion" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="lbEstado" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="lbCostoUnitPorOmision" alignment="0" pref="113" max="32767" attributes="0"/>
+                      <Group type="102" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="lbCostoAlmacenamiento" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Group type="103" alignment="0" groupAlignment="0" attributes="0">
+                                  <Component id="lbPesoPorUnid" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lbUnidadMedida" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lbNombre" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lbCodigo" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lbTamanioLoteEstandar" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lbPrecioBase" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lbStock" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lbDescripcion" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lbEstado" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lbCostoUnitPorOmision" alignment="0" pref="113" max="32767" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="lbStockReserva" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="70" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="tfDescripcion" pref="208" max="32767" attributes="1"/>
+                      <Component id="tfStockReserva" alignment="0" pref="208" max="32767" attributes="0"/>
+                      <Component id="tfDescripcion" alignment="0" pref="208" max="32767" attributes="1"/>
                       <Component id="tfPrecioBase" alignment="0" pref="208" max="32767" attributes="1"/>
                       <Component id="tfTamanioLoteEstandar" alignment="0" pref="208" max="32767" attributes="1"/>
                       <Component id="tfPesoPorUnidad" alignment="0" pref="208" max="32767" attributes="1"/>
@@ -135,14 +143,20 @@
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="tfDescripcion" alignment="3" min="-2" pref="45" max="-2" attributes="0"/>
                       <Component id="lbDescripcion" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="tfDescripcion" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="cbEstado" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="lbEstado" alignment="3" min="-2" pref="14" max="-2" attributes="0"/>
                   </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="2" attributes="0">
+                      <Component id="lbStockReserva" alignment="2" min="-2" max="-2" attributes="0"/>
+                      <Component id="tfStockReserva" alignment="2" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace pref="44" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -247,6 +261,13 @@
             <Property name="text" type="java.lang.String" value="Stock"/>
           </Properties>
         </Component>
+        <Component class="javax.swing.JLabel" name="lbStockReserva">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Stock reserva"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="tfStockReserva">
+        </Component>
       </SubComponents>
     </Container>
     <Container class="javax.swing.JPanel" name="pBotones">
@@ -313,7 +334,7 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jScrollPane1" pref="235" max="32767" attributes="0"/>
+                  <Component id="jScrollPane1" pref="280" max="32767" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
               </Group>

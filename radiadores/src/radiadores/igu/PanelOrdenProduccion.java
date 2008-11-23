@@ -559,6 +559,7 @@ private void btTerminadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
         jdFechaEntrega.setDate(orden.getFechaEstimadaEntrega());
         tfEstado.setText(orden.getEstado().toString());
         btTerminado.setEnabled(true);
+        btProcesarOrdenProduccion.setEnabled(false);
     }
     
     private void actualizarOrdenProduccion(){
