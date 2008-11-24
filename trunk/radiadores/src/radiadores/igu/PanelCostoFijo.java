@@ -6,6 +6,7 @@ import javax.persistence.Query;
 import javax.swing.JOptionPane;
 import radiadores.utils.Util;
 import radiadores.entidades.CostoFijo;
+import radiadores.gestores.GestorCostoFijo;
 import radiadores.igu.buscar.ValidacionBuscar;
 import radiadores.igu.model.CostoFijoTableModel;
 import radiadores.persistencia.FachadaPersistencia;
@@ -62,11 +63,14 @@ public class PanelCostoFijo extends javax.swing.JDialog implements IValidable {
         lbCargos = new javax.swing.JLabel();
         tfCosto = new javax.swing.JTextField();
         btBuscar = new javax.swing.JButton();
+        lbTotal = new javax.swing.JLabel();
+        tfTotal = new javax.swing.JTextField();
         pABMCargo = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         btAgregar = new javax.swing.JButton();
         btModificar = new javax.swing.JButton();
         btEliminar = new javax.swing.JButton();
+        btLimpiar = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         lbConcepto = new javax.swing.JLabel();
         tfConcepto = new javax.swing.JTextField();
@@ -78,7 +82,7 @@ public class PanelCostoFijo extends javax.swing.JDialog implements IValidable {
         btCerrar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Asignar Cargo");
+        setTitle("Costo Fijo");
 
         pTabla.setBorder(javax.swing.BorderFactory.createTitledBorder("Buscar Costo Fijo"));
 
@@ -89,7 +93,7 @@ public class PanelCostoFijo extends javax.swing.JDialog implements IValidable {
                 {null, null, null}
             },
             new String [] {
-                "Nombre", "Precio Hora", "Horas Laborales"
+                "Concepto", "Importe", "Vigente"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -116,20 +120,28 @@ public class PanelCostoFijo extends javax.swing.JDialog implements IValidable {
             }
         });
 
+        lbTotal.setText("Subtotal:");
+
+        tfTotal.setEditable(false);
+
         javax.swing.GroupLayout pTablaLayout = new javax.swing.GroupLayout(pTabla);
         pTabla.setLayout(pTablaLayout);
         pTablaLayout.setHorizontalGroup(
             pTablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pTablaLayout.createSequentialGroup()
+            .addGroup(pTablaLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(pTablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 481, Short.MAX_VALUE)
-                    .addGroup(pTablaLayout.createSequentialGroup()
+                .addGroup(pTablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 521, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pTablaLayout.createSequentialGroup()
                         .addComponent(lbCargos)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(tfCosto, javax.swing.GroupLayout.DEFAULT_SIZE, 362, Short.MAX_VALUE)
+                        .addComponent(tfCosto, javax.swing.GroupLayout.DEFAULT_SIZE, 402, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
-                        .addComponent(btBuscar)))
+                        .addComponent(btBuscar))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pTablaLayout.createSequentialGroup()
+                        .addComponent(lbTotal)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(tfTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         pTablaLayout.setVerticalGroup(
@@ -140,8 +152,11 @@ public class PanelCostoFijo extends javax.swing.JDialog implements IValidable {
                     .addComponent(btBuscar)
                     .addComponent(tfCosto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 142, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(pTablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbTotal)
+                    .addComponent(tfTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
         pABMCargo.setBorder(javax.swing.BorderFactory.createTitledBorder("ABM"));
@@ -169,6 +184,14 @@ public class PanelCostoFijo extends javax.swing.JDialog implements IValidable {
             }
         });
         jPanel1.add(btEliminar);
+
+        btLimpiar.setText("Limpiar");
+        btLimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btLimpiarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btLimpiar);
 
         lbConcepto.setText("Concepto:");
 
@@ -219,21 +242,22 @@ public class PanelCostoFijo extends javax.swing.JDialog implements IValidable {
         pABMCargoLayout.setHorizontalGroup(
             pABMCargoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pABMCargoLayout.createSequentialGroup()
-                .addGap(10, 10, 10)
+                .addContainerGap()
                 .addGroup(pABMCargoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 491, Short.MAX_VALUE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 511, Short.MAX_VALUE))
+                .addGap(20, 20, 20))
         );
         pABMCargoLayout.setVerticalGroup(
             pABMCargoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pABMCargoLayout.createSequentialGroup()
-                .addContainerGap()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(23, 23, 23)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(23, 23, 23))
         );
 
-        btAceptarBuscar.setText("Aceptar");
+        btAceptarBuscar.setText("Calcular Total");
         btAceptarBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btAceptarBuscarActionPerformed(evt);
@@ -253,21 +277,18 @@ public class PanelCostoFijo extends javax.swing.JDialog implements IValidable {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(pBotones, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(pTabla, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(pABMCargo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+            .addComponent(pBotones, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 557, Short.MAX_VALUE)
+            .addComponent(pTabla, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(pABMCargo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(pTabla, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(pABMCargo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(pABMCargo, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(pBotones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -293,28 +314,16 @@ private void btCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
 }//GEN-LAST:event_btCerrarActionPerformed
 
 private void btAceptarBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAceptarBuscarActionPerformed
-    
-    int indice = tCargos.convertRowIndexToModel(tCargos.getSelectedRow());
-    
-    if(indice == -1){
-        JOptionPane.showMessageDialog(this, "No se ha seleccionado un Cargo");
-    }else{
-        costoFijo = tmBuscar.getFila(indice);
-//        panelEmpleado.setCargoEmpleado(costoFijo);
-        cargarPantallaCostoFijo(costoFijo);
-        
-        dispose();
-        
-    }
-   
+    tfTotal.setText(String.valueOf(GestorCostoFijo.getInstancia().calcularTotalCostoFijo(tmBuscar) ));
+
 }//GEN-LAST:event_btAceptarBuscarActionPerformed
 
 private void btBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBuscarActionPerformed
      
-    buscarCargo();
+    buscarCostoFijo();
 }//GEN-LAST:event_btBuscarActionPerformed
 
-private void buscarCargo(){
+private void buscarCostoFijo(){
     tmBuscar.limpiarTableModel();
     
     Query consulta = FachadaPersistencia.getInstancia().crearConsulta("Select a from CostoFijo a where (a.concepto) LIKE :valor and a.borrado=false" );
@@ -339,7 +348,7 @@ private void btAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
             FachadaPersistencia.getInstancia().grabar(costoFijo, true);
             Util.getInstancia().limpiarCampos(this);
             
-            buscarCargo();
+            buscarCostoFijo();
             
             costoFijo = null;
         }
@@ -378,6 +387,12 @@ private void cbVigenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
 // TODO add your handling code here:
 }//GEN-LAST:event_cbVigenteActionPerformed
 
+private void btLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLimpiarActionPerformed
+    Util.getInstancia().limpiarCampos(this);
+    costoFijo=null;
+    inicializarBotones();
+}//GEN-LAST:event_btLimpiarActionPerformed
+
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -386,6 +401,7 @@ private void cbVigenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
     private javax.swing.JButton btBuscar;
     private javax.swing.JButton btCerrar;
     private javax.swing.JButton btEliminar;
+    private javax.swing.JButton btLimpiar;
     private javax.swing.JButton btModificar;
     private javax.swing.JCheckBox cbVigente;
     private javax.swing.JPanel jPanel1;
@@ -394,6 +410,7 @@ private void cbVigenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
     private javax.swing.JLabel lbCargos;
     private javax.swing.JLabel lbConcepto;
     private javax.swing.JLabel lbImporte;
+    private javax.swing.JLabel lbTotal;
     private javax.swing.JPanel pABMCargo;
     private javax.swing.JPanel pBotones;
     private javax.swing.JPanel pTabla;
@@ -401,6 +418,7 @@ private void cbVigenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
     private javax.swing.JTextField tfConcepto;
     private javax.swing.JTextField tfCosto;
     private javax.swing.JTextField tfImporte;
+    private javax.swing.JTextField tfTotal;
     // End of variables declaration//GEN-END:variables
 
     private CostoFijo crearCostoFijo(){
@@ -408,8 +426,9 @@ private void cbVigenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
         
         costoFijo.setConcepto(tfConcepto.getText());
         costoFijo.setImporte(Double.parseDouble(tfImporte.getText()));
-        costoFijo.setBorrado(cbVigente.isSelected());
-
+        costoFijo.setVigente(cbVigente.isSelected());
+        costoFijo.setBorrado(false);
+        
         return costoFijo;
     }
     
@@ -427,7 +446,7 @@ private void cbVigenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
     private void actualizarCostoFijo(){
         costoFijo.setConcepto(tfConcepto.getText());
         costoFijo.setImporte(Double.parseDouble(tfImporte.getText()));
-        costoFijo.setBorrado(cbVigente.isSelected());
+        costoFijo.setVigente(cbVigente.isSelected());
         
     }
 
