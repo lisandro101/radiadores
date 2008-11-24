@@ -418,13 +418,12 @@ private void btBuscarProductoActionPerformed(java.awt.event.ActionEvent evt) {//
 }//GEN-LAST:event_btBuscarProductoActionPerformed
 
 private void btEliminarRutaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEliminarRutaActionPerformed
-    //rutaFabricacion.getProductoTerminado().
-    // TODO: Agregar un control para que no se puedan eliminar rutas que posean ordenes de produccion vigentes
     if (ValidacionEliminar.getInstancia().rutaEstaRelacionada(rutaFabricacion)) {
-            JOptionPane.showMessageDialog(this, "No puede eliminar la Ruta, su producto se encuentra en producción. ");
+            JOptionPane.showMessageDialog(this, "No puede eliminar la Ruta, el producto se encuentra en producción. ");
         }
     else {
-        int opcion = JOptionPane.showConfirmDialog(this, "¿Seguro desea eliminar la maquina?", "Aceptar", JOptionPane.YES_NO_OPTION);
+        int opcion = JOptionPane.showConfirmDialog(this,
+                "¿Seguro desea eliminar la maquina?", "Aceptar", JOptionPane.YES_NO_OPTION);
 
         if(opcion == JOptionPane.YES_OPTION) {
             FachadaPersistencia.getInstancia().borrar(rutaFabricacion, true);

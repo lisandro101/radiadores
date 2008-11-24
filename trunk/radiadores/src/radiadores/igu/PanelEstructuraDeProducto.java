@@ -301,17 +301,22 @@ private void btGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
 }//GEN-LAST:event_btGuardarActionPerformed
 
 private void btEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEliminarActionPerformed
-    int opcion = JOptionPane.showConfirmDialog(this,
-                "¿Seguro desea eliminar la Estructura?", "Aceptar",
-                JOptionPane.YES_NO_OPTION);
-        
-    if(opcion == JOptionPane.YES_OPTION) {
-        estructuraDeProducto.setBorrado(true);
-        FachadaPersistencia.getInstancia().actualizar(estructuraDeProducto, true);
-        Util.getInstancia().limpiarCampos(this);
-        estructuraDeProducto=null;
-        inicializarBotones();
-    }   
+    if (ValidacionEliminar.getInstancia().estructuraEstaRelacionada(estructuraDeProducto)) {
+            JOptionPane.showMessageDialog(this, "No puede eliminar la Estructura, posee una ruta asociada. ");
+        }
+    else {
+        int opcion = JOptionPane.showConfirmDialog(this,
+                    "¿Seguro desea eliminar la Estructura?", "Aceptar",
+                    JOptionPane.YES_NO_OPTION);
+
+        if(opcion == JOptionPane.YES_OPTION) {
+            estructuraDeProducto.setBorrado(true);
+            FachadaPersistencia.getInstancia().actualizar(estructuraDeProducto, true);
+            Util.getInstancia().limpiarCampos(this);
+            estructuraDeProducto=null;
+            inicializarBotones();
+        }
+    }
 }//GEN-LAST:event_btEliminarActionPerformed
 
 private void btBuscarProdTerminadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBuscarProdTerminadoActionPerformed
