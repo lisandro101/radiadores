@@ -109,7 +109,7 @@ public class MaquinaTableModel extends AbstractTableModel implements IModeloRein
                 resultado = maquinas.get(fila).getCodigo();
                 break;
             case 2:
-                resultado = maquinas.get(fila).getId(); //TODO getUbicacion
+                resultado = maquinas.get(fila).getSector().getNombre();
                 break;
         }
         return resultado;

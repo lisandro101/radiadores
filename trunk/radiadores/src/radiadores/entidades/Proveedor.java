@@ -159,6 +159,7 @@ public class Proveedor implements Serializable, IPersistente {
         return borrado;
     }
 
+    @Override
     public void setBorrado(boolean borrado) {
         this.borrado = borrado;
     }
@@ -178,7 +179,7 @@ public class Proveedor implements Serializable, IPersistente {
             return false;
         }
         final Proveedor other = (Proveedor) obj;
-        if (this.id != other.id && (this.id == null || !this.id.equals(other.id))) {
+        if ((this.codigo == null) ? (other.codigo != null) : !this.codigo.equals(other.codigo)) {
             return false;
         }
         return true;
@@ -186,11 +187,13 @@ public class Proveedor implements Serializable, IPersistente {
 
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 59 * hash + (this.id != null ? this.id.hashCode() : 0);
-        hash = 59 * hash + (this.nombre != null ? this.nombre.hashCode() : 0);
+        int hash = 3;
+        hash = 79 * hash + (this.codigo != null ? this.codigo.hashCode() : 0);
+        hash = 79 * hash + (this.nombre != null ? this.nombre.hashCode() : 0);
         return hash;
     }
+
+   
 
 
 }

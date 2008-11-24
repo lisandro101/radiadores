@@ -315,7 +315,7 @@ private void dpFechaDeFabricacionActionPerformed(java.awt.event.ActionEvent evt)
         Sector sector = new Sector();
         
         edificio.setNombre(cbEdificio.getSelectedItem().toString());
-        sector.setCodigo(cbSector.getSelectedItem().toString());
+        sector.setNombre(cbSector.getSelectedItem().toString());
         
         //******************************
                
