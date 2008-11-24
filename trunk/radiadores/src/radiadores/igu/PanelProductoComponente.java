@@ -14,6 +14,7 @@ import radiadores.igu.model.ProveedorTableModel;
 import radiadores.igu.model.UnidadMedidaTableModel;
 import radiadores.persistencia.FachadaPersistencia;
 import radiadores.utils.IValidable;
+import radiadores.utils.ValidarCodigo;
 
 /**
  *
@@ -223,6 +224,8 @@ public class PanelProductoComponente extends javax.swing.JPanel implements IVali
 
         lbUnidadMedida.setText("Unidad Medida:");
 
+        tfCodigo.setInputVerifier(new ValidarCodigo(2));
+
         cbEstado.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Activo", "Suspendido", "Inactivo" }));
 
         cbCategoria.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Curva A", "Curva B", "Curva C" }));
@@ -367,8 +370,8 @@ public class PanelProductoComponente extends javax.swing.JPanel implements IVali
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pTablaProveedoresLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pTablaProveedoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 628, Short.MAX_VALUE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 628, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 632, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 632, Short.MAX_VALUE))
                 .addContainerGap())
         );
         pTablaProveedoresLayout.setVerticalGroup(

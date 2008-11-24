@@ -12,6 +12,7 @@ import radiadores.entidades.Sector;
 import radiadores.igu.buscar.ValidacionBuscar;
 import radiadores.persistencia.FachadaPersistencia;
 import radiadores.utils.IValidable;
+import radiadores.utils.ValidarCodigo;
 
 /**
  *
@@ -58,6 +59,7 @@ public class PanelMaquina extends javax.swing.JPanel implements IValidable {
         btModificar = new javax.swing.JButton();
         btEliminar = new javax.swing.JButton();
 
+        tfCodigo.setInputVerifier(new ValidarCodigo(5));
         tfCodigo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tfCodigoActionPerformed(evt);
