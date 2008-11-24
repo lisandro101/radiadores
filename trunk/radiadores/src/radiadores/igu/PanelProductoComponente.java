@@ -55,15 +55,15 @@ public class PanelProductoComponente extends javax.swing.JPanel implements IVali
         btEliminar = new javax.swing.JButton();
         pCampos = new javax.swing.JPanel();
         pProductoTerminado2 = new javax.swing.JPanel();
-        tfCostoUnitOmision = new javax.swing.JTextField();
+        tfCostoUnitario = new javax.swing.JTextField();
         lbCondEmbalaje = new javax.swing.JLabel();
         tfCondEmbalaje = new javax.swing.JTextField();
-        lbCostoEmision = new javax.swing.JLabel();
-        tfCostoEmision = new javax.swing.JTextField();
+        lbCostoPedio = new javax.swing.JLabel();
+        tfCostoPedido = new javax.swing.JTextField();
         lbTamanioLoteEstandar = new javax.swing.JLabel();
         lbStock = new javax.swing.JLabel();
         tfDescripcion = new javax.swing.JTextField();
-        lbCostoUnitOmision = new javax.swing.JLabel();
+        lbCostoUnitario = new javax.swing.JLabel();
         lbCostoAlmacenamiento = new javax.swing.JLabel();
         lbDescripcion = new javax.swing.JLabel();
         tfCostoAlmacenamiento = new javax.swing.JTextField();
@@ -129,13 +129,13 @@ public class PanelProductoComponente extends javax.swing.JPanel implements IVali
 
         lbCondEmbalaje.setText("Condiciones Embalaje:");
 
-        lbCostoEmision.setText("Costo Emisión:");
+        lbCostoPedio.setText("Costo Pedido:");
 
         lbTamanioLoteEstandar.setText("Tamaño Lote Estandar:");
 
         lbStock.setText("Stock:");
 
-        lbCostoUnitOmision.setText("Costo Unitario Omisión:");
+        lbCostoUnitario.setText("Costo Unitario:");
 
         lbCostoAlmacenamiento.setText("Costo Almacenamiento:");
 
@@ -155,17 +155,17 @@ public class PanelProductoComponente extends javax.swing.JPanel implements IVali
                     .addComponent(lbTamanioLoteEstandar)
                     .addComponent(lbCondEmbalaje)
                     .addComponent(lbStock)
-                    .addComponent(lbCostoUnitOmision)
+                    .addComponent(lbCostoUnitario)
                     .addComponent(lbDescripcion)
-                    .addComponent(lbCostoEmision)
+                    .addComponent(lbCostoPedio)
                     .addComponent(lbCostoAlmacenamiento)
                     .addComponent(lbStockReserva))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pProductoTerminado2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(tfStockReserva, javax.swing.GroupLayout.DEFAULT_SIZE, 227, Short.MAX_VALUE)
                     .addComponent(tfCostoAlmacenamiento, javax.swing.GroupLayout.DEFAULT_SIZE, 227, Short.MAX_VALUE)
-                    .addComponent(tfCostoEmision, javax.swing.GroupLayout.DEFAULT_SIZE, 227, Short.MAX_VALUE)
-                    .addComponent(tfCostoUnitOmision, javax.swing.GroupLayout.DEFAULT_SIZE, 227, Short.MAX_VALUE)
+                    .addComponent(tfCostoPedido, javax.swing.GroupLayout.DEFAULT_SIZE, 227, Short.MAX_VALUE)
+                    .addComponent(tfCostoUnitario, javax.swing.GroupLayout.DEFAULT_SIZE, 227, Short.MAX_VALUE)
                     .addComponent(tfTamanioLoteEstandar, javax.swing.GroupLayout.DEFAULT_SIZE, 227, Short.MAX_VALUE)
                     .addComponent(tfCondEmbalaje, javax.swing.GroupLayout.DEFAULT_SIZE, 227, Short.MAX_VALUE)
                     .addComponent(tfStock, javax.swing.GroupLayout.DEFAULT_SIZE, 227, Short.MAX_VALUE)
@@ -180,12 +180,12 @@ public class PanelProductoComponente extends javax.swing.JPanel implements IVali
                     .addComponent(lbCostoAlmacenamiento))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pProductoTerminado2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(lbCostoEmision)
-                    .addComponent(tfCostoEmision, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lbCostoPedio)
+                    .addComponent(tfCostoPedido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pProductoTerminado2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(lbCostoUnitOmision)
-                    .addComponent(tfCostoUnitOmision, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lbCostoUnitario)
+                    .addComponent(tfCostoUnitario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pProductoTerminado2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(lbTamanioLoteEstandar)
@@ -513,8 +513,8 @@ private void cbUnidadMedidaActionPerformed(java.awt.event.ActionEvent evt) {//GE
     private javax.swing.JLabel lbCodigo;
     private javax.swing.JLabel lbCondEmbalaje;
     private javax.swing.JLabel lbCostoAlmacenamiento;
-    private javax.swing.JLabel lbCostoEmision;
-    private javax.swing.JLabel lbCostoUnitOmision;
+    private javax.swing.JLabel lbCostoPedio;
+    private javax.swing.JLabel lbCostoUnitario;
     private javax.swing.JLabel lbDescripcion;
     private javax.swing.JLabel lbEstado;
     private javax.swing.JLabel lbNombre;
@@ -534,8 +534,8 @@ private void cbUnidadMedidaActionPerformed(java.awt.event.ActionEvent evt) {//GE
     private javax.swing.JTextField tfCodigo;
     private javax.swing.JTextField tfCondEmbalaje;
     private javax.swing.JTextField tfCostoAlmacenamiento;
-    private javax.swing.JTextField tfCostoEmision;
-    private javax.swing.JTextField tfCostoUnitOmision;
+    private javax.swing.JTextField tfCostoPedido;
+    private javax.swing.JTextField tfCostoUnitario;
     private javax.swing.JTextField tfDescripcion;
     private javax.swing.JTextField tfNombre;
     private javax.swing.JTextField tfNroPlano;
@@ -562,8 +562,8 @@ private void cbUnidadMedidaActionPerformed(java.awt.event.ActionEvent evt) {//GE
         productoComponente.setPesoUnidad(Double.parseDouble(tfPesoUnidad.getText()));
         productoComponente.setUnidadMedida((String) cbUnidadMedida.getSelectedItem());
         productoComponente.setCostoAlmacenamiento(Double.parseDouble(tfCostoAlmacenamiento.getText()));
-        productoComponente.setCostoEmision(Double.parseDouble(tfCostoEmision.getText()));
-        productoComponente.setCostoUnitarioOmision(Double.parseDouble(tfCostoUnitOmision.getText()));
+        productoComponente.setCostoPedido(Double.parseDouble(tfCostoPedido.getText()));
+        productoComponente.setCostoUnitario(Double.parseDouble(tfCostoUnitario.getText()));
         productoComponente.setTamanioLoteEstandar(Double.parseDouble(tfTamanioLoteEstandar.getText()));
         productoComponente.setCondicionesEmbalaje(tfCondEmbalaje.getText());
         productoComponente.setStock(Double.parseDouble(tfStock.getText()));
@@ -594,8 +594,8 @@ private void cbUnidadMedidaActionPerformed(java.awt.event.ActionEvent evt) {//GE
         productoComponente.setPesoUnidad(Double.parseDouble(tfPesoUnidad.getText()));
         productoComponente.setUnidadMedida((String) cbUnidadMedida.getSelectedItem());
         productoComponente.setCostoAlmacenamiento(Double.parseDouble(tfCostoAlmacenamiento.getText()));
-        productoComponente.setCostoEmision(Double.parseDouble(tfCostoEmision.getText()));
-        productoComponente.setCostoUnitarioOmision(Double.parseDouble(tfCostoUnitOmision.getText()));
+        productoComponente.setCostoPedido(Double.parseDouble(tfCostoPedido.getText()));
+        productoComponente.setCostoUnitario(Double.parseDouble(tfCostoUnitario.getText()));
         productoComponente.setTamanioLoteEstandar(Double.parseDouble(tfTamanioLoteEstandar.getText()));
         productoComponente.setCondicionesEmbalaje(tfCondEmbalaje.getText());
         productoComponente.setStock(Double.parseDouble(tfStock.getText()));
@@ -618,8 +618,8 @@ private void cbUnidadMedidaActionPerformed(java.awt.event.ActionEvent evt) {//GE
         tfPesoUnidad.setText(String.valueOf(prod.getPesoUnidad()));
         cbUnidadMedida.setSelectedItem(prod.getUnidadMedida());
         tfCostoAlmacenamiento.setText(String.valueOf(prod.getCostoAlmacenamiento()));
-        tfCostoEmision.setText(String.valueOf(prod.getCostoEmision()));
-        tfCostoUnitOmision.setText(String.valueOf(prod.getCostoUnitarioOmision()));
+        tfCostoPedido.setText(String.valueOf(prod.getCostoPedido()));
+        tfCostoUnitario.setText(String.valueOf(prod.getCostoUnitario()));
         tfTamanioLoteEstandar.setText(String.valueOf(prod.getTamanioLoteEstandar()));
         tfCondEmbalaje.setText(prod.getCondicionesEmbalaje());
         tfStock.setText(String.valueOf(prod.getStock()));
