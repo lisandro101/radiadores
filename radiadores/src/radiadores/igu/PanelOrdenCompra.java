@@ -435,7 +435,7 @@ private void tfArticuloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
 
 private void btBuscarArticuloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBuscarArticuloActionPerformed
 
-    PanelBuscarProductoGral buscarComponente = new PanelBuscarProductoGral(this);
+    PanelBuscarProductoGral buscarComponente = new PanelBuscarProductoGral(this, proveedor);
     buscarComponente.setModal(true); 
     buscarComponente.setVisible(true);
 }//GEN-LAST:event_btBuscarArticuloActionPerformed

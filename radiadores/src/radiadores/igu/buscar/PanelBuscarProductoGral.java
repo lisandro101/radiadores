@@ -18,6 +18,7 @@ import radiadores.entidades.MateriaPrima;
 import radiadores.entidades.ParteDeEstructura;
 import radiadores.entidades.ProductoComponente;
 import radiadores.entidades.ProductoTerminado;
+import radiadores.entidades.Proveedor;
 import radiadores.entidades.RutaFabricacion;
 import radiadores.igu.PanelDetalleRuta;
 import radiadores.igu.PanelEstructuraDeProducto;
@@ -54,6 +55,7 @@ public class PanelBuscarProductoGral extends javax.swing.JDialog {
     private PanelOrdenProduccion panelOrdenProduccion;
     private iBuscaProductoGeneral iProducto;
     private PanelRutaFabricacion panelRutaFabricacion;
+    private Proveedor proveedor;
     List<EstructuraDeProducto> estructuras;
     List<ParteDeEstructura> partes;
     
@@ -141,10 +143,11 @@ public class PanelBuscarProductoGral extends javax.swing.JDialog {
         inicializar();
     }
     
-    public PanelBuscarProductoGral(PanelOrdenCompra tm1) {
+    public PanelBuscarProductoGral(PanelOrdenCompra tm1, Proveedor prov) {
         initComponents();
-        tipo= Tipo.PANEL_ORDEN_COMPRA;
-        panelOrdenCompra= tm1;
+        tipo = Tipo.PANEL_ORDEN_COMPRA;
+        panelOrdenCompra = tm1;
+        proveedor = prov;
         inicializar();
     }
     
@@ -368,7 +371,9 @@ private void btAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
             panelProductoTerminado.setComponente((ProductoTerminado)resultado);
             dispose(); 
         }else if(tipo== Tipo.PANEL_ESTRUCTURA){
-            Query consulta = FachadaPersistencia.getInstancia().crearConsulta("Select a from EstructuraDeProducto a where a.productoTerminado= :producto" );
+            Query consulta = FachadaPersistencia.getInstancia().crearConsulta("" +
+                    "SELECT a FROM EstructuraDeProducto a " +
+                    "WHERE a.productoTerminado= :producto" );
             consulta.setParameter("producto", (ProductoTerminado)resultado);
             EstructuraDeProducto estructura;
             try{
@@ -404,26 +409,35 @@ dispose();
 
 private void btBuscarProdTerminadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBuscarProdTerminadoActionPerformed
     Query consulta;
-//    int indice;
     tmBuscar.limpiarTableModel();
     
-    if( tipo== Tipo.PANEL_DETALLE_ESTRUCTURA || tipo==Tipo.PANEL_ORDEN_COMPRA){
-
+    if( tipo== Tipo.PANEL_DETALLE_ESTRUCTURA){
         consulta = FachadaPersistencia.getInstancia().crearConsulta("Select a from Componente a where ( (a.nombre) LIKE :nombre or (a.codigo) LIKE :codigo ) and a.borrado=false and a.tipo IN (:tipo1, :tipo2)");
         consulta.setParameter("nombre", "%"+tfNombre.getText()+"%");
         consulta.setParameter("codigo", "%"+tfCodigo.getText()+"%");
         consulta.setParameter("tipo1", 'C');
         consulta.setParameter("tipo2", 'M');
-        componentes= FachadaPersistencia.getInstancia().buscar(Componente.class, consulta);
+        componentes = FachadaPersistencia.getInstancia().buscar(Componente.class, consulta);
         
+    }else if(tipo == Tipo.PANEL_ORDEN_COMPRA){        
+        consulta = FachadaPersistencia.getInstancia().crearConsulta(
+                "SELECT a FROM Componente a " +
+                "WHERE ( (a.nombre) LIKE :nombre OR (a.codigo) LIKE :codigo ) " +
+                "AND a.borrado = false AND a.tipo IN (:tipo1, :tipo2)");
+        consulta.setParameter("nombre", "%"+tfNombre.getText()+"%");
+        consulta.setParameter("codigo", "%"+tfCodigo.getText()+"%");
+        consulta.setParameter("tipo1", 'C');
+        consulta.setParameter("tipo2", 'M');
+           
+        componentes = FachadaPersistencia.getInstancia().buscar(Componente.class, consulta);
+        
+
     }else if(tipo== Tipo.PANEL_DETALLE_RUTA){
         consulta = FachadaPersistencia.getInstancia().crearConsulta("Select a from EstructuraDeProducto a where a.productoTerminado = :producto and a.borrado=false");
         consulta.setParameter("producto", panelDetalleRuta.getProductoTerminado());    
         estructuras= FachadaPersistencia.getInstancia().buscar(EstructuraDeProducto.class, consulta);
         componentes= new ArrayList<Componente>();
         
-        System.out.println("nombre del prod terminado:"+ panelDetalleRuta.getProductoTerminado().getNombre());
-        System.out.println("size de la cantidad de estructuras q encontro del producto: "+ estructuras.size());
         if(estructuras.size()==1){
             partes= estructuras.get(0).getPartes();
             
