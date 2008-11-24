@@ -540,7 +540,7 @@ private void btLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
 }//GEN-LAST:event_btLimpiarActionPerformed
 
 private void btGenerarOrdenAutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btGenerarOrdenAutoActionPerformed
-    PanelOrdenCompraAutomatica auto = new PanelOrdenCompraAutomatica();
+    PanelOrdenCompraAutomatica auto = new PanelOrdenCompraAutomatica(this);
     
     auto.setModal(true);
     auto.setVisible(true);
@@ -619,7 +619,7 @@ private void btGenerarOrdenAutoActionPerformed(java.awt.event.ActionEvent evt) {
     }
 
     public void setTableModelComponentes(OrdenCompraTableModel tableModel){
-        
+        tm.agregarFilas(tableModel.getFilas());
     }
     
     private void cargarPantallaOrdenCompra(OrdenCompra orden){

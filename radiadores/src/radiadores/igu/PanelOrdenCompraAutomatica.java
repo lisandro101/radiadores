@@ -16,9 +16,12 @@ import radiadores.igu.model.OrdenCompraTableModel;
 public class PanelOrdenCompraAutomatica extends javax.swing.JDialog {
 
     OrdenCompraTableModel tm;
-    public PanelOrdenCompraAutomatica() {
+    PanelOrdenCompra panelOrdenCompra;
+    
+    public PanelOrdenCompraAutomatica(PanelOrdenCompra panel) {
         initComponents();
         inicializar();
+        panelOrdenCompra= panel;
     }
 
     
@@ -105,7 +108,10 @@ public class PanelOrdenCompraAutomatica extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
 private void btAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAceptarActionPerformed
-
+    if(tm != null){
+        panelOrdenCompra.setTableModelComponentes(tm);
+    }
+    dispose();
 }//GEN-LAST:event_btAceptarActionPerformed
 
 private void btCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCancelarActionPerformed
