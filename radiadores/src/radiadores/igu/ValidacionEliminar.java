@@ -5,13 +5,17 @@
 
 package radiadores.igu;
 
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Query;
 import radiadores.entidades.Cargo;
+import radiadores.entidades.DetalleOrdenProduccion;
 import radiadores.entidades.Empleado;
 import radiadores.entidades.EstructuraDeProducto;
 import radiadores.entidades.HoraLaboral;
 import radiadores.entidades.MateriaPrima;
+import radiadores.entidades.OrdenProduccion;
+import radiadores.entidades.OrdenProduccion.EstadoOrdenProd;
 import radiadores.entidades.ParteDeEstructura;
 import radiadores.entidades.ProductoComponente;
 import radiadores.entidades.ProductoTerminado;
@@ -61,6 +65,28 @@ public class ValidacionEliminar {
 
         return resultado;
     }
+
+    public boolean rutaEstaRelacionada(RutaFabricacion ruta){
+        boolean resultado;
+
+        Query consulta = FachadaPersistencia.getInstancia().crearConsulta(
+                "SELECT a FROM DetalleOrdenProduccion a " +
+                "WHERE a.ordenProduccion.estado IN (:suspendido, :procesando) " +
+                "AND a.ordenProduccion.borrado = false " +
+                "AND a.productoTerminado = :producto" );
+        consulta.setParameter("suspendido", EstadoOrdenProd.SUSPENDIDO);
+        consulta.setParameter("procesando", EstadoOrdenProd.PROCESANDO);
+        consulta.setParameter("producto", ruta.getProductoTerminado());
+
+
+        if(FachadaPersistencia.getInstancia().buscar(DetalleOrdenProduccion.class, consulta).size()>0){
+            resultado=true;
+        }else{
+            resultado=false;
+        }
+
+        return resultado;
+    }
     
     public boolean materiaPrimaEstaRelacionada(MateriaPrima materiaPrima){
         boolean resultado;
@@ -75,6 +101,7 @@ public class ValidacionEliminar {
 
         return resultado;
     }
+
     public boolean productoComponenteEstaRelacionada(ProductoComponente productoComponente){
         boolean resultado;
         Query consulta = FachadaPersistencia.getInstancia().crearConsulta("Select a from ParteDeEstructura a where a.componente = :componente and a.borrado=false" );
@@ -90,14 +117,17 @@ public class ValidacionEliminar {
     }
     
     public void eliminarRutaEstructuraAsociados(ProductoTerminado productoTerminado){
-        boolean resultado;
-        Query consulta = FachadaPersistencia.getInstancia().crearConsulta("Select a from RutaFabricacion a where a.productoTerminado = :producto and a.borrado=false" );
+        Query consulta = FachadaPersistencia.getInstancia().crearConsulta("SELECT a FROM RutaFabricacion a WHERE a.productoTerminado = :producto and a.borrado=false" );
         consulta.setParameter("producto", productoTerminado);
         
         List<RutaFabricacion> rutas= FachadaPersistencia.getInstancia().buscar(RutaFabricacion.class, consulta);
         
-        if(rutas.size()==1){
-            rutas.get(0).setBorrado(true);
+        if(rutas.size()>0){
+            FachadaPersistencia.getInstancia().comenzarTransaccion();
+            for (RutaFabricacion rutaFabricacion : rutas) {
+                FachadaPersistencia.getInstancia().borrar(rutaFabricacion, false);
+            }
+            FachadaPersistencia.getInstancia().finalizarTransaccion();
         }
         
         consulta = FachadaPersistencia.getInstancia().crearConsulta("Select a from EstructuraDeProducto a where a.productoTerminado = :producto and a.borrado=false" );
@@ -105,8 +135,12 @@ public class ValidacionEliminar {
         
         List<EstructuraDeProducto> estructuras= FachadaPersistencia.getInstancia().buscar(EstructuraDeProducto.class, consulta);
         
-        if(estructuras.size()==1){
-            estructuras.get(0).setBorrado(true);
+        if(estructuras.size()>1){
+            FachadaPersistencia.getInstancia().comenzarTransaccion();
+            for (EstructuraDeProducto estructura : estructuras) {
+                FachadaPersistencia.getInstancia().borrar(estructura, false);
+            }
+            FachadaPersistencia.getInstancia().finalizarTransaccion();
         }
         
     }

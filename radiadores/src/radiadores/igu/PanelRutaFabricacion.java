@@ -335,19 +335,29 @@ private void btModificarRutaActionPerformed(java.awt.event.ActionEvent evt) {//G
 
 private void persistirRuta() {
     //Actualizo las horas y los materiales, y por cascadeo se crean los nodos y las rutas. Esto es xq las relaciones estan al revéz.
-    FachadaPersistencia.getInstancia().comenzarTransaccion();
-        for (NodoRuta nodo: rutaFabricacion.getNodosRuta()) {
-            nodo.setRutaFabricacion(rutaFabricacion);
-            for (HoraLaboral hora : nodo.getHorasTrabajadas()) {
-                hora.setNodoRuta(nodo);
-                FachadaPersistencia.getInstancia().actualizar(hora, false);
-            }   
-            for (ParteDeNodo pn : nodo.getMateriales()) {
-                pn.setNodoRuta(nodo);
-                FachadaPersistencia.getInstancia().actualizar(pn, false);
-            }
+    if (rutaFabricacion.getNodosRuta().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "No ha definido nodos en la ruta.");
         }
-    FachadaPersistencia.getInstancia().finalizarTransaccion();
+    else {
+        FachadaPersistencia.getInstancia().comenzarTransaccion();
+            for (NodoRuta nodo: rutaFabricacion.getNodosRuta()) {
+                nodo.setRutaFabricacion(rutaFabricacion);
+                for (HoraLaboral hora : nodo.getHorasTrabajadas()) {
+                    hora.setNodoRuta(nodo);
+                    FachadaPersistencia.getInstancia().actualizar(hora, false);
+                }
+                for (ParteDeNodo pn : nodo.getMateriales()) {
+                    pn.setNodoRuta(nodo);
+                    FachadaPersistencia.getInstancia().actualizar(pn, false);
+                }
+            }
+        FachadaPersistencia.getInstancia().finalizarTransaccion();
+
+        Util.getInstancia().limpiarCampos(this);
+        rutaFabricacion = null;
+    }
+
+
 }
 
 private void jlDetalleRutaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlDetalleRutaMouseClicked
@@ -380,9 +390,7 @@ private void btAgregarRutaActionPerformed(java.awt.event.ActionEvent evt) {//GEN
         if(ValidacionBuscar.getInstancia().estaDuplicado(rutaFabricacion)){
             JOptionPane.showMessageDialog(this, "La Ruta de Trabajo ya se encuentra cargada en el sistema.");
         }else{       
-            persistirRuta();
-            Util.getInstancia().limpiarCampos(this);
-            rutaFabricacion = null;
+            persistirRuta(); 
         }
     }
 }//GEN-LAST:event_btAgregarRutaActionPerformed
@@ -412,13 +420,18 @@ private void btBuscarProductoActionPerformed(java.awt.event.ActionEvent evt) {//
 private void btEliminarRutaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEliminarRutaActionPerformed
     //rutaFabricacion.getProductoTerminado().
     // TODO: Agregar un control para que no se puedan eliminar rutas que posean ordenes de produccion vigentes
-    int opcion = JOptionPane.showConfirmDialog(this, "¿Seguro desea eliminar la maquina?", "Aceptar", JOptionPane.YES_NO_OPTION);
-        
-    if(opcion == JOptionPane.YES_OPTION) {
-        FachadaPersistencia.getInstancia().borrar(rutaFabricacion, true);
-        Util.getInstancia().limpiarCampos(this);
-        rutaFabricacion = null;
-        inicializarBotones();
+    if (ValidacionEliminar.getInstancia().rutaEstaRelacionada(rutaFabricacion)) {
+            JOptionPane.showMessageDialog(this, "No puede eliminar la Ruta, su producto se encuentra en producción. ");
+        }
+    else {
+        int opcion = JOptionPane.showConfirmDialog(this, "¿Seguro desea eliminar la maquina?", "Aceptar", JOptionPane.YES_NO_OPTION);
+
+        if(opcion == JOptionPane.YES_OPTION) {
+            FachadaPersistencia.getInstancia().borrar(rutaFabricacion, true);
+            Util.getInstancia().limpiarCampos(this);
+            rutaFabricacion = null;
+            inicializarBotones();
+        }
     }
 }//GEN-LAST:event_btEliminarRutaActionPerformed
 
