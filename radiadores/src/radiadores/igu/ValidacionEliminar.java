@@ -5,7 +5,6 @@
 
 package radiadores.igu;
 
-import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Query;
 import radiadores.entidades.Cargo;
@@ -14,7 +13,6 @@ import radiadores.entidades.Empleado;
 import radiadores.entidades.EstructuraDeProducto;
 import radiadores.entidades.HoraLaboral;
 import radiadores.entidades.MateriaPrima;
-import radiadores.entidades.OrdenProduccion;
 import radiadores.entidades.OrdenProduccion.EstadoOrdenProd;
 import radiadores.entidades.ParteDeEstructura;
 import radiadores.entidades.ProductoComponente;
@@ -40,7 +38,9 @@ public class ValidacionEliminar {
     
     public boolean cargoEstaRelacionado(Cargo cargo){
         boolean resultado;
-        Query consulta = FachadaPersistencia.getInstancia().crearConsulta("Select a from Empleado a where a.cargo = :cargo and a.borrado=false" );
+        Query consulta = FachadaPersistencia.getInstancia().crearConsulta(
+                "SELECT a FROM Empleado a " +
+                "WHERE a.cargo = :cargo AND a.borrado=false" );
         consulta.setParameter("cargo", cargo);
         
         if(FachadaPersistencia.getInstancia().buscar(Empleado.class, consulta).size()==0){
@@ -54,7 +54,9 @@ public class ValidacionEliminar {
     
     public boolean empleadoEstaRelacionado(Empleado empleado){
         boolean resultado;
-        Query consulta = FachadaPersistencia.getInstancia().crearConsulta("Select a from HoraLaboral a where a.empleado = :empleado and a.borrado=false" );
+        Query consulta = FachadaPersistencia.getInstancia().crearConsulta(
+                "SELECT a FROM HoraLaboral a " +
+                "WHERE a.empleado = :empleado AND a.borrado=false" );
         consulta.setParameter("empleado", empleado);
         
         if(FachadaPersistencia.getInstancia().buscar(HoraLaboral.class, consulta).size()==0){
@@ -87,10 +89,30 @@ public class ValidacionEliminar {
 
         return resultado;
     }
+
+    boolean estructuraEstaRelacionada(EstructuraDeProducto estructuraDeProducto) {
+       boolean resultado;
+
+        Query consulta = FachadaPersistencia.getInstancia().crearConsulta(
+                "SELECT a FROM RutaFabricacion a WHERE a.borrado = false " +
+                "AND a.productoTerminado = :producto" );
+        consulta.setParameter("producto", estructuraDeProducto.getProductoTerminado());
+
+
+        if(FachadaPersistencia.getInstancia().buscar(RutaFabricacion.class, consulta).size()>0){
+            resultado=true;
+        }else{
+            resultado=false;
+        }
+
+        return resultado;
+    }
     
     public boolean materiaPrimaEstaRelacionada(MateriaPrima materiaPrima){
         boolean resultado;
-        Query consulta = FachadaPersistencia.getInstancia().crearConsulta("Select a from ParteDeEstructura a where a.componente = :materiaPrima and a.borrado=false" );
+        Query consulta = FachadaPersistencia.getInstancia().crearConsulta(
+                "SELECT a FROM ParteDeEstructura a " +
+                "WHERE a.componente = :materiaPrima AND a.borrado=false" );
         consulta.setParameter("materiaPrima", materiaPrima);
         
         if(FachadaPersistencia.getInstancia().buscar(ParteDeEstructura.class, consulta).size()==0){
@@ -104,7 +126,9 @@ public class ValidacionEliminar {
 
     public boolean productoComponenteEstaRelacionada(ProductoComponente productoComponente){
         boolean resultado;
-        Query consulta = FachadaPersistencia.getInstancia().crearConsulta("Select a from ParteDeEstructura a where a.componente = :componente and a.borrado=false" );
+        Query consulta = FachadaPersistencia.getInstancia().crearConsulta(
+                "SELECT a FROM ParteDeEstructura a " +
+                "WHERE a.componente = :componente AND a.borrado=false" );
         consulta.setParameter("componente", productoComponente);
         
         if(FachadaPersistencia.getInstancia().buscar(ParteDeEstructura.class, consulta).size()==0){
@@ -117,7 +141,9 @@ public class ValidacionEliminar {
     }
     
     public void eliminarRutaEstructuraAsociados(ProductoTerminado productoTerminado){
-        Query consulta = FachadaPersistencia.getInstancia().crearConsulta("SELECT a FROM RutaFabricacion a WHERE a.productoTerminado = :producto and a.borrado=false" );
+        Query consulta = FachadaPersistencia.getInstancia().crearConsulta(
+                "SELECT a FROM RutaFabricacion a " +
+                "WHERE a.productoTerminado = :producto and a.borrado=false" );
         consulta.setParameter("producto", productoTerminado);
         
         List<RutaFabricacion> rutas= FachadaPersistencia.getInstancia().buscar(RutaFabricacion.class, consulta);
@@ -130,7 +156,9 @@ public class ValidacionEliminar {
             FachadaPersistencia.getInstancia().finalizarTransaccion();
         }
         
-        consulta = FachadaPersistencia.getInstancia().crearConsulta("Select a from EstructuraDeProducto a where a.productoTerminado = :producto and a.borrado=false" );
+        consulta = FachadaPersistencia.getInstancia().crearConsulta(
+                "SELECT a FROM EstructuraDeProducto a " +
+                "WHERE a.productoTerminado = :producto AND a.borrado=false" );
         consulta.setParameter("producto", productoTerminado);
         
         List<EstructuraDeProducto> estructuras= FachadaPersistencia.getInstancia().buscar(EstructuraDeProducto.class, consulta);
