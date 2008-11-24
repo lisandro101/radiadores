@@ -14,7 +14,6 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import radiadores.persistencia.IPersistente;
@@ -45,6 +44,14 @@ public class Componente implements Serializable, IPersistente {
     private char tipo;
     private double stock;
     private double stockReserva;
+    private double costoAlmacenamiento;
+    private double costoPedido;
+    private double costoUnitario;
+    private double tamanioLoteEstandar;
+    private double precioBase;
+    private double pesoUnidad;
+    private String descripcion;
+
     /**
      * Constructor
      */
@@ -104,6 +111,7 @@ public class Componente implements Serializable, IPersistente {
         return borrado;
     }
 
+    @Override
     public void setBorrado(boolean borrado) {
         this.borrado = borrado;
     }
@@ -170,6 +178,111 @@ public class Componente implements Serializable, IPersistente {
 
     public void setStockReserva(double stockReserva) {
         this.stockReserva = stockReserva;
+    }
+
+    /**
+     * @return the costoAlmacenamiento
+     */
+    @Column(name = "costo_almacenamiento")
+    public double getCostoAlmacenamiento() {
+        return costoAlmacenamiento;
+    }
+
+    /**
+     * @param costoAlmacenamiento the costoAlmacenamiento to set
+     */
+    public void setCostoAlmacenamiento(double costoAlmacenamiento) {
+        this.costoAlmacenamiento = costoAlmacenamiento;
+    }
+
+    /**
+     * @return the costoEmision
+     */
+    @Column(name="costo_pedido")
+    public double getCostoPedido() {
+        return costoPedido;
+    }
+
+    /**
+     * @param costoEmision the costoEmision to set
+     */
+    public void setCostoPedido(double costoPedido) {
+        this.costoPedido = costoPedido;
+    }
+
+    /**
+     * @return the costoUnitarioOmision
+     */
+    @Column(name="costo_unitario")
+    public double getCostoUnitario() {
+        return costoUnitario;
+    }
+
+    /**
+     * @param costoUnitarioOmision the costoUnitarioOmision to set
+     */
+    public void setCostoUnitario(double costoUnitario) {
+        this.costoUnitario = costoUnitario;
+    }
+
+    /**
+     * @return the tamanioLoteEstandar
+     */
+    @Column(name="tamanio_lote_estandar")
+    public double getTamanioLoteEstandar() {
+        return tamanioLoteEstandar;
+    }
+
+    /**
+     * @param tamanioLoteEstandar the tamanioLoteEstandar to set
+     */
+    public void setTamanioLoteEstandar(double tamanioLoteEstandar) {
+        this.tamanioLoteEstandar = tamanioLoteEstandar;
+    }
+
+    /**
+     * @return the precioBase
+     */
+    @Column(name="precio_base")
+    public double getPrecioBase() {
+        return precioBase;
+    }
+
+    /**
+     * @param precioBase the precioBase to set
+     */
+    public void setPrecioBase(double precioBase) {
+        this.precioBase = precioBase;
+    }
+
+    /**
+     * @return the pesoUnidad
+     */
+    @Column(name="peso_unidad")
+    public double getPesoUnidad() {
+        return pesoUnidad;
+    }
+
+    /**
+     * @param pesoUnidad the pesoUnidad to set
+     */
+    public void setPesoUnidad(double pesoUnidad) {
+        this.pesoUnidad = pesoUnidad;
+    }
+
+    /**
+     * @return the descripcion
+     */
+    @Column(name="descripcion")
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    /**
+     * @param descripcion the descripcion to set
+     */
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
     
     

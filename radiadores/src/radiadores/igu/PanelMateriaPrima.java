@@ -58,7 +58,7 @@ public class PanelMateriaPrima extends javax.swing.JPanel implements IValidable 
         lbCodigo = new javax.swing.JLabel();
         lbNombre = new javax.swing.JLabel();
         lbCostoAlmacenamiento = new javax.swing.JLabel();
-        lbCostoUnitPorOmision = new javax.swing.JLabel();
+        lbCostoUnitario = new javax.swing.JLabel();
         lbPesoPorUnid = new javax.swing.JLabel();
         lbPrecioBase = new javax.swing.JLabel();
         lbTamanioLoteEstandar = new javax.swing.JLabel();
@@ -66,7 +66,7 @@ public class PanelMateriaPrima extends javax.swing.JPanel implements IValidable 
         tfTamanioLoteEstandar = new javax.swing.JTextField();
         tfPrecioBase = new javax.swing.JTextField();
         tfCostoAlmacenamiento = new javax.swing.JTextField();
-        tfCostoUnitPorOmision = new javax.swing.JTextField();
+        tfCostoUnitario = new javax.swing.JTextField();
         tfPesoPorUnidad = new javax.swing.JTextField();
         tfNombre = new javax.swing.JTextField();
         tfCodigo = new javax.swing.JTextField();
@@ -79,6 +79,8 @@ public class PanelMateriaPrima extends javax.swing.JPanel implements IValidable 
         lbStock = new javax.swing.JLabel();
         lbStockReserva = new javax.swing.JLabel();
         tfStockReserva = new javax.swing.JTextField();
+        lbCostoPedido = new javax.swing.JLabel();
+        tfCostoPedido = new javax.swing.JTextField();
         pBotones = new javax.swing.JPanel();
         btBuscar = new javax.swing.JButton();
         btAgregar = new javax.swing.JButton();
@@ -95,9 +97,9 @@ public class PanelMateriaPrima extends javax.swing.JPanel implements IValidable 
 
         lbNombre.setText("Nombre:");
 
-        lbCostoAlmacenamiento.setText("Costo Almecenamiento:");
+        lbCostoAlmacenamiento.setText("Costo Almacenamiento:");
 
-        lbCostoUnitPorOmision.setText("Costo por omisión:");
+        lbCostoUnitario.setText("Costo Unitario:");
 
         lbPesoPorUnid.setText("Peso por Unidad:");
 
@@ -137,6 +139,8 @@ public class PanelMateriaPrima extends javax.swing.JPanel implements IValidable 
 
         lbStockReserva.setText("Stock reserva");
 
+        lbCostoPedido.setText("Costo Pedido:");
+
         javax.swing.GroupLayout pCamposLayout = new javax.swing.GroupLayout(pCampos);
         pCampos.setLayout(pCamposLayout);
         pCamposLayout.setHorizontalGroup(
@@ -146,35 +150,41 @@ public class PanelMateriaPrima extends javax.swing.JPanel implements IValidable 
                 .addGroup(pCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pCamposLayout.createSequentialGroup()
                         .addGroup(pCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lbCostoAlmacenamiento)
-                            .addGroup(pCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(lbPesoPorUnid)
-                                .addComponent(lbUnidadMedida)
-                                .addComponent(lbNombre)
-                                .addComponent(lbCodigo)
-                                .addComponent(lbTamanioLoteEstandar)
-                                .addComponent(lbPrecioBase)
-                                .addComponent(lbStock)
-                                .addComponent(lbDescripcion)
-                                .addComponent(lbEstado)
-                                .addComponent(lbCostoUnitPorOmision, javax.swing.GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE)))
-                        .addGap(23, 23, 23))
+                            .addGroup(pCamposLayout.createSequentialGroup()
+                                .addGroup(pCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lbCostoAlmacenamiento)
+                                    .addGroup(pCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(lbPesoPorUnid)
+                                        .addComponent(lbUnidadMedida)
+                                        .addComponent(lbNombre)
+                                        .addComponent(lbCodigo)
+                                        .addComponent(lbTamanioLoteEstandar)
+                                        .addComponent(lbPrecioBase)
+                                        .addComponent(lbStock)
+                                        .addComponent(lbDescripcion)
+                                        .addComponent(lbEstado)
+                                        .addComponent(lbCostoUnitario, javax.swing.GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE)))
+                                .addGap(23, 23, 23))
+                            .addGroup(pCamposLayout.createSequentialGroup()
+                                .addComponent(lbStockReserva)
+                                .addGap(70, 70, 70)))
+                        .addGroup(pCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(tfStockReserva, javax.swing.GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE)
+                            .addComponent(tfDescripcion, javax.swing.GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE)
+                            .addComponent(tfPrecioBase, javax.swing.GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE)
+                            .addComponent(tfTamanioLoteEstandar, javax.swing.GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE)
+                            .addComponent(tfPesoPorUnidad, javax.swing.GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE)
+                            .addComponent(tfCostoUnitario, javax.swing.GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE)
+                            .addComponent(tfCostoAlmacenamiento, javax.swing.GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE)
+                            .addComponent(tfNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE)
+                            .addComponent(tfCodigo, javax.swing.GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE)
+                            .addComponent(cbUnidadMedida, javax.swing.GroupLayout.Alignment.TRAILING, 0, 208, Short.MAX_VALUE)
+                            .addComponent(tfStock, javax.swing.GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE)
+                            .addComponent(cbEstado, 0, 208, Short.MAX_VALUE)))
                     .addGroup(pCamposLayout.createSequentialGroup()
-                        .addComponent(lbStockReserva)
-                        .addGap(70, 70, 70)))
-                .addGroup(pCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(tfStockReserva, javax.swing.GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE)
-                    .addComponent(tfDescripcion, javax.swing.GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE)
-                    .addComponent(tfPrecioBase, javax.swing.GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE)
-                    .addComponent(tfTamanioLoteEstandar, javax.swing.GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE)
-                    .addComponent(tfPesoPorUnidad, javax.swing.GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE)
-                    .addComponent(tfCostoUnitPorOmision, javax.swing.GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE)
-                    .addComponent(tfCostoAlmacenamiento, javax.swing.GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE)
-                    .addComponent(tfNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE)
-                    .addComponent(tfCodigo, javax.swing.GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE)
-                    .addComponent(cbUnidadMedida, javax.swing.GroupLayout.Alignment.TRAILING, 0, 208, Short.MAX_VALUE)
-                    .addComponent(tfStock, javax.swing.GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE)
-                    .addComponent(cbEstado, 0, 208, Short.MAX_VALUE))
+                        .addComponent(lbCostoPedido, javax.swing.GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE)
+                        .addGap(23, 23, 23)
+                        .addComponent(tfCostoPedido, javax.swing.GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         pCamposLayout.setVerticalGroup(
@@ -194,8 +204,8 @@ public class PanelMateriaPrima extends javax.swing.JPanel implements IValidable 
                     .addComponent(tfCostoAlmacenamiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(tfCostoUnitPorOmision, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lbCostoUnitPorOmision))
+                    .addComponent(tfCostoUnitario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbCostoUnitario))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(lbPesoPorUnid)
@@ -228,7 +238,11 @@ public class PanelMateriaPrima extends javax.swing.JPanel implements IValidable 
                 .addGroup(pCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(lbStockReserva)
                     .addComponent(tfStockReserva, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(44, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(tfCostoPedido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbCostoPedido))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         btBuscar.setText("Buscar");
@@ -290,15 +304,15 @@ public class PanelMateriaPrima extends javax.swing.JPanel implements IValidable 
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pTablaProveedoresLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pTablaProveedoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 376, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 376, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 397, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 397, Short.MAX_VALUE))
                 .addContainerGap())
         );
         pTablaProveedoresLayout.setVerticalGroup(
             pTablaProveedoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pTablaProveedoresLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 280, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 283, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -430,7 +444,8 @@ private void tfStockActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lbCodigo;
     private javax.swing.JLabel lbCostoAlmacenamiento;
-    private javax.swing.JLabel lbCostoUnitPorOmision;
+    private javax.swing.JLabel lbCostoPedido;
+    private javax.swing.JLabel lbCostoUnitario;
     private javax.swing.JLabel lbDescripcion;
     private javax.swing.JLabel lbEstado;
     private javax.swing.JLabel lbNombre;
@@ -446,7 +461,8 @@ private void tfStockActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
     private org.jdesktop.swingx.JXTable tProveedor;
     private javax.swing.JTextField tfCodigo;
     private javax.swing.JTextField tfCostoAlmacenamiento;
-    private javax.swing.JTextField tfCostoUnitPorOmision;
+    private javax.swing.JTextField tfCostoPedido;
+    private javax.swing.JTextField tfCostoUnitario;
     private javax.swing.JTextField tfDescripcion;
     private javax.swing.JTextField tfNombre;
     private javax.swing.JTextField tfPesoPorUnidad;
@@ -461,10 +477,10 @@ private void tfStockActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
 
         materiaPrima.setCodigo(tfCodigo.getText());
         materiaPrima.setCostoAlmacenamiento(Double.parseDouble(tfCostoAlmacenamiento.getText()));        
-        materiaPrima.setCostoUnitarioPorOmision(Double.parseDouble(tfCostoUnitPorOmision.getText()));
+        materiaPrima.setCostoUnitario(Double.parseDouble(tfCostoUnitario.getText()));
         materiaPrima.setDescripcion(tfDescripcion.getText());
         materiaPrima.setNombre(tfNombre.getText());
-        materiaPrima.setPesoPorUnidad(Double.parseDouble(tfPesoPorUnidad.getText()));
+        materiaPrima.setPesoUnidad(Double.parseDouble(tfPesoPorUnidad.getText()));
         materiaPrima.setPrecioBase(Double.parseDouble(tfPrecioBase.getText()));
         materiaPrima.setTamanioLoteEstandar(Double.parseDouble(tfTamanioLoteEstandar.getText()));
         materiaPrima.setUnidadMedida((String) cbUnidadMedida.getSelectedItem());
@@ -472,6 +488,7 @@ private void tfStockActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
         materiaPrima.setEstado((Estado)cbEstado.getSelectedItem());
         materiaPrima.setStock(Double.valueOf(tfStock.getText()));
         materiaPrima.setStockReserva(Double.valueOf(tfStockReserva.getText()));
+        materiaPrima.setCostoPedido(Double.parseDouble(tfCostoPedido.getText()));
         
         return materiaPrima;
     }
@@ -480,15 +497,16 @@ private void tfStockActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
         Util.getInstancia().limpiarCampos(this);
         tfCodigo.setText(mat.getCodigo());
         tfCostoAlmacenamiento.setText(String.valueOf(mat.getCostoAlmacenamiento()));
-        tfCostoUnitPorOmision.setText(String.valueOf(mat.getCostoUnitarioPorOmision()));
+        tfCostoUnitario.setText(String.valueOf(mat.getCostoUnitario()));
         tfDescripcion.setText(mat.getDescripcion());
         tfNombre.setText(mat.getNombre());
-        tfPesoPorUnidad.setText(String.valueOf(mat.getPesoPorUnidad()));
+        tfPesoPorUnidad.setText(String.valueOf(mat.getPesoUnidad()));
         tfPrecioBase.setText(String.valueOf(mat.getPrecioBase()));
         tfTamanioLoteEstandar.setText(String.valueOf(mat.getTamanioLoteEstandar()));
         cbUnidadMedida.setSelectedItem(mat.getUnidadMedida());
         tfStock.setText(String.valueOf(mat.getStock()));
         tfStockReserva.setText(String.valueOf(mat.getStockReserva()));
+        tfCostoPedido.setText(String.valueOf(mat.getCostoPedido()));
         
         tm.agregarFilas(mat.getProveedores());
         
@@ -508,10 +526,10 @@ private void tfStockActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
         
         materiaPrima.setCodigo(tfCodigo.getText());
         materiaPrima.setCostoAlmacenamiento(Double.parseDouble(tfCostoAlmacenamiento.getText()));        
-        materiaPrima.setCostoUnitarioPorOmision(Double.parseDouble(tfCostoUnitPorOmision.getText()));
+        materiaPrima.setCostoUnitario(Double.parseDouble(tfCostoUnitario.getText()));
         materiaPrima.setDescripcion(tfDescripcion.getText());
         materiaPrima.setNombre(tfNombre.getText());
-        materiaPrima.setPesoPorUnidad(Double.parseDouble(tfPesoPorUnidad.getText()));
+        materiaPrima.setPesoUnidad(Double.parseDouble(tfPesoPorUnidad.getText()));
         materiaPrima.setPrecioBase(Double.parseDouble(tfPrecioBase.getText()));
         materiaPrima.setTamanioLoteEstandar(Double.parseDouble(tfTamanioLoteEstandar.getText()));
         materiaPrima.setUnidadMedida((String) cbUnidadMedida.getSelectedItem());
@@ -520,6 +538,7 @@ private void tfStockActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
         materiaPrima.setStock(Double.valueOf(tfStock.getText()));
         materiaPrima.setStockReserva(Double.valueOf(tfStockReserva.getText()));
     }
+    
     private void inicializarBotones(){
         btAgregar.setEnabled(true);
         btEliminar.setEnabled(false);
@@ -534,8 +553,7 @@ private void tfStockActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
     public MateriaPrima getMateriaPrima() {
         return materiaPrima;
     }
-    
-        
+       
     @Override
     public List<Component> getComponentesObligatorios() {
         return componentesObligatorios;
