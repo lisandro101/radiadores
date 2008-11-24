@@ -21,28 +21,30 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="2" attributes="0">
+                          <Component id="pCampos" alignment="2" min="-2" max="-2" attributes="1"/>
+                          <Component id="pTablaProveedores" alignment="2" max="32767" attributes="0"/>
+                      </Group>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="pTablaProveedores" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="pBotones" pref="664" max="32767" attributes="1"/>
+                      <Component id="pBotones" pref="674" max="32767" attributes="1"/>
+                      <EmptySpace min="10" pref="10" max="10" attributes="0"/>
                   </Group>
-                  <Component id="pCampos" alignment="0" min="-2" max="-2" attributes="1"/>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <Component id="pCampos" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+              <Component id="pCampos" min="-2" pref="244" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Component id="pTablaProveedores" min="-2" max="-2" attributes="2"/>
-              <EmptySpace min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Component id="pBotones" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" max="-2" attributes="0"/>
           </Group>
@@ -104,15 +106,13 @@
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
-                  <Group type="103" groupAlignment="1" attributes="0">
-                      <Group type="102" alignment="1" attributes="0">
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="pProductoTerminado2" min="-2" max="-2" attributes="1"/>
-                      </Group>
-                      <Component id="pProductoTerminado1" alignment="0" min="-2" max="-2" attributes="1"/>
-                  </Group>
+              <Group type="102" attributes="0">
+                  <Component id="pProductoTerminado1" min="-2" max="-2" attributes="1"/>
                   <EmptySpace max="-2" attributes="0"/>
+              </Group>
+              <Group type="102" attributes="0">
+                  <EmptySpace min="11" pref="11" max="11" attributes="0"/>
+                  <Component id="pProductoTerminado2" max="32767" attributes="1"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -134,9 +134,11 @@
                           <Component id="lbCostoPedio" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="lbCostoAlmacenamiento" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="lbStockReserva" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="lbDemandaAnual" pref="113" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="tfDemandaAnual" alignment="1" pref="227" max="32767" attributes="1"/>
                           <Component id="tfStockReserva" alignment="0" pref="227" max="32767" attributes="0"/>
                           <Component id="tfCostoAlmacenamiento" alignment="0" pref="227" max="32767" attributes="1"/>
                           <Component id="tfCostoPedido" alignment="0" pref="227" max="32767" attributes="1"/>
@@ -187,11 +189,17 @@
                           <Component id="lbDescripcion" alignment="2" min="-2" max="-2" attributes="0"/>
                           <Component id="tfDescripcion" alignment="2" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="lbStockReserva" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="tfStockReserva" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="2" attributes="0">
+                          <Component id="tfDemandaAnual" alignment="2" min="-2" max="-2" attributes="0"/>
+                          <Component id="lbDemandaAnual" alignment="2" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -255,6 +263,13 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Stock reserva"/>
               </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="lbDemandaAnual">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Demanda Anual:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="tfDemandaAnual">
             </Component>
           </SubComponents>
         </Container>
@@ -444,11 +459,11 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="1" attributes="0">
+              <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="1" attributes="0">
-                      <Component id="jScrollPane1" alignment="0" pref="632" max="32767" attributes="0"/>
-                      <Component id="jPanel2" alignment="0" pref="632" max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="jScrollPane1" alignment="1" pref="642" max="32767" attributes="0"/>
+                      <Component id="jPanel2" alignment="1" pref="642" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -457,10 +472,10 @@
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
-                  <Component id="jScrollPane1" pref="147" max="32767" attributes="0"/>
+                  <Component id="jScrollPane1" pref="138" max="32767" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="jPanel2" max="32767" attributes="0"/>
+                  <EmptySpace min="-2" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
