@@ -375,8 +375,8 @@ private void btAgregarNodoActionPerformed(java.awt.event.ActionEvent evt) {//GEN
         NodoRuta nodoRuta = PanelDetalleRuta.obtenerNodo(productoTerminado); 
         if(nodoRuta != null) {
                 nodosListModel.agregarElemento(nodoRuta);
-            }
         }
+    }
     else {
         JOptionPane.showMessageDialog(this, "No ha definido una ruta valida.");
     } 

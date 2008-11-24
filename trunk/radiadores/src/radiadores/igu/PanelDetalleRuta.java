@@ -681,7 +681,7 @@ private void btGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
         return nodoDeRuta;
     }
     
-        public static synchronized NodoRuta obtenerNodo(ProductoTerminado producto) {
+    public static synchronized NodoRuta obtenerNodo(ProductoTerminado producto) {
         PanelDetalleRuta panelDetalleRuta = new PanelDetalleRuta(producto);
 
         panelDetalleRuta.setLocationRelativeTo(null);
