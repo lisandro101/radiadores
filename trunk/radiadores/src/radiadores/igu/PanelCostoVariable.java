@@ -3,6 +3,7 @@ package radiadores.igu;
 import java.awt.Component;
 import java.util.List;
 import radiadores.entidades.CostoVariable;
+import radiadores.gestores.GestorCostoVariable;
 import radiadores.igu.model.CostoVariableTableModel;
 import radiadores.utils.IValidable;
 
@@ -132,13 +133,10 @@ private void btCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
 }//GEN-LAST:event_btCerrarActionPerformed
 
 private void btAceptarBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAceptarBuscarActionPerformed
-  
+  tmBuscar.agregarFilas(GestorCostoVariable.getInstancia().calcularCostoVariable());
 
 }//GEN-LAST:event_btAceptarBuscarActionPerformed
-
-        
-
-    
+  
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btAceptarBuscar;
@@ -148,13 +146,6 @@ private void btAceptarBuscarActionPerformed(java.awt.event.ActionEvent evt) {//G
     private javax.swing.JPanel pTabla;
     private org.jdesktop.swingx.JXTable tCargos;
     // End of variables declaration//GEN-END:variables
-
-    
-    private void cargarPantallaCostoVariable(List<CostoVariable> costoVariables){
-        tmBuscar.agregarFilas(costoVariables);
-    }
-    
-
 
     @Override
     public List<Component> getComponentesObligatorios() {

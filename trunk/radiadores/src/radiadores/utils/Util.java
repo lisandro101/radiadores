@@ -2,6 +2,8 @@ package radiadores.utils;
 
 import java.awt.Component;
 import java.awt.Container;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
@@ -329,4 +331,5 @@ public class Util {
         
         return resultado;
     }
+
 }

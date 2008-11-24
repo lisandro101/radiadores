@@ -27,7 +27,7 @@
                   <Component id="jPanel1" alignment="2" max="32767" attributes="0"/>
                   <Component id="pEmpleado" alignment="0" max="32767" attributes="0"/>
                   <Component id="jPanel4" alignment="0" max="32767" attributes="0"/>
-                  <Component id="jPanel6" alignment="1" pref="493" max="32767" attributes="0"/>
+                  <Component id="jPanel6" alignment="1" pref="497" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -59,7 +59,7 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="lbCentroTrabajo" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="tfCentroTrabajo" pref="329" max="32767" attributes="0"/>
+                  <Component id="tfCentroTrabajo" pref="333" max="32767" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="btBuscarCentroTrabajo" min="-2" pref="32" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
@@ -195,13 +195,13 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="lbEmpleado" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="tfEmpleado" pref="236" max="32767" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="tfEmpleado" pref="223" max="32767" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="btBuscarEmpleado" min="-2" pref="32" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="lbHoras" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="tfHoras" min="-2" pref="78" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="tfHoras" min="-2" pref="46" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -212,10 +212,10 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="2" attributes="0">
                           <Component id="lbEmpleado" alignment="2" min="-2" max="-2" attributes="0"/>
-                          <Component id="lbHoras" alignment="2" min="-2" max="-2" attributes="0"/>
                           <Component id="tfHoras" alignment="2" min="-2" max="-2" attributes="0"/>
-                          <Component id="tfEmpleado" alignment="2" min="-2" max="-2" attributes="0"/>
+                          <Component id="lbHoras" alignment="2" min="-2" max="-2" attributes="0"/>
                           <Component id="btBuscarEmpleado" alignment="2" min="-2" max="-2" attributes="0"/>
+                          <Component id="tfEmpleado" alignment="2" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
@@ -247,7 +247,7 @@
             </Component>
             <Component class="javax.swing.JLabel" name="lbHoras">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Horas"/>
+                <Property name="text" type="java.lang.String" value="Tiempo (min)"/>
               </Properties>
             </Component>
           </SubComponents>

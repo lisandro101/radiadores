@@ -20,6 +20,7 @@ import radiadores.entidades.ProductoComponente;
 import radiadores.entidades.ProductoTerminado;
 import radiadores.entidades.Proveedor;
 import radiadores.entidades.RutaFabricacion;
+import radiadores.igu.PanelPuntoEquilibrio;
 import radiadores.igu.PanelDetalleRuta;
 import radiadores.igu.PanelEstructuraDeProducto;
 import radiadores.igu.PanelMateriaPrima;
@@ -41,6 +42,7 @@ public class PanelBuscarProductoGral extends javax.swing.JDialog {
     
     private static final long serialVersionUID = 1L;
 
+    private PanelPuntoEquilibrio panelPuntoEquilibrio;
     private ProductoGralTableModel tmBuscar;
     private ProductoGralTableModel tmOrigen;
     private ComponenteDetalleRutaTableModel tmDetalleRuta;
@@ -71,7 +73,8 @@ public class PanelBuscarProductoGral extends javax.swing.JDialog {
         PANEL_ORDEN_COMPRA ("Panel Orden Compra"),
         PANEL_ORDEN_PRODUCCION ("Panel Orden Produccion"),
         PANEL_IBUSCA ("Panel IBusca"),
-        PANEL_RUTA_FABRICACION ("Panel Ruta Fabricacion");
+        PANEL_RUTA_FABRICACION ("Panel Ruta Fabricacion"),
+        PANEL_PUNTO_EQUILIBRIO ("Panel Punto Equilibrio");
         
         private String nombre;
         
@@ -165,6 +168,12 @@ public class PanelBuscarProductoGral extends javax.swing.JDialog {
         inicializar();
     }
     
+    public PanelBuscarProductoGral(PanelPuntoEquilibrio panel){
+        initComponents();
+        tipo= Tipo.PANEL_PUNTO_EQUILIBRIO;
+        panelPuntoEquilibrio =panel;
+        inicializar();
+    }
     
     private void inicializar() {
         tmBuscar = new ProductoGralTableModel(0);
@@ -370,6 +379,9 @@ private void btAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
         }else if(tipo== Tipo.PANEL_PROD_TERMINADO){
             panelProductoTerminado.setComponente((ProductoTerminado)resultado);
             dispose(); 
+        }else if(tipo== Tipo.PANEL_PUNTO_EQUILIBRIO){
+            panelPuntoEquilibrio.setProductoTerminado((ProductoTerminado)resultado);
+            dispose();
         }else if(tipo== Tipo.PANEL_ESTRUCTURA){
             Query consulta = FachadaPersistencia.getInstancia().crearConsulta("" +
                     "SELECT a FROM EstructuraDeProducto a " +
