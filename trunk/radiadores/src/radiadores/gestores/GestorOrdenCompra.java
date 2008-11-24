@@ -104,11 +104,7 @@ public class GestorOrdenCompra {
     public void generarOrdenAutomatica(OrdenCompraTableModel tm){
         Query consulta;
         List<Componente> componentes;
-        double stockAntiguo;
-        double stockReservaAntiguo;
         double stockNecesario;
-        double cantEnOrdenProdSuspendida;
-        double cantEnOrdenCompraPendiente;
                 
         consulta = FachadaPersistencia.getInstancia().crearConsulta("Select a from Componente a where  a.borrado=false and a.tipo IN (:tipo1, :tipo2)");
         consulta.setParameter("tipo1", 'C');
@@ -116,18 +112,15 @@ public class GestorOrdenCompra {
         componentes= FachadaPersistencia.getInstancia().buscar(Componente.class, consulta);     
         
         for (Componente componente : componentes) {
-            stockAntiguo= componente.getStock();
-            stockReservaAntiguo= componente.getStockReserva();
-            stockNecesario= stockAntiguo - calcularOrdenProdSuspendida(componente) + calcularOredenesCompraPendientes(componente);
-            
-            if(stockReservaAntiguo>stockNecesario){
-                stockNecesario= stockReservaAntiguo;
+            stockNecesario = componente.getStockReserva() + calcularOrdenProdSuspendida(componente)
+                    - calcularOrdenesCompraPendientes(componente) - componente.getStock();
+
+            if (stockNecesario > 0) {
+                DetalleOrdenCompra detalle = new DetalleOrdenCompra();
+                detalle.setComponente(componente);
+                detalle.setCantidad(stockNecesario);
+                tm.agregarFila(detalle);
             }
-            
-            DetalleOrdenCompra detalle = new DetalleOrdenCompra();
-            detalle.setComponente(componente);
-            detalle.setCantidad(stockNecesario);     
-            tm.agregarFila(detalle);
         }
     }
 
@@ -171,7 +164,7 @@ public class GestorOrdenCompra {
         return resultado;
     }
     
-    private double calcularOredenesCompraPendientes(Componente componente){
+    private double calcularOrdenesCompraPendientes(Componente componente){
         double resultado=0.0;
         List<DetalleOrdenCompra> detalleOrdenCompras;
         Query consulta;
