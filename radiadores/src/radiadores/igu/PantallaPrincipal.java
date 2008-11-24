@@ -83,6 +83,8 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         archivo = new javax.swing.JMenu();
         costos = new javax.swing.JMenu();
         costoFijo = new javax.swing.JMenuItem();
+        costoVariable = new javax.swing.JMenuItem();
+        puntoEquilibrio = new javax.swing.JMenuItem();
         ayuda = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
@@ -114,6 +116,22 @@ public class PantallaPrincipal extends javax.swing.JFrame {
             }
         });
         costos.add(costoFijo);
+
+        costoVariable.setText("Costo Variable");
+        costoVariable.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                costoVariableActionPerformed(evt);
+            }
+        });
+        costos.add(costoVariable);
+
+        puntoEquilibrio.setText("Punto Equilibrio");
+        puntoEquilibrio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                puntoEquilibrioActionPerformed(evt);
+            }
+        });
+        costos.add(puntoEquilibrio);
 
         menu.add(costos);
 
@@ -249,15 +267,29 @@ private void costoFijoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
     panelCostoFijo.setVisible(true);
 }//GEN-LAST:event_costoFijoActionPerformed
 
+private void costoVariableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_costoVariableActionPerformed
+    PanelCostoVariable panelCostoVariable = new PanelCostoVariable();
+    panelCostoVariable.setModal(true);
+    panelCostoVariable.setVisible(true);
+}//GEN-LAST:event_costoVariableActionPerformed
+
+private void puntoEquilibrioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_puntoEquilibrioActionPerformed
+    PanelPuntoEquilibrio panelCostoVariable = new PanelPuntoEquilibrio();
+    panelCostoVariable.setModal(true);
+    panelCostoVariable.setVisible(true);
+}//GEN-LAST:event_puntoEquilibrioActionPerformed
+
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu archivo;
     private javax.swing.JMenu ayuda;
     private javax.swing.JMenuItem costoFijo;
+    private javax.swing.JMenuItem costoVariable;
     private javax.swing.JMenu costos;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JMenuBar menu;
+    private javax.swing.JMenuItem puntoEquilibrio;
     // End of variables declaration//GEN-END:variables
 
     

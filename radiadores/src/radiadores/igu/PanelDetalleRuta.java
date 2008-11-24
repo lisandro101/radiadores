@@ -159,7 +159,7 @@ public class PanelDetalleRuta extends javax.swing.JDialog implements iBuscaCentr
                 .addContainerGap()
                 .addComponent(lbCentroTrabajo)
                 .addGap(18, 18, 18)
-                .addComponent(tfCentroTrabajo, javax.swing.GroupLayout.DEFAULT_SIZE, 325, Short.MAX_VALUE)
+                .addComponent(tfCentroTrabajo, javax.swing.GroupLayout.DEFAULT_SIZE, 333, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btBuscarCentroTrabajo, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -236,7 +236,7 @@ public class PanelDetalleRuta extends javax.swing.JDialog implements iBuscaCentr
             }
         });
 
-        lbHoras.setText("Horas");
+        lbHoras.setText("Tiempo (min)");
 
         javax.swing.GroupLayout pEmpleadoAgregarLayout = new javax.swing.GroupLayout(pEmpleadoAgregar);
         pEmpleadoAgregar.setLayout(pEmpleadoAgregarLayout);
@@ -246,13 +246,13 @@ public class PanelDetalleRuta extends javax.swing.JDialog implements iBuscaCentr
                 .addContainerGap()
                 .addComponent(lbEmpleado)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tfEmpleado, javax.swing.GroupLayout.DEFAULT_SIZE, 232, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(tfEmpleado, javax.swing.GroupLayout.DEFAULT_SIZE, 223, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btBuscarEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(16, 16, 16)
+                .addGap(18, 18, 18)
                 .addComponent(lbHoras)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tfHoras, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(tfHoras, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         pEmpleadoAgregarLayout.setVerticalGroup(
@@ -261,10 +261,10 @@ public class PanelDetalleRuta extends javax.swing.JDialog implements iBuscaCentr
                 .addContainerGap()
                 .addGroup(pEmpleadoAgregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(lbEmpleado)
-                    .addComponent(lbHoras)
                     .addComponent(tfHoras, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tfEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btBuscarEmpleado))
+                    .addComponent(lbHoras)
+                    .addComponent(btBuscarEmpleado)
+                    .addComponent(tfEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -276,8 +276,8 @@ public class PanelDetalleRuta extends javax.swing.JDialog implements iBuscaCentr
                 .addGroup(pEmpleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pEmpleadoLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 457, Short.MAX_VALUE))
-                    .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 467, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 461, Short.MAX_VALUE))
+                    .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 471, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pEmpleadoLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(pEmpleadoAgregar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
@@ -374,7 +374,7 @@ public class PanelDetalleRuta extends javax.swing.JDialog implements iBuscaCentr
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pComponenteAgregarLayout.createSequentialGroup()
                         .addComponent(lbComponente)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(tfComponente, javax.swing.GroupLayout.DEFAULT_SIZE, 352, Short.MAX_VALUE))
+                        .addComponent(tfComponente, javax.swing.GroupLayout.DEFAULT_SIZE, 356, Short.MAX_VALUE))
                     .addGroup(pComponenteAgregarLayout.createSequentialGroup()
                         .addComponent(lbCantidad)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -418,11 +418,11 @@ public class PanelDetalleRuta extends javax.swing.JDialog implements iBuscaCentr
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel4Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 457, Short.MAX_VALUE))
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 461, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel4Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(pComponenteAgregar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jPanel5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 467, Short.MAX_VALUE))
+                    .addComponent(jPanel5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 471, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
@@ -462,7 +462,7 @@ public class PanelDetalleRuta extends javax.swing.JDialog implements iBuscaCentr
                     .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.CENTER, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(pEmpleado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 489, Short.MAX_VALUE))
+                    .addComponent(jPanel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 497, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(

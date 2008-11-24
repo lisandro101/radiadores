@@ -9,9 +9,15 @@ package radiadores.gestores;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Query;
+import radiadores.entidades.Componente;
 import radiadores.entidades.CostoFijo;
 import radiadores.entidades.CostoVariable;
+import radiadores.entidades.EstructuraDeProducto;
+import radiadores.entidades.HoraLaboral;
+import radiadores.entidades.MateriaPrima;
 import radiadores.entidades.NodoRuta;
+import radiadores.entidades.ParteDeEstructura;
+import radiadores.entidades.ProductoComponente;
 import radiadores.entidades.ProductoTerminado;
 import radiadores.entidades.RutaFabricacion;
 import radiadores.igu.model.CostoFijoTableModel;
@@ -35,27 +41,38 @@ public class GestorCostoVariable {
         
     }
 
-    public double calcularCostoVariable(){
-        double resultado=0.0;
+    public List<CostoVariable> calcularCostoVariable(){
         List<CostoVariable> costos = new ArrayList<CostoVariable>();
+        List<ProductoTerminado> productoTerminados;
+        CostoVariable costoVariable;
         
-//        if(tm != null){
-//            for (CostoFijo costoFijo : costos) {
-//                if(costoFijo.isVigente()){
-//                    resultado += costoFijo.getImporte();
-//                }
-//            }    
-//        }
-        return resultado;
+        Query consulta = FachadaPersistencia.getInstancia().crearConsulta("Select a from ProductoTerminado a where  a.borrado=false" );
+        productoTerminados = FachadaPersistencia.getInstancia().buscar(ProductoTerminado.class, consulta);
+
+        for (ProductoTerminado productoTerminado : productoTerminados) {
+            costoVariable = new CostoVariable();
+            
+            costoVariable.setProductoTerminado(productoTerminado);
+            costoVariable.setCostoManoObra(calcularCostoMO(productoTerminado));
+            costoVariable.setCostoMateriales(calcularCostoMateriales(productoTerminado));
+            
+            costos.add(costoVariable);
+        }
+        
+        return costos;
     }
     
     
     private double calcularCostoMO(ProductoTerminado productoTerminado){
         RutaFabricacion ruta;
-        double resultado=0.0;
+        double costoMO=0.0;
         List<NodoRuta> nodos;
+        List<HoraLaboral> horasLaborales;
+        int cantMinutosLaborales;
         
-        Query consulta = FachadaPersistencia.getInstancia().crearConsulta("Select a from RutaFabricacion a where a.productoTerminado= :terminado and a.borrado=false" );
+        Query consulta;
+        
+        consulta = FachadaPersistencia.getInstancia().crearConsulta("Select a from RutaFabricacion a where a.productoTerminado= :terminado and a.borrado=false" );
         consulta.setParameter("terminado", productoTerminado);
         
         List<RutaFabricacion> rutasFabricacion = FachadaPersistencia.getInstancia().buscar(RutaFabricacion.class, consulta);
@@ -65,15 +82,57 @@ public class GestorCostoVariable {
             nodos= ruta.getNodosRuta();
             
             for (NodoRuta nodoRuta : nodos) {
-                //nodoRuta.
+                horasLaborales= nodoRuta.getHorasTrabajadas();
+                
+                for (HoraLaboral horaLaboral : horasLaborales) {
+                    cantMinutosLaborales= horaLaboral.getCantidad();
+                    costoMO += (horaLaboral.getEmpleado().getCargo().getValorHora()/60)*cantMinutosLaborales;
+                     
+                } 
             }
-            
         }
-        return resultado;
+        return costoMO;
     }
     
     
     private double calcularCostoMateriales(ProductoTerminado productoTerminado){
-        return 0.0;
+        EstructuraDeProducto estructuraDeProducto;
+        List<ParteDeEstructura> partes;
+        double resultado= 0.0;
+        double costoMaterial=0.0;
+        Componente componente;
+        
+        Query consulta;
+        
+        consulta = FachadaPersistencia.getInstancia().crearConsulta("Select a from EstructuraDeProducto a where a.productoTerminado= :terminado and a.borrado=false" );
+        consulta.setParameter("terminado", productoTerminado);
+        List<EstructuraDeProducto> estructurasDeProducto = FachadaPersistencia.getInstancia().buscar(EstructuraDeProducto.class, consulta);
+        
+        if(estructurasDeProducto.size() >= 1){
+            estructuraDeProducto = estructurasDeProducto.get(0);
+            partes= estructuraDeProducto.getPartes();
+            
+            for (ParteDeEstructura parte : partes) {
+                componente= parte.getComponente();
+                
+                if(componente instanceof MateriaPrima){
+                    costoMaterial = ((MateriaPrima)componente).getPrecioBase();
+//                    costoMaterial += ((MateriaPrima)componente).getCostoAlmacenamiento();
+//                    costoMaterial += ((MateriaPrima)componente).getCostoUnitario();
+                }else if(componente instanceof ProductoComponente){
+                    costoMaterial = ((ProductoComponente)componente).getPrecioBase();
+//                    costoMaterial += ((ProductoComponente)componente).getCostoAlmacenamiento();
+//                    costoMaterial += ((ProductoComponente)componente).getCostoUnitario();
+                    //costoMaterial += ((ProductoComponente)componente).getCostoPedido();
+                }
+
+                resultado += parte.getCantidad()* costoMaterial;
+                
+            }
+            
+        }
+        
+        
+        return resultado;
     }
 }
