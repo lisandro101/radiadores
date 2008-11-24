@@ -3,6 +3,7 @@ package radiadores.utils;
 import java.awt.Component;
 import java.awt.Container;
 import java.util.List;
+import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
 import org.jdesktop.swingx.JXDatePicker;
@@ -292,7 +293,9 @@ public class Util {
                 ((IModeloReiniciable)((JXTable)componente).getModel()).reiniciar();
             } else if (componente instanceof JXList) {
                 ((IModeloReiniciable)((JXList)componente).getModel()).reiniciar();
-            } else if (componente instanceof Container) {
+            } else if (componente instanceof JCheckBox) {
+                ((JCheckBox) componente).setSelected(false);
+            }else if(componente instanceof Container) {
                 limpiarCampos((Container)componente);
             }
         }

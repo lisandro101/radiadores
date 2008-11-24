@@ -6,13 +6,14 @@
 package radiadores.entidades;
 
 import java.io.Serializable;
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import radiadores.persistencia.IPersistente;
 
 /**
@@ -23,7 +24,7 @@ import radiadores.persistencia.IPersistente;
 @Table(name="costos_fijos")
 public class CostoFijo implements Serializable, IPersistente{
     private static final long serialVersionUID = 1L;
-    private static final List<String> CAMPOS_UNICOS = new ArrayList<String>(0);
+    private static final List<String> CAMPOS_UNICOS = Arrays.asList("concepto");
 
     
     private String id;
@@ -82,11 +83,38 @@ public class CostoFijo implements Serializable, IPersistente{
         this.borrado = borrado;
     }
 
-    
     @Override
-    public List<String> getCamposUnicos() {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final CostoFijo other = (CostoFijo) obj;
+        if (this.id != other.id && (this.id == null || !this.id.equals(other.id))) {
+            return false;
+        }
+        if (this.concepto != other.concepto && (this.concepto == null || !this.concepto.equals(other.concepto))) {
+            return false;
+        }
+        return true;
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 97 * hash + (this.id != null ? this.id.hashCode() : 0);
+        hash = 97 * hash + (this.concepto != null ? this.concepto.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    @Transient
+    public List<String> getCamposUnicos() {
+        return CAMPOS_UNICOS;
+    }
+
     
 
 
