@@ -85,6 +85,8 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         costoFijo = new javax.swing.JMenuItem();
         costoVariable = new javax.swing.JMenuItem();
         puntoEquilibrio = new javax.swing.JMenuItem();
+        jMenu1 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
         ayuda = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
@@ -134,6 +136,18 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         costos.add(puntoEquilibrio);
 
         menu.add(costos);
+
+        jMenu1.setText("Inventario");
+
+        jMenuItem1.setText("jMenuItem1");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem1);
+
+        menu.add(jMenu1);
 
         ayuda.setText("Ayuda");
         menu.add(ayuda);
@@ -279,6 +293,12 @@ private void puntoEquilibrioActionPerformed(java.awt.event.ActionEvent evt) {//G
     panelCostoVariable.setVisible(true);
 }//GEN-LAST:event_puntoEquilibrioActionPerformed
 
+private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+    PanelInventario panelInventario = new PanelInventario();
+    panelInventario.setModal(true);
+    panelInventario.setVisible(true);
+}//GEN-LAST:event_jMenuItem1ActionPerformed
+
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -287,6 +307,8 @@ private void puntoEquilibrioActionPerformed(java.awt.event.ActionEvent evt) {//G
     private javax.swing.JMenuItem costoFijo;
     private javax.swing.JMenuItem costoVariable;
     private javax.swing.JMenu costos;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JMenuBar menu;
     private javax.swing.JMenuItem puntoEquilibrio;
