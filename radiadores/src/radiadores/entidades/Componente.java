@@ -51,6 +51,7 @@ public class Componente implements Serializable, IPersistente {
     private double precioBase;
     private double pesoUnidad;
     private String descripcion;
+    private double demandaAnual;
 
     /**
      * Constructor
@@ -283,6 +284,21 @@ public class Componente implements Serializable, IPersistente {
      */
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
+    }
+
+    /**
+     * @return the demandaAnual
+     */
+    @Column(name="demanda_anual")
+    public double getDemandaAnual() {
+        return demandaAnual;
+    }
+
+    /**
+     * @param demandaAnual the demandaAnual to set
+     */
+    public void setDemandaAnual(double demandaAnual) {
+        this.demandaAnual = demandaAnual;
     }
     
     

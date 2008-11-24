@@ -98,6 +98,11 @@
                           <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
                           <Component id="tfCostoPedido" pref="208" max="32767" attributes="1"/>
                       </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="lbDemandaAnual" pref="113" max="32767" attributes="0"/>
+                          <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
+                          <Component id="tfDemandaAnual" pref="208" max="32767" attributes="1"/>
+                      </Group>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -171,7 +176,12 @@
                       <Component id="tfCostoPedido" alignment="2" min="-2" max="-2" attributes="0"/>
                       <Component id="lbCostoPedido" alignment="2" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="18" max="32767" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="2" attributes="0">
+                      <Component id="tfDemandaAnual" alignment="2" min="-2" max="-2" attributes="0"/>
+                      <Component id="lbDemandaAnual" alignment="2" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -295,6 +305,13 @@
         </Component>
         <Component class="javax.swing.JTextField" name="tfCostoPedido">
         </Component>
+        <Component class="javax.swing.JLabel" name="lbDemandaAnual">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Demanda Anual:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="tfDemandaAnual">
+        </Component>
       </SubComponents>
     </Container>
     <Container class="javax.swing.JPanel" name="pBotones">
@@ -361,7 +378,7 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jScrollPane1" pref="283" max="32767" attributes="0"/>
+                  <Component id="jScrollPane1" pref="302" max="32767" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
               </Group>

@@ -71,6 +71,8 @@ public class PanelProductoComponente extends javax.swing.JPanel implements IVali
         tfTamanioLoteEstandar = new javax.swing.JTextField();
         tfStockReserva = new javax.swing.JTextField();
         lbStockReserva = new javax.swing.JLabel();
+        lbDemandaAnual = new javax.swing.JLabel();
+        tfDemandaAnual = new javax.swing.JTextField();
         pProductoTerminado1 = new javax.swing.JPanel();
         lbCodigo = new javax.swing.JLabel();
         lbNombre = new javax.swing.JLabel();
@@ -145,6 +147,8 @@ public class PanelProductoComponente extends javax.swing.JPanel implements IVali
 
         lbStockReserva.setText("Stock reserva");
 
+        lbDemandaAnual.setText("Demanda Anual:");
+
         javax.swing.GroupLayout pProductoTerminado2Layout = new javax.swing.GroupLayout(pProductoTerminado2);
         pProductoTerminado2.setLayout(pProductoTerminado2Layout);
         pProductoTerminado2Layout.setHorizontalGroup(
@@ -159,9 +163,11 @@ public class PanelProductoComponente extends javax.swing.JPanel implements IVali
                     .addComponent(lbDescripcion)
                     .addComponent(lbCostoPedio)
                     .addComponent(lbCostoAlmacenamiento)
-                    .addComponent(lbStockReserva))
+                    .addComponent(lbStockReserva)
+                    .addComponent(lbDemandaAnual, javax.swing.GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pProductoTerminado2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(tfDemandaAnual, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 227, Short.MAX_VALUE)
                     .addComponent(tfStockReserva, javax.swing.GroupLayout.DEFAULT_SIZE, 227, Short.MAX_VALUE)
                     .addComponent(tfCostoAlmacenamiento, javax.swing.GroupLayout.DEFAULT_SIZE, 227, Short.MAX_VALUE)
                     .addComponent(tfCostoPedido, javax.swing.GroupLayout.DEFAULT_SIZE, 227, Short.MAX_VALUE)
@@ -202,10 +208,15 @@ public class PanelProductoComponente extends javax.swing.JPanel implements IVali
                 .addGroup(pProductoTerminado2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(lbDescripcion)
                     .addComponent(tfDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pProductoTerminado2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbStockReserva)
-                    .addComponent(tfStockReserva, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(tfStockReserva, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(pProductoTerminado2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(tfDemandaAnual, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbDemandaAnual))
+                .addContainerGap())
         );
 
         lbCodigo.setText("Código:");
@@ -317,12 +328,11 @@ public class PanelProductoComponente extends javax.swing.JPanel implements IVali
         pCamposLayout.setVerticalGroup(
             pCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pCamposLayout.createSequentialGroup()
-                .addGroup(pCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(pCamposLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(pProductoTerminado2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(pProductoTerminado1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(pProductoTerminado1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
+            .addGroup(pCamposLayout.createSequentialGroup()
+                .addGap(11, 11, 11)
+                .addComponent(pProductoTerminado2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pTablaProveedores.setBorder(javax.swing.BorderFactory.createTitledBorder("Proveedores"));
@@ -367,19 +377,19 @@ public class PanelProductoComponente extends javax.swing.JPanel implements IVali
         pTablaProveedores.setLayout(pTablaProveedoresLayout);
         pTablaProveedoresLayout.setHorizontalGroup(
             pTablaProveedoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pTablaProveedoresLayout.createSequentialGroup()
+            .addGroup(pTablaProveedoresLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(pTablaProveedoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 632, Short.MAX_VALUE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 632, Short.MAX_VALUE))
+                .addGroup(pTablaProveedoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 642, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 642, Short.MAX_VALUE))
                 .addContainerGap())
         );
         pTablaProveedoresLayout.setVerticalGroup(
             pTablaProveedoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pTablaProveedoresLayout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -388,21 +398,22 @@ public class PanelProductoComponente extends javax.swing.JPanel implements IVali
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(pTablaProveedores, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                            .addComponent(pCampos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(pTablaProveedores, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(pBotones, javax.swing.GroupLayout.DEFAULT_SIZE, 664, Short.MAX_VALUE))
-                    .addComponent(pCampos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                        .addComponent(pBotones, javax.swing.GroupLayout.DEFAULT_SIZE, 674, Short.MAX_VALUE)
+                        .addGap(10, 10, 10))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(pCampos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34)
+                .addComponent(pCampos, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(pTablaProveedores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(pBotones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -515,6 +526,7 @@ private void cbUnidadMedidaActionPerformed(java.awt.event.ActionEvent evt) {//GE
     private javax.swing.JLabel lbCostoAlmacenamiento;
     private javax.swing.JLabel lbCostoPedio;
     private javax.swing.JLabel lbCostoUnitario;
+    private javax.swing.JLabel lbDemandaAnual;
     private javax.swing.JLabel lbDescripcion;
     private javax.swing.JLabel lbEstado;
     private javax.swing.JLabel lbNombre;
@@ -536,6 +548,7 @@ private void cbUnidadMedidaActionPerformed(java.awt.event.ActionEvent evt) {//GE
     private javax.swing.JTextField tfCostoAlmacenamiento;
     private javax.swing.JTextField tfCostoPedido;
     private javax.swing.JTextField tfCostoUnitario;
+    private javax.swing.JTextField tfDemandaAnual;
     private javax.swing.JTextField tfDescripcion;
     private javax.swing.JTextField tfNombre;
     private javax.swing.JTextField tfNroPlano;
@@ -569,6 +582,7 @@ private void cbUnidadMedidaActionPerformed(java.awt.event.ActionEvent evt) {//GE
         productoComponente.setStock(Double.parseDouble(tfStock.getText()));
         productoComponente.setDescripcion(tfDescripcion.getText());
         productoComponente.setStockReserva(Double.parseDouble(tfStockReserva.getText()));
+        productoComponente.setDemandaAnual(Double.parseDouble(tfDemandaAnual.getText()));
         
         productoComponente.setProveedores(tm.getFilas());
         
@@ -601,6 +615,7 @@ private void cbUnidadMedidaActionPerformed(java.awt.event.ActionEvent evt) {//GE
         productoComponente.setStock(Double.parseDouble(tfStock.getText()));
         productoComponente.setDescripcion(tfDescripcion.getText());
         productoComponente.setStockReserva(Double.parseDouble(tfStockReserva.getText()));
+        productoComponente.setDemandaAnual(Double.parseDouble(tfDemandaAnual.getText()));
         
         productoComponente.setProveedores(tm.getFilas());
         
@@ -625,6 +640,7 @@ private void cbUnidadMedidaActionPerformed(java.awt.event.ActionEvent evt) {//GE
         tfStock.setText(String.valueOf(prod.getStock()));
         tfDescripcion.setText(prod.getDescripcion());
         tfStockReserva.setText(String.valueOf(prod.getStockReserva()));
+        tfDemandaAnual.setText(String.valueOf(prod.getDemandaAnual()));
         
         for (int i = 0; i < prod.getProveedores().size(); i++) {
             tm.agregarFila(prod.getProveedores().get(i));        
