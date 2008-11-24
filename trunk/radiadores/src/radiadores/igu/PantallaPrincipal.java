@@ -79,6 +79,11 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     private void initComponents() {
 
         jTabbedPane1 = new javax.swing.JTabbedPane();
+        menu = new javax.swing.JMenuBar();
+        archivo = new javax.swing.JMenu();
+        costos = new javax.swing.JMenu();
+        costoFijo = new javax.swing.JMenuItem();
+        ayuda = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Fabrica Radiadores");
@@ -97,6 +102,26 @@ public class PantallaPrincipal extends javax.swing.JFrame {
             }
         });
 
+        archivo.setText("Archivo");
+        menu.add(archivo);
+
+        costos.setText("Costos");
+
+        costoFijo.setText("Costo Fijo");
+        costoFijo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                costoFijoActionPerformed(evt);
+            }
+        });
+        costos.add(costoFijo);
+
+        menu.add(costos);
+
+        ayuda.setText("Ayuda");
+        menu.add(ayuda);
+
+        setJMenuBar(menu);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -105,7 +130,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE)
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 579, Short.MAX_VALUE)
         );
 
         pack();
@@ -218,10 +243,21 @@ private void jTabbedPane1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRS
     }
 }//GEN-LAST:event_jTabbedPane1MouseClicked
 
+private void costoFijoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_costoFijoActionPerformed
+    PanelCostoFijo panelCostoFijo = new PanelCostoFijo();
+    panelCostoFijo.setModal(true);
+    panelCostoFijo.setVisible(true);
+}//GEN-LAST:event_costoFijoActionPerformed
+
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenu archivo;
+    private javax.swing.JMenu ayuda;
+    private javax.swing.JMenuItem costoFijo;
+    private javax.swing.JMenu costos;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JMenuBar menu;
     // End of variables declaration//GEN-END:variables
 
     
