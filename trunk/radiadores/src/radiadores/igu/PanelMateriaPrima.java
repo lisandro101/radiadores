@@ -3,7 +3,6 @@ package radiadores.igu;
 import java.awt.Component;
 import java.util.Arrays;
 import java.util.List;
-import javax.swing.AbstractListModel;
 import javax.swing.ComboBoxModel;
 import radiadores.igu.buscar.PanelBuscarProveedor;
 import javax.swing.DefaultComboBoxModel;
@@ -17,6 +16,7 @@ import radiadores.igu.model.ProveedorTableModel;
 import radiadores.igu.model.UnidadMedidaTableModel;
 import radiadores.persistencia.FachadaPersistencia;
 import radiadores.utils.IValidable;
+import radiadores.utils.ValidarCodigo;
 
 /**
  *
@@ -112,6 +112,8 @@ public class PanelMateriaPrima extends javax.swing.JPanel implements IValidable 
                 tfCostoAlmacenamientoActionPerformed(evt);
             }
         });
+
+        tfCodigo.setInputVerifier(new ValidarCodigo(1));
 
         lbDescripcion.setText("Descripción:");
 
@@ -263,25 +265,6 @@ public class PanelMateriaPrima extends javax.swing.JPanel implements IValidable 
 
         pTablaProveedores.setBorder(javax.swing.BorderFactory.createTitledBorder("Proveedores"));
 
-        tProveedor.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
-            },
-            new String [] {
-                "Nombre", "Teléfono", "Contacto"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
         jScrollPane1.setViewportView(tProveedor);
 
         btAsignarProveedor.setText("Asignar Proveedor");
@@ -331,7 +314,7 @@ public class PanelMateriaPrima extends javax.swing.JPanel implements IValidable 
                         .addComponent(pCampos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(pTablaProveedores, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(pBotones, javax.swing.GroupLayout.DEFAULT_SIZE, 782, Short.MAX_VALUE))
+                    .addComponent(pBotones, javax.swing.GroupLayout.DEFAULT_SIZE, 799, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
