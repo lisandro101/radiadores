@@ -12,6 +12,7 @@ import radiadores.igu.buscar.ValidacionBuscar;
 import radiadores.igu.model.UnidadMedidaTableModel;
 import radiadores.persistencia.FachadaPersistencia;
 import radiadores.utils.IValidable;
+import radiadores.utils.ValidarCodigo;
 
 /**
  *
@@ -132,6 +133,8 @@ public class PanelProductoTerminado extends javax.swing.JPanel implements IValid
         lbPesoUnidad.setText("Peso Unidad:");
 
         lbUnidadMedida.setText("Unidad Medida:");
+
+        tfCodigo.setInputVerifier(new ValidarCodigo(4));
 
         cbEstado.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Activo", "Suspendido", "Inactivo" }));
 
