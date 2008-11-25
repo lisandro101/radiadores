@@ -25,6 +25,7 @@
     <class>radiadores.entidades.Componente</class>
     <class>radiadores.entidades.DetalleOrdenProduccion</class>
     <class>radiadores.entidades.CostoFijo</class>
+    <class>radiadores.entidades.ItemIndice</class>
     <properties>
       <property name="eclipselink.jdbc.password" value="radiadores"/>
       <property name="eclipselink.jdbc.user" value="radiadores"/>

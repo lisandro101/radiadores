@@ -11,50 +11,46 @@ import org.jdesktop.swingx.JXList;
 import org.jdesktop.swingx.JXTable;
 import radiadores.igu.model.IModeloReiniciable;
 
-
-
 /**
  *
  * @author  stafoxter
  */
 public class PantallaPrincipal extends javax.swing.JFrame {
+
     private static final long serialVersionUID = 0;
-    
-    int tabVieja = 0;
-    int tabNueva ;
-    
-    PanelMateriaPrima panelMateriaPrima;
-    PanelProductoComponente panelProductoComponente;
-    PanelProductoTerminado panelProductoTerminado;
-    PanelEmpleado panelEmpleado;
-    PanelOrdenCompra panelOrdenCompra;
-    PanelOrdenProduccion panelOrdenProduccion;
-    PanelMaquina panelMaquina;
-    PanelProveedor panelProveedor;
-    PanelEstructuraDeProducto panelEstructuraDeProducto;
-    PanelRutaFabricacion panelRutaFabricacion;
-    PanelCentroTrabajo panelCentroTrabajo;
+    private int tabVieja = 0;
+    private int tabNueva;
+    private PanelMateriaPrima panelMateriaPrima;
+    private PanelProductoComponente panelProductoComponente;
+    private PanelProductoTerminado panelProductoTerminado;
+    private PanelEmpleado panelEmpleado;
+    private PanelOrdenCompra panelOrdenCompra;
+    private PanelOrdenProduccion panelOrdenProduccion;
+    private PanelMaquina panelMaquina;
+    private PanelProveedor panelProveedor;
+    private PanelEstructuraDeProducto panelEstructuraDeProducto;
+    private PanelRutaFabricacion panelRutaFabricacion;
+    private PanelCentroTrabajo panelCentroTrabajo;
 
     /** Creates new form PantallaPrincipal */
     public PantallaPrincipal() {
         initComponents();
         inicializar();
     }
-    
-    private void inicializar(){
-         panelMateriaPrima=new PanelMateriaPrima();
-         panelProductoComponente= new PanelProductoComponente();
-         panelProductoTerminado= new PanelProductoTerminado();
-         panelEmpleado= new PanelEmpleado();
-         panelOrdenCompra= new PanelOrdenCompra();
-         panelOrdenProduccion= new PanelOrdenProduccion();
-         panelMaquina= new PanelMaquina();
-         panelProveedor= new PanelProveedor();
-         panelEstructuraDeProducto= new PanelEstructuraDeProducto();
-         panelRutaFabricacion= new PanelRutaFabricacion();
-         panelCentroTrabajo= new PanelCentroTrabajo();
-        
-        
+
+    private void inicializar() {
+        panelMateriaPrima = new PanelMateriaPrima();
+        panelProductoComponente = new PanelProductoComponente();
+        panelProductoTerminado = new PanelProductoTerminado();
+        panelEmpleado = new PanelEmpleado();
+        panelOrdenCompra = new PanelOrdenCompra();
+        panelOrdenProduccion = new PanelOrdenProduccion();
+        panelMaquina = new PanelMaquina();
+        panelProveedor = new PanelProveedor();
+        panelEstructuraDeProducto = new PanelEstructuraDeProducto();
+        panelRutaFabricacion = new PanelRutaFabricacion();
+        panelCentroTrabajo = new PanelCentroTrabajo();
+
         jTabbedPane1.add("   Materia Prima   ", panelMateriaPrima);
         jTabbedPane1.add("Producto Componente", panelProductoComponente);
         jTabbedPane1.add("Producto Terminado ", panelProductoTerminado);
@@ -66,7 +62,6 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         jTabbedPane1.add("    Estructura     ", panelEstructuraDeProducto);
         jTabbedPane1.add("       Ruta        ", panelRutaFabricacion);
         jTabbedPane1.add("  Centro Trabajo   ", panelCentroTrabajo);
-        
     }
 
     /** This method is called from within the constructor to
@@ -87,6 +82,8 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         puntoEquilibrio = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
+        indices = new javax.swing.JMenu();
+        calcularIndices = new javax.swing.JMenuItem();
         ayuda = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
@@ -149,6 +146,18 @@ public class PantallaPrincipal extends javax.swing.JFrame {
 
         menu.add(jMenu1);
 
+        indices.setText("Índices");
+
+        calcularIndices.setText("Calcular");
+        calcularIndices.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                calcularIndicesActionPerformed(evt);
+            }
+        });
+        indices.add(calcularIndices);
+
+        menu.add(indices);
+
         ayuda.setText("Ayuda");
         menu.add(ayuda);
 
@@ -174,104 +183,104 @@ private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:even
 
 private void jTabbedPane1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTabbedPane1MouseClicked
     tabNueva = jTabbedPane1.getSelectedIndex();
-    
-    if(tabVieja != tabNueva){
-        
-        switch(tabVieja) {
+
+    if (tabVieja != tabNueva) {
+
+        switch (tabVieja) {
             case 0:
-                if(panelMateriaPrima.getMateriaPrima()== null){
+                if (panelMateriaPrima.getMateriaPrima() == null) {
                     limpiarCampos(panelMateriaPrima);
-                }else{ 
+                } else {
 //                    avisoPanelCargado(panelMateriaPrima);
                     guardarInfoPanel(panelMateriaPrima);
                     limpiarCampos(panelMateriaPrima);
                 }
                 break;
             case 1:
-                if(panelProductoComponente.getProductoComponente()== null){
+                if (panelProductoComponente.getProductoComponente() == null) {
                     limpiarCampos(panelProductoComponente);
-                }else{ 
+                } else {
                     guardarInfoPanel(panelProductoComponente);
                     limpiarCampos(panelProductoComponente);
                 }
                 break;
             case 2:
-                if(panelProductoTerminado.getProductoTerminado()== null){
+                if (panelProductoTerminado.getProductoTerminado() == null) {
                     limpiarCampos(panelProductoTerminado);
-                }else{ 
+                } else {
                     guardarInfoPanel(panelProductoTerminado);
                     limpiarCampos(panelProductoTerminado);
                 }
                 break;
             case 3:
-                if(panelEmpleado.getEmpleado()== null){
+                if (panelEmpleado.getEmpleado() == null) {
                     limpiarCampos(panelEmpleado);
-                }else{ 
+                } else {
                     guardarInfoPanel(panelEmpleado);
                     limpiarCampos(panelEmpleado);
                 }
-                break;    
+                break;
             case 4:
-                if(panelOrdenCompra.getOrdenCompra()== null){
+                if (panelOrdenCompra.getOrdenCompra() == null) {
                     limpiarCampos(panelOrdenCompra);
-                }else{ 
+                } else {
                     guardarInfoPanel(panelOrdenCompra);
                     limpiarCampos(panelOrdenCompra);
                 }
                 break;
             case 5:
-                if(panelOrdenProduccion.getOrdenProduccion()== null){
+                if (panelOrdenProduccion.getOrdenProduccion() == null) {
                     limpiarCampos(panelOrdenProduccion);
-                }else{ 
+                } else {
                     guardarInfoPanel(panelOrdenProduccion);
                     limpiarCampos(panelOrdenProduccion);
                 }
                 break;
             case 6:
-                if(panelMaquina.getMaquina()== null){
+                if (panelMaquina.getMaquina() == null) {
                     limpiarCampos(panelMaquina);
-                }else{ 
+                } else {
                     guardarInfoPanel(panelMaquina);
                     limpiarCampos(panelMaquina);
                 }
                 break;
             case 7:
-                if(panelProveedor.getProveedor()== null){
+                if (panelProveedor.getProveedor() == null) {
                     limpiarCampos(panelProveedor);
-                }else{ 
+                } else {
                     guardarInfoPanel(panelProveedor);
                     limpiarCampos(panelProveedor);
                 }
-                break; 
+                break;
             case 8:
-                if(panelEstructuraDeProducto.getEstructuraDeProducto()== null){
+                if (panelEstructuraDeProducto.getEstructuraDeProducto() == null) {
                     limpiarCampos(panelEstructuraDeProducto);
-                }else{ 
+                } else {
                     guardarInfoPanel(panelEstructuraDeProducto);
                     limpiarCampos(panelEstructuraDeProducto);
                 }
                 break;
             case 9:
-                if(panelRutaFabricacion.getRutaFabricacion()== null){
+                if (panelRutaFabricacion.getRutaFabricacion() == null) {
                     limpiarCampos(panelRutaFabricacion);
-                }else{ 
+                } else {
                     guardarInfoPanel(panelRutaFabricacion);
                     limpiarCampos(panelRutaFabricacion);
                 }
                 break;
             case 10:
-                if(panelCentroTrabajo.getCentroDeTrabajo()== null){
+                if (panelCentroTrabajo.getCentroDeTrabajo() == null) {
                     limpiarCampos(panelCentroTrabajo);
-                }else{ 
+                } else {
                     guardarInfoPanel(panelCentroTrabajo);
                     limpiarCampos(panelCentroTrabajo);
                 }
-                break;       
-             default:
-                 break;
+                break;
+            default:
+                break;
         }
-        
-        tabVieja= tabNueva;
+
+        tabVieja = tabNueva;
     }
 }//GEN-LAST:event_jTabbedPane1MouseClicked
 
@@ -299,14 +308,21 @@ private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
     panelInventario.setVisible(true);
 }//GEN-LAST:event_jMenuItem1ActionPerformed
 
+private void calcularIndicesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_calcularIndicesActionPerformed
+    PanelIndices panelIndices = new PanelIndices();
 
+    panelIndices.setLocationRelativeTo(this);
+    panelIndices.setVisible(true);
+}//GEN-LAST:event_calcularIndicesActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu archivo;
     private javax.swing.JMenu ayuda;
+    private javax.swing.JMenuItem calcularIndices;
     private javax.swing.JMenuItem costoFijo;
     private javax.swing.JMenuItem costoVariable;
     private javax.swing.JMenu costos;
+    private javax.swing.JMenu indices;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JTabbedPane jTabbedPane1;
@@ -314,61 +330,62 @@ private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
     private javax.swing.JMenuItem puntoEquilibrio;
     // End of variables declaration//GEN-END:variables
 
-    
     private void salir() {
         int opcion = JOptionPane.showConfirmDialog(this,
                 "¿Está seguro que desea salir?", "Salir",
                 JOptionPane.YES_NO_OPTION);
-        
-        if(opcion == JOptionPane.YES_OPTION) {
+
+        if (opcion == JOptionPane.YES_OPTION) {
             System.exit(0);
         }
     }
+
     /**
      * Limpia los campos de un panel
      * 
      * @param contenedor Panel que se desea limpiar
      */
     private void limpiarCampos(Container contenedor) {
-            for (Component componente : contenedor.getComponents()) {
-                if (componente instanceof JTextField) {
-                    ((JTextField)componente).setText("");
-                } else if (componente instanceof JComboBox) {
-                    ((JComboBox) componente).setSelectedIndex(0);
-                } else if (componente instanceof JXDatePicker) {
-                    ((JXDatePicker) componente).setDate(null);
-                } else if (componente instanceof JXTable) {
-                    ((IModeloReiniciable)((JXTable)componente).getModel()).reiniciar();
-                } else if (componente instanceof JXList) {
-                    ((IModeloReiniciable)((JXList)componente).getModel()).reiniciar();
-                } else if (componente instanceof Container) {
-                    limpiarCampos((Container)componente);
-                }
+        for (Component componente : contenedor.getComponents()) {
+            if (componente instanceof JTextField) {
+                ((JTextField) componente).setText("");
+            } else if (componente instanceof JComboBox) {
+                ((JComboBox) componente).setSelectedIndex(0);
+            } else if (componente instanceof JXDatePicker) {
+                ((JXDatePicker) componente).setDate(null);
+            } else if (componente instanceof JXTable) {
+                ((IModeloReiniciable) ((JXTable) componente).getModel()).reiniciar();
+            } else if (componente instanceof JXList) {
+                ((IModeloReiniciable) ((JXList) componente).getModel()).reiniciar();
+            } else if (componente instanceof Container) {
+                limpiarCampos((Container) componente);
             }
+        }
     }
-    private void avisoPanelCargado(Container contenedor){
+
+    private void avisoPanelCargado(Container contenedor) {
         int opcion = JOptionPane.showConfirmDialog(this,
                 "¿Desea guardar cambios?", "No",
                 JOptionPane.YES_NO_OPTION);
-        
-        if(opcion == JOptionPane.YES_OPTION) {
+
+        if (opcion == JOptionPane.YES_OPTION) {
             for (Component componente : contenedor.getComponents()) {
-                if(componente instanceof JButton){
-                    if(((JButton) componente).getText().equals("Modificar")){
+                if (componente instanceof JButton) {
+                    if (((JButton) componente).getText().equals("Modificar")) {
                         ((JButton) componente).doClick();
                     }
                 }
             }
             limpiarCampos(contenedor);
-        }else{
+        } else {
             limpiarCampos(contenedor);
         }
     }
-    
-    private void guardarInfoPanel(Container contenedor){
+
+    private void guardarInfoPanel(Container contenedor) {
         for (Component componente : contenedor.getComponents()) {
-            if(componente instanceof JButton){
-                if(((JButton) componente).getText().equals("Modificar")){
+            if (componente instanceof JButton) {
+                if (((JButton) componente).getText().equals("Modificar")) {
                     ((JButton) componente).doClick();
                 }
             }
