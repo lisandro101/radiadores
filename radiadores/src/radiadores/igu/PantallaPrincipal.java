@@ -108,6 +108,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
 
         costos.setText("Costos");
 
+        costoFijo.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F, java.awt.event.InputEvent.CTRL_MASK));
         costoFijo.setText("Costo Fijo");
         costoFijo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -116,6 +117,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         });
         costos.add(costoFijo);
 
+        costoVariable.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_V, java.awt.event.InputEvent.CTRL_MASK));
         costoVariable.setText("Costo Variable");
         costoVariable.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -124,6 +126,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         });
         costos.add(costoVariable);
 
+        puntoEquilibrio.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.CTRL_MASK));
         puntoEquilibrio.setText("Punto Equilibrio");
         puntoEquilibrio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -136,7 +139,8 @@ public class PantallaPrincipal extends javax.swing.JFrame {
 
         jMenu1.setText("Inventario");
 
-        jMenuItem1.setText("jMenuItem1");
+        jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_I, java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItem1.setText("Calcular");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem1ActionPerformed(evt);
