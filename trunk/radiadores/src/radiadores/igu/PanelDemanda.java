@@ -1,17 +1,17 @@
 package radiadores.igu;
 
-import com.mysql.jdbc.Util;
 import java.awt.Component;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
-import javax.swing.table.AbstractTableModel;
+import javax.swing.JOptionPane;
 import radiadores.entidades.CostoVariable;
+import radiadores.entidades.Demanda;
 import radiadores.entidades.ProductoTerminado;
 import radiadores.entidades.PuntoEquilibrio;
-import radiadores.gestores.GestorCostoFijo;
-import radiadores.gestores.GestorCostoVariable;
-import radiadores.igu.buscar.PanelBuscarProductoGral;
-import radiadores.igu.model.PuntoEquilibrioTableModel;
+import radiadores.gestores.GestorDemanda;
+import radiadores.igu.model.DemandaTableModel;
 import radiadores.utils.*;
 
 /**
@@ -21,7 +21,7 @@ import radiadores.utils.*;
 public class PanelDemanda extends javax.swing.JDialog implements IValidable {
     private static final long serialVersionUID = 1L;
 
-    private PuntoEquilibrioTableModel tmBuscar;
+    private DemandaTableModel tmBuscar;
     private ProductoTerminado productoTerminado;
     private List<PuntoEquilibrio> puntosEquilibrio;
     private List<CostoVariable> costosVariables;
@@ -33,7 +33,7 @@ public class PanelDemanda extends javax.swing.JDialog implements IValidable {
     }
 
     private void inicializar() {
-        tmBuscar = new PuntoEquilibrioTableModel(0);
+        tmBuscar = new DemandaTableModel(0);
         tCargos.setModel(tmBuscar);
         
     }
@@ -57,8 +57,10 @@ public class PanelDemanda extends javax.swing.JDialog implements IValidable {
         tfCodigo = new javax.swing.JTextField();
         tfNombre = new javax.swing.JTextField();
         btBuscarProdTerminado = new javax.swing.JButton();
+        dpPeriodoInicial = new org.jdesktop.swingx.JXDatePicker();
+        dpPeriodoFinal = new org.jdesktop.swingx.JXDatePicker();
         jLabel1 = new javax.swing.JLabel();
-        tfPuntoEquilibrio = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
         pBotones = new javax.swing.JPanel();
         btCalcular = new javax.swing.JButton();
         btCerrar = new javax.swing.JButton();
@@ -83,7 +85,7 @@ public class PanelDemanda extends javax.swing.JDialog implements IValidable {
                 java.lang.Object.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, true, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -144,9 +146,13 @@ public class PanelDemanda extends javax.swing.JDialog implements IValidable {
                     .addComponent(tfNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
-        jLabel1.setText("Punto Equilibrio (unid):");
+        dpPeriodoInicial.setFormats("MMMM aaaa");
 
-        tfPuntoEquilibrio.setEditable(false);
+        dpPeriodoFinal.setFormats("MMMM aaaa");
+
+        jLabel1.setText("Periodo inicial");
+
+        jLabel2.setText("Periodo final");
 
         javax.swing.GroupLayout pTablaLayout = new javax.swing.GroupLayout(pTabla);
         pTabla.setLayout(pTablaLayout);
@@ -155,21 +161,33 @@ public class PanelDemanda extends javax.swing.JDialog implements IValidable {
             .addComponent(pProductoTerminado, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 541, Short.MAX_VALUE)
             .addGroup(pTablaLayout.createSequentialGroup()
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tfPuntoEquilibrio, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(318, 318, 318))
+                .addGap(55, 55, 55)
+                .addGroup(pTablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(dpPeriodoInicial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 207, Short.MAX_VALUE)
+                .addGroup(pTablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2)
+                    .addComponent(dpPeriodoFinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(55, 55, 55))
         );
         pTablaLayout.setVerticalGroup(
             pTablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pTablaLayout.createSequentialGroup()
                 .addComponent(pProductoTerminado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(pTablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(tfPuntoEquilibrio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pTablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(pTablaLayout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(8, 8, 8)
+                        .addComponent(dpPeriodoInicial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(pTablaLayout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addGap(8, 8, 8)
+                        .addComponent(dpPeriodoFinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30))
         );
 
         btCalcular.setText("Calcular");
@@ -207,9 +225,8 @@ public class PanelDemanda extends javax.swing.JDialog implements IValidable {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(pTabla, javax.swing.GroupLayout.DEFAULT_SIZE, 377, Short.MAX_VALUE)
-                .addGap(7, 7, 7)
-                .addComponent(pBotones, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(18, 18, 18)
+                .addComponent(pBotones, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
@@ -220,33 +237,31 @@ private void btCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
 }//GEN-LAST:event_btCerrarActionPerformed
 
 private void btCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCalcularActionPerformed
-    costosVariables = GestorCostoVariable.getInstancia().calcularCostoVariable();
-    double costoVarProductoEstandar = 0.0;
-    double costoProductoComun = 0.0;
-    double costoTotal;
+    List<Demanda> demandas= new ArrayList<Demanda>();
+    Demanda demanda;
+    Calendar cal = Calendar.getInstance();
+    Date fechaInicial = dpPeriodoInicial.getDate();
+    Date fechaFinal = dpPeriodoFinal.getDate();
+    cal.setTime(fechaFinal);
+    cal.add(Calendar.DAY_OF_MONTH, 30);
+    Date fechaTemp = cal.getTime();
     
-
-    if (productoTerminado != null) {
-        puntosEquilibrio = new ArrayList<PuntoEquilibrio>();
-        for (CostoVariable costoVariable : costosVariables) {
-            if (costoVariable.getProductoTerminado().getNombre().equals(productoTerminado.getNombre())) {
-                costoVarProductoEstandar = costoVariable.getCostoMateriales() + costoVariable.getCostoManoObra();
+    if(fechaInicial != null & fechaFinal != null){
+        if(fechaInicial.compareTo(fechaTemp)>0){
+            JOptionPane.showMessageDialog(this, "El periodo inicial es mayor que el periodo final");
+        }else{
+            
+            while(fechaInicial.compareTo(fechaFinal)<0){
+                demanda= new Demanda();
+                demanda.setPeriodo(fechaInicial);
+                demanda.setPM(GestorDemanda.getInstancia().calcularPM());
+                demanda.setPMP(GestorDemanda.getInstancia().calcularPMP());
+                demanda.setPMSE(GestorDemanda.getInstancia().calcularPMSE());
+                
             }
         }
-
-        for (CostoVariable costo : costosVariables) {
-            PuntoEquilibrio punto = new PuntoEquilibrio();
-            costoProductoComun = costo.getCostoManoObra() + costo.getCostoMateriales();
-            punto.setProductoTerminado(costo.getProductoTerminado());
-            punto.setEquivalencia(costoProductoComun / costoVarProductoEstandar);
-            puntosEquilibrio.add(punto);
-        }
-
-        tmBuscar.agregarFilas(puntosEquilibrio);
-        costoTotal = costoVarProductoEstandar + GestorCostoFijo.getInstancia().calcularTotalCostoFijo();
-
-        tfPuntoEquilibrio.setText(String.valueOf(Math.floor((costoTotal / productoTerminado.getPrecioVenta()) + 1)));
     }
+    
 }//GEN-LAST:event_btCalcularActionPerformed
 
 private void btBuscarProdTerminadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBuscarProdTerminadoActionPerformed
@@ -268,7 +283,10 @@ private void btLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
     private javax.swing.JButton btCalcular;
     private javax.swing.JButton btCerrar;
     private javax.swing.JButton btLimpiar;
+    private org.jdesktop.swingx.JXDatePicker dpPeriodoFinal;
+    private org.jdesktop.swingx.JXDatePicker dpPeriodoInicial;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lbCodigo;
     private javax.swing.JLabel lbNombre;
@@ -278,7 +296,6 @@ private void btLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
     private org.jdesktop.swingx.JXTable tCargos;
     private javax.swing.JTextField tfCodigo;
     private javax.swing.JTextField tfNombre;
-    private javax.swing.JTextField tfPuntoEquilibrio;
     // End of variables declaration//GEN-END:variables
 
     @Override
