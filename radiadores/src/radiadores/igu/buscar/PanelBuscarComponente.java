@@ -192,11 +192,13 @@ private void btAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
         JOptionPane.showMessageDialog(this, "No se ha seleccionado Componente");
     }else{
         componente = tmBuscar.getFila(indice);
+        dispose();
     }
 }//GEN-LAST:event_btAceptarActionPerformed
 
 private void btCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCancelarActionPerformed
-dispose();
+    componente = null;
+    dispose();
 }//GEN-LAST:event_btCancelarActionPerformed
 
 private void btBuscarProdTerminadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBuscarProdTerminadoActionPerformed
