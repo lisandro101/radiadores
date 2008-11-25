@@ -1,19 +1,11 @@
 package radiadores.igu;
 
-import com.mysql.jdbc.Util;
 import java.awt.Component;
-import java.util.ArrayList;
 import java.util.List;
-import javax.swing.table.AbstractTableModel;
+import javax.swing.JOptionPane;
 import radiadores.entidades.Componente;
-import radiadores.entidades.CostoVariable;
-import radiadores.entidades.ProductoTerminado;
-import radiadores.entidades.PuntoEquilibrio;
-import radiadores.gestores.GestorCostoFijo;
-import radiadores.gestores.GestorCostoVariable;
+import radiadores.gestores.GestorInventario;
 import radiadores.igu.buscar.PanelBuscarComponente;
-import radiadores.igu.buscar.PanelBuscarProductoGral;
-import radiadores.igu.model.PuntoEquilibrioTableModel;
 import radiadores.utils.*;
 
 /**
@@ -23,11 +15,9 @@ import radiadores.utils.*;
 public class PanelInventario extends javax.swing.JDialog implements IValidable {
     private static final long serialVersionUID = 1L;
 
-    private PuntoEquilibrioTableModel tmBuscar;
-    private ProductoTerminado productoTerminado;
-    private List<PuntoEquilibrio> puntosEquilibrio;
-    private List<CostoVariable> costosVariables;
     private Componente componente;
+    GestorInventario gestor;
+
     /** Creates new form PanelCargoEmpleado */
     public PanelInventario() {
         initComponents();
@@ -36,7 +26,9 @@ public class PanelInventario extends javax.swing.JDialog implements IValidable {
     }
 
     private void inicializar() {
-        
+        gestor = GestorInventario.getInstancia();
+        lbModelo.setVisible(false);
+        tfModelo.setVisible(false);
     }
     
 
@@ -49,17 +41,18 @@ public class PanelInventario extends javax.swing.JDialog implements IValidable {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        bgModelo = new javax.swing.ButtonGroup();
         pTabla = new javax.swing.JPanel();
         pProductoTerminado = new javax.swing.JPanel();
         lbCodigo = new javax.swing.JLabel();
         lbNombre = new javax.swing.JLabel();
         tfCodigoArticulo = new javax.swing.JTextField();
         tfNombreArticulo = new javax.swing.JTextField();
-        btBuscarProdTerminado = new javax.swing.JButton();
+        btBuscarComponente = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
-        jXRadioGroup1 = new org.jdesktop.swingx.JXRadioGroup();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
+        rgModelo = new org.jdesktop.swingx.JXRadioGroup();
+        rbLoteFijo = new javax.swing.JRadioButton();
+        rbIntervaloFijo = new javax.swing.JRadioButton();
         pCampos = new javax.swing.JPanel();
         lbCodigo1 = new javax.swing.JLabel();
         lbNombre1 = new javax.swing.JLabel();
@@ -69,20 +62,20 @@ public class PanelInventario extends javax.swing.JDialog implements IValidable {
         lbPrecioBase = new javax.swing.JLabel();
         lbTamanioLoteEstandar = new javax.swing.JLabel();
         lbUnidadMedida = new javax.swing.JLabel();
-        tfTamanioLoteEstandar = new javax.swing.JTextField();
-        tfPrecioBase = new javax.swing.JTextField();
+        tfNumeroDePedidos = new javax.swing.JTextField();
+        tfTiempoEntrePedidos = new javax.swing.JTextField();
         tfCostoAlmacenamiento = new javax.swing.JTextField();
-        tfCostoUnitario = new javax.swing.JTextField();
-        tfPesoPorUnidad = new javax.swing.JTextField();
-        tfNombre1 = new javax.swing.JTextField();
-        tfCodigo1 = new javax.swing.JTextField();
+        tfCostoPedido = new javax.swing.JTextField();
+        tfLoteOptimo = new javax.swing.JTextField();
+        tfCOstoUnitario = new javax.swing.JTextField();
+        tfDemandaAnual = new javax.swing.JTextField();
         lbDescripcion = new javax.swing.JLabel();
-        tfDescripcion = new javax.swing.JTextField();
-        lbEstado = new javax.swing.JLabel();
-        tfStock = new javax.swing.JTextField();
+        tfStockDeSeguridad = new javax.swing.JTextField();
+        lbModelo = new javax.swing.JLabel();
+        tfCostoTotal = new javax.swing.JTextField();
         lbStock = new javax.swing.JLabel();
-        tfPrecioBase1 = new javax.swing.JTextField();
-        tfDescripcion1 = new javax.swing.JTextField();
+        tfCGI = new javax.swing.JTextField();
+        tfModelo = new javax.swing.JTextField();
         pBotones = new javax.swing.JPanel();
         btCalcular = new javax.swing.JButton();
         btCerrar = new javax.swing.JButton();
@@ -103,10 +96,10 @@ public class PanelInventario extends javax.swing.JDialog implements IValidable {
 
         tfNombreArticulo.setEnabled(false);
 
-        btBuscarProdTerminado.setText("Buscar");
-        btBuscarProdTerminado.addActionListener(new java.awt.event.ActionListener() {
+        btBuscarComponente.setText("Buscar");
+        btBuscarComponente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btBuscarProdTerminadoActionPerformed(evt);
+                btBuscarComponenteActionPerformed(evt);
             }
         });
 
@@ -125,7 +118,7 @@ public class PanelInventario extends javax.swing.JDialog implements IValidable {
                     .addGroup(pProductoTerminadoLayout.createSequentialGroup()
                         .addComponent(tfCodigoArticulo, javax.swing.GroupLayout.DEFAULT_SIZE, 397, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btBuscarProdTerminado)))
+                        .addComponent(btBuscarComponente)))
                 .addContainerGap())
         );
         pProductoTerminadoLayout.setVerticalGroup(
@@ -133,7 +126,7 @@ public class PanelInventario extends javax.swing.JDialog implements IValidable {
             .addGroup(pProductoTerminadoLayout.createSequentialGroup()
                 .addGroup(pProductoTerminadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(lbCodigo)
-                    .addComponent(btBuscarProdTerminado)
+                    .addComponent(btBuscarComponente)
                     .addComponent(tfCodigoArticulo, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(pProductoTerminadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -143,14 +136,26 @@ public class PanelInventario extends javax.swing.JDialog implements IValidable {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Inventario"));
 
-        jXRadioGroup1.setBorder(javax.swing.BorderFactory.createTitledBorder("Modelo"));
-        jXRadioGroup1.setLayout(new java.awt.FlowLayout());
+        rgModelo.setBorder(javax.swing.BorderFactory.createTitledBorder("Modelo"));
+        rgModelo.setLayout(new java.awt.FlowLayout());
 
-        jRadioButton1.setText("Lote Fijo");
-        jXRadioGroup1.add(jRadioButton1);
+        bgModelo.add(rbLoteFijo);
+        rbLoteFijo.setText("Lote Fijo");
+        rbLoteFijo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbLoteFijoActionPerformed(evt);
+            }
+        });
+        rgModelo.add(rbLoteFijo);
 
-        jRadioButton2.setText("Intervalo Fijo");
-        jXRadioGroup1.add(jRadioButton2);
+        bgModelo.add(rbIntervaloFijo);
+        rbIntervaloFijo.setText("Intervalo Fijo");
+        rbIntervaloFijo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbIntervaloFijoActionPerformed(evt);
+            }
+        });
+        rgModelo.add(rbIntervaloFijo);
 
         lbCodigo1.setText("Demanda Anual:");
 
@@ -168,23 +173,33 @@ public class PanelInventario extends javax.swing.JDialog implements IValidable {
 
         lbUnidadMedida.setText("C.G.I.:");
 
-        tfCostoAlmacenamiento.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tfCostoAlmacenamientoActionPerformed(evt);
-            }
-        });
+        tfNumeroDePedidos.setEditable(false);
+
+        tfTiempoEntrePedidos.setEditable(false);
+
+        tfCostoAlmacenamiento.setEditable(false);
+
+        tfCostoPedido.setEditable(false);
+
+        tfLoteOptimo.setEditable(false);
+
+        tfCOstoUnitario.setEditable(false);
+
+        tfDemandaAnual.setEditable(false);
 
         lbDescripcion.setText("Stock de Seguridad:");
 
-        lbEstado.setText("Máximo de Inventario:");
+        tfStockDeSeguridad.setEditable(false);
 
-        tfStock.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tfStockActionPerformed(evt);
-            }
-        });
+        lbModelo.setText("Máximo de Inventario:");
+
+        tfCostoTotal.setEditable(false);
 
         lbStock.setText("Costo Total:");
+
+        tfCGI.setEditable(false);
+
+        tfModelo.setEditable(false);
 
         javax.swing.GroupLayout pCamposLayout = new javax.swing.GroupLayout(pCampos);
         pCampos.setLayout(pCamposLayout);
@@ -203,21 +218,21 @@ public class PanelInventario extends javax.swing.JDialog implements IValidable {
                         .addComponent(lbPrecioBase)
                         .addComponent(lbStock)
                         .addComponent(lbDescripcion)
-                        .addComponent(lbEstado)
+                        .addComponent(lbModelo)
                         .addComponent(lbCostoUnitario, javax.swing.GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE)))
                 .addGap(23, 23, 23)
                 .addGroup(pCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(tfDescripcion1, javax.swing.GroupLayout.DEFAULT_SIZE, 282, Short.MAX_VALUE)
-                    .addComponent(tfPrecioBase1, javax.swing.GroupLayout.DEFAULT_SIZE, 282, Short.MAX_VALUE)
-                    .addComponent(tfDescripcion, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 282, Short.MAX_VALUE)
-                    .addComponent(tfPrecioBase, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 282, Short.MAX_VALUE)
-                    .addComponent(tfTamanioLoteEstandar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 282, Short.MAX_VALUE)
-                    .addComponent(tfPesoPorUnidad, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 282, Short.MAX_VALUE)
-                    .addComponent(tfCostoUnitario, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 282, Short.MAX_VALUE)
+                    .addComponent(tfModelo, javax.swing.GroupLayout.DEFAULT_SIZE, 282, Short.MAX_VALUE)
+                    .addComponent(tfCGI, javax.swing.GroupLayout.DEFAULT_SIZE, 282, Short.MAX_VALUE)
+                    .addComponent(tfStockDeSeguridad, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 282, Short.MAX_VALUE)
+                    .addComponent(tfTiempoEntrePedidos, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 282, Short.MAX_VALUE)
+                    .addComponent(tfNumeroDePedidos, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 282, Short.MAX_VALUE)
+                    .addComponent(tfLoteOptimo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 282, Short.MAX_VALUE)
+                    .addComponent(tfCostoPedido, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 282, Short.MAX_VALUE)
                     .addComponent(tfCostoAlmacenamiento, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 282, Short.MAX_VALUE)
-                    .addComponent(tfNombre1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 282, Short.MAX_VALUE)
-                    .addComponent(tfCodigo1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 282, Short.MAX_VALUE)
-                    .addComponent(tfStock, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 282, Short.MAX_VALUE))
+                    .addComponent(tfCOstoUnitario, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 282, Short.MAX_VALUE)
+                    .addComponent(tfDemandaAnual, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 282, Short.MAX_VALUE)
+                    .addComponent(tfCostoTotal, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 282, Short.MAX_VALUE))
                 .addContainerGap())
         );
         pCamposLayout.setVerticalGroup(
@@ -226,47 +241,47 @@ public class PanelInventario extends javax.swing.JDialog implements IValidable {
                 .addContainerGap()
                 .addGroup(pCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(lbCodigo1)
-                    .addComponent(tfCodigo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tfDemandaAnual, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(lbNombre1)
-                    .addComponent(tfNombre1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tfCOstoUnitario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(lbCostoAlmacenamiento)
                     .addComponent(tfCostoAlmacenamiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(tfCostoUnitario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tfCostoPedido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lbCostoUnitario))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(lbPesoPorUnid)
-                    .addComponent(tfPesoPorUnidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tfLoteOptimo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(lbTamanioLoteEstandar)
-                    .addComponent(tfTamanioLoteEstandar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tfNumeroDePedidos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(lbPrecioBase)
-                    .addComponent(tfPrecioBase, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tfTiempoEntrePedidos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbUnidadMedida)
-                    .addComponent(tfPrecioBase1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tfCGI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(5, 5, 5)
                 .addGroup(pCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(lbStock)
-                    .addComponent(tfStock, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tfCostoTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbDescripcion)
-                    .addComponent(tfDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tfStockDeSeguridad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lbEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tfDescripcion1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lbModelo, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tfModelo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -277,33 +292,16 @@ public class PanelInventario extends javax.swing.JDialog implements IValidable {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(pCampos, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jXRadioGroup1, javax.swing.GroupLayout.DEFAULT_SIZE, 513, Short.MAX_VALUE))
+                    .addComponent(rgModelo, javax.swing.GroupLayout.DEFAULT_SIZE, 513, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jXRadioGroup1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(rgModelo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(pCampos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(34, Short.MAX_VALUE))
-        );
-
-        javax.swing.GroupLayout pTablaLayout = new javax.swing.GroupLayout(pTabla);
-        pTabla.setLayout(pTablaLayout);
-        pTablaLayout.setHorizontalGroup(
-            pTablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pTablaLayout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(10, 10, 10))
-            .addComponent(pProductoTerminado, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        pTablaLayout.setVerticalGroup(
-            pTablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pTablaLayout.createSequentialGroup()
-                .addComponent(pProductoTerminado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         btCalcular.setText("Calcular");
@@ -330,19 +328,39 @@ public class PanelInventario extends javax.swing.JDialog implements IValidable {
         });
         pBotones.add(btLimpiar);
 
+        javax.swing.GroupLayout pTablaLayout = new javax.swing.GroupLayout(pTabla);
+        pTabla.setLayout(pTablaLayout);
+        pTablaLayout.setHorizontalGroup(
+            pTablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(pProductoTerminado, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(pTablaLayout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(10, 10, 10))
+            .addGroup(pTablaLayout.createSequentialGroup()
+                .addComponent(pBotones, javax.swing.GroupLayout.DEFAULT_SIZE, 535, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        pTablaLayout.setVerticalGroup(
+            pTablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pTablaLayout.createSequentialGroup()
+                .addComponent(pProductoTerminado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(pBotones, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(pTabla, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(pBotones, javax.swing.GroupLayout.DEFAULT_SIZE, 557, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(pTabla, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(7, 7, 7)
-                .addComponent(pBotones, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -354,73 +372,78 @@ private void btCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
 }//GEN-LAST:event_btCerrarActionPerformed
 
 private void btCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCalcularActionPerformed
-    costosVariables = GestorCostoVariable.getInstancia().calcularCostoVariable();
-    double costoVarProductoEstandar = 0.0;
-    double costoProductoComun = 0.0;
-    double costoTotal;
-    
-
-    if (productoTerminado != null) {
-        puntosEquilibrio = new ArrayList<PuntoEquilibrio>();
-        for (CostoVariable costoVariable : costosVariables) {
-            if (costoVariable.getProductoTerminado().getNombre().equals(productoTerminado.getNombre())) {
-                costoVarProductoEstandar = costoVariable.getCostoMateriales() + costoVariable.getCostoManoObra();
-            }
+    if (bgModelo.getSelection() != null) {
+        tfDemandaAnual.setText(String.valueOf(componente.getDemandaAnual()));
+        tfCOstoUnitario.setText(String.valueOf(componente.getCostoUnitario()));
+        tfCostoAlmacenamiento.setText(String.valueOf(componente.getCostoAlmacenamiento()));
+        tfCostoPedido.setText(String.valueOf(componente.getCostoPedido()));
+        tfLoteOptimo.setText(String.valueOf(gestor.calcularLoteOptimo(componente)));
+        tfNumeroDePedidos.setText(String.valueOf(gestor.calcularNumeroDePedido(componente)));
+        tfTiempoEntrePedidos.setText(String.valueOf(gestor.calcularTiempoEntrePedidos(componente)));
+        tfCGI.setText(String.valueOf(gestor.calcularCGI(componente)));
+        tfCostoTotal.setText(String.valueOf(gestor.calcularCostoTotal(componente)));
+        tfStockDeSeguridad.setText(String.valueOf(gestor.calcularStockDeSeguridad(componente)));
+        if(rbIntervaloFijo.isSelected()) {
+            tfModelo.setText(String.valueOf(gestor.calcularMaximoDeInventario(componente)));
         }
-
-        for (CostoVariable costo : costosVariables) {
-            PuntoEquilibrio punto = new PuntoEquilibrio();
-            costoProductoComun = costo.getCostoManoObra() + costo.getCostoMateriales();
-            punto.setProductoTerminado(costo.getProductoTerminado());
-            punto.setEquivalencia(costoProductoComun / costoVarProductoEstandar);
-            puntosEquilibrio.add(punto);
+        else {
+            tfModelo.setText(String.valueOf(gestor.calcularPuntoDePedido(componente)));
         }
-
-        tmBuscar.agregarFilas(puntosEquilibrio);
-        costoTotal = costoVarProductoEstandar + GestorCostoFijo.getInstancia().calcularTotalCostoFijo();
-
-        
     }
+    else {
+            JOptionPane.showMessageDialog(this, "Debe elegir un modelo de inventario.");
+        }
+
 }//GEN-LAST:event_btCalcularActionPerformed
 
-private void btBuscarProdTerminadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBuscarProdTerminadoActionPerformed
+private void btBuscarComponenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBuscarComponenteActionPerformed
     componente = PanelBuscarComponente.obtenerComponente();
         if(componente != null) {
                 tfCodigoArticulo.setText(componente.getCodigo());
                 tfNombreArticulo.setText(componente.getNombre());
+                btCalcular.setEnabled(true);
         }
-}//GEN-LAST:event_btBuscarProdTerminadoActionPerformed
+}//GEN-LAST:event_btBuscarComponenteActionPerformed
 
 private void btLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLimpiarActionPerformed
- radiadores.utils.Util.getInstancia().limpiarCampos(this);
- productoTerminado=null;
- btCalcular.setEnabled(false);
+     radiadores.utils.Util.getInstancia().limpiarCampos(this);
+     bgModelo.clearSelection();
+     lbModelo.setVisible(false);
+     tfModelo.setVisible(false);
+     componente = null;
+     btCalcular.setEnabled(false);
 }//GEN-LAST:event_btLimpiarActionPerformed
 
-private void tfCostoAlmacenamientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfCostoAlmacenamientoActionPerformed
-    // TODO add your handling code here:
-}//GEN-LAST:event_tfCostoAlmacenamientoActionPerformed
+private void rbLoteFijoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbLoteFijoActionPerformed
+         lbModelo.setText("Punto de Pedido:");
+         tfModelo.setText("");
+         lbModelo.setVisible(true);
+         tfModelo.setVisible(true);
+         radiadores.utils.Util.getInstancia().limpiarCampos(this);
+}//GEN-LAST:event_rbLoteFijoActionPerformed
 
-private void tfStockActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfStockActionPerformed
-    // TODO add your handling code here:
-}//GEN-LAST:event_tfStockActionPerformed
+private void rbIntervaloFijoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbIntervaloFijoActionPerformed
+         lbModelo.setText("Máximo de Inventario:");
+         tfModelo.setText("");
+         lbModelo.setVisible(true);
+         tfModelo.setVisible(true);
+         radiadores.utils.Util.getInstancia().limpiarCampos(this);
+}//GEN-LAST:event_rbIntervaloFijoActionPerformed
   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btBuscarProdTerminado;
+    private javax.swing.ButtonGroup bgModelo;
+    private javax.swing.JButton btBuscarComponente;
     private javax.swing.JButton btCalcular;
     private javax.swing.JButton btCerrar;
     private javax.swing.JButton btLimpiar;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
-    private org.jdesktop.swingx.JXRadioGroup jXRadioGroup1;
     private javax.swing.JLabel lbCodigo;
     private javax.swing.JLabel lbCodigo1;
     private javax.swing.JLabel lbCostoAlmacenamiento;
     private javax.swing.JLabel lbCostoUnitario;
     private javax.swing.JLabel lbDescripcion;
-    private javax.swing.JLabel lbEstado;
+    private javax.swing.JLabel lbModelo;
     private javax.swing.JLabel lbNombre;
     private javax.swing.JLabel lbNombre1;
     private javax.swing.JLabel lbPesoPorUnid;
@@ -432,41 +455,26 @@ private void tfStockActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
     private javax.swing.JPanel pCampos;
     private javax.swing.JPanel pProductoTerminado;
     private javax.swing.JPanel pTabla;
-    private javax.swing.JTextField tfCodigo1;
+    private javax.swing.JRadioButton rbIntervaloFijo;
+    private javax.swing.JRadioButton rbLoteFijo;
+    private org.jdesktop.swingx.JXRadioGroup rgModelo;
+    private javax.swing.JTextField tfCGI;
+    private javax.swing.JTextField tfCOstoUnitario;
     private javax.swing.JTextField tfCodigoArticulo;
     private javax.swing.JTextField tfCostoAlmacenamiento;
-    private javax.swing.JTextField tfCostoUnitario;
-    private javax.swing.JTextField tfDescripcion;
-    private javax.swing.JTextField tfDescripcion1;
-    private javax.swing.JTextField tfNombre1;
+    private javax.swing.JTextField tfCostoPedido;
+    private javax.swing.JTextField tfCostoTotal;
+    private javax.swing.JTextField tfDemandaAnual;
+    private javax.swing.JTextField tfLoteOptimo;
+    private javax.swing.JTextField tfModelo;
     private javax.swing.JTextField tfNombreArticulo;
-    private javax.swing.JTextField tfPesoPorUnidad;
-    private javax.swing.JTextField tfPrecioBase;
-    private javax.swing.JTextField tfPrecioBase1;
-    private javax.swing.JTextField tfStock;
-    private javax.swing.JTextField tfTamanioLoteEstandar;
+    private javax.swing.JTextField tfNumeroDePedidos;
+    private javax.swing.JTextField tfStockDeSeguridad;
+    private javax.swing.JTextField tfTiempoEntrePedidos;
     // End of variables declaration//GEN-END:variables
 
     @Override
     public List<Component> getComponentesObligatorios() {
         throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    public ProductoTerminado getProductoTerminado() {
-        return productoTerminado;
-    }
-
-    public void setProductoTerminado(ProductoTerminado productoTerminado) {
-        this.productoTerminado = productoTerminado;
-        cargarPantalla();
-    }
-    
-    private void cargarPantalla(){
-        radiadores.utils.Util.getInstancia().limpiarCampos(this);
-        tfCodigoArticulo.setText(productoTerminado.getCodigo());
-        tfNombreArticulo.setText(productoTerminado.getNombre());
-        btCalcular.setEnabled(true);
-        
-    }
-    
+    }   
 }

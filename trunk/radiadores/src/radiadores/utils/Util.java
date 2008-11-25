@@ -5,8 +5,10 @@ import java.awt.Container;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import javax.swing.ButtonGroup;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
+import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import org.jdesktop.swingx.JXDatePicker;
 import org.jdesktop.swingx.JXList;
@@ -297,7 +299,7 @@ public class Util {
                 ((IModeloReiniciable)((JXList)componente).getModel()).reiniciar();
             } else if (componente instanceof JCheckBox) {
                 ((JCheckBox) componente).setSelected(false);
-            }else if(componente instanceof Container) {
+            } else if (componente instanceof Container) {
                 limpiarCampos((Container)componente);
             }
         }
