@@ -23,8 +23,8 @@ public class PanelDemanda extends javax.swing.JDialog implements IValidable {
 
     private DemandaTableModel tmBuscar;
     private ProductoTerminado productoTerminado;
-    private List<PuntoEquilibrio> puntosEquilibrio;
-    private List<CostoVariable> costosVariables;
+    List<Demanda> demandas;
+    
     /** Creates new form PanelCargoEmpleado */
     public PanelDemanda() {
         initComponents();
@@ -48,6 +48,7 @@ public class PanelDemanda extends javax.swing.JDialog implements IValidable {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        errores = new javax.swing.ButtonGroup();
         pTabla = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tCargos = new org.jdesktop.swingx.JXTable();
@@ -61,6 +62,18 @@ public class PanelDemanda extends javax.swing.JDialog implements IValidable {
         dpPeriodoFinal = new org.jdesktop.swingx.JXDatePicker();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        btCargarPeriodos = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        rbMedio = new javax.swing.JRadioButton();
+        rbMedioAbsoluto = new javax.swing.JRadioButton();
+        rbCuadradoMedio = new javax.swing.JRadioButton();
+        rbPorcentualMedioAbsoluto = new javax.swing.JRadioButton();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        tfPM = new javax.swing.JTextField();
+        tfPMP = new javax.swing.JTextField();
+        tfPMSE = new javax.swing.JTextField();
         pBotones = new javax.swing.JPanel();
         btCalcular = new javax.swing.JButton();
         btCerrar = new javax.swing.JButton();
@@ -126,9 +139,9 @@ public class PanelDemanda extends javax.swing.JDialog implements IValidable {
                     .addComponent(lbNombre))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pProductoTerminadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(tfNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 460, Short.MAX_VALUE)
+                    .addComponent(tfNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 468, Short.MAX_VALUE)
                     .addGroup(pProductoTerminadoLayout.createSequentialGroup()
-                        .addComponent(tfCodigo, javax.swing.GroupLayout.DEFAULT_SIZE, 389, Short.MAX_VALUE)
+                        .addComponent(tfCodigo, javax.swing.GroupLayout.DEFAULT_SIZE, 397, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btBuscarProdTerminado)))
                 .addContainerGap())
@@ -154,40 +167,114 @@ public class PanelDemanda extends javax.swing.JDialog implements IValidable {
 
         jLabel2.setText("Periodo final");
 
+        btCargarPeriodos.setText("Cargar Periodos");
+        btCargarPeriodos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btCargarPeriodosActionPerformed(evt);
+            }
+        });
+
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Error"));
+
+        errores.add(rbMedio);
+        rbMedio.setText("Medio");
+        rbMedio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbMedioActionPerformed(evt);
+            }
+        });
+        jPanel1.add(rbMedio);
+
+        errores.add(rbMedioAbsoluto);
+        rbMedioAbsoluto.setText("Medio Absoluto");
+        jPanel1.add(rbMedioAbsoluto);
+
+        errores.add(rbCuadradoMedio);
+        rbCuadradoMedio.setText("Cuadrado Mdeio");
+        rbCuadradoMedio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbCuadradoMedioActionPerformed(evt);
+            }
+        });
+        jPanel1.add(rbCuadradoMedio);
+
+        errores.add(rbPorcentualMedioAbsoluto);
+        rbPorcentualMedioAbsoluto.setText("Porcentual Medio Absoluto");
+        jPanel1.add(rbPorcentualMedioAbsoluto);
+
+        jLabel3.setText("PM");
+
+        jLabel4.setText("PMP");
+
+        jLabel5.setText("PMSE");
+
+        tfPMSE.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tfPMSEActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout pTablaLayout = new javax.swing.GroupLayout(pTabla);
         pTabla.setLayout(pTablaLayout);
         pTablaLayout.setHorizontalGroup(
             pTablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(pProductoTerminado, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 541, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 549, Short.MAX_VALUE)
             .addGroup(pTablaLayout.createSequentialGroup()
                 .addGap(55, 55, 55)
                 .addGroup(pTablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(dpPeriodoInicial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 207, Short.MAX_VALUE)
+                .addGap(34, 34, 34)
                 .addGroup(pTablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
-                    .addComponent(dpPeriodoFinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(55, 55, 55))
+                    .addGroup(pTablaLayout.createSequentialGroup()
+                        .addComponent(dpPeriodoFinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(60, 60, 60)
+                        .addComponent(btCargarPeriodos)))
+                .addContainerGap(67, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 549, Short.MAX_VALUE)
+            .addGroup(pTablaLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(tfPM, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(tfPMP, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(tfPMSE, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(237, 237, 237))
         );
         pTablaLayout.setVerticalGroup(
             pTablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pTablaLayout.createSequentialGroup()
                 .addComponent(pProductoTerminado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(pTablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(pTablaLayout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(8, 8, 8)
-                        .addComponent(dpPeriodoInicial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(pTablaLayout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addGap(8, 8, 8)
-                        .addComponent(dpPeriodoFinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
+                .addGroup(pTablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel2))
+                .addGap(8, 8, 8)
+                .addGroup(pTablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(dpPeriodoFinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(dpPeriodoInicial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btCargarPeriodos))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pTablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(tfPM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4)
+                    .addComponent(tfPMP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5)
+                    .addComponent(tfPMSE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         btCalcular.setText("Calcular");
@@ -219,14 +306,15 @@ public class PanelDemanda extends javax.swing.JDialog implements IValidable {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(pTabla, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(pBotones, javax.swing.GroupLayout.DEFAULT_SIZE, 557, Short.MAX_VALUE)
+            .addComponent(pBotones, javax.swing.GroupLayout.DEFAULT_SIZE, 565, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(pTabla, javax.swing.GroupLayout.DEFAULT_SIZE, 377, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
-                .addComponent(pBotones, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(pTabla, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(pBotones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -237,7 +325,25 @@ private void btCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
 }//GEN-LAST:event_btCerrarActionPerformed
 
 private void btCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCalcularActionPerformed
-    List<Demanda> demandas= new ArrayList<Demanda>();
+
+    
+}//GEN-LAST:event_btCalcularActionPerformed
+
+private void btBuscarProdTerminadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBuscarProdTerminadoActionPerformed
+//    PanelBuscarProductoGral buscarProv = new PanelBuscarProductoGral(this);
+//
+//    buscarProv.setModal(true);
+//    buscarProv.setVisible(true);
+}//GEN-LAST:event_btBuscarProdTerminadoActionPerformed
+
+private void btLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLimpiarActionPerformed
+ radiadores.utils.Util.getInstancia().limpiarCampos(this);
+ productoTerminado=null;
+ btCalcular.setEnabled(false);
+}//GEN-LAST:event_btLimpiarActionPerformed
+
+private void btCargarPeriodosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCargarPeriodosActionPerformed
+    demandas= new ArrayList<Demanda>();
     Demanda demanda;
     Calendar cal = Calendar.getInstance();
     Date fechaInicial = dpPeriodoInicial.getDate();
@@ -261,41 +367,52 @@ private void btCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
             }
         }
     }
-    
-}//GEN-LAST:event_btCalcularActionPerformed
+}//GEN-LAST:event_btCargarPeriodosActionPerformed
 
-private void btBuscarProdTerminadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBuscarProdTerminadoActionPerformed
-//    PanelBuscarProductoGral buscarProv = new PanelBuscarProductoGral(this);
-//
-//    buscarProv.setModal(true);
-//    buscarProv.setVisible(true);
-}//GEN-LAST:event_btBuscarProdTerminadoActionPerformed
+private void rbMedioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbMedioActionPerformed
+// TODO add your handling code here:
+}//GEN-LAST:event_rbMedioActionPerformed
 
-private void btLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLimpiarActionPerformed
- radiadores.utils.Util.getInstancia().limpiarCampos(this);
- productoTerminado=null;
- btCalcular.setEnabled(false);
-}//GEN-LAST:event_btLimpiarActionPerformed
+private void rbCuadradoMedioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbCuadradoMedioActionPerformed
+// TODO add your handling code here:
+}//GEN-LAST:event_rbCuadradoMedioActionPerformed
+
+private void tfPMSEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfPMSEActionPerformed
+// TODO add your handling code here:
+}//GEN-LAST:event_tfPMSEActionPerformed
   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btBuscarProdTerminado;
     private javax.swing.JButton btCalcular;
+    private javax.swing.JButton btCargarPeriodos;
     private javax.swing.JButton btCerrar;
     private javax.swing.JButton btLimpiar;
     private org.jdesktop.swingx.JXDatePicker dpPeriodoFinal;
     private org.jdesktop.swingx.JXDatePicker dpPeriodoInicial;
+    private javax.swing.ButtonGroup errores;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lbCodigo;
     private javax.swing.JLabel lbNombre;
     private javax.swing.JPanel pBotones;
     private javax.swing.JPanel pProductoTerminado;
     private javax.swing.JPanel pTabla;
+    private javax.swing.JRadioButton rbCuadradoMedio;
+    private javax.swing.JRadioButton rbMedio;
+    private javax.swing.JRadioButton rbMedioAbsoluto;
+    private javax.swing.JRadioButton rbPorcentualMedioAbsoluto;
     private org.jdesktop.swingx.JXTable tCargos;
     private javax.swing.JTextField tfCodigo;
     private javax.swing.JTextField tfNombre;
+    private javax.swing.JTextField tfPM;
+    private javax.swing.JTextField tfPMP;
+    private javax.swing.JTextField tfPMSE;
     // End of variables declaration//GEN-END:variables
 
     @Override
