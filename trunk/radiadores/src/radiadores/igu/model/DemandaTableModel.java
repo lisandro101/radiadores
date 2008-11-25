@@ -1,5 +1,6 @@
 package radiadores.igu.model;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -16,7 +17,7 @@ public class DemandaTableModel extends AbstractTableModel implements IModeloRein
     private static final String[] NOMBRE_COLUMNAS = {"Periodo", "Demanda Real", "PM", "PMP", "PMSE"};
     private static final boolean[] COLUMNAS_EDITABLES = {false, false, false, false, false};
     private static final Class[] CLASE_COLUMNAS =
-        {Date.class, Double.class, Double.class, Double.class, Double.class};
+        {String.class, Double.class, Double.class, Double.class, Double.class};
     
     private List<Demanda> demandas;
     
@@ -97,7 +98,7 @@ public class DemandaTableModel extends AbstractTableModel implements IModeloRein
         
         switch(columna) {
             case 0:
-                resultado = demandas.get(fila).getPeriodo();
+                resultado = formatearPeriodo(demandas.get(fila).getPeriodo());
                 break;
             case 1:
                 resultado = demandas.get(fila).getDemandaReal();
@@ -178,4 +179,9 @@ public class DemandaTableModel extends AbstractTableModel implements IModeloRein
             fireTableRowsInserted(demandas.size() - puntosNuevos.size(), demandas.size());
         }
     }
+    private String formatearPeriodo(Date peri){
+        SimpleDateFormat df = new SimpleDateFormat("MMMM aaaa");
+        return df.format(peri);  
+    }
+
 }
