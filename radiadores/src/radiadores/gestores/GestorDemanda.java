@@ -23,5 +23,15 @@ public class GestorDemanda {
         
     }
 
+    public double calcularPM(){
+        return 666;
+    }
 
+    public double calcularPMP(){
+        return 666;
+    }
+    
+    public double calcularPMSE(){
+        return 666;
+    }
 }
