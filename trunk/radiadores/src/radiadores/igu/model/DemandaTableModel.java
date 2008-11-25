@@ -6,7 +6,6 @@ import java.util.Date;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
 import radiadores.entidades.Demanda;
-import radiadores.entidades.PuntoEquilibrio;
 
 /**
  *
@@ -15,7 +14,7 @@ import radiadores.entidades.PuntoEquilibrio;
 public class DemandaTableModel extends AbstractTableModel implements IModeloReiniciable {
     private static final long serialVersionUID = 1L;
     private static final String[] NOMBRE_COLUMNAS = {"Periodo", "Demanda Real", "PM", "PMP", "PMSE"};
-    private static final boolean[] COLUMNAS_EDITABLES = {false, false, false, false, false};
+    private static final boolean[] COLUMNAS_EDITABLES = {false, true, false, false, false};
     private static final Class[] CLASE_COLUMNAS =
         {String.class, Double.class, Double.class, Double.class, Double.class};
     
