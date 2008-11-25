@@ -23,7 +23,8 @@ public class ValidarCodigo extends InputVerifier {
         if(primerDigito >= 0 && primerDigito < 10) {
             this.patron = "^" + primerDigito +
                     "-\\d{2}(-\\d{2})?(-\\d{2}-\\d{3})?" +
-                    "(-\\d{2}-\\d{3}-\\d{2})?";
+                    "(-\\d{2}-\\d{3}-\\d{2})?$";
+            System.out.println("Patron: " + patron);
             this.primerDigito = primerDigito;
         } else {
             throw new IllegalArgumentException(

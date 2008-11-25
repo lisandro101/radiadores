@@ -1,24 +1,39 @@
-/*
- * PanelIndices.java
- *
- * Created on 24 de noviembre de 2008, 16:33
- */
-
 package radiadores.igu;
 
+import java.util.List;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
-import radiadores.entidades.Cargo;
+import javax.swing.table.DefaultTableModel;
+import radiadores.entidades.ItemIndice;
+import radiadores.igu.model.IndiceTableModel;
+import radiadores.persistencia.FachadaPersistencia;
 
 /**
  *
  * @author  Lisandro
  */
 public class PanelIndices extends javax.swing.JDialog {
+    private IndiceTableModel itm;
 
     /** Creates new form PanelIndices */
     public PanelIndices() {
         initComponents();
+        inicializar();
+    }
+
+    private void inicializar() {
+        List<ItemIndice> items = FachadaPersistencia.getInstancia().buscar(ItemIndice.class, "SELECT i FROM ItemIndice i");
+        DefaultTableModel dtm = new DefaultTableModel(new String[] {"Producto", "Cantidad"}, 0);
+
+        dtm.addRow(new Object[] {"A", 0});
+        dtm.addRow(new Object[] {"B", 0});
+        dtm.addRow(new Object[] {"C", 0});
+
+        itm = new IndiceTableModel(0);
+        itm.agregarFilas(items);
+
+        tComposicionVentas.setModel(dtm);
+        tConceptos.setModel(itm);
     }
 
     
@@ -56,48 +71,10 @@ public class PanelIndices extends javax.swing.JDialog {
         jLabel15 = new javax.swing.JLabel();
         tfBajasVoluntarias = new javax.swing.JTextField();
 
+        setMinimumSize(new java.awt.Dimension(400, 550));
+
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Tabla de Conceptos Y Valores"));
 
-        tConceptos.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {"Disponibilidad", "20000"},
-                {"Realizable a corto plazo", "5000"},
-                {"Pasivo Corriente", "1500"},
-                {"Cuentas por Cobrar", "2500"},
-                {"Promedio de cobro", "1000"},
-                {"Pasivo a corto plazo", "21600"},
-                {"Deudas que contraigo por día", "720"},
-                {"Ventas", "90533"},
-                {"Activo Total", "54600"},
-                {"Utilidades", "32000"},
-                {"Ventas del producto(a)", "3"},
-                {"Ventas del producto(b)", "2"},
-                {"Ventas del producto(c)", "2"},
-                {"Ventas totales", "45"},
-                {"Unidades rechazadas", "0"},
-                {"Unidades totales producidas", "45"},
-                {"Número de bajas voluntarias", "1"},
-                {"Total de Personal", "6"}
-            },
-            new String [] {
-                "Concepto", "Valor"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.Object.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, true
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
         jScrollPane1.setViewportView(tConceptos);
 
         btCalcular.setText("Calcular");
@@ -112,20 +89,17 @@ public class PanelIndices extends javax.swing.JDialog {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(124, 124, 124)
-                        .addComponent(btCalcular)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 370, Short.MAX_VALUE)
+                    .addComponent(btCalcular, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 114, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btCalcular))
         );
 
@@ -157,32 +131,6 @@ public class PanelIndices extends javax.swing.JDialog {
 
         jLabel9.setText("Composicion De La Ventas : ");
 
-        tComposicionVentas.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {"A", null},
-                {"B", null},
-                {"C", null}
-            },
-            new String [] {
-                "Producto", "Valor"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.Double.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        tComposicionVentas.setEditable(false);
         jScrollPane2.setViewportView(tComposicionVentas);
 
         tfUnidadesRechazadas.setEditable(false);
@@ -198,38 +146,34 @@ public class PanelIndices extends javax.swing.JDialog {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel8)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel9))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(tfRentabilidad, javax.swing.GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE)
-                            .addComponent(tfCreditoDias, javax.swing.GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE)
-                            .addComponent(tfCreditosProveedores, javax.swing.GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE)
-                            .addComponent(tfRotacionInversiones, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE)
-                            .addComponent(tfLiquidez, javax.swing.GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE)
-                            .addComponent(tfRendimiento, javax.swing.GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addGap(11, 11, 11)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(jLabel13)
-                                .addGap(6, 6, 6))
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(jLabel15)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(tfUnidadesRechazadas, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
-                            .addComponent(tfBajasVoluntarias, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE))))
+                .addGap(11, 11, 11)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jLabel8)
+                        .addComponent(jLabel7)
+                        .addComponent(jLabel6)
+                        .addComponent(jLabel5)
+                        .addComponent(jLabel4)
+                        .addComponent(jLabel3)
+                        .addComponent(jLabel9))
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(jPanel3Layout.createSequentialGroup()
+                            .addComponent(jLabel13)
+                            .addGap(6, 6, 6))
+                        .addGroup(jPanel3Layout.createSequentialGroup()
+                            .addComponent(jLabel15)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))))
+                .addGap(0, 0, 0)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(tfLiquidez, javax.swing.GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE)
+                    .addComponent(tfCreditoDias, javax.swing.GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE)
+                    .addComponent(tfCreditosProveedores, javax.swing.GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE)
+                    .addComponent(tfRotacionInversiones, javax.swing.GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE)
+                    .addComponent(tfRentabilidad, javax.swing.GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE)
+                    .addComponent(tfRendimiento, javax.swing.GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE)
+                    .addComponent(tfUnidadesRechazadas, javax.swing.GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE)
+                    .addComponent(tfBajasVoluntarias, javax.swing.GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -296,50 +240,41 @@ public class PanelIndices extends javax.swing.JDialog {
 
 private void btCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCalcularActionPerformed
 
-    
-    
-    
-    
-    
-    
-    Double resulLiquidez = (Double.valueOf(this.tConceptos.getValueAt(0,1).toString())+Double.valueOf(this.tConceptos.getValueAt(1,1).toString()))/Double.valueOf(this.tConceptos.getValueAt(2,1).toString());
+    Double resulLiquidez = (itm.getValor("Disponibilidad")+itm.getValor("Realizable a corto plazo"))/itm.getValor("Pasivo corriente");
     this.tfLiquidez.setText(resulLiquidez.toString());
     
-    Double resultCuotas = (Double.valueOf(this.tConceptos.getValueAt(3,1).toString()))/Double.valueOf(this.tConceptos.getValueAt(4,1).toString());
+    Double resultCuotas = itm.getValor("Cuentas por cobrar")/itm.getValor("Promedio de cobro");
     this.tfCreditoDias.setText(resultCuotas.toString());
     
-    Double resulPro = (Double.valueOf(this.tConceptos.getValueAt(5,1).toString()))/Double.valueOf(this.tConceptos.getValueAt(6,1).toString());
+    Double resulPro = itm.getValor("Pasivo a corto plazo")/itm.getValor("Deudas que contraigo por día");
     this.tfCreditosProveedores.setText(resulPro.toString());
     
-    Double resulRotacion = (Double.valueOf(this.tConceptos.getValueAt(7,1).toString()))/Double.valueOf(this.tConceptos.getValueAt(8,1).toString());
+    Double resulRotacion = itm.getValor("Ventas")/itm.getValor("Activo total");
     this.tfRotacionInversiones.setText(resulRotacion.toString());
     
-    Double resulRentab = (Double.valueOf(this.tConceptos.getValueAt(9,1).toString()))/Double.valueOf(this.tConceptos.getValueAt(8,1).toString());
+    Double resulRentab = itm.getValor("Utilidades")/itm.getValor("Activo total");
     this.tfRentabilidad.setText(resulRentab.toString());
     
-    Double resulRend = (Double.valueOf(this.tConceptos.getValueAt(9,1).toString()))/Double.valueOf(this.tConceptos.getValueAt(7,1).toString());
+    Double resulRend = itm.getValor("Utilidades")/itm.getValor("Ventas");
     this.tfRendimiento.setText(resulRend.toString());
 
-    Double resulVtaProdA = (Double.valueOf(this.tConceptos.getValueAt(10,1).toString()))/Double.valueOf(this.tConceptos.getValueAt(13,1).toString());
+    Double resulVtaProdA = itm.getValor("Ventas del producto (a)")/itm.getValor("Ventas totales");
     this.tComposicionVentas.setValueAt(resulVtaProdA, 0, 1);
             
-    Double resulVtaProdB = (Double.valueOf(this.tConceptos.getValueAt(11,1).toString()))/Double.valueOf(this.tConceptos.getValueAt(13,1).toString());
+    Double resulVtaProdB = itm.getValor("Ventas del producto (b)")/itm.getValor("Ventas totales");
     this.tComposicionVentas.setValueAt(resulVtaProdB, 1, 1);
 
-    Double resulVtaProdC = (Double.valueOf(this.tConceptos.getValueAt(12,1).toString()))/Double.valueOf(this.tConceptos.getValueAt(13,1).toString());
+    Double resulVtaProdC = itm.getValor("Ventas del producto (c)")/itm.getValor("Ventas totales");
     this.tComposicionVentas.setValueAt(resulVtaProdC, 2, 1);
 
     //aca los agrego al datamodel...
         
     
-    Double resulCalidad = (Double.valueOf(this.tConceptos.getValueAt(14,1).toString()))/Double.valueOf(this.tConceptos.getValueAt(15,1).toString());
+    Double resulCalidad = itm.getValor("Unidades rechazadas")/itm.getValor("Unidades totales producidas");
     this.tfUnidadesRechazadas.setText(resulCalidad.toString());
 
-    Double resulClima = (Double.valueOf(this.tConceptos.getValueAt(16,1).toString()))/Double.valueOf(this.tConceptos.getValueAt(17,1).toString());
+    Double resulClima = itm.getValor("Número de bajas voluntarias")/itm.getValor("Total de personal");
     this.tfBajasVoluntarias.setText(resulClima.toString());
-    
-    
-    
     
 }//GEN-LAST:event_btCalcularActionPerformed
 
@@ -356,15 +291,6 @@ private void btCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
         
         p.setLocationRelativeTo(null);
         p.setVisible(true);
-        
-        new Thread() {
-            @Override
-            public void run() {
-            //    FachadaPersistencia.getInstancia().buscar(Cargo.class,
-            //            "SELECT c FROM Cargo c WHERE 0 > 1");
-            }
-            
-        }.start();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
