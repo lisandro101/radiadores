@@ -57,7 +57,7 @@
         </Menu>
         <Menu class="javax.swing.JMenu" name="indices">
           <Properties>
-            <Property name="text" type="java.lang.String" value="&#xcd;ndices"/>
+            <Property name="text" type="java.lang.String" value="Indices"/>
           </Properties>
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="calcularIndices">

@@ -174,13 +174,10 @@ public class PanelInventario extends javax.swing.JDialog implements IValidable {
             }
         });
 
-        tfCodigo1.setInputVerifier(new ValidarCodigo(1));
-
         lbDescripcion.setText("Stock de Seguridad:");
 
         lbEstado.setText("Máximo de Inventario:");
 
-        tfStock.setEditable(false);
         tfStock.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tfStockActionPerformed(evt);

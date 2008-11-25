@@ -146,7 +146,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
 
         menu.add(jMenu1);
 
-        indices.setText("Índices");
+        indices.setText("Indices");
 
         calcularIndices.setText("Calcular");
         calcularIndices.addActionListener(new java.awt.event.ActionListener() {
@@ -329,7 +329,6 @@ private void calcularIndicesActionPerformed(java.awt.event.ActionEvent evt) {//G
     private javax.swing.JMenuBar menu;
     private javax.swing.JMenuItem puntoEquilibrio;
     // End of variables declaration//GEN-END:variables
-
     private void salir() {
         int opcion = JOptionPane.showConfirmDialog(this,
                 "¿Está seguro que desea salir?", "Salir",
