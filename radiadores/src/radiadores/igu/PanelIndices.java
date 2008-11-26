@@ -1,8 +1,7 @@
 package radiadores.igu;
 
+import java.text.NumberFormat;
 import java.util.List;
-import javax.swing.UIManager;
-import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.table.DefaultTableModel;
 import radiadores.entidades.ItemIndice;
 import radiadores.igu.model.IndiceTableModel;
@@ -14,6 +13,7 @@ import radiadores.persistencia.FachadaPersistencia;
  */
 public class PanelIndices extends javax.swing.JDialog {
     private IndiceTableModel itm;
+    private NumberFormat nf;
 
     /** Creates new form PanelIndices */
     public PanelIndices() {
@@ -28,6 +28,10 @@ public class PanelIndices extends javax.swing.JDialog {
         dtm.addRow(new Object[] {"A", 0});
         dtm.addRow(new Object[] {"B", 0});
         dtm.addRow(new Object[] {"C", 0});
+
+        nf = NumberFormat.getInstance();
+        nf.setMaximumFractionDigits(3);
+        nf.setMinimumFractionDigits(3);
 
         itm = new IndiceTableModel(0);
         itm.agregarFilas(items);
@@ -241,57 +245,43 @@ public class PanelIndices extends javax.swing.JDialog {
 private void btCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCalcularActionPerformed
 
     Double resulLiquidez = (itm.getValor("Disponibilidad")+itm.getValor("Realizable a corto plazo"))/itm.getValor("Pasivo corriente");
-    this.tfLiquidez.setText(resulLiquidez.toString());
+    this.tfLiquidez.setText(nf.format(resulLiquidez));
     
     Double resultCuotas = itm.getValor("Cuentas por cobrar")/itm.getValor("Promedio de cobro");
-    this.tfCreditoDias.setText(resultCuotas.toString());
+    this.tfCreditoDias.setText(nf.format(resultCuotas));
     
     Double resulPro = itm.getValor("Pasivo a corto plazo")/itm.getValor("Deudas que contraigo por día");
-    this.tfCreditosProveedores.setText(resulPro.toString());
+    this.tfCreditosProveedores.setText(nf.format(resulPro));
     
     Double resulRotacion = itm.getValor("Ventas")/itm.getValor("Activo total");
-    this.tfRotacionInversiones.setText(resulRotacion.toString());
+    this.tfRotacionInversiones.setText(nf.format(resulRotacion));
     
     Double resulRentab = itm.getValor("Utilidades")/itm.getValor("Activo total");
-    this.tfRentabilidad.setText(resulRentab.toString());
+    this.tfRentabilidad.setText(nf.format(resulRentab));
     
     Double resulRend = itm.getValor("Utilidades")/itm.getValor("Ventas");
-    this.tfRendimiento.setText(resulRend.toString());
+    this.tfRendimiento.setText(nf.format(resulRend));
 
     Double resulVtaProdA = itm.getValor("Ventas del producto (a)")/itm.getValor("Ventas totales");
-    this.tComposicionVentas.setValueAt(resulVtaProdA, 0, 1);
+    this.tComposicionVentas.setValueAt(nf.format(resulVtaProdA), 0, 1);
             
     Double resulVtaProdB = itm.getValor("Ventas del producto (b)")/itm.getValor("Ventas totales");
-    this.tComposicionVentas.setValueAt(resulVtaProdB, 1, 1);
+    this.tComposicionVentas.setValueAt(nf.format(resulVtaProdB), 1, 1);
 
     Double resulVtaProdC = itm.getValor("Ventas del producto (c)")/itm.getValor("Ventas totales");
-    this.tComposicionVentas.setValueAt(resulVtaProdC, 2, 1);
+    this.tComposicionVentas.setValueAt(nf.format(resulVtaProdC), 2, 1);
 
     //aca los agrego al datamodel...
         
     
     Double resulCalidad = itm.getValor("Unidades rechazadas")/itm.getValor("Unidades totales producidas");
-    this.tfUnidadesRechazadas.setText(resulCalidad.toString());
+    this.tfUnidadesRechazadas.setText(nf.format(resulCalidad));
 
     Double resulClima = itm.getValor("Número de bajas voluntarias")/itm.getValor("Total de personal");
-    this.tfBajasVoluntarias.setText(resulClima.toString());
+    this.tfBajasVoluntarias.setText(nf.format(resulClima));
     
 }//GEN-LAST:event_btCalcularActionPerformed
 
-
-  public static void main(String[] args) throws ClassNotFoundException, InstantiationException,
-            IllegalAccessException, UnsupportedLookAndFeelException {
-        
-        
-        UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-        System.setProperty("apple.laf.useScreenMenuBar", "true");
-        
-        
-        PanelIndices p = new PanelIndices();
-        
-        p.setLocationRelativeTo(null);
-        p.setVisible(true);
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btCalcular;

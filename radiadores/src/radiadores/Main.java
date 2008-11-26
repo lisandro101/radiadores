@@ -46,7 +46,7 @@ public class Main {
             
         }.start();
 
-        //cargarValoresIniciales();
+        cargarValoresIniciales();
     }
 
     private static void cargarValoresIniciales() {

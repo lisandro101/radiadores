@@ -445,7 +445,7 @@ private void btAsignarProveedorActionPerformed(java.awt.event.ActionEvent evt) {
 
 private void btAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAgregarActionPerformed
     tfStock.setText("0");
-    if(ValidacionBuscar.getInstancia().existenCamposVacios(this)){
+    if(!Util.getInstancia().validar(this)){
         JOptionPane.showMessageDialog(this, "Existen campos sin completar");
     }else{
         productoComponente= crearProductoComponente();
@@ -563,7 +563,7 @@ private void cbUnidadMedidaActionPerformed(java.awt.event.ActionEvent evt) {//GE
     
     
     
-    private ProductoComponente crearProductoComponente(){
+    private ProductoComponente crearProductoComponente() {
         productoComponente = new ProductoComponente();
         
         productoComponente.setCodigo(tfCodigo.getText());

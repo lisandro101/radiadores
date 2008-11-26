@@ -24,7 +24,6 @@ public class ValidarCodigo extends InputVerifier {
             this.patron = "^" + primerDigito +
                     "-\\d{2}(-\\d{2})?(-\\d{2}-\\d{3})?" +
                     "(-\\d{2}-\\d{3}-\\d{2})?$";
-            System.out.println("Patron: " + patron);
             this.primerDigito = primerDigito;
         } else {
             throw new IllegalArgumentException(
@@ -39,8 +38,9 @@ public class ValidarCodigo extends InputVerifier {
 
         if (componente instanceof JTextComponent) {
             JTextComponent campoDeTexto = (JTextComponent) componente;
+            String texto = campoDeTexto.getText();
 
-            resultado = esCodigo(campoDeTexto.getText());
+            resultado = esCodigo(texto) || texto.length() == 0;
         }
 
         if(!resultado) {
