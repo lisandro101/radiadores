@@ -20,6 +20,7 @@ import radiadores.entidades.ProductoComponente;
 import radiadores.entidades.ProductoTerminado;
 import radiadores.entidades.Proveedor;
 import radiadores.entidades.RutaFabricacion;
+import radiadores.igu.PanelDemanda;
 import radiadores.igu.PanelPuntoEquilibrio;
 import radiadores.igu.PanelDetalleRuta;
 import radiadores.igu.PanelEstructuraDeProducto;
@@ -42,6 +43,7 @@ public class PanelBuscarProductoGral extends javax.swing.JDialog {
     
     private static final long serialVersionUID = 1L;
 
+    private PanelDemanda panelDemanda;
     private PanelPuntoEquilibrio panelPuntoEquilibrio;
     private ProductoGralTableModel tmBuscar;
     private ProductoGralTableModel tmOrigen;
@@ -74,7 +76,8 @@ public class PanelBuscarProductoGral extends javax.swing.JDialog {
         PANEL_ORDEN_PRODUCCION ("Panel Orden Produccion"),
         PANEL_IBUSCA ("Panel IBusca"),
         PANEL_RUTA_FABRICACION ("Panel Ruta Fabricacion"),
-        PANEL_PUNTO_EQUILIBRIO ("Panel Punto Equilibrio");
+        PANEL_PUNTO_EQUILIBRIO ("Panel Punto Equilibrio"),
+        PANEL_DEMANDA ("Panel Demanda");
         
         private String nombre;
         
@@ -172,6 +175,13 @@ public class PanelBuscarProductoGral extends javax.swing.JDialog {
         initComponents();
         tipo= Tipo.PANEL_PUNTO_EQUILIBRIO;
         panelPuntoEquilibrio =panel;
+        inicializar();
+    }
+
+    public PanelBuscarProductoGral(PanelDemanda panel){
+        initComponents();
+        tipo= Tipo.PANEL_DEMANDA;
+        panelDemanda =panel;
         inicializar();
     }
     
@@ -382,6 +392,9 @@ private void btAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
         }else if(tipo== Tipo.PANEL_PUNTO_EQUILIBRIO){
             panelPuntoEquilibrio.setProductoTerminado((ProductoTerminado)resultado);
             dispose();
+        }else if(tipo== Tipo.PANEL_DEMANDA){
+            panelDemanda.setProductoTerminado((ProductoTerminado)resultado);
+            dispose();
         }else if(tipo== Tipo.PANEL_ESTRUCTURA){
             Query consulta = FachadaPersistencia.getInstancia().crearConsulta("" +
                     "SELECT a FROM EstructuraDeProducto a " +
@@ -410,8 +423,6 @@ private void btAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
             panelRutaFabricacion.setComponente(resultado);
             dispose();
         }
-               
-        
     }
 }//GEN-LAST:event_btAceptarActionPerformed
 

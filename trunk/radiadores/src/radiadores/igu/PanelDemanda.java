@@ -24,7 +24,31 @@ public class PanelDemanda extends javax.swing.JDialog implements IValidable {
     private DemandaTableModel tmBuscar;
     private ProductoTerminado productoTerminado;
     List<Demanda> demandas;
-    
+
+    public enum Error {
+        ERROR_MEDIO ("error medio"),
+        ERROR_MEDIO_ABSOLUTO ("error medio absoluto"),
+        ERROR_CUADRADO_MEDIO ("error cuadrado medio"),
+        ERROR_PORCENTUAL_MEDIO ("error porcentual medio");
+
+
+        private String nombre;
+
+        private Error(String nombre) {
+            this.nombre = nombre;
+        }
+
+        @Override
+        public String toString() {
+            return nombre;
+        }
+    }
+
+    private Error error;
+
+
+
+
     /** Creates new form PanelCargoEmpleado */
     public PanelDemanda() {
         initComponents();
@@ -74,6 +98,8 @@ public class PanelDemanda extends javax.swing.JDialog implements IValidable {
         tfPM = new javax.swing.JTextField();
         tfPMP = new javax.swing.JTextField();
         tfPMSE = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        tfconstanteAlfa = new javax.swing.JTextField();
         pBotones = new javax.swing.JPanel();
         btCalcular = new javax.swing.JButton();
         btCerrar = new javax.swing.JButton();
@@ -139,9 +165,9 @@ public class PanelDemanda extends javax.swing.JDialog implements IValidable {
                     .addComponent(lbNombre))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pProductoTerminadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(tfNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 468, Short.MAX_VALUE)
+                    .addComponent(tfNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 513, Short.MAX_VALUE)
                     .addGroup(pProductoTerminadoLayout.createSequentialGroup()
-                        .addComponent(tfCodigo, javax.swing.GroupLayout.DEFAULT_SIZE, 397, Short.MAX_VALUE)
+                        .addComponent(tfCodigo, javax.swing.GroupLayout.DEFAULT_SIZE, 442, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btBuscarProdTerminado)))
                 .addContainerGap())
@@ -190,7 +216,7 @@ public class PanelDemanda extends javax.swing.JDialog implements IValidable {
         jPanel1.add(rbMedioAbsoluto);
 
         errores.add(rbCuadradoMedio);
-        rbCuadradoMedio.setText("Cuadrado Mdeio");
+        rbCuadradoMedio.setText("Cuadrado Medio");
         rbCuadradoMedio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 rbCuadradoMedioActionPerformed(evt);
@@ -208,18 +234,42 @@ public class PanelDemanda extends javax.swing.JDialog implements IValidable {
 
         jLabel5.setText("PMSE");
 
+        tfPM.setEditable(false);
+
+        tfPMP.setEditable(false);
+
+        tfPMSE.setEditable(false);
         tfPMSE.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tfPMSEActionPerformed(evt);
             }
         });
 
+        jLabel6.setText("Constante de suavizado");
+
         javax.swing.GroupLayout pTablaLayout = new javax.swing.GroupLayout(pTabla);
         pTabla.setLayout(pTablaLayout);
         pTablaLayout.setHorizontalGroup(
             pTablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pTablaLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pTablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel3))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pTablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pTablaLayout.createSequentialGroup()
+                        .addComponent(tfPMSE, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(tfconstanteAlfa, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tfPMP, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tfPM, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(293, 293, 293))
             .addComponent(pProductoTerminado, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 549, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 594, Short.MAX_VALUE)
             .addGroup(pTablaLayout.createSequentialGroup()
                 .addGap(55, 55, 55)
                 .addGroup(pTablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -232,22 +282,8 @@ public class PanelDemanda extends javax.swing.JDialog implements IValidable {
                         .addComponent(dpPeriodoFinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(60, 60, 60)
                         .addComponent(btCargarPeriodos)))
-                .addContainerGap(67, Short.MAX_VALUE))
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 549, Short.MAX_VALUE)
-            .addGroup(pTablaLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tfPM, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tfPMP, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tfPMSE, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(237, 237, 237))
+                .addContainerGap(116, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 594, Short.MAX_VALUE)
         );
         pTablaLayout.setVerticalGroup(
             pTablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -269,12 +305,17 @@ public class PanelDemanda extends javax.swing.JDialog implements IValidable {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pTablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(tfPM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tfPM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pTablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(tfPMP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tfPMP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pTablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(tfPMSE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(tfPMSE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6)
+                    .addComponent(tfconstanteAlfa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
         btCalcular.setText("Calcular");
@@ -306,15 +347,14 @@ public class PanelDemanda extends javax.swing.JDialog implements IValidable {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(pTabla, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(pBotones, javax.swing.GroupLayout.DEFAULT_SIZE, 565, Short.MAX_VALUE)
+            .addComponent(pBotones, javax.swing.GroupLayout.DEFAULT_SIZE, 610, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(pTabla, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(pBotones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(pBotones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
@@ -325,8 +365,20 @@ private void btCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
 }//GEN-LAST:event_btCerrarActionPerformed
 
 private void btCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCalcularActionPerformed
+    double alfa = Double.parseDouble(tfconstanteAlfa.getText());
+    setError();
 
-    
+    if(GestorDemanda.getInstancia().validarConstanteAlfa(alfa) && GestorDemanda.getInstancia().validarPonderaciones(demandas)){
+        tfPM.setText(String.valueOf(GestorDemanda.getInstancia().calcularPM(demandas)));
+        tfPMP.setText(String.valueOf(GestorDemanda.getInstancia().calcularPMP(demandas)));
+        tfPMP.setText(String.valueOf(GestorDemanda.getInstancia().calcularPMSE(demandas,alfa )));
+    }else{
+        if(GestorDemanda.getInstancia().validarConstanteAlfa(alfa)){
+            JOptionPane.showMessageDialog(this, "La constante de suavizado esta fuera de rango [0-1]");
+        }else if(GestorDemanda.getInstancia().validarPonderaciones(demandas)){
+            JOptionPane.showMessageDialog(this, "La sumatoria de las constantes de ponderación no es igual a 1");
+        }
+    }
 }//GEN-LAST:event_btCalcularActionPerformed
 
 private void btBuscarProdTerminadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBuscarProdTerminadoActionPerformed
@@ -360,10 +412,7 @@ private void btCargarPeriodosActionPerformed(java.awt.event.ActionEvent evt) {//
             while(fechaInicial.compareTo(fechaFinal)<0){
                 demanda= new Demanda();
                 demanda.setPeriodo(fechaInicial);
-                demanda.setPM(GestorDemanda.getInstancia().calcularPM());
-                demanda.setPMP(GestorDemanda.getInstancia().calcularPMP());
-                demanda.setPMSE(GestorDemanda.getInstancia().calcularPMSE());
-                
+
             }
         }
     }
@@ -396,6 +445,7 @@ private void tfPMSEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lbCodigo;
@@ -413,6 +463,7 @@ private void tfPMSEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:
     private javax.swing.JTextField tfPM;
     private javax.swing.JTextField tfPMP;
     private javax.swing.JTextField tfPMSE;
+    private javax.swing.JTextField tfconstanteAlfa;
     // End of variables declaration//GEN-END:variables
 
     @Override
@@ -436,5 +487,16 @@ private void tfPMSEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:
         btCalcular.setEnabled(true);
         
     }
-    
+
+    private void setError(){
+        if(rbMedio.isSelected()){
+            error= Error.ERROR_MEDIO;
+        }else if(rbMedioAbsoluto.isSelected()){
+            error= Error.ERROR_MEDIO_ABSOLUTO;
+        }else if(rbCuadradoMedio.isSelected()){
+            error= Error.ERROR_CUADRADO_MEDIO;
+        }else {
+            error= Error.ERROR_PORCENTUAL_MEDIO;
+        }
+    }
 }

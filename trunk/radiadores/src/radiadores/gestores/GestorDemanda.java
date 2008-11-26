@@ -5,6 +5,9 @@
 
 package radiadores.gestores;
 
+import java.util.List;
+import radiadores.entidades.Demanda;
+
 /**
  *
  * @author stafoxter
@@ -23,15 +26,45 @@ public class GestorDemanda {
         
     }
 
-    public double calcularPM(){
+    public double calcularPM(List<Demanda> demandas){
+        int n=0;
+        double total=0.0;
+        for (Demanda demanda : demandas) {
+            total += demanda.getDemandaReal();
+            ++n;
+        }
+        return (total/n);
+    }
+
+    public double calcularPMP(List<Demanda> demandas){
+        double total=0.0;
+        for (Demanda demanda : demandas) {
+            total += demanda.getDemandaReal()* demanda.getPMP();
+        }
+        return total;
+    }
+    
+    public double calcularPMSE(List<Demanda> demandas, double alfa){
+
+
         return 666;
     }
 
-    public double calcularPMP(){
-        return 666;
+    public boolean validarConstanteAlfa(double constante){
+        if(constante>=0 && constante<=1){
+            return true;
+        }
+        return false;
     }
-    
-    public double calcularPMSE(){
-        return 666;
+
+    public boolean validarPonderaciones(List<Demanda> demandas){
+        double total=0.0;
+        for (Demanda demanda : demandas) {
+            total +=  demanda.getPMP();
+        }
+        if(total>=0 && total<=1){
+            return true;
+        }
+        return false;
     }
 }
