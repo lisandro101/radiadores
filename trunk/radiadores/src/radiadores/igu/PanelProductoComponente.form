@@ -31,7 +31,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
-                      <Component id="pBotones" pref="674" max="32767" attributes="1"/>
+                      <Component id="pBotones" pref="708" max="32767" attributes="1"/>
                       <EmptySpace min="10" pref="10" max="10" attributes="0"/>
                   </Group>
               </Group>
@@ -134,7 +134,7 @@
                           <Component id="lbCostoPedio" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="lbCostoAlmacenamiento" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="lbStockReserva" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="lbDemandaAnual" pref="113" max="32767" attributes="0"/>
+                          <Component id="lbDemandaAnual" pref="150" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -462,8 +462,8 @@
               <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jScrollPane1" alignment="1" pref="642" max="32767" attributes="0"/>
-                      <Component id="jPanel2" alignment="1" pref="642" max="32767" attributes="0"/>
+                      <Component id="jScrollPane1" alignment="1" pref="688" max="32767" attributes="0"/>
+                      <Component id="jPanel2" alignment="1" pref="688" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -489,16 +489,6 @@
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
           <SubComponents>
             <Component class="org.jdesktop.swingx.JXTable" name="tProveedor">
-              <Properties>
-                <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                  <Table columnCount="3" rowCount="2">
-                    <Column editable="false" title="Nombre" type="java.lang.Object"/>
-                    <Column editable="false" title="Tel&#xe9;fono" type="java.lang.Object"/>
-                    <Column editable="false" title="Contacto" type="java.lang.Object"/>
-                  </Table>
-                </Property>
-                <Property name="editable" type="boolean" value="false"/>
-              </Properties>
             </Component>
           </SubComponents>
         </Container>

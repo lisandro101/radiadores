@@ -80,10 +80,12 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         costoFijo = new javax.swing.JMenuItem();
         costoVariable = new javax.swing.JMenuItem();
         puntoEquilibrio = new javax.swing.JMenuItem();
-        jMenu1 = new javax.swing.JMenu();
+        inventario = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         indices = new javax.swing.JMenu();
         calcularIndices = new javax.swing.JMenuItem();
+        demanda = new javax.swing.JMenu();
+        prediccionDemanda = new javax.swing.JMenuItem();
         ayuda = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
@@ -137,7 +139,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
 
         menu.add(costos);
 
-        jMenu1.setText("Inventario");
+        inventario.setText("Inventario");
 
         jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_I, java.awt.event.InputEvent.CTRL_MASK));
         jMenuItem1.setText("Calcular");
@@ -146,9 +148,9 @@ public class PantallaPrincipal extends javax.swing.JFrame {
                 jMenuItem1ActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem1);
+        inventario.add(jMenuItem1);
 
-        menu.add(jMenu1);
+        menu.add(inventario);
 
         indices.setText("Indices");
 
@@ -161,6 +163,18 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         indices.add(calcularIndices);
 
         menu.add(indices);
+
+        demanda.setText("Demanda");
+
+        prediccionDemanda.setText("Predicción de la demanda");
+        prediccionDemanda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                prediccionDemandaActionPerformed(evt);
+            }
+        });
+        demanda.add(prediccionDemanda);
+
+        menu.add(demanda);
 
         ayuda.setText("Ayuda");
         menu.add(ayuda);
@@ -319,6 +333,13 @@ private void calcularIndicesActionPerformed(java.awt.event.ActionEvent evt) {//G
     panelIndices.setVisible(true);
 }//GEN-LAST:event_calcularIndicesActionPerformed
 
+private void prediccionDemandaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prediccionDemandaActionPerformed
+    PanelDemanda panelDemanda = new PanelDemanda();
+
+    panelDemanda.setLocationRelativeTo(null);
+    panelDemanda.setVisible(true);
+}//GEN-LAST:event_prediccionDemandaActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu archivo;
     private javax.swing.JMenu ayuda;
@@ -326,11 +347,13 @@ private void calcularIndicesActionPerformed(java.awt.event.ActionEvent evt) {//G
     private javax.swing.JMenuItem costoFijo;
     private javax.swing.JMenuItem costoVariable;
     private javax.swing.JMenu costos;
+    private javax.swing.JMenu demanda;
     private javax.swing.JMenu indices;
-    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu inventario;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JMenuBar menu;
+    private javax.swing.JMenuItem prediccionDemanda;
     private javax.swing.JMenuItem puntoEquilibrio;
     // End of variables declaration//GEN-END:variables
     private void salir() {

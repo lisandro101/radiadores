@@ -657,4 +657,3 @@ is divided into following sections:
     </target>
     <target depends="init,deps-clean,-do-clean,-post-clean" description="Clean build products." name="clean"/>
 </project>
-
