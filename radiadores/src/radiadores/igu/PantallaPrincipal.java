@@ -335,7 +335,7 @@ private void calcularIndicesActionPerformed(java.awt.event.ActionEvent evt) {//G
 
 private void prediccionDemandaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prediccionDemandaActionPerformed
     PanelDemanda panelDemanda = new PanelDemanda();
-
+    panelDemanda.setModal(true);
     panelDemanda.setLocationRelativeTo(null);
     panelDemanda.setVisible(true);
 }//GEN-LAST:event_prediccionDemandaActionPerformed
