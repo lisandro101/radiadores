@@ -417,37 +417,42 @@ private void btCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
 }//GEN-LAST:event_btCerrarActionPerformed
 
 private void btCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCalcularActionPerformed
-    if (tfconstanteAlfa.getText().trim().equals("")) {
-        JOptionPane.showMessageDialog(this, "No ha ingresado constante de suavizado");
+    if (tfconstanteAlfa.getText().trim().equals("") ) {
+        JOptionPane.showMessageDialog(this, "Debe ingresar constante de suavizado");
     } else {
+        
         if (tfDemandaReal.getText().trim().equals("")) {
             JOptionPane.showMessageDialog(this, "Debe ingresar Demanda real del periodo a predecir");
         } else {
-            double alfa = Double.parseDouble(tfconstanteAlfa.getText());
+            
             setError();
-
+            double alfa = Double.parseDouble(tfconstanteAlfa.getText());
             if (GestorDemanda.getInstancia().validarConstanteAlfa(alfa) && GestorDemanda.getInstancia().validarPonderaciones(demandas)) {
-                tfPM.setText(String.valueOf(GestorDemanda.getInstancia().calcularPM(demandas)));
-                tfPMP.setText(String.valueOf(GestorDemanda.getInstancia().calcularPMP(demandas)));
-                tfPMSE.setText(String.valueOf(GestorDemanda.getInstancia().calcularPMSE(demandas, alfa)));
+                tfPM.setText(String.valueOf(redondear(GestorDemanda.getInstancia().calcularPM(demandas))));
+                tfPMP.setText(String.valueOf(redondear(GestorDemanda.getInstancia().calcularPMP(demandas))));
+                tfPMSE.setText(String.valueOf(redondear(GestorDemanda.getInstancia().calcularPMSE(demandas, alfa))));
+                tmBuscar.agregarFilas(demandas);
+
+                Demanda demandaPredecida = new Demanda();
+
+                demandaPredecida.setPM(Double.valueOf(tfPM.getText()));
+                demandaPredecida.setPMP(Double.valueOf(tfPMP.getText()));
+                demandaPredecida.setPMSE(Double.valueOf(tfPMSE.getText()));
+
+                double[] errores1= GestorDemanda.getInstancia().calcularErrores(demandas,demandaPredecida, Double.valueOf(tfDemandaReal.getText()), error);
+                tfErrorPM.setText(String.valueOf(redondear(errores1[0])));
+                tfErrorPMP.setText(String.valueOf(redondear(errores1[1])));
+                tfErrorPMSE.setText(String.valueOf(redondear(errores1[2])));
+                
             } else {
-                if (GestorDemanda.getInstancia().validarConstanteAlfa(alfa)) {
+                if (!GestorDemanda.getInstancia().validarConstanteAlfa(alfa)) {
                     JOptionPane.showMessageDialog(this, "La constante de suavizado esta fuera de rango [0-1]");
-                } else if (GestorDemanda.getInstancia().validarPonderaciones(demandas)) {
+                } else if (!GestorDemanda.getInstancia().validarPonderaciones(demandas)) {
                     JOptionPane.showMessageDialog(this, "La sumatoria de las constantes de ponderación no es igual a 1");
                 }
             }
             
-            Demanda demandaPredecida = new Demanda();
             
-            demandaPredecida.setPM(Double.valueOf(tfPM.getText()));
-            demandaPredecida.setPMP(Double.valueOf(tfPMP.getText()));
-            demandaPredecida.setPMSE(Double.valueOf(tfPMSE.getText()));
-            
-            double[] errores1= GestorDemanda.getInstancia().calcularErrores(demandaPredecida, Double.valueOf(tfDemandaReal.getText()), error);
-            tfErrorPM.setText(String.valueOf(errores1[0]));
-            tfErrorPMP.setText(String.valueOf(errores1[1]));
-            tfErrorPMSE.setText(String.valueOf(errores1[2]));
         }
     }
 }//GEN-LAST:event_btCalcularActionPerformed
@@ -473,10 +478,11 @@ private void btCargarPeriodosActionPerformed(java.awt.event.ActionEvent evt) {//
     Calendar cal = Calendar.getInstance();
     Date fechaInicial = dpPeriodoInicial.getDate();
     Date fechaInicialRP = dpPeriodoInicial.getDate();
-    fechaInicialRP = convertirFecha(fechaInicialRP);
+   // fechaInicialRP = convertirFecha(fechaInicialRP);
     Date fechaFinal = dpPeriodoFinal.getDate();
 
     if(fechaInicial != null & fechaFinal != null){
+        fechaInicialRP = convertirFecha(fechaInicialRP);
         cal.setTime(fechaFinal);
         cal.add(Calendar.DAY_OF_MONTH, 30);
         Date fechaTemp = cal.getTime();
@@ -615,5 +621,9 @@ private void tfPMSEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:
         cal.add(Calendar.DAY_OF_MONTH, 1);
 
         return cal.getTime();
+    }
+
+    private double redondear(double valor){
+        return (Math.floor(valor*100)/100);
     }
 }
