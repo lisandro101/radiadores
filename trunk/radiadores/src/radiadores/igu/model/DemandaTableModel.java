@@ -13,10 +13,10 @@ import radiadores.entidades.Demanda;
  */
 public class DemandaTableModel extends AbstractTableModel implements IModeloReiniciable {
     private static final long serialVersionUID = 1L;
-    private static final String[] NOMBRE_COLUMNAS = {"Periodo", "Demanda Real", "PM", "PMP", "PMSE"};
-    private static final boolean[] COLUMNAS_EDITABLES = {false, true, false, false, false};
+    private static final String[] NOMBRE_COLUMNAS = {"Periodo", "Demanda Real", "Ponderación PMP", "PMSE"};
+    private static final boolean[] COLUMNAS_EDITABLES = {false, true, true, false};
     private static final Class[] CLASE_COLUMNAS =
-        {String.class, Double.class, Double.class, Double.class, Double.class};
+        {String.class, Double.class, Double.class, Double.class};
     
     private List<Demanda> demandas;
     
@@ -103,12 +103,9 @@ public class DemandaTableModel extends AbstractTableModel implements IModeloRein
                 resultado = demandas.get(fila).getDemandaReal();
                 break;
             case 2:
-                resultado = demandas.get(fila).getPM();
-                break;
-            case 3:
                 resultado = demandas.get(fila).getPMP();
                 break;
-            case 4:
+            case 3:
                 resultado = demandas.get(fila).getPMSE();
                 break;    
         }
@@ -179,8 +176,17 @@ public class DemandaTableModel extends AbstractTableModel implements IModeloRein
         }
     }
     private String formatearPeriodo(Date peri){
-        SimpleDateFormat df = new SimpleDateFormat("MMMM aaaa");
+        SimpleDateFormat df = new SimpleDateFormat("MMMM yyyy");
         return df.format(peri);  
+    }
+
+    @Override
+    public void setValueAt(Object valor, int fila, int columna) {
+        if(columna == 1) {
+            demandas.get(fila).setDemandaReal((Double)valor);
+        }else if(columna == 2) {
+            demandas.get(fila).setPMP((Double)valor);
+        }
     }
 
 }

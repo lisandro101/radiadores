@@ -6,11 +6,10 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import javax.swing.JOptionPane;
-import radiadores.entidades.CostoVariable;
 import radiadores.entidades.Demanda;
 import radiadores.entidades.ProductoTerminado;
-import radiadores.entidades.PuntoEquilibrio;
 import radiadores.gestores.GestorDemanda;
+import radiadores.igu.buscar.PanelBuscarProductoGral;
 import radiadores.igu.model.DemandaTableModel;
 import radiadores.utils.*;
 
@@ -112,19 +111,19 @@ public class PanelDemanda extends javax.swing.JDialog implements IValidable {
 
         tCargos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Periodo", "Demanda Real", "PM", "PMP", "PMSE"
+                "Periodo", "Demanda Real", "PMP", "PMSE"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class
+                java.lang.Object.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class
             };
             boolean[] canEdit = new boolean [] {
-                false, true, false, false, false
+                false, true, true, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -185,9 +184,9 @@ public class PanelDemanda extends javax.swing.JDialog implements IValidable {
                     .addComponent(tfNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
-        dpPeriodoInicial.setFormats("MMMM aaaa");
+        dpPeriodoInicial.setFormats("MMMM yyyy");
 
-        dpPeriodoFinal.setFormats("MMMM aaaa");
+        dpPeriodoFinal.setFormats("MMMM yyyy");
 
         jLabel1.setText("Periodo inicial");
 
@@ -365,27 +364,30 @@ private void btCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
 }//GEN-LAST:event_btCerrarActionPerformed
 
 private void btCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCalcularActionPerformed
-    double alfa = Double.parseDouble(tfconstanteAlfa.getText());
-    setError();
+    if (tfconstanteAlfa.getText().trim().equals("")) {
+        JOptionPane.showMessageDialog(this, "No ha ingresado constante de suavizado");
+    } else {
+        double alfa = Double.parseDouble(tfconstanteAlfa.getText());
+        setError();
 
-    if(GestorDemanda.getInstancia().validarConstanteAlfa(alfa) && GestorDemanda.getInstancia().validarPonderaciones(demandas)){
-        tfPM.setText(String.valueOf(GestorDemanda.getInstancia().calcularPM(demandas)));
-        tfPMP.setText(String.valueOf(GestorDemanda.getInstancia().calcularPMP(demandas)));
-        tfPMP.setText(String.valueOf(GestorDemanda.getInstancia().calcularPMSE(demandas,alfa )));
-    }else{
-        if(GestorDemanda.getInstancia().validarConstanteAlfa(alfa)){
-            JOptionPane.showMessageDialog(this, "La constante de suavizado esta fuera de rango [0-1]");
-        }else if(GestorDemanda.getInstancia().validarPonderaciones(demandas)){
-            JOptionPane.showMessageDialog(this, "La sumatoria de las constantes de ponderación no es igual a 1");
+        if (GestorDemanda.getInstancia().validarConstanteAlfa(alfa) && GestorDemanda.getInstancia().validarPonderaciones(demandas)) {
+            tfPM.setText(String.valueOf(GestorDemanda.getInstancia().calcularPM(demandas)));
+            tfPMP.setText(String.valueOf(GestorDemanda.getInstancia().calcularPMP(demandas)));
+            tfPMP.setText(String.valueOf(GestorDemanda.getInstancia().calcularPMSE(demandas, alfa)));
+        } else {
+            if (GestorDemanda.getInstancia().validarConstanteAlfa(alfa)) {
+                JOptionPane.showMessageDialog(this, "La constante de suavizado esta fuera de rango [0-1]");
+            } else if (GestorDemanda.getInstancia().validarPonderaciones(demandas)) {
+                JOptionPane.showMessageDialog(this, "La sumatoria de las constantes de ponderación no es igual a 1");
+            }
         }
     }
 }//GEN-LAST:event_btCalcularActionPerformed
 
 private void btBuscarProdTerminadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBuscarProdTerminadoActionPerformed
-//    PanelBuscarProductoGral buscarProv = new PanelBuscarProductoGral(this);
-//
-//    buscarProv.setModal(true);
-//    buscarProv.setVisible(true);
+    PanelBuscarProductoGral buscarProv = new PanelBuscarProductoGral(this);
+    buscarProv.setModal(true);
+    buscarProv.setVisible(true);
 }//GEN-LAST:event_btBuscarProdTerminadoActionPerformed
 
 private void btLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLimpiarActionPerformed
@@ -395,25 +397,50 @@ private void btLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
 }//GEN-LAST:event_btLimpiarActionPerformed
 
 private void btCargarPeriodosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCargarPeriodosActionPerformed
+
+
+
     demandas= new ArrayList<Demanda>();
     Demanda demanda;
     Calendar cal = Calendar.getInstance();
     Date fechaInicial = dpPeriodoInicial.getDate();
+    Date fechaInicialRP = dpPeriodoInicial.getDate();
+    fechaInicialRP = convertirFecha(fechaInicialRP);
     Date fechaFinal = dpPeriodoFinal.getDate();
-    cal.setTime(fechaFinal);
-    cal.add(Calendar.DAY_OF_MONTH, 30);
-    Date fechaTemp = cal.getTime();
-    
+
     if(fechaInicial != null & fechaFinal != null){
+        cal.setTime(fechaFinal);
+        cal.add(Calendar.DAY_OF_MONTH, 30);
+        Date fechaTemp = cal.getTime();
+//        int temp=0;
+
         if(fechaInicial.compareTo(fechaTemp)>0){
             JOptionPane.showMessageDialog(this, "El periodo inicial es mayor que el periodo final");
         }else{
             
-            while(fechaInicial.compareTo(fechaFinal)<0){
+            do{
                 demanda= new Demanda();
+                fechaInicial = convertirFecha(fechaInicial);
                 demanda.setPeriodo(fechaInicial);
+                demandas.add(demanda);
 
+//                if(temp !=0){
+                    cal.setTime(fechaInicial);
+                    cal.add(Calendar.DAY_OF_MONTH, 30);
+                    fechaInicial= cal.getTime();
+//                }
+//                ++temp;
+
+            }  while(fechaInicial.compareTo(fechaFinal)<=0);
+            demanda= new Demanda();
+            fechaFinal = convertirFecha(fechaFinal);
+
+            if(!(fechaInicialRP.compareTo(fechaFinal)==0)){
+                demanda.setPeriodo(fechaFinal);
+                demandas.add(demanda);
             }
+
+            tmBuscar.agregarFilas(demandas);
         }
     }
 }//GEN-LAST:event_btCargarPeriodosActionPerformed
@@ -498,5 +525,15 @@ private void tfPMSEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:
         }else {
             error= Error.ERROR_PORCENTUAL_MEDIO;
         }
+    }
+
+    private Date convertirFecha(Date fecha){
+        int dia;
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(fecha);
+        dia = (Calendar.DAY_OF_MONTH )-1;
+        cal.add(Calendar.DAY_OF_MONTH, 1);
+
+        return cal.getTime();
     }
 }
