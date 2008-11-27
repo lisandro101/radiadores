@@ -16,7 +16,7 @@ public class DemandaTableModel extends AbstractTableModel implements IModeloRein
     private static final String[] NOMBRE_COLUMNAS = {"Periodo", "Demanda Real", "Ponderación PMP", "PMSE"};
     private static final boolean[] COLUMNAS_EDITABLES = {false, true, true, false};
     private static final Class[] CLASE_COLUMNAS =
-        {String.class, Double.class, Double.class, Double.class};
+        {String.class, Double.class, Object.class, Double.class};
     
     private List<Demanda> demandas;
     
@@ -185,7 +185,7 @@ public class DemandaTableModel extends AbstractTableModel implements IModeloRein
         if(columna == 1) {
             demandas.get(fila).setDemandaReal((Double)valor);
         }else if(columna == 2) {
-            demandas.get(fila).setPonderacionPMP((Double)valor);
+            demandas.get(fila).setPonderacionPMP(Double.valueOf((String)valor));
         }
     }
 
