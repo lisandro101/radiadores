@@ -17,8 +17,9 @@ public class Demanda {
     private Date periodo;
     private double demandaReal;
     private double pM;
-    private double pMP;
+    private double PMP;
     private double pMSE;
+    private double ponderacionPMP;
 
     public double getDemandaReal() {
         return demandaReal;
@@ -36,12 +37,12 @@ public class Demanda {
         this.pM = pM;
     }
 
-    public double getPMP() {
-        return pMP;
+    public double getPonderacionPMP() {
+        return ponderacionPMP;
     }
 
-    public void setPMP(double pMP) {
-        this.pMP = pMP;
+    public void setPonderacionPMP(double pMP) {
+        this.ponderacionPMP = pMP;
     }
 
     public double getPMSE() {
@@ -67,6 +68,15 @@ public class Demanda {
     public void setPeriodo(Date periodo) {
         this.periodo = periodo;
     }
-    
+
+    public double getPMP() {
+        return PMP;
+    }
+
+    public void setPMP(double PMP) {
+        this.PMP = PMP;
+    }
+
+
     
 }

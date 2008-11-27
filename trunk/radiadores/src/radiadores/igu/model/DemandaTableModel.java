@@ -103,7 +103,7 @@ public class DemandaTableModel extends AbstractTableModel implements IModeloRein
                 resultado = demandas.get(fila).getDemandaReal();
                 break;
             case 2:
-                resultado = demandas.get(fila).getPMP();
+                resultado = demandas.get(fila).getPonderacionPMP();
                 break;
             case 3:
                 resultado = demandas.get(fila).getPMSE();
@@ -185,7 +185,7 @@ public class DemandaTableModel extends AbstractTableModel implements IModeloRein
         if(columna == 1) {
             demandas.get(fila).setDemandaReal((Double)valor);
         }else if(columna == 2) {
-            demandas.get(fila).setPMP((Double)valor);
+            demandas.get(fila).setPonderacionPMP((Double)valor);
         }
     }
 
