@@ -86,6 +86,8 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         calcularIndices = new javax.swing.JMenuItem();
         demanda = new javax.swing.JMenu();
         prediccionDemanda = new javax.swing.JMenuItem();
+        reportes = new javax.swing.JMenu();
+        verReportes = new javax.swing.JMenuItem();
         ayuda = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
@@ -175,6 +177,18 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         demanda.add(prediccionDemanda);
 
         menu.add(demanda);
+
+        reportes.setText("Reportes");
+
+        verReportes.setText("Ver");
+        verReportes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                verReportesActionPerformed(evt);
+            }
+        });
+        reportes.add(verReportes);
+
+        menu.add(reportes);
 
         ayuda.setText("Ayuda");
         menu.add(ayuda);
@@ -340,6 +354,13 @@ private void prediccionDemandaActionPerformed(java.awt.event.ActionEvent evt) {/
     panelDemanda.setVisible(true);
 }//GEN-LAST:event_prediccionDemandaActionPerformed
 
+private void verReportesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verReportesActionPerformed
+    DialogoReportes dialogoReportes = new DialogoReportes(this, true);
+
+    dialogoReportes.setLocationRelativeTo(null);
+    dialogoReportes.setVisible(true);
+}//GEN-LAST:event_verReportesActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu archivo;
     private javax.swing.JMenu ayuda;
@@ -355,6 +376,8 @@ private void prediccionDemandaActionPerformed(java.awt.event.ActionEvent evt) {/
     private javax.swing.JMenuBar menu;
     private javax.swing.JMenuItem prediccionDemanda;
     private javax.swing.JMenuItem puntoEquilibrio;
+    private javax.swing.JMenu reportes;
+    private javax.swing.JMenuItem verReportes;
     // End of variables declaration//GEN-END:variables
     private void salir() {
         int opcion = JOptionPane.showConfirmDialog(this,

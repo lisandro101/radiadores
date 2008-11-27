@@ -1,17 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Listado de empleados" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
 	<queryString>
-		<![CDATA[SELECT
-     empleados.`nombre` AS empleados_nombre,
-     empleados.`codigo` AS empleados_codigo,
-     empleados.`fecha_nacimiento` AS empleados_fecha_nacimiento,
-     cargos.`horas_por_mes` AS cargos_horas_por_mes,
-     cargos.`valor_hora` AS cargos_valor_hora,
-     cargos.`nombre` AS cargos_nombre
-FROM
-     `cargos` cargos INNER JOIN `empleados` empleados ON cargos.`id` = empleados.`cargo_id`
-ORDER BY
-     empleados.`nombre` ASC]]>
+		<![CDATA[SELECT empleados.`nombre` AS empleados_nombre, empleados.`codigo` AS empleados_codigo, empleados.`fecha_nacimiento` AS empleados_fecha_nacimiento, cargos.`horas_por_mes` AS cargos_horas_por_mes, cargos.`valor_hora` AS cargos_valor_hora, cargos.`nombre` AS cargos_nombre FROM `cargos` cargos INNER JOIN `empleados` empleados ON cargos.`id` = empleados.`cargo_id` ORDER BY empleados.`nombre` ASC]]>
 	</queryString>
 	<field name="empleados_nombre" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
