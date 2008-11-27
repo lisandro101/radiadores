@@ -52,7 +52,7 @@ public class PanelDemanda extends javax.swing.JDialog implements IValidable {
     public PanelDemanda() {
         initComponents();
         inicializar();
-        btCalcular.setEnabled(false);
+        inicializarBotones();
     }
 
     private void inicializar() {
@@ -60,7 +60,13 @@ public class PanelDemanda extends javax.swing.JDialog implements IValidable {
         tCargos.setModel(tmBuscar);
         
     }
-    
+
+    private void inicializarBotones(){
+        btCalcular.setEnabled(false);
+        dpPeriodoFinal.setEnabled(false);
+        dpPeriodoInicial.setEnabled(false);
+        btCargarPeriodos.setEnabled(false);
+    }
 
     /** This method is called from within the constructor to
      * initialize the form.
@@ -91,14 +97,20 @@ public class PanelDemanda extends javax.swing.JDialog implements IValidable {
         rbMedioAbsoluto = new javax.swing.JRadioButton();
         rbCuadradoMedio = new javax.swing.JRadioButton();
         rbPorcentualMedioAbsoluto = new javax.swing.JRadioButton();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        tfPM = new javax.swing.JTextField();
-        tfPMP = new javax.swing.JTextField();
-        tfPMSE = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         tfconstanteAlfa = new javax.swing.JTextField();
+        pPrediccionDemanda = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
+        tfPM = new javax.swing.JTextField();
+        tfPMP = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        tfPMSE = new javax.swing.JTextField();
+        tfErrorPM = new javax.swing.JTextField();
+        tfErrorPMP = new javax.swing.JTextField();
+        tfErrorPMSE = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        tfDemandaReal = new javax.swing.JTextField();
         pBotones = new javax.swing.JPanel();
         btCalcular = new javax.swing.JButton();
         btCerrar = new javax.swing.JButton();
@@ -116,11 +128,11 @@ public class PanelDemanda extends javax.swing.JDialog implements IValidable {
                 {null, null, null, null}
             },
             new String [] {
-                "Periodo", "Demanda Real", "PMP", "PMSE"
+                "Periodo", "Demanda Real", "Ponderación PMP", "PMSE"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class
+                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Double.class
             };
             boolean[] canEdit = new boolean [] {
                 false, true, true, false
@@ -202,6 +214,7 @@ public class PanelDemanda extends javax.swing.JDialog implements IValidable {
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Error"));
 
         errores.add(rbMedio);
+        rbMedio.setSelected(true);
         rbMedio.setText("Medio");
         rbMedio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -227,15 +240,19 @@ public class PanelDemanda extends javax.swing.JDialog implements IValidable {
         rbPorcentualMedioAbsoluto.setText("Porcentual Medio Absoluto");
         jPanel1.add(rbPorcentualMedioAbsoluto);
 
+        jLabel6.setText("Constante de suavizado");
+
+        pPrediccionDemanda.setBorder(javax.swing.BorderFactory.createTitledBorder("Predicción Demanda"));
+
         jLabel3.setText("PM");
-
-        jLabel4.setText("PMP");
-
-        jLabel5.setText("PMSE");
 
         tfPM.setEditable(false);
 
         tfPMP.setEditable(false);
+
+        jLabel4.setText("PMP");
+
+        jLabel5.setText("PMSE");
 
         tfPMSE.setEditable(false);
         tfPMSE.addActionListener(new java.awt.event.ActionListener() {
@@ -244,29 +261,65 @@ public class PanelDemanda extends javax.swing.JDialog implements IValidable {
             }
         });
 
-        jLabel6.setText("Constante de suavizado");
+        tfErrorPM.setEditable(false);
+
+        tfErrorPMP.setEditable(false);
+
+        tfErrorPMSE.setEditable(false);
+
+        jLabel7.setText("Demanda Real");
+
+        javax.swing.GroupLayout pPrediccionDemandaLayout = new javax.swing.GroupLayout(pPrediccionDemanda);
+        pPrediccionDemanda.setLayout(pPrediccionDemandaLayout);
+        pPrediccionDemandaLayout.setHorizontalGroup(
+            pPrediccionDemandaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pPrediccionDemandaLayout.createSequentialGroup()
+                .addGroup(pPrediccionDemandaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel3))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pPrediccionDemandaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(tfPMSE, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tfPMP, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tfPM, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pPrediccionDemandaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(tfErrorPM, javax.swing.GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE)
+                    .addComponent(tfErrorPMP, javax.swing.GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE)
+                    .addComponent(tfErrorPMSE, javax.swing.GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jLabel7)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(tfDemandaReal, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(281, 281, 281))
+        );
+        pPrediccionDemandaLayout.setVerticalGroup(
+            pPrediccionDemandaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pPrediccionDemandaLayout.createSequentialGroup()
+                .addContainerGap(20, Short.MAX_VALUE)
+                .addGroup(pPrediccionDemandaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(tfPM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tfErrorPM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7)
+                    .addComponent(tfDemandaReal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pPrediccionDemandaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(tfPMP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tfErrorPMP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pPrediccionDemandaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(tfPMSE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tfErrorPMSE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+        );
 
         javax.swing.GroupLayout pTablaLayout = new javax.swing.GroupLayout(pTabla);
         pTabla.setLayout(pTablaLayout);
         pTablaLayout.setHorizontalGroup(
             pTablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pTablaLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(pTablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(pTablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pTablaLayout.createSequentialGroup()
-                        .addComponent(tfPMSE, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(tfconstanteAlfa, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(tfPMP, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tfPM, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(293, 293, 293))
             .addComponent(pProductoTerminado, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 594, Short.MAX_VALUE)
             .addGroup(pTablaLayout.createSequentialGroup()
@@ -281,8 +334,15 @@ public class PanelDemanda extends javax.swing.JDialog implements IValidable {
                         .addComponent(dpPeriodoFinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(60, 60, 60)
                         .addComponent(btCargarPeriodos)))
-                .addContainerGap(116, Short.MAX_VALUE))
+                .addContainerGap(118, Short.MAX_VALUE))
             .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 594, Short.MAX_VALUE)
+            .addGroup(pTablaLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(tfconstanteAlfa, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(419, Short.MAX_VALUE))
+            .addComponent(pPrediccionDemanda, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         pTablaLayout.setVerticalGroup(
             pTablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -303,18 +363,11 @@ public class PanelDemanda extends javax.swing.JDialog implements IValidable {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pTablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(tfPM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(pTablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(tfPMP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(pTablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(tfPMSE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6)
-                    .addComponent(tfconstanteAlfa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(tfconstanteAlfa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(pPrediccionDemanda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(41, Short.MAX_VALUE))
         );
 
         btCalcular.setText("Calcular");
@@ -345,13 +398,13 @@ public class PanelDemanda extends javax.swing.JDialog implements IValidable {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(pBotones, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 610, Short.MAX_VALUE)
             .addComponent(pTabla, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(pBotones, javax.swing.GroupLayout.DEFAULT_SIZE, 610, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(pTabla, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addComponent(pTabla, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(pBotones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -367,19 +420,34 @@ private void btCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
     if (tfconstanteAlfa.getText().trim().equals("")) {
         JOptionPane.showMessageDialog(this, "No ha ingresado constante de suavizado");
     } else {
-        double alfa = Double.parseDouble(tfconstanteAlfa.getText());
-        setError();
-
-        if (GestorDemanda.getInstancia().validarConstanteAlfa(alfa) && GestorDemanda.getInstancia().validarPonderaciones(demandas)) {
-            tfPM.setText(String.valueOf(GestorDemanda.getInstancia().calcularPM(demandas)));
-            tfPMP.setText(String.valueOf(GestorDemanda.getInstancia().calcularPMP(demandas)));
-            tfPMP.setText(String.valueOf(GestorDemanda.getInstancia().calcularPMSE(demandas, alfa)));
+        if (tfDemandaReal.getText().trim().equals("")) {
+            JOptionPane.showMessageDialog(this, "Debe ingresar Demanda real del periodo a predecir");
         } else {
-            if (GestorDemanda.getInstancia().validarConstanteAlfa(alfa)) {
-                JOptionPane.showMessageDialog(this, "La constante de suavizado esta fuera de rango [0-1]");
-            } else if (GestorDemanda.getInstancia().validarPonderaciones(demandas)) {
-                JOptionPane.showMessageDialog(this, "La sumatoria de las constantes de ponderación no es igual a 1");
+            double alfa = Double.parseDouble(tfconstanteAlfa.getText());
+            setError();
+
+            if (GestorDemanda.getInstancia().validarConstanteAlfa(alfa) && GestorDemanda.getInstancia().validarPonderaciones(demandas)) {
+                tfPM.setText(String.valueOf(GestorDemanda.getInstancia().calcularPM(demandas)));
+                tfPMP.setText(String.valueOf(GestorDemanda.getInstancia().calcularPMP(demandas)));
+                tfPMSE.setText(String.valueOf(GestorDemanda.getInstancia().calcularPMSE(demandas, alfa)));
+            } else {
+                if (GestorDemanda.getInstancia().validarConstanteAlfa(alfa)) {
+                    JOptionPane.showMessageDialog(this, "La constante de suavizado esta fuera de rango [0-1]");
+                } else if (GestorDemanda.getInstancia().validarPonderaciones(demandas)) {
+                    JOptionPane.showMessageDialog(this, "La sumatoria de las constantes de ponderación no es igual a 1");
+                }
             }
+            
+            Demanda demandaPredecida = new Demanda();
+            
+            demandaPredecida.setPM(Double.valueOf(tfPM.getText()));
+            demandaPredecida.setPMP(Double.valueOf(tfPMP.getText()));
+            demandaPredecida.setPMSE(Double.valueOf(tfPMSE.getText()));
+            
+            double[] errores1= GestorDemanda.getInstancia().calcularErrores(demandaPredecida, Double.valueOf(tfDemandaReal.getText()), error);
+            tfErrorPM.setText(String.valueOf(errores1[0]));
+            tfErrorPMP.setText(String.valueOf(errores1[1]));
+            tfErrorPMSE.setText(String.valueOf(errores1[2]));
         }
     }
 }//GEN-LAST:event_btCalcularActionPerformed
@@ -424,12 +492,10 @@ private void btCargarPeriodosActionPerformed(java.awt.event.ActionEvent evt) {//
                 demanda.setPeriodo(fechaInicial);
                 demandas.add(demanda);
 
-//                if(temp !=0){
-                    cal.setTime(fechaInicial);
-                    cal.add(Calendar.DAY_OF_MONTH, 30);
-                    fechaInicial= cal.getTime();
-//                }
-//                ++temp;
+                cal.setTime(fechaInicial);
+                cal.add(Calendar.DAY_OF_MONTH, 30);
+                fechaInicial= cal.getTime();
+
 
             }  while(fechaInicial.compareTo(fechaFinal)<=0);
             demanda= new Demanda();
@@ -442,6 +508,7 @@ private void btCargarPeriodosActionPerformed(java.awt.event.ActionEvent evt) {//
 
             tmBuscar.agregarFilas(demandas);
         }
+
     }
 }//GEN-LAST:event_btCargarPeriodosActionPerformed
 
@@ -473,11 +540,13 @@ private void tfPMSEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lbCodigo;
     private javax.swing.JLabel lbNombre;
     private javax.swing.JPanel pBotones;
+    private javax.swing.JPanel pPrediccionDemanda;
     private javax.swing.JPanel pProductoTerminado;
     private javax.swing.JPanel pTabla;
     private javax.swing.JRadioButton rbCuadradoMedio;
@@ -486,6 +555,10 @@ private void tfPMSEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:
     private javax.swing.JRadioButton rbPorcentualMedioAbsoluto;
     private org.jdesktop.swingx.JXTable tCargos;
     private javax.swing.JTextField tfCodigo;
+    private javax.swing.JTextField tfDemandaReal;
+    private javax.swing.JTextField tfErrorPM;
+    private javax.swing.JTextField tfErrorPMP;
+    private javax.swing.JTextField tfErrorPMSE;
     private javax.swing.JTextField tfNombre;
     private javax.swing.JTextField tfPM;
     private javax.swing.JTextField tfPMP;
@@ -511,8 +584,15 @@ private void tfPMSEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:
         radiadores.utils.Util.getInstancia().limpiarCampos(this);
         tfCodigo.setText(productoTerminado.getCodigo());
         tfNombre.setText(productoTerminado.getNombre());
-        btCalcular.setEnabled(true);
+        botonesPantallaCargada();
         
+    }
+
+    private void botonesPantallaCargada(){
+        btCalcular.setEnabled(true);
+        dpPeriodoFinal.setEnabled(true);
+        dpPeriodoInicial.setEnabled(true);
+        btCargarPeriodos.setEnabled(true);
     }
 
     private void setError(){
@@ -528,10 +608,10 @@ private void tfPMSEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:
     }
 
     private Date convertirFecha(Date fecha){
-        int dia;
+//        int dia;
         Calendar cal = Calendar.getInstance();
         cal.setTime(fecha);
-        dia = (Calendar.DAY_OF_MONTH )-1;
+//        dia = (Calendar.DAY_OF_MONTH )-1;
         cal.add(Calendar.DAY_OF_MONTH, 1);
 
         return cal.getTime();
