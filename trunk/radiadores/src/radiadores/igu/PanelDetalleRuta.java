@@ -14,6 +14,7 @@ import radiadores.entidades.HoraLaboral;
 import radiadores.entidades.NodoRuta;
 import radiadores.entidades.ParteDeNodo;
 import radiadores.entidades.ProductoTerminado;
+import radiadores.gestores.GestorPersonal;
 import radiadores.igu.buscar.PanelBuscarEmpleado;
 import radiadores.igu.buscar.PanelBuscarCentroTrabajo;
 import radiadores.igu.buscar.PanelBuscarProductoGral;
@@ -526,8 +527,14 @@ private void btAgregarEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {/
         if (ValidacionBuscar.getInstancia().empleadoEstaCargadoEnTabla(tmEmpleado, horaLaboral)) {
             JOptionPane.showMessageDialog(this, "El Empleado ya se encuentra asignado");
         } else {
-            tmEmpleado.agregarFila(horaLaboral);
-            Util.getInstancia().limpiarCampos(pEmpleadoAgregar);
+
+            if(GestorPersonal.getInstancia().verificarMaxHoras(empleado, horaLaboral.getCantidad())){
+                tmEmpleado.agregarFila(horaLaboral);
+                Util.getInstancia().limpiarCampos(pEmpleadoAgregar);
+            }else{
+                JOptionPane.showMessageDialog(this, "El Empleado excede las horas laborales por mes");
+            }
+
         }
     }
 }//GEN-LAST:event_btAgregarEmpleadoActionPerformed
