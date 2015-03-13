@@ -1,0 +1,3 @@
+# Introduction #
+
+En la sección Source se encuentra el repositorio en el que ya comitié en carpetas separadas el [proyecto](proyecto.md) (radiadores) y el [modelo](modelo.md) hecho en [NetBeans](http://www.netbeans.org) del proyecto (radiadores-Model) pueden hacer [checkouts](checkouts.md) separados desde NB para cada uno de ellos. En la sección Downloads subí el modelo hecho en [Enterprise Architect](http://www.sparxsystems.com.ar).
